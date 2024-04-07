@@ -1,0 +1,41 @@
+/*
+** EPITECH PROJECT, 2024
+** moon-engine
+** File description:
+** clamp
+*/
+
+///////////////////////////////////////////////////////////////////////////////
+// Headers
+///////////////////////////////////////////////////////////////////////////////
+#include "moon.h"
+
+///////////////////////////////////////////////////////////////////////////////
+int clamp(int value, int min, int max)
+{
+    if (value < min)
+        return (min);
+    if (value > max)
+        return (max);
+    return (value);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+float clampf(float value, float min, float max)
+{
+    if (value < min)
+        return (min);
+    if (value > max)
+        return (max);
+    return (value);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+double clampd(double value, double min, double max)
+{
+    if (value < min)
+        return (min);
+    if (value > max)
+        return (max);
+    return (value);
+}

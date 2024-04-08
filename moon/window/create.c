@@ -16,17 +16,18 @@ struct window_reference_s Win = {
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-static void set_window_icon(void)
+static bool set_window_icon(void)
 {
     v2u size;
     sfImage *icn = sfImage_createFromFile(ASSETS DEFAULT_ICON);
 
     if (icn == NULL)
-        return;
+        return (true);
     size = sfImage_getSize(icn);
     sfRenderWindow_setIcon(Win.self, size.x, size.y,
         sfImage_getPixelsPtr(icn));
     sfImage_destroy(icn);
+    return (true);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -50,6 +51,6 @@ bool create_window(uint width, uint height, int mode)
     sfRenderWindow_setFramerateLimit(Win.self, DEFAULT_FPS);
     sfRenderWindow_setPosition(Win.self, (v2i){MID(sc.width, Win.width),
         MID(sc.height, Win.height)});
-    set_window_icon();
-    return (true);
+    Win.mode = mode;
+    return (set_window_icon());
 }

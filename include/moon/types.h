@@ -19,9 +19,6 @@
     #undef bool
     #undef false
     #undef true
-    #define bool sfBool
-    #define false sfFalse
-    #define true sfTrue
 
 ///////////////////////////////////////////////////////////////////////////////
 // Types
@@ -45,5 +42,9 @@ typedef sfVector2u v2u;
 typedef sfVector3f v3f;
 typedef sfFloatRect rectf;
 typedef sfIntRect recti;
+typedef enum {
+    false,
+    true
+} bool;
 
 #endif /* !TYPES_H_ */

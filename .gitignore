@@ -1,0 +1,40 @@
+# Ignore all
+*
+
+# Unignore file with extension
+!*.*
+
+# Unignore dir
+!*/
+
+# Ignore experimental C file
+/*.c
+
+# Ignore logs and tests
+*.json
+*.log
+*.txt
+*.temp
+
+# Ignore all criterion files
+*.gcda
+*.gcno
+*.css
+*.html
+
+# Ignore objects
+*.a
+*.o
+*.out
+
+# Ignore scripts
+*.sh
+*.pl
+
+# Exception
+!Makefile
+!.gitignore
+!LICENSE
+
+# Ignore valgrind reports
+vgcore.*

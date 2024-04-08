@@ -15,5 +15,7 @@
     #include "moon/types.h"
     #include "moon/macros.h"
     #include "moon/maths.h"
+    #include "moon/window.h"
+    #include "moon/engine.h"
 
 #endif /* !MOON_H_ */

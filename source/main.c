@@ -15,6 +15,13 @@ static void parse_events(sfEvent evt)
 {
     if (evt.type == sfEvtClosed)
         sfRenderWindow_close(Win.self);
+    if (evt.type == sfEvtKeyPressed && evt.key.code == sfKeyA) {
+        if (Win.mode == WIN_FULLSCREEN)
+            return ((void)(create_window(0, 0, WIN_BORDERLESS)));
+        if (Win.mode == WIN_WINDOWED)
+            return ((void)(create_window(0, 0, WIN_FULLSCREEN)));
+        return ((void)(create_window(0, 0, WIN_WINDOWED)));
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

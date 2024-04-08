@@ -21,7 +21,7 @@ FLAG		+=	-lcsfml-system												\
 				-lm
 
 #! WINDOWS ONLY
-FLAG		+=	-LC:\MinGW\lib
+#FLAG		+=	-LC:\MinGW\lib
 
 #-----------------------------------------------------------------------------#
 
@@ -39,8 +39,12 @@ E_C_MATHS	=	$(E_D_MATHS)clamp.c											\
 				$(E_D_MATHS)lerp.c											\
 				$(E_D_MATHS)max.c											\
 				$(E_D_MATHS)min.c
+E_C_WINDOW	=	$(E_D_WINDOW)create.c										\
+				$(E_D_WINDOW)destroy.c										\
+				$(E_D_WINDOW)time.c
 
-E_SOURCES	=	$(E_C_MATHS)
+E_SOURCES	=	$(E_C_MATHS)												\
+				$(E_C_WINDOW)
 
 E_OBJECTS	=	$(E_SOURCES:.c=.o)
 
@@ -115,6 +119,10 @@ tests_fclean: tests_clean
 all: $(P_NAME)
 
 re: fclean all
+
+re_program:
+	$(RM) $(P_OBJECTS)
+	make build_program
 
 tests_re: tests_fclean tests_run
 

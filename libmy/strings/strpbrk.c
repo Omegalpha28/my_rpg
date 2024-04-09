@@ -11,14 +11,14 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-string my_strpbrk(cstring s, cstring accept)
+string_t my_strpbrk(cstring_t s, cstring_t accept)
 {
-    cstring a;
+    cstring_t a;
 
     for (; *s; s++) {
         a = accept;
         for (; *a; a++)
-            RETURN(*a == *s, (string)s);
+            RETURN(*a == *s, (string_t)s);
     }
     return (NULL);
 }

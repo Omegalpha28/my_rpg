@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-void my_putwa(warray wa, char separator)
+void my_putwa(warray_t wa, char separator)
 {
     for (; *wa; wa++) {
         my_putstr(*wa);

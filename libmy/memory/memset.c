@@ -11,9 +11,9 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-static void filling_remaining_word(ustring dst, int c0, ulong length)
+static void filling_remaining_word(ustring_t dst, int c0, ulong_t length)
 {
-    ulong t = length & WMASK;
+    ulong_t t = length & WMASK;
 
     if (t) {
         do {
@@ -25,9 +25,9 @@ static void filling_remaining_word(ustring dst, int c0, ulong length)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void filling_word(ustring dst, int c0, uint c, ulong length)
+static void filling_word(ustring_t dst, int c0, uint_t c, ulong_t length)
 {
-    ulong t = (unsigned long int)dst & WMASK;
+    ulong_t t = (unsigned long int)dst & WMASK;
 
     if (t != 0) {
         t = WSIZE - t;
@@ -40,7 +40,7 @@ static void filling_word(ustring dst, int c0, uint c, ulong length)
     }
     t = length / WSIZE;
     do {
-        *(uint *)dst = c;
+        *(uint_t *)dst = c;
         dst += WSIZE;
         t--;
     } while (t);
@@ -48,10 +48,10 @@ static void filling_word(ustring dst, int c0, uint c, ulong length)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void *my_memset(void *dst0, int c0, ulong length)
+void *my_memset(void *dst0, int c0, ulong_t length)
 {
-    uint c = (uchar)c0;
-    ustring dst = (ustring)dst0;
+    uint_t c = (uchar_t)c0;
+    ustring_t dst = (ustring_t)dst0;
 
     if (length < 3 * WSIZE) {
         while (length != 0) {

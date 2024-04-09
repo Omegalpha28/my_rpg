@@ -11,10 +11,10 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-string my_strncat(string dest, cstring src, uint n)
+string_t my_strncat(string_t dest, cstring_t src, uint_t n)
 {
-    ulong dlen = my_strlen(dest);
-    uint i = 0;
+    ulong_t dlen = my_strlen(dest);
+    uint_t i = 0;
 
     for (; i < n && src[i]; i++)
         dest[dlen + i] = src[i];

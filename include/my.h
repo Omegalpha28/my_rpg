@@ -38,7 +38,7 @@
 /// \return True if the character is alphanumeric, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isalnum(int ch);
+bool_t my_isalnum(int ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check if a character is an alphabetic character [a-Z].
@@ -48,7 +48,7 @@ bool my_isalnum(int ch);
 /// \return True if the character is an alphabetic character, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isalpha(int ch);
+bool_t my_isalpha(int ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check if a character is a control character.
@@ -58,7 +58,7 @@ bool my_isalpha(int ch);
 /// \return True if the character is a control character, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_iscntrl(int ch);
+bool_t my_iscntrl(int ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check if a character is a digit [0-9].
@@ -68,7 +68,7 @@ bool my_iscntrl(int ch);
 /// \return True if the character is a digit, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isdigit(int ch);
+bool_t my_isdigit(int ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check if a character is a graphical character (printable and not a
@@ -79,7 +79,7 @@ bool my_isdigit(int ch);
 /// \return True if the character is a graphical character, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isgraph(int ch);
+bool_t my_isgraph(int ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check if a character is a lowercase letter.
@@ -89,7 +89,7 @@ bool my_isgraph(int ch);
 /// \return True if the character is a lowercase letter, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_islower(int ch);
+bool_t my_islower(int ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check if a character is a printable character (ASCII space to
@@ -100,7 +100,7 @@ bool my_islower(int ch);
 /// \return True if the character is a printable character, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isprint(int ch);
+bool_t my_isprint(int ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check if a character is a punctuation character.
@@ -110,7 +110,7 @@ bool my_isprint(int ch);
 /// \return True if the character is a punctuation character, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_ispunct(int ch);
+bool_t my_ispunct(int ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check if a character is a whitespace character (tab, newline,
@@ -121,7 +121,7 @@ bool my_ispunct(int ch);
 /// \return True if the character is a whitespace character, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isspace(int ch);
+bool_t my_isspace(int ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check if a character is a uppercase letter.
@@ -131,7 +131,7 @@ bool my_isspace(int ch);
 /// \return True if the character is a uppercase letter, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isupper(int ch);
+bool_t my_isupper(int ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check if a character is a hexadecimal digit.
@@ -141,7 +141,7 @@ bool my_isupper(int ch);
 /// \return True if the character is a hexadecimal digit, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isxdigit(int ch);
+bool_t my_isxdigit(int ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Convert an uppercase letter to its lowercase equivalent.
@@ -173,7 +173,7 @@ int my_toupper(int ch);
 /// \return The length of the string (excluding the null terminator)
 ///
 ///////////////////////////////////////////////////////////////////////////////
-ulong my_strlen(cstring str);
+ulong_t my_strlen(cstring_t str);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Convert a string to a word array
@@ -183,7 +183,7 @@ ulong my_strlen(cstring str);
 /// \return Array of words
 ///
 ///////////////////////////////////////////////////////////////////////////////
-warray my_stowa(string str);
+warray_t my_stowa(string_t str);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Duplicate a string to n
@@ -195,7 +195,7 @@ warray my_stowa(string str);
 /// fails
 ///
 ///////////////////////////////////////////////////////////////////////////////
-string my_strndup(cstring str, ulong n);
+string_t my_strndup(cstring_t str, ulong_t n);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Calculate the length of a null-terminated array of strings
@@ -205,7 +205,7 @@ string my_strndup(cstring str, ulong n);
 /// \return The length of the array (number of strings)
 ///
 ///////////////////////////////////////////////////////////////////////////////
-ulong my_walen(warray wa);
+ulong_t my_walen(warray_t wa);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Deallocate memory for a null-terminated array of strings
@@ -213,7 +213,7 @@ ulong my_walen(warray wa);
 /// \param wa  Pointer to the null-terminated array of strings
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void my_watroy(warray wa);
+void my_watroy(warray_t wa);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Create a deep copy of an array of mutable strings.
@@ -223,7 +223,7 @@ void my_watroy(warray wa);
 /// \return A deep copy of the input array, or NULL on allocation failure
 ///
 ///////////////////////////////////////////////////////////////////////////////
-warray my_wacpy(warray wa);
+warray_t my_wacpy(warray_t wa);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Duplicate a string
@@ -234,7 +234,7 @@ warray my_wacpy(warray wa);
 /// fails
 ///
 ///////////////////////////////////////////////////////////////////////////////
-string my_strdup(cstring str);
+string_t my_strdup(cstring_t str);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Compare two strings up to a specified number of characters.
@@ -248,7 +248,7 @@ string my_strdup(cstring str);
 /// greater than the first n characters of s2.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-int my_strncmp(cstring s1, cstring s2, size_t n);
+int my_strncmp(cstring_t s1, cstring_t s2, size_t n);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Copy at most n characters from the source string to the destination
@@ -262,7 +262,7 @@ int my_strncmp(cstring s1, cstring s2, size_t n);
 /// \return The modified destination string.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-string my_strncpy(string dest, cstring src, uint n);
+string_t my_strncpy(string_t dest, cstring_t src, uint_t n);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Concatenate up to 'n' characters from a null-terminated source
@@ -275,7 +275,7 @@ string my_strncpy(string dest, cstring src, uint n);
 /// \return Pointer to the destination string after concatenation.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-string my_strncat(string dest, cstring src, uint n);
+string_t my_strncat(string_t dest, cstring_t src, uint_t n);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Compare two strings.
@@ -287,7 +287,7 @@ string my_strncat(string dest, cstring src, uint n);
 /// found, respectively, to be less than, to match, or be greater than s2.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-int my_strcmp(cstring s1, cstring s2);
+int my_strcmp(cstring_t s1, cstring_t s2);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Calculate the length of a substring in a null-terminated string up
@@ -300,7 +300,7 @@ int my_strcmp(cstring s1, cstring s2);
 /// the limiter itself).
 ///
 ///////////////////////////////////////////////////////////////////////////////
-ulong my_strwlen(cstring str, char limiter);
+ulong_t my_strwlen(cstring_t str, char limiter);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Concatenate three null-terminated strings and return the result.
@@ -313,7 +313,7 @@ ulong my_strwlen(cstring str, char limiter);
 /// result, or NULL on allocation failure.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-string my_strdcat(cstring s1, cstring s2, cstring s3);
+string_t my_strdcat(cstring_t s1, cstring_t s2, cstring_t s3);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Convert a string to a word array using a separator
@@ -324,7 +324,7 @@ string my_strdcat(cstring s1, cstring s2, cstring s3);
 /// \return Array of words
 ///
 ///////////////////////////////////////////////////////////////////////////////
-warray my_strsplit(string str, char separator);
+warray_t my_strsplit(string_t str, char separator);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check if all characters in a string satisfy a specified condition.
@@ -335,7 +335,7 @@ warray my_strsplit(string str, char separator);
 /// \return True if all characters satisfy the condition, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_stris(cstring str, bool (*type)(int ch));
+bool_t my_stris(cstring_t str, bool_t (*type)(int ch));
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check if a value exists in a null-terminated array of strings.
@@ -346,7 +346,7 @@ bool my_stris(cstring str, bool (*type)(int ch));
 /// \return True if the value is found, false otherwise.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_wacmp(warray wa, string search);
+bool_t my_wacmp(warray_t wa, string_t search);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief libmy macros (DO NOT USE)
@@ -387,7 +387,7 @@ int my_strtol(char *s, char **ptr);
 /// \param str          Pointer to the null-terminated string to be printed.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void my_puterr(cstring str);
+void my_puterr(cstring_t str);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Print a null-terminated string to the standard output.
@@ -395,13 +395,7 @@ void my_puterr(cstring str);
 /// \param str          Pointer to the null-terminated string to be printed.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void my_putstr(cstring str);
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief libmy macros (DO NOT USE)
-///
-///////////////////////////////////////////////////////////////////////////////
-    #define EQ(x, y) ((x) = (y))
+void my_putstr(cstring_t str);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Print a single character to the standard output.
@@ -419,7 +413,7 @@ void my_putchar(int ch);
 ///                     output
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void my_putwa(warray wa, char separator);
+void my_putwa(warray_t wa, char separator);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Writes a string to a file descriptor followed by a newline character
@@ -430,7 +424,7 @@ void my_putwa(warray wa, char separator);
 /// \return The number of bytes written in the fd
 ///
 ///////////////////////////////////////////////////////////////////////////////
-ulong my_fputs(int fd, string str);
+ulong_t my_fputs(int fd, string_t str);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Convert a string to an integer
@@ -440,7 +434,7 @@ ulong my_fputs(int fd, string str);
 /// \return Returns the integer value corresponding to 'str'
 ///
 ///////////////////////////////////////////////////////////////////////////////
-int my_atoi(string str);
+int my_atoi(string_t str);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Copy memory area
@@ -451,7 +445,7 @@ int my_atoi(string str);
 ///
 /// \return Pointer to the destination memory area ('dst')
 ///////////////////////////////////////////////////////////////////////////////
-void *my_memcpy(void *dst, const void *src, ulong n);
+void *my_memcpy(void *dst, const void *src, ulong_t n);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Fill a block of memory with a specified value.
@@ -463,7 +457,7 @@ void *my_memcpy(void *dst, const void *src, ulong n);
 /// \return Pointer to the filled memory block.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void *my_memset(void *src, int ch, ulong n);
+void *my_memset(void *src, int ch, ulong_t n);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Reallocate memory for a block with a new size and copy the existing
@@ -475,7 +469,7 @@ void *my_memset(void *src, int ch, ulong n);
 /// \return Pointer to the reallocated and copied memory block.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void *my_realloc(void *ptr, ulong size);
+void *my_realloc(void *ptr, ulong_t size);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Safe free avoiding freeing NULL
@@ -502,7 +496,7 @@ void my_free(void **ptr);
 /// false
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isint(string str);
+bool_t my_isint(string_t str);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Locate the first occurrence of any character in a set.
@@ -514,7 +508,7 @@ bool my_isint(string str);
 /// \return A pointer to the first matching character in the string or NULL.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-string my_strpbrk(cstring s, cstring accept);
+string_t my_strpbrk(cstring_t s, cstring_t accept);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Calculate the length of the initial segment of a string consisting
@@ -528,7 +522,7 @@ string my_strpbrk(cstring s, cstring accept);
 ///         characters from s2.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-ulong my_strspn(cstring s1, cstring s2);
+ulong_t my_strspn(cstring_t s1, cstring_t s2);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Extract tokens from a string.
@@ -541,7 +535,7 @@ ulong my_strspn(cstring s1, cstring s2);
 ///         tokens are found.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-string my_strtok_r(string s, cstring delim, string *save_ptr);
+string_t my_strtok_r(string_t s, cstring_t delim, string_t *save_ptr);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Extract tokens from a string.
@@ -553,7 +547,7 @@ string my_strtok_r(string s, cstring delim, string *save_ptr);
 ///         tokens are found.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-string my_strtok(string str, cstring delim);
+string_t my_strtok(string_t str, cstring_t delim);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Locate the first occurrence of a character in a string.
@@ -564,7 +558,7 @@ string my_strtok(string str, cstring delim);
 /// \return A pointer to the first matching character in the string or NULL.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-string my_strchr(cstring p, int ch);
+string_t my_strchr(cstring_t p, int ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Reallocate memory for a block with a new size and copy the existing
@@ -577,7 +571,7 @@ string my_strchr(cstring p, int ch);
 /// \return      Pointer to the reallocated and copied memory block.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void *my_orealloc(void *ptr, ulong old_size, ulong new_size);
+void *my_orealloc(void *ptr, ulong_t old_size, ulong_t new_size);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Count the occurrences of a specified character in a null-terminated
@@ -589,7 +583,7 @@ void *my_orealloc(void *ptr, ulong old_size, ulong new_size);
 /// \return The number of occurrences of the specified character in the string.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-ulong my_countchar(cstring str, char ch);
+ulong_t my_countchar(cstring_t str, char ch);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Count the number of words in the string
@@ -599,7 +593,7 @@ ulong my_countchar(cstring str, char ch);
 /// \return Return the number of words
 ///
 ///////////////////////////////////////////////////////////////////////////////
-uint my_wcount(cstring str);
+uint_t my_wcount(cstring_t str);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Print an integer to the standard output.

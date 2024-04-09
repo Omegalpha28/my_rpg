@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_islower(int ch)
+bool_t my_islower(int ch)
 {
     return (BOOL(ch >= 'a' && ch <= 'z'));
 }

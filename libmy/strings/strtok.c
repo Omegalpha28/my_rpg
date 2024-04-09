@@ -11,9 +11,9 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-string my_strtok(string str, cstring delim)
+string_t my_strtok(string_t str, cstring_t delim)
 {
-    static string save;
+    static string_t save;
 
     return (my_strtok_r(str, delim, &save));
 }

@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-int my_strcmp(cstring s1, cstring s2)
+int my_strcmp(cstring_t s1, cstring_t s2)
 {
     for (;;) {
         if (*s1 != *s2)

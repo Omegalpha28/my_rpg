@@ -11,9 +11,9 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-string my_strtok_r(string s, cstring delim, string *save_ptr)
+string_t my_strtok_r(string_t s, cstring_t delim, string_t *save_ptr)
 {
-    string token;
+    string_t token;
 
     if (s == NULL)
         s = *save_ptr;

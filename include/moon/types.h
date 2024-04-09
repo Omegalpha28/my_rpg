@@ -23,31 +23,31 @@
 ///////////////////////////////////////////////////////////////////////////////
 // Types
 ///////////////////////////////////////////////////////////////////////////////
-typedef unsigned char u8;
-typedef unsigned short u16;
-typedef unsigned int u32;
-typedef unsigned long long u64;
-typedef unsigned char uchar;
-typedef unsigned int uint;
-typedef unsigned long ulong;
-typedef unsigned long long ullong;
-typedef char *string;
-typedef unsigned char *ustring;
-typedef const char *cstring;
-typedef const unsigned char *custring;
-typedef unsigned char byte;
-typedef sfVector2f v2f;
-typedef sfVector2i v2i;
-typedef sfVector2u v2u;
-typedef sfVector3f v3f;
-typedef sfFloatRect rectf;
-typedef sfIntRect recti;
-typedef string *warray;
-typedef cstring *cwarray;
-typedef custring *cuwarray;
+typedef unsigned char u8_t;
+typedef unsigned short u16_t;
+typedef unsigned int u32_t;
+typedef unsigned long long u64_t;
+typedef unsigned char uchar_t;
+typedef unsigned int uint_t;
+typedef unsigned long ulong_t;
+typedef unsigned long long ullong_t;
+typedef char *string_t;
+typedef unsigned char *ustring_t;
+typedef const char *cstring_t;
+typedef const unsigned char *custring_t;
+typedef unsigned char byte_t;
+typedef sfVector2f v2f_t;
+typedef sfVector2i v2i_t;
+typedef sfVector2u v2u_t;
+typedef sfVector3f v3f_t;
+typedef sfFloatRect rectf_t;
+typedef sfIntRect recti_t;
+typedef string_t *warray_t;
+typedef cstring_t *cwarray_t;
+typedef custring_t *cuwarray_t;
 typedef enum {
     false,
     true
-} bool;
+} bool_t;
 
 #endif /* !TYPES_H_ */

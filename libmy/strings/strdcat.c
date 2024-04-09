@@ -11,11 +11,11 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-string my_strdcat(cstring s1, cstring s2, cstring s3)
+string_t my_strdcat(cstring_t s1, cstring_t s2, cstring_t s3)
 {
-    string str = malloc(sizeof(char) * (my_strlen(s1) + my_strlen(s2) +
+    string_t str = malloc(sizeof(char) * (my_strlen(s1) + my_strlen(s2) +
         my_strlen(s3) + 1));
-    string save = str;
+    string_t save = str;
 
     for (; *s1; s1++) {
         *str = *s1;

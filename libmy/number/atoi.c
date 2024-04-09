@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-int my_atoi(string str)
+int my_atoi(string_t str)
 {
     return (my_strtol(str, &str));
 }

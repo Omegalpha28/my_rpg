@@ -11,8 +11,8 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-static void cpy_low_high_chunk(string dst, cstring src, ulong length,
-    ulong t)
+static void cpy_low_high_chunk(string_t dst, cstring_t src, ulong_t length,
+    ulong_t t)
 {
     if (t) {
         do {
@@ -34,8 +34,8 @@ static void cpy_low_high_chunk(string dst, cstring src, ulong length,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void cpy_low_high(string dst, cstring src, ulong length,
-    ulong t)
+static void cpy_low_high(string_t dst, cstring_t src, ulong_t length,
+    ulong_t t)
 {
     if ((t | (unsigned long int)dst) & WMASK) {
         if ((t ^ (unsigned long int)dst) & WMASK || length < WSIZE)
@@ -54,8 +54,8 @@ static void cpy_low_high(string dst, cstring src, ulong length,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void cpy_high_low_chunk(string dst, cstring src, ulong length,
-    ulong t)
+static void cpy_high_low_chunk(string_t dst, cstring_t src, ulong_t length,
+    ulong_t t)
 {
     if (t) {
         do {
@@ -77,8 +77,8 @@ static void cpy_high_low_chunk(string dst, cstring src, ulong length,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void cpy_high_low(string dst, cstring src, ulong length,
-    ulong t)
+static void cpy_high_low(string_t dst, cstring_t src, ulong_t length,
+    ulong_t t)
 {
     src += length;
     dst += length;
@@ -99,14 +99,14 @@ static void cpy_high_low(string dst, cstring src, ulong length,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void *my_memcpy(void *dst0, const void *src0, ulong length)
+void *my_memcpy(void *dst0, const void *src0, ulong_t length)
 {
-    string dst = (string)dst0;
-    cstring src = (cstring)src0;
+    string_t dst = (string_t)dst0;
+    cstring_t src = (cstring_t)src0;
 
     if (length == 0 || dst == src)
         return (dst0);
-    if ((ulong)dst < (ulong)src) {
+    if ((ulong_t)dst < (ulong_t)src) {
         cpy_low_high(dst, src, length, (unsigned long int)src);
     } else {
         cpy_high_low(dst, src, length, (unsigned long int)src);

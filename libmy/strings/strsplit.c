@@ -11,13 +11,14 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-warray my_strsplit(string str, char separator)
+warray_t my_strsplit(string_t str, char separator)
 {
-    string cpy = my_strdup(str);
+    string_t cpy = my_strdup(str);
     char sep[2] = {separator, 0};
-    warray wa = malloc(sizeof(string) * (my_countchar(str, separator) + 2));
-    string tok = my_strtok(cpy, sep);
-    ulong wi = 0;
+    warray_t wa = malloc(sizeof(string_t) * (my_countchar(str, separator) +
+        2));
+    string_t tok = my_strtok(cpy, sep);
+    ulong_t wi = 0;
 
     if (tok == NULL) {
         FREE(wa);

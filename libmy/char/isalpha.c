@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isalpha(int ch)
+bool_t my_isalpha(int ch)
 {
     return (BOOL((ch >= 'a' && ch <= 'z')
         || (ch >= 'A' && ch <= 'Z')));

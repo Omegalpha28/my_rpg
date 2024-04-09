@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isprint(int ch)
+bool_t my_isprint(int ch)
 {
     return (BOOL(ch >= ' ' && ch <= '~'));
 }

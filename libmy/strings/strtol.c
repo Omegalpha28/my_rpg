@@ -13,9 +13,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 int my_strtol(char *s, char **ptr)
 {
-    ulong i = 0;
+    ulong_t i = 0;
     int n = 0;
-    bool sign = false;
+    bool_t sign = false;
 
     while (s[i] == ' ')
         i++;

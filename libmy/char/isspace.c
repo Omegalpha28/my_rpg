@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isspace(int ch)
+bool_t my_isspace(int ch)
 {
     return (BOOL(ch == '\t' || ch == '\n' || ch == '\v' || ch == '\f'
         || ch == '\r' || ch == ' '));

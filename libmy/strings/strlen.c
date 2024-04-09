@@ -11,10 +11,10 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-ulong my_strlen(cstring s)
+ulong_t my_strlen(cstring_t s)
 {
-    cstring a = s;
-    const ulong *w;
+    cstring_t a = s;
+    const ulong_t *w;
 
     for (; (unsigned long int)s % ALIGN; s++)
         if (!*s)

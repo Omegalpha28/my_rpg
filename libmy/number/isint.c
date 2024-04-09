@@ -11,9 +11,9 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isint(string str)
+bool_t my_isint(string_t str)
 {
-    bool intEnded = false;
+    bool_t intEnded = false;
 
     for (; str && my_isspace(*str); str++);
     if (*str == '-' || *str == '+')

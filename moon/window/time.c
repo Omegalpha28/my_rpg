@@ -16,7 +16,7 @@ struct window_time_s Time = {
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-bool init_time(void)
+bool_t init_time(void)
 {
     Time.clock = sfClock_create();
     if (Time.clock == NULL)
@@ -28,7 +28,7 @@ bool init_time(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-bool update_time(void)
+bool_t update_time(void)
 {
     sfTime crt;
 

@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_ispunct(int ch)
+bool_t my_ispunct(int ch)
 {
     return (BOOL((ch == '!' || (ch >= '"' && ch <= '&')
         || (ch >= '(' && ch <= '/') || (ch >= ':' && ch <= '?')

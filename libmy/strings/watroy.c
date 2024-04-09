@@ -11,11 +11,11 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-void my_watroy(warray wa)
+void my_watroy(warray_t wa)
 {
     if (wa == NULL)
         return;
-    for (ulong i = 0; wa[i]; i++)
+    for (ulong_t i = 0; wa[i]; i++)
         FREE(wa[i]);
     FREE(wa);
 }

@@ -11,9 +11,9 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-ulong my_fputs(int fd, string str)
+ulong_t my_fputs(int fd, string_t str)
 {
-    ulong len = my_strlen(str);
+    ulong_t len = my_strlen(str);
 
     write(fd, str, len);
     write(fd, "\n", 1);

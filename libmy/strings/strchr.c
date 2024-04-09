@@ -11,13 +11,13 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-string my_strchr(cstring p, int ch)
+string_t my_strchr(cstring_t p, int ch)
 {
     char c = ch;
 
     for (;; ++p) {
         if (*p == c)
-            return ((string)p);
+            return ((string_t)p);
         if (*p == '\0')
             return (NULL);
     }

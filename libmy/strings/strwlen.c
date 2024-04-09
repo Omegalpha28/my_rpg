@@ -11,9 +11,9 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-ulong my_strwlen(cstring str, char limiter)
+ulong_t my_strwlen(cstring_t str, char limiter)
 {
-    cstring s = str;
+    cstring_t s = str;
 
     for (; *s && *s != limiter; ++s);
     return (s - str);

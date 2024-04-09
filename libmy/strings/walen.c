@@ -11,9 +11,9 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-ulong my_walen(warray wa)
+ulong_t my_walen(warray_t wa)
 {
-    warray swa = wa;
+    warray_t swa = wa;
 
     for (; *wa; wa++);
     return (wa - swa);

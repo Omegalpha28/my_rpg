@@ -11,7 +11,7 @@
 #include "moon.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-int distance2i(v2i pts1, v2i pts2)
+int distance2i(v2i_t pts1, v2i_t pts2)
 {
     int dx = pts2.x - pts1.x;
     int dy = pts2.y - pts1.y;
@@ -20,7 +20,7 @@ int distance2i(v2i pts1, v2i pts2)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-float distance2f(v2f pts1, v2f pts2)
+float distance2f(v2f_t pts1, v2f_t pts2)
 {
     float dx = pts2.x - pts1.x;
     float dy = pts2.y - pts1.y;
@@ -29,7 +29,7 @@ float distance2f(v2f pts1, v2f pts2)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-int distance2u(v2u pts1, v2u pts2)
+int distance2u(v2u_t pts1, v2u_t pts2)
 {
     int dx = pts2.x - pts1.x;
     int dy = pts2.y - pts1.y;
@@ -38,7 +38,7 @@ int distance2u(v2u pts1, v2u pts2)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-float distance3f(v3f pts1, v3f pts2)
+float distance3f(v3f_t pts1, v3f_t pts2)
 {
     float dx = pts2.x - pts1.x;
     float dy = pts2.y - pts1.y;

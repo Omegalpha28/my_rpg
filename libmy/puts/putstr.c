@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-void my_putstr(cstring str)
+void my_putstr(cstring_t str)
 {
     write(1, str, my_strlen(str));
 }

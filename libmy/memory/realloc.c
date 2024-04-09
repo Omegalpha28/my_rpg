@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-void *my_realloc(void *ptr, ulong size)
+void *my_realloc(void *ptr, ulong_t size)
 {
     void *new_ptr = NULL;
 

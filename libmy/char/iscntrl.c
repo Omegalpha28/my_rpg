@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_iscntrl(int ch)
+bool_t my_iscntrl(int ch)
 {
     return (BOOL((ch >= 0 && ch <= 31) || ch == 127));
 }

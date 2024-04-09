@@ -11,10 +11,10 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-ulong my_strspn(cstring s1, cstring s2)
+ulong_t my_strspn(cstring_t s1, cstring_t s2)
 {
-    cstring s = s1;
-    cstring c;
+    cstring_t s = s1;
+    cstring_t c;
 
     while (*s1) {
         for (c = s2; *c && !(*s1 == *c); c++);

@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isxdigit(int ch)
+bool_t my_isxdigit(int ch)
 {
     return (BOOL((ch >= '0' && ch <= '9')
         || (ch >= 'a' && ch <= 'f')

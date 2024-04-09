@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-void *my_orealloc(void *ptr, ulong old_size, ulong new_size)
+void *my_orealloc(void *ptr, ulong_t old_size, ulong_t new_size)
 {
     void *new_ptr = NULL;
 

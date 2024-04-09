@@ -11,9 +11,9 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-string my_strncpy(string dest, cstring src, uint n)
+string_t my_strncpy(string_t dest, cstring_t src, uint_t n)
 {
-    ulong i = 0;
+    ulong_t i = 0;
 
     for (; i < n && src[i]; i++)
         dest[i] = src[i];

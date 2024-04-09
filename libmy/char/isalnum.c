@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isalnum(int ch)
+bool_t my_isalnum(int ch)
 {
     return (BOOL(my_isalpha(ch) || my_isdigit(ch)));
 }

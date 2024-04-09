@@ -16,9 +16,9 @@ struct window_reference_s Win = {
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-static bool set_window_icon(void)
+static bool_t set_window_icon(void)
 {
-    v2u size;
+    v2u_t size;
     sfImage *icn = sfImage_createFromFile(ASSETS DEFAULT_ICON);
 
     if (icn == NULL)
@@ -31,7 +31,7 @@ static bool set_window_icon(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-bool create_window(uint width, uint height, int mode)
+bool_t create_window(uint_t width, uint_t height, int mode)
 {
     sfVideoMode sc = sfVideoMode_getDesktopMode();
     sfVideoMode vm = {width, height, DEFAULT_BITS};
@@ -46,10 +46,10 @@ bool create_window(uint width, uint height, int mode)
     if (!Win.view || !Win.self)
         return (false);
     sfRenderWindow_setView(Win.self, Win.view);
-    sfView_setCenter(Win.view, (v2f){DEFAULT_VIEW_WIDTH / 2.f,
+    sfView_setCenter(Win.view, (v2f_t){DEFAULT_VIEW_WIDTH / 2.f,
         DEFAULT_VIEW_HEIGHT / 2.f});
     sfRenderWindow_setFramerateLimit(Win.self, DEFAULT_FPS);
-    sfRenderWindow_setPosition(Win.self, (v2i){MID(sc.width, Win.width),
+    sfRenderWindow_setPosition(Win.self, (v2i_t){MID(sc.width, Win.width),
         MID(sc.height, Win.height)});
     Win.mode = mode;
     return (set_window_icon());

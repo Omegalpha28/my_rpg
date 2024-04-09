@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_wacmp(warray wa, string search)
+bool_t my_wacmp(warray_t wa, string_t search)
 {
     for (; *wa; wa++)
         RETURN(!my_strcmp(*wa, search), true);

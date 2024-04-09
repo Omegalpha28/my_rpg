@@ -11,10 +11,10 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-uint my_wcount(cstring str)
+uint_t my_wcount(cstring_t str)
 {
-    uint count = 0;
-    bool found = false;
+    uint_t count = 0;
+    bool_t found = false;
 
     for (; *str; ++str) {
         if (my_isspace(*str)) {
@@ -30,20 +30,20 @@ uint my_wcount(cstring str)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-warray my_stowa(string str)
+warray_t my_stowa(string_t str)
 {
-    warray wa;
+    warray_t wa;
     int wi = 0;
-    string lw = str;
+    string_t lw = str;
 
     RETURN(str == NULL, NULL);
-    wa = malloc(sizeof(string) * my_wcount(str));
+    wa = malloc(sizeof(string_t) * my_wcount(str));
     for (;; ++str) {
         for (; *str && my_isspace(*str); ++str);
         lw = str;
         for (; *str && !my_isspace(*str); ++str);
         if (*str == '\0') {
-            DOIF(*lw != '\0', EQ(wa[wi], my_strdup(lw)));
+            DOIF(*lw != '\0', (wa[wi] = my_strdup(lw)));
             break;
         }
         *str = '\0';

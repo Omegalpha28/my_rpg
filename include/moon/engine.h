@@ -25,7 +25,7 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct engine_reference_s {
-    bool debugMode;
+    bool_t debugMode;
 } Engine;
 
 #endif /* !ENGINE_H_ */

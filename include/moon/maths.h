@@ -95,7 +95,7 @@ double lerpd(double start, double end, float t);
 /// \return The minimum value among the provided integers
 ///
 ///////////////////////////////////////////////////////////////////////////////
-int min(uint n, int x, ...);
+int min(uint_t n, int x, ...);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Finds the minimum value among a variable number of floats.
@@ -107,7 +107,7 @@ int min(uint n, int x, ...);
 /// \return The minimum value among the provided floats
 ///
 ///////////////////////////////////////////////////////////////////////////////
-float minf(uint n, float x, ...);
+float minf(uint_t n, float x, ...);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Finds the minimum value among a variable number of doubles.
@@ -119,7 +119,7 @@ float minf(uint n, float x, ...);
 /// \return The minimum value among the provided doubles
 ///
 ///////////////////////////////////////////////////////////////////////////////
-double mind(uint n, double x, ...);
+double mind(uint_t n, double x, ...);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Finds the maximum value among a variable number of integers.
@@ -131,7 +131,7 @@ double mind(uint n, double x, ...);
 /// \return The maximum value among the provided integers
 ///
 ///////////////////////////////////////////////////////////////////////////////
-int max(uint n, int x, ...);
+int max(uint_t n, int x, ...);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Finds the maximum value among a variable number of floats.
@@ -143,7 +143,7 @@ int max(uint n, int x, ...);
 /// \return The maximum value among the provided floats
 ///
 ///////////////////////////////////////////////////////////////////////////////
-float maxf(uint n, float x, ...);
+float maxf(uint_t n, float x, ...);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Finds the maximum value among a variable number of doubles.
@@ -155,7 +155,7 @@ float maxf(uint n, float x, ...);
 /// \return The maximum value among the provided doubles
 ///
 ///////////////////////////////////////////////////////////////////////////////
-double maxd(uint n, double x, ...);
+double maxd(uint_t n, double x, ...);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Calculate distance between two points
@@ -166,7 +166,7 @@ double maxd(uint n, double x, ...);
 /// \return The distance between the points
 ///
 ///////////////////////////////////////////////////////////////////////////////
-int distance2i(v2i pts1, v2i pts2);
+int distance2i(v2i_t pts1, v2i_t pts2);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Calculate distance between two points
@@ -177,7 +177,7 @@ int distance2i(v2i pts1, v2i pts2);
 /// \return The distance between the points
 ///
 ///////////////////////////////////////////////////////////////////////////////
-float distance2f(v2f pts1, v2f pts2);
+float distance2f(v2f_t pts1, v2f_t pts2);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Calculate distance between two points
@@ -188,7 +188,7 @@ float distance2f(v2f pts1, v2f pts2);
 /// \return The distance between the points
 ///
 ///////////////////////////////////////////////////////////////////////////////
-int distance2u(v2u pts1, v2u pts2);
+int distance2u(v2u_t pts1, v2u_t pts2);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Calculate distance between two points
@@ -199,7 +199,7 @@ int distance2u(v2u pts1, v2u pts2);
 /// \return The distance between the points
 ///
 ///////////////////////////////////////////////////////////////////////////////
-float distance3f(v3f pts1, v3f pts2);
+float distance3f(v3f_t pts1, v3f_t pts2);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check for intersection between two circles
@@ -212,7 +212,7 @@ float distance3f(v3f pts1, v3f pts2);
 /// \return Boolean, true if there's an intersection, false otherwise
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool intersect2f(v2f c1, float r1, v2f c2, float r2);
+bool_t intersect2f(v2f_t c1, float r1, v2f_t c2, float r2);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check for intersection between two spheres
@@ -225,7 +225,7 @@ bool intersect2f(v2f c1, float r1, v2f c2, float r2);
 /// \return Boolean, true if there's an intersection, false otherwise
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool intersect3f(v3f c1, float r1, v3f c2, float r2);
+bool_t intersect3f(v3f_t c1, float r1, v3f_t c2, float r2);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check for intersection between two circles
@@ -238,7 +238,7 @@ bool intersect3f(v3f c1, float r1, v3f c2, float r2);
 /// \return Boolean, true if there's an intersection, false otherwise
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool intersect2i(v2i c1, int r1, v2i c2, int r2);
+bool_t intersect2i(v2i_t c1, int r1, v2i_t c2, int r2);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check for intersection between two rectangle
@@ -249,7 +249,7 @@ bool intersect2i(v2i c1, int r1, v2i c2, int r2);
 /// \return Boolean, true if there's an intersection, false otherwise
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool intersectri(recti r1, recti r2);
+bool_t intersectri(recti_t r1, recti_t r2);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check for intersection between two rectangle
@@ -260,6 +260,6 @@ bool intersectri(recti r1, recti r2);
 /// \return Boolean, true if there's an intersection, false otherwise
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool intersectrf(rectf r1, rectf r2);
+bool_t intersectrf(rectf_t r1, rectf_t r2);
 
 #endif /* !MATHS_H_ */

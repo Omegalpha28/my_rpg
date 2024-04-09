@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_stris(cstring str, bool (*type)(int ch))
+bool_t my_stris(cstring_t str, bool_t (*type)(int ch))
 {
     for (; *str; str++)
         RETURN(!type(*str), false);

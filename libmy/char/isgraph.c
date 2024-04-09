@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isgraph(int ch)
+bool_t my_isgraph(int ch)
 {
     return (BOOL(my_isprint(ch) && !my_isspace(ch)));
 }

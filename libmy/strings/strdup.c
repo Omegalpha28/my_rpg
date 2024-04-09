@@ -11,12 +11,12 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-string my_strdup(cstring str)
+string_t my_strdup(cstring_t str)
 {
-    ulong len = my_strlen(str) + 1;
-    string copy;
+    ulong_t len = my_strlen(str) + 1;
+    string_t copy;
 
-    copy = malloc((uint)len);
+    copy = malloc((uint_t)len);
     RETURN(!copy, NULL);
     my_memcpy(copy, str, len);
     return (copy);

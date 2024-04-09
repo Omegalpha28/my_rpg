@@ -62,7 +62,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 extern struct window_time_s {
     double deltaTime;
-    u32 currentTime;
+    u32_t currentTime;
     sfClock *clock;
 } Time;
 
@@ -80,8 +80,8 @@ extern struct window_time_s {
 extern struct window_reference_s {
     sfView *view;
     sfRenderWindow *self;
-    uint width;
-    uint height;
+    uint_t width;
+    uint_t height;
     int mode;
 } Win;
 
@@ -101,7 +101,7 @@ extern struct window_reference_s {
 /// \return Boolean, true if the creation was successful, false otherwise
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool create_window(uint width, uint height, int mode);
+bool_t create_window(uint_t width, uint_t height, int mode);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Destroy the window and view from the Win structure
@@ -116,7 +116,7 @@ void destroy_window(void);
 /// engine.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool init_time(void);
+bool_t init_time(void);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Update the Time variable
@@ -128,7 +128,7 @@ bool init_time(void);
 /// the initialization failed, and need to leave the engine.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool update_time(void);
+bool_t update_time(void);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Destroy the variable and clean the used ressources

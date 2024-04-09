@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-void my_puterr(cstring str)
+void my_puterr(cstring_t str)
 {
     write(2, str, my_strlen(str));
 }

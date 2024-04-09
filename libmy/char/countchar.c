@@ -25,9 +25,9 @@
 ///             string.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-ulong my_countchar(cstring str, char ch)
+ulong_t my_countchar(cstring_t str, char ch)
 {
-    ulong count = ch == '\0' ? 1 : 0;
+    ulong_t count = ch == '\0' ? 1 : 0;
 
     for (; *str; str++)
         if (*str == ch)

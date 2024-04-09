@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isdigit(int ch)
+bool_t my_isdigit(int ch)
 {
     return (BOOL(ch >= '0' && ch <= '9'));
 }

@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool my_isupper(int ch)
+bool_t my_isupper(int ch)
 {
     return (BOOL(ch >= 'A' && ch <= 'Z'));
 }

@@ -59,6 +59,7 @@ L_D_MEMORY	=	$(L_D_ROOT)memory/
 L_D_NUMBER	=	$(L_D_ROOT)number/
 L_D_PUTS	=	$(L_D_ROOT)puts/
 L_D_STRINGS	=	$(L_D_ROOT)strings/
+L_D_SYSTEM	=	$(L_D_ROOT)system/
 
 L_C_CHAR	=	$(L_D_CHAR)countchar.c										\
 				$(L_D_CHAR)isalnum.c										\
@@ -113,12 +114,15 @@ L_C_STRINGS	=	$(L_D_STRINGS)stowa.c										\
 				$(L_D_STRINGS)wacpy.c										\
 				$(L_D_STRINGS)walen.c										\
 				$(L_D_STRINGS)watroy.c
+L_C_SYSTEM	=	$(L_D_SYSTEM)dircontent.c									\
+				$(L_D_SYSTEM)dirlen.c
 
 L_SOURCES	=	$(L_C_CHAR)													\
 				$(L_C_MEMORY)												\
 				$(L_C_NUMBER)												\
 				$(L_C_PUTS)													\
-				$(L_C_STRINGS)
+				$(L_C_STRINGS)												\
+				$(L_C_SYSTEM)
 
 L_OBJECTS	=	$(L_SOURCES:.c=.o)
 

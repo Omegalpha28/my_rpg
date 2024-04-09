@@ -24,5 +24,7 @@
     #include <stdlib.h>
     #include <math.h>
     #include <stdarg.h>
+    #include <dirent.h>
+    #include <sys/stat.h>
 
 #endif /* !DEPENDENCIES_H_ */

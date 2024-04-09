@@ -20,6 +20,8 @@
     #define HIGHS (ONES * (UCHAR_MAX / 2 + 1))
     #define HASZERO(x) (((x) - ONES) & ~(x) & HIGHS)
 
+    #define MAX_EXTENSION_LENGTH 32
+
 #ifndef ARG_MAX
     #define ARG_MAX 128 * 1024
 #endif
@@ -667,5 +669,37 @@ u8_t my_dirlen(cstring_t path);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 warray_t my_dircontent(cstring_t path);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Determine if a path is a directory
+///
+/// \param path         The path to check
+///
+/// \return True if the path is a directory, false otherwise or false if the
+/// path doesn't exists
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t my_isdir(cstring_t path);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Find the extension name of a path
+///
+/// \param path         The path to look for an extension
+///
+/// \return A pointer to the extension, NULL otherwise
+///
+///////////////////////////////////////////////////////////////////////////////
+string_t my_extname(cstring_t path);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Find the last occurence of a character
+///
+/// \param str          The string for looking
+/// \param ch           The character to look for
+///
+/// \return Pointer to the last occurence of the character, NULL otherwise
+///
+///////////////////////////////////////////////////////////////////////////////
+string_t my_strrchr(cstring_t str, int ch);
 
 #endif /* !LIBMY_H_ */

@@ -25,7 +25,7 @@ warray_t my_dircontent(cstring_t path)
     for (struct dirent *info = readdir(dir); info; info = readdir(dir)) {
         if (CMP(info->d_name, ".") || CMP(info->d_name, ".."))
             continue;
-        content[i] = my_strdup(info->d_name);
+        content[i] = my_strdcat(path, "/", info->d_name);
         i++;
     }
     content[len] = 0;

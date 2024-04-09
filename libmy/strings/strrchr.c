@@ -1,0 +1,22 @@
+/*
+** EPITECH PROJECT, 2024
+** Visual Studio Live Share (Workspace)
+** File description:
+** strrchr
+*/
+
+///////////////////////////////////////////////////////////////////////////////
+// Headers
+///////////////////////////////////////////////////////////////////////////////
+#include "my.h"
+
+///////////////////////////////////////////////////////////////////////////////
+string_t my_strrchr(cstring_t str, int ch)
+{
+    string_t save = NULL;
+
+    for (; *str != '\0'; str++)
+        if (*str == ch)
+            save = (string_t)str;
+    return (save);
+}

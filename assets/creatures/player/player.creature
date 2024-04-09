@@ -1,0 +1,258 @@
+0
+
+[START-adults]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+10          9           81          original            assets/creatures/player/adults/original.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+sit             0       3       DEFAULT     FALSE
+walk            4       9       DEFAULT     TRUE
+death           12      21      DEFAULT     FALSE
+idle            22      25      DEFAULT     TRUE
+dash            26      32      DEFAULT     FALSE
+dance           34      37      DEFAULT     TRUE
+eat             38      47      DEFAULT     FALSE
+regenerate      38      68      DEFAULT     FALSE
+sacrifice       73      80      DEFAULT     FALSE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+10          9           81          albino              assets/creatures/player/adults/albino.png
+10          9           81          algae               assets/creatures/player/adults/algae.png
+10          9           81          alien               assets/creatures/player/adults/alien.png
+10          9           81          anime               assets/creatures/player/adults/anime.png
+10          9           81          anomaly             assets/creatures/player/adults/anomaly.png
+10          9           81          astronaut           assets/creatures/player/adults/astronaut.png
+10          9           81          bananalotl          assets/creatures/player/adults/bananalotl.png
+10          9           81          bee                 assets/creatures/player/adults/bee.png
+10          9           81          cartoon             assets/creatures/player/adults/cartoon.png
+10          9           81          caterkillah         assets/creatures/player/adults/caterkillah.png
+10          9           81          chadgeept           assets/creatures/player/adults/chadgeept.png
+10          9           81          corgi               assets/creatures/player/adults/corgi.png
+10          9           81          cowrolina           assets/creatures/player/adults/cowrolina.png
+10          9           81          cthulotl            assets/creatures/player/adults/cthulotl.png
+10          9           81          cyclops             assets/creatures/player/adults/cyclops.png
+10          9           81          dalmatian           assets/creatures/player/adults/dalmatian.png
+10          9           81          debug               assets/creatures/player/adults/debug.png
+10          9           81          dough               assets/creatures/player/adults/dough.png
+10          9           81          draco               assets/creatures/player/adults/draco.png
+10          9           81          druid               assets/creatures/player/adults/druid.png
+10          9           81          ember               assets/creatures/player/adults/ember.png
+10          9           81          enigma              assets/creatures/player/adults/enigma.png
+10          9           81          firefly             assets/creatures/player/adults/firefly.png
+10          9           81          froggo              assets/creatures/player/adults/froggo.png
+10          9           81          goldy               assets/creatures/player/adults/goldy.png
+10          9           81          imp                 assets/creatures/player/adults/imp.png
+10          9           81          imsomnia            assets/creatures/player/adults/imsomnia.png
+10          9           81          junkcat             assets/creatures/player/adults/junkcat.png
+10          9           81          knight              assets/creatures/player/adults/knight.png
+10          9           81          koi                 assets/creatures/player/adults/koi.png
+10          9           81          lavender            assets/creatures/player/adults/lavender.png
+10          9           81          melanoid            assets/creatures/player/adults/melanoid.png
+10          9           81          metal               assets/creatures/player/adults/metal.png
+10          9           81          midas               assets/creatures/player/adults/midas.png
+10          9           81          mud_whooper         assets/creatures/player/adults/mud_whooper.png
+10          9           81          neon                assets/creatures/player/adults/neon.png
+10          9           81          pastel              assets/creatures/player/adults/pastel.png
+10          9           81          pengu               assets/creatures/player/adults/pengu.png
+10          9           81          piggy               assets/creatures/player/adults/piggy.png
+10          9           81          poison              assets/creatures/player/adults/poison.png
+10          9           81          salamander          assets/creatures/player/adults/salamander.png
+10          9           81          skull               assets/creatures/player/adults/skull.png
+10          9           81          slime               assets/creatures/player/adults/slime.png
+10          9           81          spirit              assets/creatures/player/adults/spirit.png
+10          9           81          teddy_bear          assets/creatures/player/adults/teddy_bear.png
+10          9           81          tiger               assets/creatures/player/adults/tiger.png
+10          9           81          trans               assets/creatures/player/adults/trans.png
+10          9           81          wild                assets/creatures/player/adults/wild.png
+10          9           81          wooper              assets/creatures/player/adults/wooper.png
+10          9           81          x                   assets/creatures/player/adults/x.png
+10          9           81          zombie              assets/creatures/player/adults/zombie.png
+[END]
+
+[START-babies]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           5           19          original            assets/creatures/player/babies/original.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       18      DEFAULT     TRUE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           5           19          albino              assets/creatures/player/babies/albino.png
+4           5           19          algae               assets/creatures/player/babies/algae.png
+4           5           19          alien               assets/creatures/player/babies/alien.png
+4           5           19          anime               assets/creatures/player/babies/anime.png
+4           5           19          anomaly             assets/creatures/player/babies/anomaly.png
+4           5           19          astronaut           assets/creatures/player/babies/astronaut.png
+4           5           19          bananalotl          assets/creatures/player/babies/bananalotl.png
+4           5           19          bee                 assets/creatures/player/babies/bee.png
+4           5           19          cartoon             assets/creatures/player/babies/cartoon.png
+4           5           19          caterkillah         assets/creatures/player/babies/caterkillah.png
+4           5           19          chadgeept           assets/creatures/player/babies/chadgeept.png
+4           5           19          corgi               assets/creatures/player/babies/corgi.png
+4           5           19          cowrolina           assets/creatures/player/babies/cowrolina.png
+4           5           19          cthulotl            assets/creatures/player/babies/cthulotl.png
+4           5           19          cyclops             assets/creatures/player/babies/cyclops.png
+4           5           19          dalmatian           assets/creatures/player/babies/dalmatian.png
+4           5           19          debug               assets/creatures/player/babies/debug.png
+4           5           19          dough               assets/creatures/player/babies/dough.png
+4           5           19          draco               assets/creatures/player/babies/draco.png
+4           5           19          druid               assets/creatures/player/babies/druid.png
+4           5           19          ember               assets/creatures/player/babies/ember.png
+4           5           19          enigma              assets/creatures/player/babies/enigma.png
+4           5           19          firefly             assets/creatures/player/babies/firefly.png
+4           5           19          froggo              assets/creatures/player/babies/froggo.png
+4           5           19          goldy               assets/creatures/player/babies/goldy.png
+4           5           19          imp                 assets/creatures/player/babies/imp.png
+4           5           19          imsomnia            assets/creatures/player/babies/imsomnia.png
+4           5           19          junkcat             assets/creatures/player/babies/junkcat.png
+4           5           19          knight              assets/creatures/player/babies/knight.png
+4           5           19          koi                 assets/creatures/player/babies/koi.png
+4           5           19          lavender            assets/creatures/player/babies/lavender.png
+4           5           19          melanoid            assets/creatures/player/babies/melanoid.png
+4           5           19          metal               assets/creatures/player/babies/metal.png
+4           5           19          midas               assets/creatures/player/babies/midas.png
+4           5           19          mud_whooper         assets/creatures/player/babies/mud_whooper.png
+4           5           19          neon                assets/creatures/player/babies/neon.png
+4           5           19          pastel              assets/creatures/player/babies/pastel.png
+4           5           19          pengu               assets/creatures/player/babies/pengu.png
+4           5           19          piggy               assets/creatures/player/babies/piggy.png
+4           5           19          poison              assets/creatures/player/babies/poison.png
+4           5           19          salamander          assets/creatures/player/babies/salamander.png
+4           5           19          skull               assets/creatures/player/babies/skull.png
+4           5           19          slime               assets/creatures/player/babies/slime.png
+4           5           19          spirit              assets/creatures/player/babies/spirit.png
+4           5           19          teddy_bear          assets/creatures/player/babies/teddy_bear.png
+4           5           19          tiger               assets/creatures/player/babies/tiger.png
+4           5           19          trans               assets/creatures/player/babies/trans.png
+4           5           19          wild                assets/creatures/player/babies/wild.png
+4           5           19          wooper              assets/creatures/player/babies/wooper.png
+4           5           19          x                   assets/creatures/player/babies/x.png
+4           5           19          zombie              assets/creatures/player/babies/zombie.png
+[END]
+
+[START-teenagers]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+10          1           10          original            assets/creatures/player/teenagers/original.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       3       DEFAULT     TRUE
+walk            4       9       DEFAULT     TRUE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+10          1           10          albino              assets/creatures/player/teenagers/albino.png
+10          1           10          algae               assets/creatures/player/teenagers/algae.png
+10          1           10          alien               assets/creatures/player/teenagers/alien.png
+10          1           10          anime               assets/creatures/player/teenagers/anime.png
+10          1           10          anomaly             assets/creatures/player/teenagers/anomaly.png
+10          1           10          astronaut           assets/creatures/player/teenagers/astronaut.png
+10          1           10          bananalotl          assets/creatures/player/teenagers/bananalotl.png
+10          1           10          bee                 assets/creatures/player/teenagers/bee.png
+10          1           10          cartoon             assets/creatures/player/teenagers/cartoon.png
+10          1           10          caterkillah         assets/creatures/player/teenagers/caterkillah.png
+10          1           10          chadgeept           assets/creatures/player/teenagers/chadgeept.png
+10          1           10          corgi               assets/creatures/player/teenagers/corgi.png
+10          1           10          cowrolina           assets/creatures/player/teenagers/cowrolina.png
+10          1           10          cthulotl            assets/creatures/player/teenagers/cthulotl.png
+10          1           10          cyclops             assets/creatures/player/teenagers/cyclops.png
+10          1           10          dalmatian           assets/creatures/player/teenagers/dalmatian.png
+10          1           10          debug               assets/creatures/player/teenagers/debug.png
+10          1           10          dough               assets/creatures/player/teenagers/dough.png
+10          1           10          draco               assets/creatures/player/teenagers/draco.png
+10          1           10          druid               assets/creatures/player/teenagers/druid.png
+10          1           10          ember               assets/creatures/player/teenagers/ember.png
+10          1           10          enigma              assets/creatures/player/teenagers/enigma.png
+10          1           10          firefly             assets/creatures/player/teenagers/firefly.png
+10          1           10          froggo              assets/creatures/player/teenagers/froggo.png
+10          1           10          goldy               assets/creatures/player/teenagers/goldy.png
+10          1           10          imp                 assets/creatures/player/teenagers/imp.png
+10          1           10          imsomnia            assets/creatures/player/teenagers/imsomnia.png
+10          1           10          junkcat             assets/creatures/player/teenagers/junkcat.png
+10          1           10          knight              assets/creatures/player/teenagers/knight.png
+10          1           10          koi                 assets/creatures/player/teenagers/koi.png
+10          1           10          lavender            assets/creatures/player/teenagers/lavender.png
+10          1           10          melanoid            assets/creatures/player/teenagers/melanoid.png
+10          1           10          metal               assets/creatures/player/teenagers/metal.png
+10          1           10          midas               assets/creatures/player/teenagers/midas.png
+10          1           10          mud_whooper         assets/creatures/player/teenagers/mud_whooper.png
+10          1           10          neon                assets/creatures/player/teenagers/neon.png
+10          1           10          pastel              assets/creatures/player/teenagers/pastel.png
+10          1           10          pengu               assets/creatures/player/teenagers/pengu.png
+10          1           10          piggy               assets/creatures/player/teenagers/piggy.png
+10          1           10          poison              assets/creatures/player/teenagers/poison.png
+10          1           10          salamander          assets/creatures/player/teenagers/salamander.png
+10          1           10          skull               assets/creatures/player/teenagers/skull.png
+10          1           10          slime               assets/creatures/player/teenagers/slime.png
+10          1           10          spirit              assets/creatures/player/teenagers/spirit.png
+10          1           10          teddy_bear          assets/creatures/player/teenagers/teddy_bear.png
+10          1           10          tiger               assets/creatures/player/teenagers/tiger.png
+10          1           10          trans               assets/creatures/player/teenagers/trans.png
+10          1           10          wild                assets/creatures/player/teenagers/wild.png
+10          1           10          wooper              assets/creatures/player/teenagers/wooper.png
+10          1           10          x                   assets/creatures/player/teenagers/x.png
+10          1           10          zombie              assets/creatures/player/teenagers/zombie.png
+[END]
+
+[START-eggs]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+1           1           1           original            assets/creatures/player/eggs/original.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       0       DEFAULT     TRUE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+1           1           1           albino              assets/creatures/player/eggs/albino.png
+1           1           1           algae               assets/creatures/player/eggs/algae.png
+1           1           1           alien               assets/creatures/player/eggs/alien.png
+1           1           1           anime               assets/creatures/player/eggs/anime.png
+1           1           1           anomaly             assets/creatures/player/eggs/anomaly.png
+1           1           1           astronaut           assets/creatures/player/eggs/astronaut.png
+1           1           1           bananalotl          assets/creatures/player/eggs/bananalotl.png
+1           1           1           bee                 assets/creatures/player/eggs/bee.png
+1           1           1           cartoon             assets/creatures/player/eggs/cartoon.png
+1           1           1           caterkillah         assets/creatures/player/eggs/caterkillah.png
+1           1           1           chadgeept           assets/creatures/player/eggs/chadgeept.png
+1           1           1           corgi               assets/creatures/player/eggs/corgi.png
+1           1           1           cowrolina           assets/creatures/player/eggs/cowrolina.png
+1           1           1           cthulotl            assets/creatures/player/eggs/cthulotl.png
+1           1           1           cyclops             assets/creatures/player/eggs/cyclops.png
+1           1           1           dalmatian           assets/creatures/player/eggs/dalmatian.png
+1           1           1           debug               assets/creatures/player/eggs/debug.png
+1           1           1           dough               assets/creatures/player/eggs/dough.png
+1           1           1           draco               assets/creatures/player/eggs/draco.png
+1           1           1           druid               assets/creatures/player/eggs/druid.png
+1           1           1           ember               assets/creatures/player/eggs/ember.png
+1           1           1           enigma              assets/creatures/player/eggs/enigma.png
+1           1           1           firefly             assets/creatures/player/eggs/firefly.png
+1           1           1           froggo              assets/creatures/player/eggs/froggo.png
+1           1           1           goldy               assets/creatures/player/eggs/goldy.png
+1           1           1           imp                 assets/creatures/player/eggs/imp.png
+1           1           1           imsomnia            assets/creatures/player/eggs/imsomnia.png
+1           1           1           junkcat             assets/creatures/player/eggs/junkcat.png
+1           1           1           knight              assets/creatures/player/eggs/knight.png
+1           1           1           koi                 assets/creatures/player/eggs/koi.png
+1           1           1           lavender            assets/creatures/player/eggs/lavender.png
+1           1           1           melanoid            assets/creatures/player/eggs/melanoid.png
+1           1           1           metal               assets/creatures/player/eggs/metal.png
+1           1           1           midas               assets/creatures/player/eggs/midas.png
+1           1           1           mud_whooper         assets/creatures/player/eggs/mud_whooper.png
+1           1           1           neon                assets/creatures/player/eggs/neon.png
+1           1           1           pastel              assets/creatures/player/eggs/pastel.png
+1           1           1           pengu               assets/creatures/player/eggs/pengu.png
+1           1           1           piggy               assets/creatures/player/eggs/piggy.png
+1           1           1           poison              assets/creatures/player/eggs/poison.png
+1           1           1           salamander          assets/creatures/player/eggs/salamander.png
+1           1           1           skull               assets/creatures/player/eggs/skull.png
+1           1           1           slime               assets/creatures/player/eggs/slime.png
+1           1           1           spirit              assets/creatures/player/eggs/spirit.png
+1           1           1           teddy_bear          assets/creatures/player/eggs/teddy_bear.png
+1           1           1           tiger               assets/creatures/player/eggs/tiger.png
+1           1           1           trans               assets/creatures/player/eggs/trans.png
+1           1           1           wild                assets/creatures/player/eggs/wild.png
+1           1           1           wooper              assets/creatures/player/eggs/wooper.png
+1           1           1           x                   assets/creatures/player/eggs/x.png
+1           1           1           zombie              assets/creatures/player/eggs/zombie.png
+[END]
+
+[MISC]
+assets/creatures/player/bubble.png
+[END]

@@ -603,4 +603,48 @@ uint_t my_wcount(cstring_t str);
 ///////////////////////////////////////////////////////////////////////////////
 void my_putnbr(int nbr);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Convert a string to a boolean value
+///
+/// \param str          The input string to convert to a boolean value
+///
+/// \return Returns the boolean value corresponding to 'str', or false if the
+///conversion is not possible
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t my_atob(string_t str);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Convert a string to a floating-point number
+///
+/// \param str          The input string to convert to a floating-point number
+///
+/// \return Returns the floating-point value corresponding to 'str'
+///
+///////////////////////////////////////////////////////////////////////////////
+double my_atof(string_t str);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Check if a string represents a valid boolean value
+///
+/// \param str          The input string to check for boolean representation
+///
+/// \return Returns true if 'str' represents a valid boolean value, otherwise
+/// false
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t my_isbool(cstring_t str);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Check if a string represents a valid floating-point number
+///
+/// \param str          The input string to check for floating-point
+///                     representation
+///
+/// \return Returns true if 'str' represents a valid floating-point number,
+/// otherwise false
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t my_isfloat(cstring_t str);
+
 #endif /* !LIBMY_H_ */

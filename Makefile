@@ -79,7 +79,11 @@ L_C_MEMORY	=	$(L_D_MEMORY)free.c											\
 				$(L_D_MEMORY)memset.c										\
 				$(L_D_MEMORY)orealloc.c										\
 				$(L_D_MEMORY)realloc.c
-L_C_NUMBER	=	$(L_D_NUMBER)atoi.c											\
+L_C_NUMBER	=	$(L_D_NUMBER)atob.c											\
+				$(L_D_NUMBER)atof.c											\
+				$(L_D_NUMBER)atoi.c											\
+				$(L_D_NUMBER)isbool.c										\
+				$(L_D_NUMBER)isfloat.c										\
 				$(L_D_NUMBER)isint.c
 L_C_PUTS	=	$(L_D_PUTS)fputs.c											\
 				$(L_D_PUTS)putchar.c										\

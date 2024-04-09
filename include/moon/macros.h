@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** moon-engine
+** csfml-engine
 ** File description:
 ** macros
 */
@@ -34,22 +34,24 @@
     #define SQUARE(x) ((x) * (x))
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief Use my_free function by transforming the pointer to the correct type
-///
-/// \param ptr The pointer
-///
-///////////////////////////////////////////////////////////////////////////////
-    #define FREE(p) my_free((void **)&(p))
-
-///////////////////////////////////////////////////////////////////////////////
 /// \brief Macro to calculate the midpoint between two values.
 ///
-/// \param x   The first value
-/// \param y   The second value
+/// \param x            The first value
+/// \param y            The second value
 ///
-/// \return    The midpoint between the two input values
+/// \return The midpoint between the two input values
 ///
 ///////////////////////////////////////////////////////////////////////////////
     #define MID(x, y) ((x - y) / 2)
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Transform an integer into a boolean
+///
+/// \param x            The value to transfrom
+///
+/// \return The booleanify value
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define BOOL(x) ((x) ? true : false)
 
 #endif /* !MACROS_H_ */

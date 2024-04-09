@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** moon-engine
+** csfml-engine
 ** File description:
 ** dependencies
 */
@@ -17,6 +17,7 @@
     #include <SFML/Network.h>
     #include <SFML/System.h>
     #include <SFML/Window.h>
+    #include <limits.h>
     #include <string.h>
     #include <unistd.h>
     #include <stdio.h>

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** moon-engine
+** csfml-engine
 ** File description:
 ** moon
 */
@@ -17,5 +17,6 @@
     #include "moon/maths.h"
     #include "moon/window.h"
     #include "moon/engine.h"
+    #include "my.h"
 
 #endif /* !MOON_H_ */

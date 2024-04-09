@@ -1,0 +1,23 @@
+/*
+** EPITECH PROJECT, 2024
+** csfml-engine
+** File description:
+** strncat
+*/
+
+///////////////////////////////////////////////////////////////////////////////
+// Headers
+///////////////////////////////////////////////////////////////////////////////
+#include "my.h"
+
+///////////////////////////////////////////////////////////////////////////////
+string my_strncat(string dest, cstring src, uint n)
+{
+    ulong dlen = my_strlen(dest);
+    uint i = 0;
+
+    for (; i < n && src[i]; i++)
+        dest[dlen + i] = src[i];
+    dest[dlen + i] = '\0';
+    return (dest);
+}

@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** moon-engine
+** csfml-engine
 ** File description:
 ** types
 */
@@ -42,6 +42,9 @@ typedef sfVector2u v2u;
 typedef sfVector3f v3f;
 typedef sfFloatRect rectf;
 typedef sfIntRect recti;
+typedef string *warray;
+typedef cstring *cwarray;
+typedef custring *cuwarray;
 typedef enum {
     false,
     true

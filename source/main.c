@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2024
-** moon-engine
+** csfml-engine
 ** File description:
 ** main
 */
@@ -29,6 +29,7 @@ int main(void)
 {
     sfEvent evt;
 
+    my_putstr("Hello World\n");
     init_time();
     create_window(0, 0, WIN_WINDOWED);
     while (sfRenderWindow_isOpen(Win.self)) {

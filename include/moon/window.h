@@ -45,6 +45,17 @@
     /** Window configuration                                                 */
     #define DEFAULT_TITLE "AK-XOLOTL"
     #define DEFAULT_ICON "game-icon.png"
+    /** Default keybinds                                                     */
+    #define DEFAULT_KEY_UP sfKeyZ
+    #define DEFAULT_KEY_DOWN sfKeyS
+    #define DEFAULT_KEY_RIGHT sfKeyQ
+    #define DEFAULT_KEY_LEFT sfKeyD
+    #define DEFAULT_KEY_RELOAD sfKeyR
+    #define DEFAULT_KEY_HEAL sfKeyA
+    #define DEFAULT_KEY_DASH sfKeySpace
+    #define DEFAULT_KEY_INTERACT sfKeyE
+    #define DEFAULT_KEY_PAUSE sfKeyEscape
+    #define DEFAULT_KEY_SHOOT sfMouseLeft
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -84,6 +95,34 @@ extern struct window_reference_s {
     uint_t height;
     int mode;
 } Win;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Keybind structure to keep key configuration
+///
+/// \param up           Key for deplacement to direction: Up
+/// \param down         Key for deplacement to direction: Down
+/// \param right        Key for deplacement to direction: Rigth
+/// \param left         Key for deplacement to direction: Left
+/// \param reload       Key for reloading the weapon
+/// \param heal         Key for healing
+/// \param dash         Key for dashing
+/// \param interact     Key for interacting with objects
+/// \param pause        Key for pausing the game
+/// \param shoot        Mouse key for shooting the weapon
+///
+///////////////////////////////////////////////////////////////////////////////
+extern struct keybind_s {
+    sfKeyCode up;
+    sfKeyCode down;
+    sfKeyCode right;
+    sfKeyCode left;
+    sfKeyCode reload;
+    sfKeyCode heal;
+    sfKeyCode dash;
+    sfKeyCode interact;
+    sfKeyCode pause;
+    sfMouseButton shoot;
+} Key;
 
 ///////////////////////////////////////////////////////////////////////////////
 //

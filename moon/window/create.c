@@ -16,6 +16,19 @@ struct window_reference_s Win = {
 };
 
 ///////////////////////////////////////////////////////////////////////////////
+struct keybind_s Key = {
+    DEFAULT_KEY_UP,
+    DEFAULT_KEY_DOWN,
+    DEFAULT_KEY_RIGHT,
+    DEFAULT_KEY_LEFT,
+    DEFAULT_KEY_RELOAD,
+    DEFAULT_KEY_HEAL,
+    DEFAULT_KEY_INTERACT,
+    DEFAULT_KEY_PAUSE,
+    DEFAULT_KEY_SHOOT
+};
+
+///////////////////////////////////////////////////////////////////////////////
 static bool_t set_window_icon(void)
 {
     v2u_t size;

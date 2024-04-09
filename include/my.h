@@ -15,8 +15,8 @@
 
     #define WSIZE sizeof(int)
     #define WMASK (WSIZE - 1)
-    #define ALIGN (sizeof(ulong))
-    #define ONES ((ulong)-1 / UCHAR_MAX)
+    #define ALIGN (sizeof(ulong_t))
+    #define ONES ((ulong_t)-1 / UCHAR_MAX)
     #define HIGHS (ONES * (UCHAR_MAX / 2 + 1))
     #define HASZERO(x) (((x) - ONES) & ~(x) & HIGHS)
 

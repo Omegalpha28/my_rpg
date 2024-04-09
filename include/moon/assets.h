@@ -74,4 +74,21 @@ typedef struct assets_creatures_s {
     uint_t miscCount;
 } assets_creatures_t;
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Main assets structure for management
+///
+/// \param images       All the images of the game
+/// \param imageCount   The number of image loaded to the game
+/// \param creatures    The creatures array, used to store all the creatures
+///                     and npc
+/// \param creatureCount The number of creature in the array
+///
+///////////////////////////////////////////////////////////////////////////////
+extern struct assets_s {
+    image_t **images;
+    uint_t imageCount;
+    assets_creatures_t **creatures;
+    uint_t creatureCount;
+} Assets;
+
 #endif /* !ASSETS_H_ */

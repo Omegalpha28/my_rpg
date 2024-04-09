@@ -122,7 +122,7 @@ extern struct keybind_s {
     sfKeyCode interact;
     sfKeyCode pause;
     sfMouseButton shoot;
-} Key;
+} Keys;
 
 ///////////////////////////////////////////////////////////////////////////////
 //

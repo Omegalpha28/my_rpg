@@ -16,7 +16,7 @@ struct window_reference_s Win = {
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-struct keybind_s Key = {
+struct keybind_s Keys = {
     DEFAULT_KEY_UP,
     DEFAULT_KEY_DOWN,
     DEFAULT_KEY_RIGHT,

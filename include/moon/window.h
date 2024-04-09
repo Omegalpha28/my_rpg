@@ -56,6 +56,11 @@
     #define DEFAULT_KEY_INTERACT sfKeyE
     #define DEFAULT_KEY_PAUSE sfKeyEscape
     #define DEFAULT_KEY_SHOOT sfMouseLeft
+    /** Alternative keybinds                                                 */
+    #define ALT_UP sfKeyUp
+    #define ALT_DOWN sfKeyDown
+    #define ALT_RIGHT sfKeyRight
+    #define ALT_LEFT sfKeyLeft
 
 ///////////////////////////////////////////////////////////////////////////////
 //

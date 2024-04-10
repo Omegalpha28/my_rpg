@@ -33,6 +33,7 @@ E_D_MATHS	=	$(E_D_ROOT)maths/
 E_D_TIME	=	$(E_D_ROOT)time/
 E_D_WINDOW	=	$(E_D_ROOT)window/
 E_D_ASSETS	=	$(E_D_ROOT)assets/
+E_D_OBJECTS	=	$(E_D_ROOT)objects/
 
 E_C_MATHS	=	$(E_D_MATHS)clamp.c											\
 				$(E_D_MATHS)distance.c										\
@@ -46,10 +47,16 @@ E_C_WINDOW	=	$(E_D_WINDOW)create.c										\
 E_C_ASSETS	=	$(E_D_ASSETS)assets.c										\
 				$(E_D_ASSETS)creatures.c									\
 				$(E_D_ASSETS)images.c
+E_C_OBJECTS	=	$(E_D_OBJECTS)pool.c										\
+				$(E_D_OBJECTS)actors/animate.c								\
+				$(E_D_OBJECTS)actors/create.c								\
+				$(E_D_OBJECTS)actors/set.c									\
+				$(E_D_OBJECTS)actors/transform.c
 
 E_SOURCES	=	$(E_C_MATHS)												\
 				$(E_C_WINDOW)												\
-				$(E_C_ASSETS)
+				$(E_C_ASSETS)												\
+				$(E_C_OBJECTS)
 
 E_OBJECTS	=	$(E_SOURCES:.c=.o)
 

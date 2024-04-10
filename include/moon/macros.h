@@ -66,4 +66,16 @@
 ///////////////////////////////////////////////////////////////////////////////
     #define CMP(str1, str2) (!my_strcmp(str1, str2))
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Orealloc shortener
+///
+/// \param ptr          The pointer to realloc
+/// \param size         Size of one object
+/// \param n            New number of object
+///
+/// \return The newly alloced ptr
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define REALLOC(ptr, size, n) (my_orealloc(ptr, size * (n - 1), size * n))
+
 #endif /* !MACROS_H_ */

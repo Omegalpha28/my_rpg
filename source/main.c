@@ -30,6 +30,7 @@ int main(void)
     sfEvent evt;
 
     init_time();
+    init_assets();
     create_window(0, 0, WIN_WINDOWED);
     while (sfRenderWindow_isOpen(Win.self)) {
         update_time();

@@ -17,6 +17,7 @@
     #include "moon/maths.h"
     #include "moon/window.h"
     #include "moon/engine.h"
+    #include "moon/assets.h"
     #include "my.h"
 
 #endif /* !MOON_H_ */

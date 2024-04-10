@@ -17,6 +17,7 @@
     #include <SFML/Network.h>
     #include <SFML/System.h>
     #include <SFML/Window.h>
+    #include <fcntl.h>
     #include <limits.h>
     #include <string.h>
     #include <unistd.h>

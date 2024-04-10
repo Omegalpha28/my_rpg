@@ -32,6 +32,7 @@ E_D_ROOT	=	./moon/
 E_D_MATHS	=	$(E_D_ROOT)maths/
 E_D_TIME	=	$(E_D_ROOT)time/
 E_D_WINDOW	=	$(E_D_ROOT)window/
+E_D_ASSETS	=	$(E_D_ROOT)assets/
 
 E_C_MATHS	=	$(E_D_MATHS)clamp.c											\
 				$(E_D_MATHS)distance.c										\
@@ -42,9 +43,13 @@ E_C_MATHS	=	$(E_D_MATHS)clamp.c											\
 E_C_WINDOW	=	$(E_D_WINDOW)create.c										\
 				$(E_D_WINDOW)destroy.c										\
 				$(E_D_WINDOW)time.c
+E_C_ASSETS	=	$(E_D_ASSETS)assets.c										\
+				$(E_D_ASSETS)creatures.c									\
+				$(E_D_ASSETS)images.c
 
 E_SOURCES	=	$(E_C_MATHS)												\
-				$(E_C_WINDOW)
+				$(E_C_WINDOW)												\
+				$(E_C_ASSETS)
 
 E_OBJECTS	=	$(E_SOURCES:.c=.o)
 
@@ -104,6 +109,7 @@ L_C_STRINGS	=	$(L_D_STRINGS)stowa.c										\
 				$(L_D_STRINGS)strncpy.c										\
 				$(L_D_STRINGS)strndup.c										\
 				$(L_D_STRINGS)strpbrk.c										\
+				$(L_D_STRINGS)strrchr.c										\
 				$(L_D_STRINGS)strsplit.c									\
 				$(L_D_STRINGS)strspn.c										\
 				$(L_D_STRINGS)strtok_r.c									\
@@ -115,7 +121,9 @@ L_C_STRINGS	=	$(L_D_STRINGS)stowa.c										\
 				$(L_D_STRINGS)walen.c										\
 				$(L_D_STRINGS)watroy.c
 L_C_SYSTEM	=	$(L_D_SYSTEM)dircontent.c									\
-				$(L_D_SYSTEM)dirlen.c
+				$(L_D_SYSTEM)dirlen.c										\
+				$(L_D_SYSTEM)extname.c										\
+				$(L_D_SYSTEM)isdir.c
 
 L_SOURCES	=	$(L_C_CHAR)													\
 				$(L_C_MEMORY)												\

@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool_t my_isint(string_t str)
+bool_t my_isint(cstring_t str)
 {
     bool_t intEnded = false;
 

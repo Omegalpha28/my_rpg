@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-int my_strtol(char *s, char **ptr)
+int my_strtol(cstring_t s, cstring_t *ptr)
 {
     ulong_t i = 0;
     int n = 0;

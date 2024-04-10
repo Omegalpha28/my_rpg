@@ -11,11 +11,11 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-double my_atof(string_t str)
+double my_atof(cstring_t str)
 {
     int pi = 0;
     int pf = 0;
-    string_t s = NULL;
+    cstring_t s = NULL;
 
     RETURN(*str == '\0', 0.0f);
     pi = my_strtol(str, &str);

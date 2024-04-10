@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool_t my_atob(string_t str)
+bool_t my_atob(cstring_t str)
 {
     int len = my_strlen(str);
 

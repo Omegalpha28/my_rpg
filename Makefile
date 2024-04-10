@@ -50,6 +50,7 @@ E_C_MATHS	=	$(E_D_MATHS)clamp.c											\
 				$(E_D_MATHS)vectors/equal.c									\
 				$(E_D_MATHS)vectors/lerp.c									\
 				$(E_D_MATHS)vectors/multiply.c								\
+				$(E_D_MATHS)vectors/normalize.c								\
 				$(E_D_MATHS)vectors/subtract.c
 E_C_WINDOW	=	$(E_D_WINDOW)create.c										\
 				$(E_D_WINDOW)destroy.c										\

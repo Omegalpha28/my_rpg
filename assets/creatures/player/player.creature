@@ -7,12 +7,13 @@
 # WHAT          START   END     FRAMERATE   LOOPED
 sit             0       3       DEFAULT     FALSE
 walk            4       9       DEFAULT     TRUE
+damage          10      11      DEFAULT     FALSE
 death           12      21      DEFAULT     FALSE
 idle            22      25      DEFAULT     TRUE
 dash            26      32      DEFAULT     FALSE
 dance           34      37      DEFAULT     TRUE
 eat             38      47      DEFAULT     FALSE
-regenerate      38      68      DEFAULT     FALSE
+regenerate      48      68      DEFAULT     FALSE
 sacrifice       73      80      DEFAULT     FALSE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH

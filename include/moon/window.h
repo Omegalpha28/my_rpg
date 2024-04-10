@@ -63,6 +63,19 @@
     #define ALT_LEFT sfKeyLeft
 
 ///////////////////////////////////////////////////////////////////////////////
+///
+/// SHORTENERS
+///
+///////////////////////////////////////////////////////////////////////////////
+
+    #define UP Keys.up.pressed
+    #define DOWN Keys.down.pressed
+    #define RIGHT Keys.right.pressed
+    #define LEFT Keys.left.pressed
+    #define MOVE (UP || DOWN || RIGHT || LEFT)
+    #define SPEED 0.85f
+
+///////////////////////////////////////////////////////////////////////////////
 //
 // STRUCTURES
 //
@@ -102,6 +115,18 @@ extern struct window_reference_s {
 } Win;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Structure of a key to keep track of his statet
+///
+/// \param code         The key code to keep track of
+/// \param pressed      The state of the key
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct key_track_s {
+    sfKeyCode code;
+    bool_t pressed;
+} key_track_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Keybind structure to keep key configuration
 ///
 /// \param up           Key for deplacement to direction: Up
@@ -117,15 +142,15 @@ extern struct window_reference_s {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct keybind_s {
-    sfKeyCode up;
-    sfKeyCode down;
-    sfKeyCode right;
-    sfKeyCode left;
-    sfKeyCode reload;
-    sfKeyCode heal;
-    sfKeyCode dash;
-    sfKeyCode interact;
-    sfKeyCode pause;
+    key_track_t up;
+    key_track_t down;
+    key_track_t right;
+    key_track_t left;
+    key_track_t reload;
+    key_track_t heal;
+    key_track_t dash;
+    key_track_t interact;
+    key_track_t pause;
     sfMouseButton shoot;
 } Keys;
 

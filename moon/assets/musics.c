@@ -11,7 +11,7 @@
 #include "moon.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-static bool_t add_music(cstring_t path)
+static bool_t add_music(string_t path)
 {
     music_t *music = (music_t *)malloc(sizeof(music_t));
     warray_t split = my_strsplit(path, '/');

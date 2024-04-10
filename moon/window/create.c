@@ -50,18 +50,17 @@ bool_t create_window(uint_t width, uint_t height, int mode)
     sfVideoMode sc = sfVideoMode_getDesktopMode();
     sfVideoMode vm = {width, height, DEFAULT_BITS};
 
-    if (!width || !height) {
-        vm.width = DEFAULT_WIDTH;
-        vm.height = DEFAULT_HEIGHT;
-    }
+    if (!width || !height)
+        vm = (sfVideoMode){DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_BITS};
     destroy_window();
     Win.view = sfView_create();
     Win.self = sfRenderWindow_create(vm, DEFAULT_TITLE, mode, NULL);
     if (!Win.view || !Win.self)
         return (false);
-    sfRenderWindow_setView(Win.self, Win.view);
+    sfView_setSize(Win.view, (v2f_t){DEFAULT_VIEW_WIDTH, DEFAULT_VIEW_HEIGHT});
     sfView_setCenter(Win.view, (v2f_t){DEFAULT_VIEW_WIDTH / 2.f,
         DEFAULT_VIEW_HEIGHT / 2.f});
+    sfRenderWindow_setView(Win.self, Win.view);
     sfRenderWindow_setFramerateLimit(Win.self, DEFAULT_FPS);
     sfRenderWindow_setPosition(Win.self, (v2i_t){MID(sc.width, Win.width),
         MID(sc.height, Win.height)});

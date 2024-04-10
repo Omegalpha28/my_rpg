@@ -254,5 +254,6 @@ idle            0       0       DEFAULT     TRUE
 [END]
 
 [MISC]
-assets/creatures/player/bubble.png
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+1           1           1           bubble              assets/creatures/player/bubble.png
 [END]

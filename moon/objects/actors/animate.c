@@ -13,7 +13,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 static void actor_update_transform(actor_t *act)
 {
-    sheet_t *sh = sh = act->self->sheets[act->sheetId];
+    sheet_t *sh = act->self->sheets[act->sheetId];
     image_t *img = act->isVariant ? sh->variants[act->variantId] : sh->image;
 
     sfSprite_setPosition(act->sprite, act->position);

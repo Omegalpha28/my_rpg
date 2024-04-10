@@ -51,6 +51,7 @@ static bool_t creature_parse_anim(warray_t wa, creatures_t *crt)
     anim->name = my_strdup(wa[0]);
     anim->startingFrame = my_atoi(wa[1]);
     anim->endingFrame = my_atoi(wa[2]);
+    anim->frameCount = (anim->endingFrame - anim->startingFrame) + 1;
     anim->frameRate = my_isint(wa[3]) ? my_atoi(wa[3]) : DEFAULT_CREATURE_FR;
     anim->looped = my_atob(wa[4]);
     sh->animCount++;

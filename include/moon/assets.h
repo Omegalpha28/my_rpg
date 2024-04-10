@@ -33,9 +33,9 @@
     #define EXT_CREATURE "creature"
 
     /** Default FrameRate                                                    */
-    #define DEFAULT_CREATURE_FR 9
-    #define DEFAULT_PROP_FR 5
     #define FRAME_PER_MS(x) (1000 / x)
+    #define DEFAULT_CREATURE_FR FRAME_PER_MS(7)
+    #define DEFAULT_PROP_FR 5
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief List of predefined creature index

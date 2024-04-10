@@ -19,6 +19,7 @@
     #include "moon/engine.h"
     #include "moon/error.h"
     #include "moon/assets.h"
+    #include "moon/objects.h"
     #include "my.h"
 
 #endif /* !MOON_H_ */

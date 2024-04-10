@@ -40,13 +40,24 @@ E_C_MATHS	=	$(E_D_MATHS)clamp.c											\
 				$(E_D_MATHS)intersect.c										\
 				$(E_D_MATHS)lerp.c											\
 				$(E_D_MATHS)max.c											\
-				$(E_D_MATHS)min.c
+				$(E_D_MATHS)min.c											\
+				$(E_D_MATHS)vectors/add.c									\
+				$(E_D_MATHS)vectors/angle.c									\
+				$(E_D_MATHS)vectors/distance.c								\
+				$(E_D_MATHS)vectors/divide.c								\
+				$(E_D_MATHS)vectors/dot.c									\
+				$(E_D_MATHS)vectors/endpoint.c								\
+				$(E_D_MATHS)vectors/equal.c									\
+				$(E_D_MATHS)vectors/lerp.c									\
+				$(E_D_MATHS)vectors/multiply.c								\
+				$(E_D_MATHS)vectors/subtract.c
 E_C_WINDOW	=	$(E_D_WINDOW)create.c										\
 				$(E_D_WINDOW)destroy.c										\
 				$(E_D_WINDOW)time.c
 E_C_ASSETS	=	$(E_D_ASSETS)assets.c										\
 				$(E_D_ASSETS)creatures.c									\
-				$(E_D_ASSETS)images.c
+				$(E_D_ASSETS)images.c										\
+				$(E_D_ASSETS)musics.c
 E_C_OBJECTS	=	$(E_D_OBJECTS)pool.c										\
 				$(E_D_OBJECTS)actors/animate.c								\
 				$(E_D_OBJECTS)actors/create.c								\

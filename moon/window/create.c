@@ -12,7 +12,13 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 struct window_reference_s Win = {
-    NULL, NULL, DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_MODE
+    NULL,
+    NULL,
+    DEFAULT_WIDTH,
+    DEFAULT_HEIGHT,
+    DEFAULT_VIEW_WIDTH,
+    DEFAULT_VIEW_HEIGHT,
+    DEFAULT_MODE
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -45,6 +51,18 @@ static bool_t set_window_icon(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void init_view(void)
+{
+    Win.viewWidth = DEFAULT_VIEW_WIDTH;
+    Win.viewHeight = (float)((float)(DEFAULT_VIEW_WIDTH / (float)Win.width))
+        * Win.height;
+    sfView_setSize(Win.view, (v2f_t){Win.viewWidth, Win.viewHeight});
+    sfView_setCenter(Win.view, (v2f_t){Win.viewHeight / 2.f,
+        Win.viewHeight / 2.f});
+    sfRenderWindow_setView(Win.self, Win.view);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 bool_t create_window(uint_t width, uint_t height, int mode)
 {
     sfVideoMode sc = sfVideoMode_getDesktopMode();
@@ -53,14 +71,13 @@ bool_t create_window(uint_t width, uint_t height, int mode)
     if (!width || !height)
         vm = (sfVideoMode){DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_BITS};
     destroy_window();
+    Win.width = mode == WIN_FULLSCREEN ? sc.width : vm.width;
+    Win.height = mode == WIN_FULLSCREEN ? sc.height : vm.height;
     Win.view = sfView_create();
     Win.self = sfRenderWindow_create(vm, DEFAULT_TITLE, mode, NULL);
     if (!Win.view || !Win.self)
         return (false);
-    sfView_setSize(Win.view, (v2f_t){DEFAULT_VIEW_WIDTH, DEFAULT_VIEW_HEIGHT});
-    sfView_setCenter(Win.view, (v2f_t){DEFAULT_VIEW_WIDTH / 2.f,
-        DEFAULT_VIEW_HEIGHT / 2.f});
-    sfRenderWindow_setView(Win.self, Win.view);
+    init_view();
     sfRenderWindow_setFramerateLimit(Win.self, DEFAULT_FPS);
     sfRenderWindow_setPosition(Win.self, (v2i_t){MID(sc.width, Win.width),
         MID(sc.height, Win.height)});

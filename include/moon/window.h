@@ -34,8 +34,8 @@
     #define DEFAULT_WIDTH 1920
     #define DEFAULT_HEIGHT 1080
     /** View settings                                                        */
-    #define DEFAULT_VIEW_WIDTH 512
-    #define DEFAULT_VIEW_HEIGHT 288
+    #define DEFAULT_VIEW_WIDTH 512.0f
+    #define DEFAULT_VIEW_HEIGHT 288.0f
     /** Window color bits                                                    */
     #define DEFAULT_BITS 32
     /** Framerate limit                                                      */
@@ -111,6 +111,8 @@ extern struct window_reference_s {
     sfRenderWindow *self;
     uint_t width;
     uint_t height;
+    float viewWidth;
+    float viewHeight;
     int mode;
 } Win;
 

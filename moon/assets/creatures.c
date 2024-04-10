@@ -188,7 +188,7 @@ bool_t init_assets_creatures(void)
     bool_t success = true;
 
     if (content == NULL)
-        return (false);
+        return (my_error(ERR_FD_CREATURE));
     for (uint_t i = 0; content[i]; i++) {
         if (my_isdir(content[i]) == false)
             continue;

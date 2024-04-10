@@ -12,6 +12,7 @@
 // Error message
 ///////////////////////////////////////////////////////////////////////////////
 
+    #define ERR_FD_CREATURE "Unable to open the creatures folder."
     #define ERR_ANIM_SYNTAX "Invalid animation syntax."
     #define ERR_TEXT_SYNTAX "Invalid texture syntax or file not found."
     #define ERR_ID_SYNTAX "Invalid id for creature."
@@ -19,5 +20,6 @@
     #define ERR_MISSING_CREATURE "Unable to find '.creature'."
     #define ERR_VAGABOND "Vagabond declaration."
     #define ERR_UNKOWN_OPERATOR "Unknown operator."
+    #define ERR_FD_MUSICS "Unable to open the musics folder."
 
 #endif /* !ERROR_H_ */

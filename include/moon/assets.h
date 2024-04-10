@@ -31,6 +31,7 @@
 
     /** Assets configuration extensions                                      */
     #define EXT_CREATURE "creature"
+    #define EXT_MUSICS "ogg"
 
     /** Default FrameRate                                                    */
     #define FRAME_PER_MS(x) (1000 / x)
@@ -137,6 +138,18 @@ typedef struct creatures_s {
 } creatures_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Structure to hold the musics
+///
+/// \param name         The name of the music
+/// \param self         The loaded instance of the music
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct music_s {
+    cstring_t name;
+    sfMusic *self;
+} music_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Main assets structure for management
 ///
 /// \param images       All the images of the game
@@ -151,6 +164,8 @@ extern struct assets_s {
     uint_t imageCount;
     creatures_t **creatures;
     uint_t creatureCount;
+    music_t **musics;
+    uint_t musicCount;
 } Assets;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -162,5 +177,11 @@ image_t *add_image(cstring_t filepath, bool_t load, v2u_t mask,
 
 ///////////////////////////////////////////////////////////////////////////////
 bool_t init_assets_creatures(void);
+
+///////////////////////////////////////////////////////////////////////////////
+bool_t init_assets_musics(void);
+
+///////////////////////////////////////////////////////////////////////////////
+void destroy_assets_musics(void);
 
 #endif /* !ASSETS_H_ */

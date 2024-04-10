@@ -21,5 +21,6 @@
     #define ERR_VAGABOND "Vagabond declaration."
     #define ERR_UNKOWN_OPERATOR "Unknown operator."
     #define ERR_FD_MUSICS "Unable to open the musics folder."
+    #define ERR_LOAD_MUSIC "Unable to load the musics."
 
 #endif /* !ERROR_H_ */

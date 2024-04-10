@@ -12,13 +12,16 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 struct assets_s Assets = {
-    NULL, 0, NULL, 0
+    NULL, 0,
+    NULL, 0,
+    NULL, 0
 };
 
 ///////////////////////////////////////////////////////////////////////////////
 bool_t init_assets(void)
 {
-    if (init_assets_creatures() == false)
+    if (!init_assets_creatures() ||
+        !init_assets_musics())
         return (false);
     return (true);
 }

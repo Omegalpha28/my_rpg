@@ -1,0 +1,17 @@
+1
+
+[START-default]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+5           7           32          original            assets/creatures/duck/duck.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       3       DEFAULT     TRUE
+walk            4       9       DEFAULT     TRUE
+damage          10      11      DEFAULT     FALSE
+death           12      13      DEFAULT     FALSE
+run             14      17      DEFAULT     TRUE
+attack          19      29      DEFAULT     FALSE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+5           7           32          debug               assets/creatures/duck/debug.png
+[END]

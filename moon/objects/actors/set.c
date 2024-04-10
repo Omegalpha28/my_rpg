@@ -21,6 +21,8 @@ bool_t actor_set_anim(actor_t *act, cstring_t name)
     for (uint_t i = 0; i < sheet->animCount; i++) {
         if (!CMP(sheet->anims[i]->name, name))
             continue;
+        if (act->animId == i)
+            return (true);
         act->animId = i;
         act->time = Time.currentTime;
         return (true);
@@ -38,6 +40,8 @@ bool_t actor_set_anim_id(actor_t *act, uint_t id)
     sheet = act->self->sheets[act->sheetId];
     if (id >= sheet->animCount)
         return (false);
+    if (act->animId == id)
+        return (true);
     act->time = Time.currentTime;
     act->animId = id;
     return (true);

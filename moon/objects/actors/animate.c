@@ -13,9 +13,14 @@
 ///////////////////////////////////////////////////////////////////////////////
 static void actor_update_transform(actor_t *act)
 {
+    sheet_t *sh = sh = act->self->sheets[act->sheetId];
+    image_t *img = act->isVariant ? sh->variants[act->variantId] : sh->image;
+
     sfSprite_setPosition(act->sprite, act->position);
     sfSprite_setRotation(act->sprite, act->rotation);
     sfSprite_setScale(act->sprite, act->scale);
+    sfSprite_setOrigin(act->sprite, (v2f_t){img->mask.width / 2.0f,
+        img->mask.height / 2.0f});
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -46,10 +51,10 @@ void actor_draw(actor_t *act)
         act->sheetId = 0;
     if (act->animId >= act->self->sheets[act->sheetId]->animCount)
         act->animId = 0;
-    actor_update_transform(act);
-    sfSprite_setTextureRect(act->sprite, actor_generate_mask(act));
     sh = act->self->sheets[act->sheetId];
+    actor_update_transform(act);
     sfSprite_setTexture(act->sprite, act->isVariant ?
         sh->variants[act->variantId]->self : sh->image->self, false);
+    sfSprite_setTextureRect(act->sprite, actor_generate_mask(act));
     sfRenderWindow_drawSprite(Win.self, act->sprite, NULL);
 }

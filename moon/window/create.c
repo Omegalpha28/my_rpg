@@ -17,15 +17,15 @@ struct window_reference_s Win = {
 
 ///////////////////////////////////////////////////////////////////////////////
 struct keybind_s Keys = {
-    DEFAULT_KEY_UP,
-    DEFAULT_KEY_DOWN,
-    DEFAULT_KEY_RIGHT,
-    DEFAULT_KEY_LEFT,
-    DEFAULT_KEY_RELOAD,
-    DEFAULT_KEY_HEAL,
-    DEFAULT_KEY_DASH,
-    DEFAULT_KEY_INTERACT,
-    DEFAULT_KEY_PAUSE,
+    (key_track_t){DEFAULT_KEY_UP, false},
+    (key_track_t){DEFAULT_KEY_DOWN, false},
+    (key_track_t){DEFAULT_KEY_RIGHT, false},
+    (key_track_t){DEFAULT_KEY_LEFT, false},
+    (key_track_t){DEFAULT_KEY_RELOAD, false},
+    (key_track_t){DEFAULT_KEY_HEAL, false},
+    (key_track_t){DEFAULT_KEY_DASH, false},
+    (key_track_t){DEFAULT_KEY_INTERACT, false},
+    (key_track_t){DEFAULT_KEY_PAUSE, false},
     DEFAULT_KEY_SHOOT
 };
 

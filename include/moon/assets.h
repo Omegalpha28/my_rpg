@@ -127,14 +127,14 @@ typedef struct sheet_s {
 /// \param miscCount    The number of other image
 ///
 ///////////////////////////////////////////////////////////////////////////////
-typedef struct assets_creatures_s {
+typedef struct creatures_s {
     uint_t id;
     sheet_t **sheets;
     uint_t sheetCount;
     image_t **miscs;
     uint_t miscCount;
     entry_status_t status;
-} assets_creatures_t;
+} creatures_t;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Main assets structure for management
@@ -149,7 +149,7 @@ typedef struct assets_creatures_s {
 extern struct assets_s {
     image_t **images;
     uint_t imageCount;
-    assets_creatures_t **creatures;
+    creatures_t **creatures;
     uint_t creatureCount;
 } Assets;
 

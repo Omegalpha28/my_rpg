@@ -11,7 +11,7 @@
 #include "moon.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-static bool_t creature_parse_operator(cstring_t op, assets_creatures_t *crt)
+static bool_t creature_parse_operator(cstring_t op, creatures_t *crt)
 {
     if (crt->status == entryNothing && (!my_strncmp(op, "[START-", 7) &&
         my_countchar(op, ']') == 1)) {
@@ -36,7 +36,7 @@ static bool_t creature_parse_operator(cstring_t op, assets_creatures_t *crt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static bool_t creature_parse_anim(warray_t wa, assets_creatures_t *crt)
+static bool_t creature_parse_anim(warray_t wa, creatures_t *crt)
 {
     sheet_t *sh = NULL;
     animation_t *anim;
@@ -60,7 +60,7 @@ static bool_t creature_parse_anim(warray_t wa, assets_creatures_t *crt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static bool_t add_image_to_sheet(image_t *img, assets_creatures_t *crt)
+static bool_t add_image_to_sheet(image_t *img, creatures_t *crt)
 {
     sheet_t *sh = crt->sheets[crt->sheetCount - 1];
 
@@ -75,7 +75,7 @@ static bool_t add_image_to_sheet(image_t *img, assets_creatures_t *crt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static bool_t creature_parse_texture(warray_t wa, assets_creatures_t *crt)
+static bool_t creature_parse_texture(warray_t wa, creatures_t *crt)
 {
     if (crt->status == entryNothing || !my_isint(wa[0]) || !my_isint(wa[1]) ||
         !my_isint(wa[2]) || !add_image(wa[4], true, (v2u_t){my_atoi(wa[0]),
@@ -90,7 +90,7 @@ static bool_t creature_parse_texture(warray_t wa, assets_creatures_t *crt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static bool_t creature_parse_id(cstring_t id, assets_creatures_t *crt)
+static bool_t creature_parse_id(cstring_t id, creatures_t *crt)
 {
     if (!my_isint(id))
         return (my_error(ERR_ID_SYNTAX));
@@ -99,7 +99,7 @@ static bool_t creature_parse_id(cstring_t id, assets_creatures_t *crt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static bool_t creature_parse_line(string_t line, assets_creatures_t *crt)
+static bool_t creature_parse_line(string_t line, creatures_t *crt)
 {
     warray_t wa = my_stowa(line);
     ulong_t len = wa ? my_walen(wa) : 0;
@@ -120,7 +120,7 @@ static bool_t creature_parse_line(string_t line, assets_creatures_t *crt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static bool_t creature_parse(cstring_t path, assets_creatures_t *crt)
+static bool_t creature_parse(cstring_t path, creatures_t *crt)
 {
     FILE *fd = fopen(path, "r");
     string_t ln = NULL;
@@ -143,7 +143,7 @@ static bool_t creature_parse(cstring_t path, assets_creatures_t *crt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void init_creature(assets_creatures_t *crt)
+static void init_creature(creatures_t *crt)
 {
     if (crt == NULL)
         return;
@@ -157,7 +157,7 @@ static void init_creature(assets_creatures_t *crt)
 ///////////////////////////////////////////////////////////////////////////////
 static bool_t add_creature(warray_t ctn)
 {
-    assets_creatures_t *crt = malloc(sizeof(assets_creatures_t));
+    creatures_t *crt = malloc(sizeof(creatures_t));
     bool_t success = false;
 
     init_creature(crt);
@@ -172,8 +172,8 @@ static bool_t add_creature(warray_t ctn)
     if (success) {
         Assets.creatureCount++;
         Assets.creatures = my_orealloc(Assets.creatures,
-            sizeof(assets_creatures_t *) * (Assets.creatureCount - 1),
-            sizeof(assets_creatures_t *) * Assets.creatureCount);
+            sizeof(creatures_t *) * (Assets.creatureCount - 1),
+            sizeof(creatures_t *) * Assets.creatureCount);
         Assets.creatures[Assets.creatureCount - 1] = crt;
     }
     return (success);

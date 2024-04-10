@@ -29,7 +29,6 @@ static recti_t actor_generate_mask(actor_t *act)
     mask = sheet->image->mask;
     act->frame = (uint_t)(((ems / anim->frameRate) % anim->frameCount) +
         anim->startingFrame);
-    printf("Animate: %u/%u\n", act->frame, anim->frameCount);
     mask.left = (act->frame % sheet->image->grid.x) * mask.width;
     mask.top = (act->frame / sheet->image->grid.x) * mask.height;
     return (mask);

@@ -32,7 +32,7 @@ static bool_t creature_parse_operator(cstring_t op, assets_creatures_t *crt)
         crt->status = !my_strncmp(op, "[END]", 5) ? entryNothing : entryMisc;
         return (true);
     }
-    return (false);
+    return (my_error(ERR_UNKOWN_OPERATOR));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -42,11 +42,11 @@ static bool_t creature_parse_anim(warray_t wa, assets_creatures_t *crt)
     animation_t *anim;
 
     if (crt->status != entrySheet)
-        return (false);
+        return (my_error(ERR_VAGABOND));
     sh = crt->sheets[crt->sheetCount - 1];
     if (!my_isint(wa[1]) || !my_isint(wa[2]) || (!my_isint(wa[3]) &&
         !CMP(wa[3], "DEFAULT")) || !my_isbool(wa[4]))
-        return (false);
+        return (my_error(ERR_ANIM_SYNTAX));
     anim = (animation_t *)malloc(sizeof(animation_t));
     anim->name = my_strdup(wa[0]);
     anim->startingFrame = my_atoi(wa[1]);
@@ -80,7 +80,7 @@ static bool_t creature_parse_texture(warray_t wa, assets_creatures_t *crt)
     if (crt->status == entryNothing || !my_isint(wa[0]) || !my_isint(wa[1]) ||
         !my_isint(wa[2]) || !add_image(wa[4], true, (v2u_t){my_atoi(wa[0]),
         my_atoi(wa[1])}, wa[3]))
-        return (false);
+        return (my_error(ERR_TEXT_SYNTAX));
     if (crt->status == entrySheet)
         return (add_image_to_sheet(Assets.images[Assets.imageCount - 1], crt));
     crt->miscCount++;
@@ -93,7 +93,7 @@ static bool_t creature_parse_texture(warray_t wa, assets_creatures_t *crt)
 static bool_t creature_parse_id(cstring_t id, assets_creatures_t *crt)
 {
     if (!my_isint(id))
-        return (false);
+        return (my_error(ERR_ID_SYNTAX));
     crt->id = my_atoi(id);
     return (true);
 }
@@ -106,7 +106,7 @@ static bool_t creature_parse_line(string_t line, assets_creatures_t *crt)
     bool_t success = false;
 
     if (wa == NULL)
-        return (false);
+        return (my_error(ERR_READING_CREATURE));
     if (len == 1 && wa[0][0] == '[')
         success = creature_parse_operator(wa[0], crt);
     else if (len == 1)
@@ -129,7 +129,7 @@ static bool_t creature_parse(cstring_t path, assets_creatures_t *crt)
     string_t tmp = NULL;
 
     if (fd == NULL)
-        return (false);
+        return (my_error(ERR_READING_CREATURE));
     for (long read = getline(&ln, &len, fd); success && read != -1;
         read = getline(&ln, &len, fd)) {
         for (tmp = ln; tmp && my_isspace(*tmp); tmp++);

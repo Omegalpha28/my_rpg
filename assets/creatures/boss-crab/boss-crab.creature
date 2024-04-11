@@ -1,0 +1,34 @@
+3
+
+[START-normal_idle]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+6           1           6           original            assets/creatures/boss-crab/normal/idle.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       5       DEFAULT     TRUE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+6           1           6           debug               assets/creatures/boss-crab/normal/idle-debug.png
+[END]
+
+[START-normal_walk]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+8           2           6           original            assets/creatures/boss-crab/normal/walk.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       10      DEFAULT     TRUE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+8           2           6           debug               assets/creatures/boss-crab/normal/walk-debug.png
+[END]
+
+[START-intro]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+8           9           72          original            assets/creatures/boss-crab/normal/intro.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       71      DEFAULT     TRUE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+8           9           72          debug               assets/creatures/boss-crab/normal/intro-debug.png
+[END]

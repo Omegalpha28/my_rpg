@@ -135,7 +135,7 @@ typedef struct creatures_s {
     image_t **miscs;
     uint_t miscCount;
     entry_status_t status;
-} creatures_t;
+} creature_t;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Structure to hold the musics
@@ -150,6 +150,46 @@ typedef struct music_s {
 } music_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Zones category type, some zone have predefined/restricted name
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef enum category_type_e {
+    CATEGORY_TYPE_COUNT
+} category_type_t;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Category structure to hold zones sub folder
+///
+/// \param name         The name of the category
+/// \param type         The type of the category
+/// \param sheets       All the assets of the category
+/// \param sheetCount   The number of sheet in the category
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct category_s {
+    cstring_t name;
+    category_type_t type;
+    sheet_t *sheets;
+    uint_t sheetCount;
+} category_t;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Zone structure to hold a predefined zone
+///
+/// \param name         The name of the zone
+/// \param categories   The list of sub folder content
+/// \param categoryCount The number of categoriy
+/// \param loaded       Keep track of the loaded status of the zone
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct zone_s {
+    cstring_t name;
+    category_t **categories;
+    uint_t categoryCount;
+    bool_t loaded;
+} zone_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Main assets structure for management
 ///
 /// \param images       All the images of the game
@@ -162,10 +202,12 @@ typedef struct music_s {
 extern struct assets_s {
     image_t **images;
     uint_t imageCount;
-    creatures_t **creatures;
+    creature_t **creatures;
     uint_t creatureCount;
     music_t **musics;
     uint_t musicCount;
+    zone_t **zones;
+    uint_t zoneCount;
 } Assets;
 
 ///////////////////////////////////////////////////////////////////////////////

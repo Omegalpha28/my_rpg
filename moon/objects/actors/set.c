@@ -50,7 +50,7 @@ bool_t actor_set_anim_id(actor_t *act, uint_t id)
 ///////////////////////////////////////////////////////////////////////////////
 bool_t actor_set_sheet(actor_t *act, cstring_t name)
 {
-    creatures_t *crt;
+    creature_t *crt;
 
     if (act == NULL || act->self == NULL)
         return (false);
@@ -68,7 +68,7 @@ bool_t actor_set_sheet(actor_t *act, cstring_t name)
 ///////////////////////////////////////////////////////////////////////////////
 bool_t actor_set_sheet_id(actor_t *act, uint_t id)
 {
-    creatures_t *crt;
+    creature_t *crt;
 
     if (act == NULL || act->self == NULL)
         return (false);

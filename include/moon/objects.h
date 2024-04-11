@@ -27,7 +27,7 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct actor_s {
-    creatures_t *self;
+    creature_t *self;
     sfSprite *sprite;
     uint_t sheetId;
     uint_t animId;
@@ -62,7 +62,7 @@ extern struct pool_s {
 /// \return The newly created actor
 ///
 ///////////////////////////////////////////////////////////////////////////////
-actor_t *actor_create(creatures_t *creature, v2f_t position);
+actor_t *actor_create(creature_t *creature, v2f_t position);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Destroy the actor and remove it from the pool

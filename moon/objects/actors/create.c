@@ -11,7 +11,7 @@
 #include "moon.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-static void actor_init(actor_t *act, creatures_t *creature, v2f_t position)
+static void actor_init(actor_t *act, creature_t *creature, v2f_t position)
 {
     act->animId = 0;
     act->variantId = 0;
@@ -29,7 +29,7 @@ static void actor_init(actor_t *act, creatures_t *creature, v2f_t position)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-actor_t *actor_create(creatures_t *creature, v2f_t position)
+actor_t *actor_create(creature_t *creature, v2f_t position)
 {
     actor_t *act = (actor_t *)malloc(sizeof(actor_t));
 

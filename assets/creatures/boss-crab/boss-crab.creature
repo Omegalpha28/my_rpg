@@ -1,6 +1,6 @@
 3
 
-[START-normal_idle]
+[START-idle]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 6           1           6           original            assets/creatures/boss-crab/normal/idle.png
 
@@ -8,18 +8,20 @@
 idle            0       5       DEFAULT     TRUE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
+6           1           6           rage                assets/creatures/boss-crab/rage/idle.png
 6           1           6           debug               assets/creatures/boss-crab/normal/idle-debug.png
 [END]
 
-[START-normal_walk]
+[START-walk]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-8           2           6           original            assets/creatures/boss-crab/normal/walk.png
+8           2           11          original            assets/creatures/boss-crab/normal/walk.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
 idle            0       10      DEFAULT     TRUE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-8           2           6           debug               assets/creatures/boss-crab/normal/walk-debug.png
+4           3           11          rage                assets/creatures/boss-crab/rage/walk.png
+8           2           11          debug               assets/creatures/boss-crab/normal/walk-debug.png
 [END]
 
 [START-intro]
@@ -31,4 +33,15 @@ idle            0       71      DEFAULT     TRUE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 8           9           72          debug               assets/creatures/boss-crab/normal/intro-debug.png
+[END]
+
+[START-enrage]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+7           7           46          original            assets/creatures/boss-crab/normal/enrage.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       45      DEFAULT     TRUE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+7           7           46          debug               assets/creatures/boss-crab/normal/enrage-debug.png
 [END]

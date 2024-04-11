@@ -35,6 +35,7 @@ image_t *add_image(cstring_t filepath, bool_t load, v2u_t grid, cstring_t name)
         (Assets.imageCount - 1), sizeof(image_t *) * (Assets.imageCount));
     Assets.images[Assets.imageCount - 1] = img;
     img->grid = grid;
+    img->size = (v2u_t){0, 0};
     img->filepath = my_strdup(filepath);
     img->name = my_strdup(name);
     if (load == false)

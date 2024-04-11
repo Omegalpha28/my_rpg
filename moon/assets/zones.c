@@ -28,7 +28,7 @@ static bool_t init_zone(cstring_t path)
     Assets.zones = REALLOC(Assets.zones, sizeof(zone_t *), Assets.zoneCount);
     Assets.zones[Assets.zoneCount - 1] = zone;
     for (uint_t i = 0; success && content[i]; i++) {
-        if (my_isdir(content[i]) == true)
+        if (my_isdir(content[i]) == false)
             continue;
         success = init_assets_category(zone, content[i]);
     }

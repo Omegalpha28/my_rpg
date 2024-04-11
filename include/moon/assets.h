@@ -29,6 +29,11 @@
     #define DIR_WEAPONS DIR_ASSETS "/weapons"
     #define DIR_ZONES DIR_ASSETS "/zones"
 
+    /** Zones restricted name                                                */
+    #define CAT_TRAP "traps"
+    #define CAT_DOOR "doors"
+    #define CAT_DESTRUCTIBLE "destructibles"
+
     /** Assets configuration extensions                                      */
     #define EXT_CREATURE "creature"
     #define EXT_MUSICS "ogg"
@@ -36,7 +41,7 @@
     /** Default FrameRate                                                    */
     #define FRAME_PER_MS(x) (1000 / x)
     #define DEFAULT_CREATURE_FR FRAME_PER_MS(7)
-    #define DEFAULT_PROP_FR 5
+    #define DEFAULT_PROP_FR FRAME_PER_MS(5)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief List of predefined creature index
@@ -154,6 +159,10 @@ typedef struct music_s {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef enum category_type_e {
+    catOther,
+    catTraps,
+    catDoors,
+    catDestructible,
     CATEGORY_TYPE_COUNT
 } category_type_t;
 
@@ -169,7 +178,7 @@ typedef enum category_type_e {
 typedef struct category_s {
     cstring_t name;
     category_type_t type;
-    sheet_t *sheets;
+    sheet_t **sheets;
     uint_t sheetCount;
 } category_t;
 

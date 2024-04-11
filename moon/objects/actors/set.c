@@ -58,6 +58,8 @@ bool_t actor_set_sheet(actor_t *act, cstring_t name)
     for (uint_t i = 0; i < crt->sheetCount; i++) {
         if (!CMP(crt->sheets[i]->name, name))
             continue;
+        if (act->sheetId == i)
+            return (true);
         act->sheetId = i;
         act->time = Time.currentTime;
         return (true);

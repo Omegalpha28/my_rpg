@@ -140,7 +140,8 @@ L_C_STRINGS	=	$(L_D_STRINGS)stowa.c										\
 				$(L_D_STRINGS)wacpy.c										\
 				$(L_D_STRINGS)walen.c										\
 				$(L_D_STRINGS)watroy.c
-L_C_SYSTEM	=	$(L_D_SYSTEM)dircontent.c									\
+L_C_SYSTEM	=	$(L_D_SYSTEM)basename.c										\
+				$(L_D_SYSTEM)dircontent.c									\
 				$(L_D_SYSTEM)dirlen.c										\
 				$(L_D_SYSTEM)extname.c										\
 				$(L_D_SYSTEM)isdir.c

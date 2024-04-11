@@ -17,8 +17,7 @@ int my_strtol(cstring_t s, cstring_t *ptr)
     int n = 0;
     bool_t sign = false;
 
-    while (s[i] == ' ')
-        i++;
+    for (; my_isspace(s[i]); i++);
     if (s[i] == '-') {
         i++;
         sign = true;

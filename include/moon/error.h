@@ -22,5 +22,6 @@
     #define ERR_UNKOWN_OPERATOR "Unknown operator."
     #define ERR_FD_MUSICS "Unable to open the musics folder."
     #define ERR_LOAD_MUSIC "Unable to load the musics."
+    #define ERR_FD_ZONES "Unable to open the zones folder."
 
 #endif /* !ERROR_H_ */

@@ -56,9 +56,11 @@ E_C_WINDOW	=	$(E_D_WINDOW)create.c										\
 				$(E_D_WINDOW)destroy.c										\
 				$(E_D_WINDOW)time.c
 E_C_ASSETS	=	$(E_D_ASSETS)assets.c										\
+				$(E_D_ASSETS)categories.c									\
 				$(E_D_ASSETS)creatures.c									\
 				$(E_D_ASSETS)images.c										\
-				$(E_D_ASSETS)musics.c
+				$(E_D_ASSETS)musics.c										\
+				$(E_D_ASSETS)zones.c
 E_C_OBJECTS	=	$(E_D_OBJECTS)pool.c										\
 				$(E_D_OBJECTS)actors/animate.c								\
 				$(E_D_OBJECTS)actors/create.c								\

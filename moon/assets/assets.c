@@ -14,6 +14,7 @@
 struct assets_s Assets = {
     NULL, 0,
     NULL, 0,
+    NULL, 0,
     NULL, 0
 };
 

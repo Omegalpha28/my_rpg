@@ -22,7 +22,8 @@ struct assets_s Assets = {
 bool_t init_assets(void)
 {
     if (!init_assets_creatures() ||
-        !init_assets_musics())
+        !init_assets_musics() ||
+        !init_assets_zones())
         return (false);
     return (true);
 }

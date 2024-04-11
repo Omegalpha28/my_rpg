@@ -57,8 +57,8 @@ static void init_view(void)
     Win.viewHeight = (float)((float)(DEFAULT_VIEW_WIDTH / (float)Win.width))
         * Win.height;
     sfView_setSize(Win.view, (v2f_t){Win.viewWidth, Win.viewHeight});
-    sfView_setCenter(Win.view, (v2f_t){Win.viewHeight / 2.f,
-        Win.viewHeight / 2.f});
+    sfView_setCenter(Win.view, (v2f_t){Win.viewWidth / 2.0f,
+        Win.viewHeight / 2.0f});
     sfRenderWindow_setView(Win.self, Win.view);
 }
 

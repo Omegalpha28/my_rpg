@@ -22,6 +22,7 @@ typedef enum weapon_type_e {
     weaponArrow,
     weaponBullet,
     weaponMelee,
+    weaponExplosive,
     WEAPON_TYPE_COUNT
 } weapon_type_t;
 

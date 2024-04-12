@@ -24,7 +24,7 @@ static void actor_init(actor_t *act, creature_t *creature, v2f_t position)
     act->scale = (v2f_t){1.0f, 1.0f};
     act->sprite = sfSprite_create();
     act->self = creature;
-    sfSprite_setPosition(act->sprite, position);
+    sfSprite_setPosition(act->sprite, MAP_TO_PXF(position));
     act->draw = true;
 }
 

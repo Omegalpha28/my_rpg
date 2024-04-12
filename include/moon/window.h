@@ -73,7 +73,7 @@
     #define RIGHT Keys.right.pressed
     #define LEFT Keys.left.pressed
     #define MOVE (UP || DOWN || RIGHT || LEFT)
-    #define SPEED 0.85f
+    #define SPEED 8.5f
 
 ///////////////////////////////////////////////////////////////////////////////
 //

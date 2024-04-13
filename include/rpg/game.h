@@ -32,7 +32,6 @@ typedef enum weapon_type_e {
 /// \param sender
 /// \param origin
 /// \param destination
-/// TODO: Add
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct bullet_s {

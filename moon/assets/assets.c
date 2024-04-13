@@ -25,5 +25,12 @@ bool_t init_assets(void)
         !init_assets_musics() ||
         !init_assets_zones())
         return (false);
+    sort_creatures();
     return (true);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void destroy_assets(void)
+{
+    return;
 }

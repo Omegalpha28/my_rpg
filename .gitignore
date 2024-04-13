@@ -35,6 +35,7 @@
 !Makefile
 !.gitignore
 !LICENSE
+!style.sh
 
 # Ignore valgrind reports
 vgcore.*

@@ -19,7 +19,7 @@
 ![https://github.com/Omegalpha28](https://img.shields.io/badge/ossan%20msoili-blue?style=for-the-badge&logo=undertale&logoColor=E71D29)
 
 > [!NOTE]  
-> For any technical information about the project, please check the [wiki](https://github.com/mallory-scotton/csfml-engine/wiki).
+> For any technical information about the project, please check the [wiki](https://github.com/EpitechPromo2028/B-MUL-200-LYN-2-1-myrpg-mallory.scotton/wiki).
 
 ## 📦 PROJECTS
 

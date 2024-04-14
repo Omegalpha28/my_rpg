@@ -42,3 +42,23 @@ image_t *add_image(cstring_t filepath, bool_t load, v2u_t grid, cstring_t name)
         return (img);
     return (image_load(filepath, grid, img));
 }
+
+///////////////////////////////////////////////////////////////////////////////
+void load_image(image_t *img)
+{
+    if (!img || !img->filepath || img->self)
+        return;
+    img->self = sfTexture_createFromFile(img->filepath, NULL);
+    img->size = sfTexture_getSize(img->self);
+    img->mask = (recti_t){0, 0, img->size.x / img->grid.x,
+        img->size.y / img->grid.y};
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void unload_image(image_t *img)
+{
+    if (!img || !img->self)
+        return;
+    sfTexture_destroy(img->self);
+    img->self = NULL;
+}

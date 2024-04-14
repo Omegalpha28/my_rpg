@@ -87,7 +87,7 @@ bool_t load_zone(cstring_t name)
         if (!CMP(Assets.zones[i]->name, name))
             continue;
         unload_all_zones();
-        zone = Assets.zones[i]->name;
+        zone = Assets.zones[i];
         zone->loaded = true;
         for (uint_t j = 0; j < zone->categoryCount; j++)
             load_category(zone->categories[i]);
@@ -104,7 +104,7 @@ bool_t unload_zone(cstring_t name)
     for (uint_t i = 0; i < Assets.zoneCount; i++) {
         if (!CMP(Assets.zones[i]->name, name))
             continue;
-        zone = Assets.zones[i]->name;
+        zone = Assets.zones[i];
         zone->loaded = false;
         for (uint_t j = 0; j < zone->categoryCount; j++)
             unload_category(zone->categories[i]);

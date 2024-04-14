@@ -69,7 +69,9 @@ E_C_OBJECTS	=	$(E_D_OBJECTS)pool.c										\
 				$(E_D_OBJECTS)actors/animate.c								\
 				$(E_D_OBJECTS)actors/create.c								\
 				$(E_D_OBJECTS)actors/set.c									\
-				$(E_D_OBJECTS)actors/transform.c
+				$(E_D_OBJECTS)actors/transform.c							\
+				$(E_D_OBJECTS)props/create.c								\
+				$(E_D_OBJECTS)props/transform.c
 
 E_SOURCES	=	$(E_C_ROOT)													\
 				$(E_C_MATHS)												\

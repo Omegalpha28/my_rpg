@@ -62,3 +62,5 @@
 # 👶 Minigames
 
 - Baby growing
+- Making food
+- Sacrifice

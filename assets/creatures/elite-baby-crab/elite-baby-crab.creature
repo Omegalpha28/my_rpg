@@ -1,0 +1,16 @@
+4
+
+[START-default]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           8           30          original            assets/creatures/elite-baby-crab/elite-baby-crab.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       6       DEFAULT     TRUE
+damage          7       8       DEFAULT     FALSE
+spin            9       11      DEFAULT     TRUE
+tired           12      19      DEFAULT     FALSE
+death           20      29      DEFAULT     FALSE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           8           30          debug               assets/creatures/elite-baby-crab/debug.png
+[END]

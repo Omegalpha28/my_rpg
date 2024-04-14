@@ -17,7 +17,7 @@ int main(void)
 
     if (!init_time() || !init_assets() || !create_window(0, 0, WIN_WINDOWED))
         return (EXIT_FAILURE);
-    Player.ref = actor_create(Assets.creatures[0], (v2f_t){0, 0});
+    Player.ref = actor_create(Assets.creatures[creaturePlayer], (v2f_t){0, 0});
     actor_set_variant(Player.ref, "debug", 0);
     while (sfRenderWindow_isOpen(Win.self)) {
         update_time();

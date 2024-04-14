@@ -117,3 +117,17 @@ void destroy_assets_category(category_t *cat)
         return;
     return;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+void load_category(category_t *cat)
+{
+    for (uint_t i = 0; i < cat->sheetCount; i++)
+        load_image(cat->sheets[i]->image);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void unload_category(category_t *cat)
+{
+    for (uint_t i = 0; i < cat->sheetCount; i++)
+        unload_image(cat->sheets[i]->image);
+}

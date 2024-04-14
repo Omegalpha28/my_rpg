@@ -1,0 +1,16 @@
+3
+
+[START-default]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+10          3           20          original            assets/creatures/bald-rat/bald-rat.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       3       DEFAULT     TRUE
+walk            4       9       DEFAULT     TRUE
+damage          10      11      DEFAULT     FALSE
+death           12      13      DEFAULT     FALSE
+run             14      19      DEFAULT     TRUE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+10          3           20          debug               assets/creatures/bald-rat/debug.png
+[END]

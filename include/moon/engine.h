@@ -26,7 +26,7 @@
 /// \param debugMode    Should the game be debugging everything
 ///
 ///////////////////////////////////////////////////////////////////////////////
-extern struct engine_reference_s {
+extern struct engine_s {
     bool_t debugMode;
 } Engine;
 

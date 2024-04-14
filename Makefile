@@ -37,6 +37,7 @@ E_D_WINDOW	=	$(E_D_ROOT)window/
 E_D_ASSETS	=	$(E_D_ROOT)assets/
 E_D_OBJECTS	=	$(E_D_ROOT)objects/
 
+E_C_ROOT	=	$(E_D_ROOT)engine.c
 E_C_MATHS	=	$(E_D_MATHS)clamp.c											\
 				$(E_D_MATHS)distance.c										\
 				$(E_D_MATHS)intersect.c										\
@@ -70,7 +71,8 @@ E_C_OBJECTS	=	$(E_D_OBJECTS)pool.c										\
 				$(E_D_OBJECTS)actors/set.c									\
 				$(E_D_OBJECTS)actors/transform.c
 
-E_SOURCES	=	$(E_C_MATHS)												\
+E_SOURCES	=	$(E_C_ROOT)													\
+				$(E_C_MATHS)												\
 				$(E_C_WINDOW)												\
 				$(E_C_ASSETS)												\
 				$(E_C_OBJECTS)

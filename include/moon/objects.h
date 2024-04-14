@@ -42,15 +42,45 @@ typedef struct actor_s {
 } actor_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Prop class, used to draw map
+///
+/// \param self         References to the sheet of the prop
+/// \param sprite       The sprite used to draw
+/// \param frame        The current frame of the animation
+/// \param animated     Boolean, is the prop animated or animation playing
+/// \param position     The position of the prop in the world
+/// \param scale        The scale of the prop in the world
+/// \param rotation     The rotation of the prop
+/// \param draw         True if the prop should be drawn, false otherwise
+/// \param time         Starting time of the animation
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct prop_s {
+    sheet_t *self;
+    sfSprite *sprite;
+    uint_t frame;
+    bool_t animated;
+    v2f_t position;
+    v2f_t scale;
+    float rotation;
+    bool_t draw;
+    ulong_t time;
+} prop_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Object pool to keep track of loaded and drawed assets
 ///
 /// \param actors       The list of actors
-/// \param actorCount   The number of actos
+/// \param actorCount   The number of actors
+/// \param props        The list of props
+/// \param propCount    The number of props
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct pool_s {
     actor_t **actors;
     uint_t actorCount;
+    prop_t **props;
+    uint_t propCount;
 } Pool;
 
 ///////////////////////////////////////////////////////////////////////////////

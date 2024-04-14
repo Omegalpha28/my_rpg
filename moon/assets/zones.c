@@ -69,3 +69,46 @@ void destroy_assets_zones(void)
     Assets.zones = NULL;
     return;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+static void unload_all_zones(void)
+{
+    for (uint_t i = 0; i < Assets.zoneCount; i++)
+        if (Assets.zones[i]->loaded)
+            unload_zone(Assets.zones[i]->name);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+bool_t load_zone(cstring_t name)
+{
+    zone_t *zone;
+
+    for (uint_t i = 0; i < Assets.zoneCount; i++) {
+        if (!CMP(Assets.zones[i]->name, name))
+            continue;
+        unload_all_zones();
+        zone = Assets.zones[i]->name;
+        zone->loaded = true;
+        for (uint_t j = 0; j < zone->categoryCount; j++)
+            load_category(zone->categories[i]);
+        return (true);
+    }
+    return (false);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+bool_t unload_zone(cstring_t name)
+{
+    zone_t *zone;
+
+    for (uint_t i = 0; i < Assets.zoneCount; i++) {
+        if (!CMP(Assets.zones[i]->name, name))
+            continue;
+        zone = Assets.zones[i]->name;
+        zone->loaded = false;
+        for (uint_t j = 0; j < zone->categoryCount; j++)
+            unload_category(zone->categories[i]);
+        return (true);
+    }
+    return (false);
+}

@@ -90,7 +90,7 @@ bool_t load_zone(cstring_t name)
         zone = Assets.zones[i];
         zone->loaded = true;
         for (uint_t j = 0; j < zone->categoryCount; j++)
-            load_category(zone->categories[i]);
+            load_category(zone->categories[j]);
         return (true);
     }
     return (false);

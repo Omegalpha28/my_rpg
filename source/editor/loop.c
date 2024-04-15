@@ -2,21 +2,20 @@
 ** EPITECH PROJECT, 2024
 ** B-MUL-200-LYN-2-1-myrpg-mallory.scotton
 ** File description:
-** editor
+** loop
 */
-
-#ifndef EDITOR_H_
-    #define EDITOR_H_
 
 ///////////////////////////////////////////////////////////////////////////////
 // Headers
 ///////////////////////////////////////////////////////////////////////////////
-    #include "rpg.h"
+#include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief Main loop of the level editor
-///
-///////////////////////////////////////////////////////////////////////////////
-void editor_loop(void);
+void editor_loop(void)
+{
+    sfEvent evt;
 
-#endif /* !EDITOR_H_ */
+    while (sfRenderWindow_pollEvent(Win.self, &evt))
+        if (evt.type == sfEvtClosed)
+            sfRenderWindow_close(Win.self);
+}

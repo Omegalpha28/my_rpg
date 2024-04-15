@@ -1,0 +1,16 @@
+/*
+** EPITECH PROJECT, 2024
+** B-MUL-200-LYN-2-1-myrpg-mallory.scotton
+** File description:
+** editor
+*/
+
+#ifndef EDITOR_H_
+    #define EDITOR_H_
+
+///////////////////////////////////////////////////////////////////////////////
+// Headers
+///////////////////////////////////////////////////////////////////////////////
+    #include "rpg.h"
+
+#endif /* !EDITOR_H_ */

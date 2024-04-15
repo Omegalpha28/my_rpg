@@ -28,18 +28,18 @@ static sheet_t *create_sheet(category_t *cat, cstring_t path)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static bool_t create_item_animation(sheet_t *sheet, bool_t autplay)
+static bool_t create_item_animation(sheet_t *sheet, bool_t autoplay)
 {
     animation_t *anim = (animation_t *)malloc(sizeof(animation_t));
 
     sheet->animCount = 1;
-    sheet->anims = (animation_t **)malloc(sizeof(animation_t *));
+    sheet->anims = (animation_t **)malloc(sizeof(animation_t *) * 2);
     sheet->anims[0] = anim;
-    anim->endingFrame = sheet->image->grid.x - 1;
+    anim->endingFrame = (sheet->image->grid.x * sheet->image->grid.y) - 1;
     anim->startingFrame = 0;
-    anim->looped = autplay;
+    anim->looped = autoplay;
     anim->name = my_strdup("default");
-    anim->frameCount = sheet->image->grid.x;
+    anim->frameCount = sheet->image->grid.x * sheet->image->grid.y;
     anim->frameRate = DEFAULT_PROP_FR;
     return (true);
 }
@@ -102,7 +102,7 @@ bool_t init_assets_category(zone_t *zone, cstring_t path)
         return (true);
     cat = create_category(zone, path);
     for (uint_t i = 0; success && content[i]; i++) {
-        if (my_isdir(content[i]) == true && my_extname(content[i]) != NULL)
+        if (my_isdir(content[i]) == true || my_extname(content[i]) == NULL)
             continue;
         success = create_category_item(cat, content[i]);
     }
@@ -122,7 +122,7 @@ void destroy_assets_category(category_t *cat)
 void load_category(category_t *cat)
 {
     for (uint_t i = 0; i < cat->sheetCount; i++)
-        load_image(cat->sheets[i]->image);
+        cat->sheets[i]->image = load_image(cat->sheets[i]->image);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

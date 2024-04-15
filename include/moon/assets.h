@@ -53,6 +53,7 @@ typedef enum creature_index_e {
     creatureCrabBoss,
     creatureBaldRat,
     creatureEliteBabyCrab,
+    creatureDummy,
     CREATURE_COUNT
 } creature_index_t;
 

@@ -1,0 +1,15 @@
+5
+
+[START-default]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+23          1           23          original            assets/creatures/dummy/dummy.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       0       DEFAULT     TRUE
+damage          1       7       DEFAULT     FALSE
+death           8       14      DEFAULT     FALSE
+respawn         15      22      DEFAULT     FALSE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+23          1           23          debug               assets/creatures/dummy/debug.png
+[END]

@@ -102,7 +102,3 @@ void draw_debug_safe(void)
     camera_move();
     cursor_focus();
 }
-//? if player outside safe place; move camera
-//? if map ends and if player isnt in safe place move or not ?
-//? dash movement
-//? collisions in moon/object/actor ?

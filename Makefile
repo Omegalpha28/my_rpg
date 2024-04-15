@@ -173,6 +173,7 @@ L_OBJECTS	=	$(L_SOURCES:.c=.o)
 P_D_ROOT	=	./source/
 P_D_CTRL	=	$(P_D_ROOT)controller/
 P_D_GAME	=	$(P_D_ROOT)game/
+P_D_ENTITY	=	$(P_D_ROOT)entity/
 
 P_C_ROOT	=	$(P_D_ROOT)main.c
 P_C_CTRL	=	$(P_D_CTRL)animation.c										\
@@ -180,8 +181,9 @@ P_C_CTRL	=	$(P_D_CTRL)animation.c										\
 				$(P_D_CTRL)events.c											\
 				$(P_D_CTRL)input.c
 P_C_GAME	=	$(P_D_GAME)loop.c											\
-				$(P_D_GAME)player.c											\
-				$(P_D_GAME)entity.c
+				$(P_D_GAME)player.c
+
+P_C_ENTITY =	$(P_D_ENTITY)entity.c
 
 P_SOURCES	=	$(P_C_ROOT)													\
 				$(P_C_CTRL)													\

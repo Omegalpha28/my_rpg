@@ -31,6 +31,7 @@ void camera_move(void)
 void draw_debug_safe(void)
 {
     sfRectangleShape *cam = sfRectangleShape_create();
+    v2f_t center = {Win.width / 2, Win.height / 2};
 
     sfRectangleShape_setSize(cam, (v2f_t){Win.viewWidth - 150.0f,
         Win.viewHeight - 150.0f});
@@ -39,7 +40,7 @@ void draw_debug_safe(void)
     sfRectangleShape_setFillColor(cam, sfTransparent);
     sfRectangleShape_setOrigin(cam, (v2f_t){(Win.viewWidth - 150.0f) / 2,
         (Win.viewHeight - 150.0f) / 2});
-    sfRectangleShape_setPosition(cam, (v2f_t){0.0f, 0.0f});
+    sfRectangleShape_setPosition(cam, PX_TO_MAPF(center));
     sfRenderWindow_drawRectangleShape(Win.self, cam, NULL);
     camera_move();
 }

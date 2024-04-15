@@ -16,6 +16,8 @@ static void init_prop(prop_t *prop, sheet_t *sheet)
     prop->animated = sheet->animCount > 0 ? sheet->anims[0]->looped : false;
     prop->draw = true;
     prop->frame = 0;
+    prop->done = false;
+    prop->once = sheet->animCount > 0 && !sheet->anims[0]->looped ? 1 : 0;
     prop->self = sheet;
     prop->sprite = sfSprite_create();
     prop->time = Time.currentTime;
@@ -32,7 +34,7 @@ static void init_prop_transform(prop_t *prop, v2f_t position, v2f_t scale,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-prop_t *create_prop(sheet_t *sheet, v2f_t position, v2f_t scale,
+prop_t *prop_create(sheet_t *sheet, v2f_t position, v2f_t scale,
     float rotation)
 {
     prop_t *prop = (prop_t *)malloc(sizeof(prop_t));
@@ -48,7 +50,7 @@ prop_t *create_prop(sheet_t *sheet, v2f_t position, v2f_t scale,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void destroy_prop(prop_t *prop)
+void prop_destroy(prop_t *prop)
 {
     prop_t **tmp = NULL;
     uint_t j = 0;

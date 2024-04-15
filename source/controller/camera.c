@@ -27,22 +27,45 @@ void camera_move(void)
     }
 }
 
+static v2f_t move_from_cursor(v2f_t cursor, v2f_t padding)
+{
+    v2f_t offset = {0.0f, 0.0f};
+
+    if (cursor.x < padding.x)
+        offset.x = -SPEED / 2;
+    if (cursor.y < padding.y)
+        offset.y = -SPEED / 2;
+    if (cursor.x > Win.width - padding.x)
+        offset.x = SPEED / 2;
+    if (cursor.y > Win.height - padding.y)
+        offset.y = SPEED / 2;
+    offset = normalize2f(offset);
+    return offset;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 void cursor_focus(void)
 {
     v2f_t padding = {30 * Win.width / Win.viewWidth,
         30 * Win.height / Win.viewHeight};
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
-    v2f_t offset = {cr.x - (Win.width - padding.x),
-        cr.y - (Win.height - padding.y)};
+    v2f_t mouse = MAP_TO_PXF(cr);
+    v2f_t max_zoom = {Win.viewWidth * 1.10, Win.viewHeight * 1.10};
+    v2f_t size = sfView_getSize(Win.view);
+    v2f_t offset = move_from_cursor(mouse, padding);
 
-    cr = MAP_TO_PXF(cr);
-    if (cr.x < padding.x || cr.y < padding.y ||
-        cr.x > Win.width - padding.x || cr.y > Win.height - padding.y) {
-        padding = padding;
-        sfView_move(Win.view, (v2f_t){0.0f, 0.0f});
-        sfRenderWindow_setView(Win.self, Win.view);
-    }
+    if (mouse.x < padding.x || mouse.y < padding.y ||
+        mouse.x > Win.width - padding.x || mouse.y > Win.height - padding.y) {
+        if (size.x < max_zoom.x && size.y < max_zoom.y) {
+            sfView_move(Win.view, offset);
+            sfView_zoom(Win.view, 1.005f);
+        }
+    } else
+        if (size.x > Win.viewWidth && size.y > Win.viewHeight) {
+            sfView_move(Win.view, (v2f_t){-offset.x, -offset.y});
+            sfView_zoom(Win.view, 0.995f);
+        }
+    sfRenderWindow_setView(Win.self, Win.view);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

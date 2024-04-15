@@ -102,7 +102,7 @@ bool_t init_assets_category(zone_t *zone, cstring_t path)
         return (true);
     cat = create_category(zone, path);
     for (uint_t i = 0; success && content[i]; i++) {
-        if (my_isdir(content[i]) == true && my_extname(content[i]) != NULL)
+        if (my_isdir(content[i]) == true || my_extname(content[i]) != NULL)
             continue;
         success = create_category_item(cat, content[i]);
     }

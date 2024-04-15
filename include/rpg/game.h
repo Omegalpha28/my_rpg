@@ -19,7 +19,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 typedef enum weapon_type_e {
     weaponLaser,
-    weaponArrow,
     weaponBullet,
     weaponMelee,
     weaponExplosive,

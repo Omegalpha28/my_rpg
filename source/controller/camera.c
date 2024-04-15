@@ -15,14 +15,32 @@ void camera_move(void)
 {
     v2f_t offset = Player.velocity;
     v2f_t player_pos = MAP_TO_PXF(Player.ref->position);
-    float padding_x = 75 * Win.width / Win.viewWidth;
-    float padding_y = 75 * Win.height / Win.viewHeight;
+    v2f_t padding = {75 * Win.width / Win.viewWidth,
+        75 * Win.height / Win.viewHeight};
 
-    if (player_pos.x < padding_x ||
-        player_pos.y < padding_y ||
-        player_pos.x > Win.width - padding_x ||
-        player_pos.y > Win.height - padding_y) {
+    if (player_pos.x < padding.x ||
+        player_pos.y < padding.y ||
+        player_pos.x > Win.width - padding.x ||
+        player_pos.y > Win.height - padding.y) {
         sfView_move(Win.view, offset);
+        sfRenderWindow_setView(Win.self, Win.view);
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void cursor_focus(void)
+{
+    v2f_t padding = {30 * Win.width / Win.viewWidth,
+        30 * Win.height / Win.viewHeight};
+    v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
+    v2f_t offset = {cr.x - (Win.width - padding.x),
+        cr.y - (Win.height - padding.y)};
+
+    cr = MAP_TO_PXF(cr);
+    if (cr.x < padding.x || cr.y < padding.y ||
+        cr.x > Win.width - padding.x || cr.y > Win.height - padding.y) {
+        padding = padding;
+        sfView_move(Win.view, (v2f_t){0.0f, 0.0f});
         sfRenderWindow_setView(Win.self, Win.view);
     }
 }
@@ -43,6 +61,7 @@ void draw_debug_safe(void)
     sfRectangleShape_setPosition(cam, PX_TO_MAPF(center));
     sfRenderWindow_drawRectangleShape(Win.self, cam, NULL);
     camera_move();
+    cursor_focus();
 }
 //? if player outside safe place; move camera
 //? if map ends and if player isnt in safe place move or not ?

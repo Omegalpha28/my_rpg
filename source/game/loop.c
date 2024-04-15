@@ -31,7 +31,10 @@ void game_loop(void)
 {
     actor_t *act = Player.ref;
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
+    sfEvent evt;
 
+    while (sfRenderWindow_pollEvent(Win.self, &evt))
+            parse_events(evt);
     player_movement();
     actor_draw(act);
     draw_debug_line(act, cr);

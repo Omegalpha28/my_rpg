@@ -180,7 +180,8 @@ P_C_CTRL	=	$(P_D_CTRL)animation.c										\
 				$(P_D_CTRL)events.c											\
 				$(P_D_CTRL)input.c
 P_C_GAME	=	$(P_D_GAME)loop.c											\
-				$(P_D_GAME)player.c
+				$(P_D_GAME)player.c											\
+				$(P_D_GAME)entity.c
 
 P_SOURCES	=	$(P_C_ROOT)													\
 				$(P_C_CTRL)													\

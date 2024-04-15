@@ -1,0 +1,21 @@
+/*
+** EPITECH PROJECT, 2024
+** B-MUL-200-LYN-2-1-myrpg-mallory.scotton
+** File description:
+** loop
+*/
+
+///////////////////////////////////////////////////////////////////////////////
+// Headers
+///////////////////////////////////////////////////////////////////////////////
+#include "rpg.h"
+
+///////////////////////////////////////////////////////////////////////////////
+void editor_loop(void)
+{
+    sfEvent evt;
+
+    while (sfRenderWindow_pollEvent(Win.self, &evt))
+        if (evt.type == sfEvtClosed)
+            sfRenderWindow_close(Win.self);
+}

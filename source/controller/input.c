@@ -28,6 +28,8 @@ static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed)
         Keys.right.pressed = pressed;
     if (evt.code == Keys.left.code || evt.code == ALT_LEFT)
         Keys.left.pressed = pressed;
+    if (evt.code == Keys.dash.code)
+        dash_movement();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

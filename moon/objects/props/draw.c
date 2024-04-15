@@ -39,8 +39,9 @@ void prop_draw(prop_t *prop)
 {
     recti_t mask = {0, 0, 0, 0};
 
-    if (!prop || !prop->draw || !prop->self || !prop->self->image ||
-        !prop->self->image->self)
+    if (prop == NULL || prop->sprite == NULL || prop->draw == false ||
+        prop->self == NULL || prop->self->image == NULL ||
+        prop->self->image->self == NULL)
         return;
     sfSprite_setTexture(prop->sprite, prop->self->image->self, false);
     mask = prop_generate_mask(prop);

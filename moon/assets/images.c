@@ -35,6 +35,7 @@ image_t *add_image(cstring_t filepath, bool_t load, v2u_t grid, cstring_t name)
         (Assets.imageCount - 1), sizeof(image_t *) * (Assets.imageCount));
     Assets.images[Assets.imageCount - 1] = img;
     img->grid = grid;
+    img->self = NULL;
     img->size = (v2u_t){0, 0};
     img->filepath = my_strdup(filepath);
     img->name = my_strdup(name);
@@ -44,14 +45,19 @@ image_t *add_image(cstring_t filepath, bool_t load, v2u_t grid, cstring_t name)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void load_image(image_t *img)
+image_t *load_image(image_t *img)
 {
-    if (!img || !img->filepath || img->self)
-        return;
+    if (img == NULL || img->filepath == NULL)
+        return (NULL);
+    if (img->self != NULL)
+        return (img);
     img->self = sfTexture_createFromFile(img->filepath, NULL);
+    if (img->self == NULL)
+        return (img);
     img->size = sfTexture_getSize(img->self);
     img->mask = (recti_t){0, 0, img->size.x / img->grid.x,
         img->size.y / img->grid.y};
+    return (img);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

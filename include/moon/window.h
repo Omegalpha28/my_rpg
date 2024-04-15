@@ -72,6 +72,7 @@
     #define DOWN Keys.down.pressed
     #define RIGHT Keys.right.pressed
     #define LEFT Keys.left.pressed
+    #define DASH Keys.dash.pressed
     #define MOVE (UP || DOWN || RIGHT || LEFT)
     #define SPEED 8.5f
 

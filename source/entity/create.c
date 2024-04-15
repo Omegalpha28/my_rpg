@@ -26,12 +26,11 @@ entity_t *entity_creation(creature_t *creature)
     entity_t *new = (entity_t *)malloc(sizeof(entity_t));
 
     init_entity(new, creature);
-
     Entities.count++;
-    Entities.array = REALLOC(Entities.array, sizeof(entity_t *), Entities.count);
+    Entities.array = REALLOC(Entities.array, sizeof(entity_t *),
+        Entities.count);
     Entities.array[Entities.count - 1] = new;
     return (new);
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -56,8 +55,3 @@ void remove_entity(entity_t *ent)
     Entities.array = tmp;
     FREE(ent);
 }
-
-
-/*
-TODO structure containing all information of the creature. aka:
-*/

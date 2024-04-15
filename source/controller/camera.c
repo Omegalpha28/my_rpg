@@ -11,7 +11,7 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_debug_safe(void)
+void draw_debug_safe(void)
 {
     sfRectangleShape *cam = sfRectangleShape_create();
 

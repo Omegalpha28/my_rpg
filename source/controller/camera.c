@@ -46,7 +46,7 @@ static v2f_t move_from_cursor(v2f_t cursor, v2f_t padding)
 static v2f_t move_from_player(v2f_t cursor, v2f_t padding)
 {
     v2f_t offset = {0.0f, 0.0f};
-    v2f_t marge = {padding.x * 3, padding.y * 3};
+    v2f_t marge = {padding.x * 2, padding.y * 2};
 
     if (cursor.x > padding.x && cursor.x < marge.x)
         offset.x = SPEED / 2;

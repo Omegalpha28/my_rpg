@@ -253,7 +253,7 @@ tests_fclean: tests_clean
 #-----------------------------------------------------------------------------#
 #! Misc
 
-all: $(build_program)
+all: $(P_NAME)
 
 re: fclean all
 

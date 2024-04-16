@@ -750,4 +750,56 @@ v2u_t normalize2u(v2u_t vec);
 ///////////////////////////////////////////////////////////////////////////////
 v3f_t normalize3f(v3f_t vec);
 
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Moves a vector towards a target vector by a specified maximum
+/// distance.
+///
+/// \param current          The current vector to be moved.
+/// \param target           The target vector towards which the current vector
+///                         is moved.
+/// \param maxDistanceDelta The maximum distance change allowed for the
+///                         movement.
+///
+/// \return The moved vector, which may be equal to the target vector or a
+///          vector that has been moved towards the target vector based on
+///         maxDistanceDelta.
+///
+///////////////////////////////////////////////////////////////////////////////
+v2f_t movetowards2f(v2f_t current, v2f_t target, float maxDistanceDelta);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Moves a vector towards a target vector by a specified maximum
+/// distance.
+///
+/// \param current          The current vector to be moved.
+/// \param target           The target vector towards which the current vector
+///                         is moved.
+/// \param maxDistanceDelta The maximum distance change allowed for the
+///                         movement.
+///
+/// \return The moved vector, which may be equal to the target vector or a
+///          vector that has been moved towards the target vector based on
+///         maxDistanceDelta.
+///
+///////////////////////////////////////////////////////////////////////////////
+v2u_t movetowards2u(v2u_t current, v2u_t target, float maxDistanceDelta);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Moves a vector towards a target vector by a specified maximum
+/// distance.
+///
+/// \param current          The current vector to be moved.
+/// \param target           The target vector towards which the current vector
+///                         is moved.
+/// \param maxDistanceDelta The maximum distance change allowed for the
+///                         movement.
+///
+/// \return The moved vector, which may be equal to the target vector or a
+///          vector that has been moved towards the target vector based on
+///         maxDistanceDelta.
+///
+///////////////////////////////////////////////////////////////////////////////
+v2i_t movetowards2i(v2i_t current, v2i_t target, float maxDistanceDelta);
+
 #endif /* !MATHS_H_ */

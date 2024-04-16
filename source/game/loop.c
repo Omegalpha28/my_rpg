@@ -31,21 +31,11 @@ void game_loop(void)
 {
     actor_t *act = Player.ref;
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
+    sfEvent evt;
 
-    Player.velocity = (v2f_t){0.0f, 0.0f};
-    if (UP)
-        Player.velocity.y += -SPEED;
-    if (DOWN)
-        Player.velocity.y += SPEED;
-    if (LEFT)
-        Player.velocity.x += -SPEED;
-    if (RIGHT)
-        Player.velocity.x += SPEED;
-    Player.velocity = normalize2f(Player.velocity);
-    actor_set_anim(act, (Player.velocity.x != 0.0f ||
-        Player.velocity.y != 0.0f) ? "walk" : "idle");
-    actor_move(act, Player.velocity);
-    act->scale.x = act->position.x > cr.x ? -1.0f : 1.0f;
+    while (sfRenderWindow_pollEvent(Win.self, &evt))
+            parse_events(evt);
+    player_movement();
     actor_draw(act);
     draw_debug_line(act, cr);
     draw_debug_safe();

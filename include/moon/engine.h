@@ -21,6 +21,18 @@
     #define EXIT_FAILURE 84
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Scenes enumeration
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef enum scene_e {
+    sceneMainMenu,
+    sceneLevelEditor,
+    sceneGame,
+    sceneSettings,
+    SCENE_COUNT
+} scene_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Engine main structures, store engine related parameters
 ///
 /// \param debugMode    Should the game be debugging everything
@@ -28,6 +40,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 extern struct engine_s {
     bool_t debugMode;
+    scene_t scene;
 } Engine;
 
 #endif /* !ENGINE_H_ */

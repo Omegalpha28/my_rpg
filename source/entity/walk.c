@@ -18,14 +18,13 @@ void duckwalk(entity_t *duck)
     actor_draw(duck->actor);
 }
 
-
-
 /*
 
 in main:
 
     Entities.array = malloc(sizeof(entity_t *));
-    Entities.array[0] = entity_creation(Assets.creatures[creatureDuck], (v2f_t){30, 30});
+    Entities.array[0] = entity_creation(Assets.creatures[creatureDuck],
+        (v2f_t){30, 30});
 
 in loop:
 
@@ -55,9 +54,9 @@ the odds by 0.2.
 then you increase by 0.2 untill you get a full circle.
 
 
-their are 2 vector from the same starting point. assuming that the starting point
-is 0x0y. the first vector ends at the position 50x45y. with an angle of 45 degrees
-seperating the two. calculate the end pos of the new vector
+their are 2 vector from the same starting point. assuming that the starting
+point is 0x0y. the first vector ends at the position 50x45y. with an angle of
+45 degrees seperating the two. calculate the end pos of the new vector
 
 
 

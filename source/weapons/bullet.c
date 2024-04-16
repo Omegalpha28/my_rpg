@@ -9,9 +9,9 @@
 
 static float rotation(bullet_t *bullet)
 {
-    float my_x = bullet->destination.x - bullet->origin.x;
-    float my_y = bullet->destination.y - bullet->origin.y;
-    float rotationDegrees = atan2(my_y, my_x) * (180.f / M_PI);
+    float_t my_x = bullet->destination.x - bullet->origin.x;
+    float_t my_y = bullet->destination.y - bullet->origin.y;
+    float_t rotationDegrees = atan2(my_y, my_x) * (180.f / M_PI);
 
     return rotationDegrees;
 }

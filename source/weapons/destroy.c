@@ -6,7 +6,7 @@
 */
 #include "rpg.h"
 
-void destroy_bullet(bullet_t *bullet)
+void destroy_bullet(void)
 {
     return;
 }

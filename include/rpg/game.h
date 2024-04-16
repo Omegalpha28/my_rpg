@@ -35,8 +35,10 @@ typedef enum weapon_type_e {
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct bullet_s {
     uint_t sender;
+    sfSprite *sprite;
     v2f_t origin;
     v2f_t destination;
+    v2f_t position;
 } bullet_t;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -55,6 +57,10 @@ typedef struct weapon_s {
     float firerate;
 } weapon_t;
 
+extern struct bullet_list_s {
+    bullet_t **array;
+    uint_t count;
+} Bullet_List;
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief
 ///
@@ -71,5 +77,7 @@ extern struct player_s {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void game_loop(void);
+bullet_t *bullet_creation(uint_t sender);
+void draw_bullets(void);
 
 #endif /* !GAME_H_ */

@@ -14,15 +14,17 @@
     #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief
+/// \brief structure containing pertinent information on each enemy
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct entity_s {
     actor_t *actor;
-    uint_t *health;
-    uint_t *behavior;
-    ulong_t *last_action;
+    uint_t health;
+    uint_t behavior;
+    ulong_t last_action;
     bool_t has_spawn;
+    float_t speed;
+    v2f_t target;
 } entity_t;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -34,6 +36,24 @@ extern struct entity_list_s {
     uint_t count;
 } Entities;
 
-entity_t *entity_creation(creature_t *creature);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Create a new entitty base on a creature and a position
+///
+/// \param creature     The reference creature for the actor
+/// \param position     The default position of the actor
+///
+/// \return The newly created entity
+///
+///////////////////////////////////////////////////////////////////////////////
+entity_t *entity_creation(creature_t *creature, v2f_t position);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief test function creation of walking behavior
+///
+/// \param duck         its the duck actor
+///
+///////////////////////////////////////////////////////////////////////////////
+void duckwalk(entity_t *duck);
 
 #endif /* !ENTITY_H_ */

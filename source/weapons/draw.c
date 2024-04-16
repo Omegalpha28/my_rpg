@@ -28,6 +28,6 @@ void draw_bullets(void)
         return;
     for (uint_t i = 0; i < Bullet_List.count; i++) {
         drawing_bullets(Bullet_List.array[i]);
-        destroy_bullet(Bullet_List.array[i]);
+        destroy_bullet();
     }
 }

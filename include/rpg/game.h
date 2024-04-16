@@ -79,6 +79,6 @@ extern struct player_s {
 void game_loop(void);
 bullet_t *bullet_creation(uint_t sender);
 void draw_bullets(void);
-void remove_bullet(bullet_t *bullet);
+void destroy_bullet(bullet_t *bullet);
 
 #endif /* !GAME_H_ */

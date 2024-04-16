@@ -12,7 +12,7 @@ static void drawing_bullets(bullet_t *bullet)
         bullet->destination.y - bullet->origin.y};
     float length = sqrt(direction.x * direction.x + direction.y * direction.y);
     sfVector2f position = sfSprite_getPosition(bullet->sprite);
-    float vitesse = 0.01;
+    float vitesse = 5;
 
     direction.x /= length;
     direction.y /= length;
@@ -26,6 +26,8 @@ void draw_bullets(void)
 {
     if (Bullet_List.array == NULL)
         return;
-    for (int i = 0; i < Bullet_List.count; i++)
+    for (uint_t i = 0; i < Bullet_List.count; i++) {
         drawing_bullets(Bullet_List.array[i]);
+        destroy_bullet(Bullet_List.array[i]);
+    }
 }

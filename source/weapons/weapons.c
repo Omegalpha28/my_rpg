@@ -11,4 +11,4 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-struct bullet_list_s Bullet_List = {NULL, 0, NULL};
+struct bullet_list_s Bullet_List = {NULL, 0};

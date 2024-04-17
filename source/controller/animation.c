@@ -13,7 +13,6 @@
 void player_movement(void)
 {
     actor_t *act = Player.ref;
-    v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
 
     Player.velocity = (v2f_t){0.0f, 0.0f};
     if (UP)
@@ -27,29 +26,32 @@ void player_movement(void)
     Player.velocity = normalize2f(Player.velocity);
     Player.velocity.x *= Time.deltaTime / 15;
     Player.velocity.y *= Time.deltaTime / 15;
-    actor_set_anim(act, (Player.velocity.x != 0.0f ||
-        Player.velocity.y != 0.0f) ? "walk" : "idle");
-    actor_move(act, Player.velocity);
-    act->scale.x = act->position.x > cr.x ? -1.0f : 1.0f;
+    if (!DASH)
+        actor_set_anim(act, (Player.velocity.x != 0.0f ||
+            Player.velocity.y != 0.0f) ? "walk" : "idle");
+    dash_movement();
 }
 
 void dash_movement(void)
 {
-    actor_t *act = Player.ref;
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
 
-    if (UP && DASH)
-        Player.velocity.y += -SPEED * 10;
-    if (DOWN && DASH)
-        Player.velocity.y += SPEED * 10;
-    if (LEFT && DASH)
-        Player.velocity.x += -SPEED * 10;
-    if (RIGHT && DASH)
-        Player.velocity.x += SPEED * 10;
-    Player.velocity = normalize2f(Player.velocity);
-    Player.velocity.x *= Time.deltaTime / 15;
-    Player.velocity.y *= Time.deltaTime / 15;
-    actor_set_anim(act, "dash");
-    actor_move(act, Player.velocity);
-    act->scale.x = act->position.x > cr.x ? -1.0f : 1.0f;
+    if (DASH) {
+        Player.velocity = (v2f_t){0.0f, 0.0f};
+        if (UP)
+            Player.velocity.y += -SPEED * 5;
+        if (DOWN)
+            Player.velocity.y += SPEED * 5;
+        if (LEFT)
+            Player.velocity.x += -SPEED * 5;
+        if (RIGHT)
+            Player.velocity.x += SPEED * 5;
+        Player.velocity = normalize2f(Player.velocity);
+        Player.velocity.x *= Time.deltaTime / 15;
+        Player.velocity.y *= Time.deltaTime / 15;
+        actor_set_anim(Player.ref, "dash");
+    }
+    actor_move(Player.ref, Player.velocity);
+    camera_move();
+    Player.ref->scale.x = Player.ref->position.x > cr.x ? -1.0f : 1.0f;
 }

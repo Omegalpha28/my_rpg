@@ -19,7 +19,7 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->behavior = 0;
     new->last_action = 0;
     new->speed = 0.6;
-    new->target = position;
+    new->radius = 30;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

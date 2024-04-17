@@ -13,18 +13,26 @@
 void duckwalk(entity_t *duck)
 {
     v2f_t move = movetowards2f(duck->actor->position,
-        endpoint2f(Player.ref->position, duck->actor->position, 30),
+        endpoint2f(Player.ref->position, duck->actor->position, duck->radius),
         (duck->speed * Time.deltaTime) / 25);
     v2f_t velocity = subtract2f(move, duck->actor->position);
+    float_t curr_rad = distance2f(duck->actor->position, Player.ref->position);
 
     duck->actor->scale.x = move.x - duck->actor->position.x > 0 ? 1.0f : -1.0f;
-    duck->actor->position = move;
+    if (curr_rad >= duck->radius){
+        duck->actor->position = move;
+    } else {
+        duck->actor->scale.x *= -1;
+        velocity = (v2f_t){0.0f, 0.0f};
+    }
     actor_set_anim(duck->actor, velocity.x != 0.0f || velocity.y != 0.0f ?
         "walk" : "idle");
     actor_draw(duck->actor);
 }
 
 /*
+
+when it reaches a certain point it stops. and only moves
 
 last position.
 

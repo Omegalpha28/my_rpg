@@ -54,7 +54,8 @@ E_C_MATHS	=	$(E_D_MATHS)clamp.c											\
 				$(E_D_MATHS)vectors/lerp.c									\
 				$(E_D_MATHS)vectors/multiply.c								\
 				$(E_D_MATHS)vectors/normalize.c								\
-				$(E_D_MATHS)vectors/subtract.c
+				$(E_D_MATHS)vectors/subtract.c								\
+				$(E_D_MATHS)vectors/movetowards.c
 E_C_WINDOW	=	$(E_D_WINDOW)create.c										\
 				$(E_D_WINDOW)destroy.c										\
 				$(E_D_WINDOW)time.c
@@ -175,7 +176,7 @@ P_D_CTRL	=	$(P_D_ROOT)controller/
 P_D_GAME	=	$(P_D_ROOT)game/
 P_D_ENTITY	=	$(P_D_ROOT)entity/
 P_D_EDITOR	=	$(P_D_ROOT)editor/
-P_D_WEAPONS =   $(P_D_ROOT)weapons/
+P_D_WEAPONS =   $(P_D_ROOT)weapons
 
 P_C_ROOT	=	$(P_D_ROOT)main.c
 P_C_CTRL	=	$(P_D_CTRL)animation.c										\
@@ -184,18 +185,22 @@ P_C_CTRL	=	$(P_D_CTRL)animation.c										\
 				$(P_D_CTRL)input.c
 P_C_GAME	=	$(P_D_GAME)loop.c											\
 				$(P_D_GAME)player.c
+
 P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)browser.c										\
 				$(P_D_EDITOR)loop.c
-P_C_ENTITY =	$(P_D_ENTITY)entity.c
-P_C_WEAPONS =   $(P_D_WEAPONS)create.c										\
+P_C_ENTITY =	$(P_D_ENTITY)entity.c										\
+				$(P_D_ENTITY)create.c										\
+				$(P_D_ENTITY)walk.c
+P_C_WEAPONS =	$(P_D_WEAPONS)draw.c										\
+				$(P_D_WEAPONS)create.c										\
 				$(P_D_WEAPONS)destroy.c										\
-				$(P_D_WEAPONS)draw.c										\
 				$(P_D_WEAPONS)weapons.c
 P_SOURCES	=	$(P_C_ROOT)													\
 				$(P_C_EDITOR)												\
 				$(P_C_CTRL)													\
 				$(P_C_GAME)													\
+				$(P_C_ENTITY)												\
 				$(P_C_WEAPONS)
 
 P_OBJECTS	=	$(P_SOURCES:.c=.o)

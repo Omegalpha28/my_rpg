@@ -28,7 +28,7 @@ typedef struct entity_s {
 } entity_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief
+/// \brief Global structure containing all information on enemy entities.
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct entity_list_s {
@@ -36,6 +36,12 @@ extern struct entity_list_s {
     uint_t count;
 } Entities;
 
+
+
+static const entity_t entity_stat[CREATURE_COUNT] = {
+    {NULL, 0, 0, 0, 0, 0, 0},
+    {NULL, 10, 1, 0, 0, 0.6, 30},
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Create a new entitty base on a creature and a position
@@ -56,4 +62,11 @@ entity_t *entity_creation(creature_t *creature, v2f_t position);
 ///////////////////////////////////////////////////////////////////////////////
 void duckwalk(entity_t *duck);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Ai function for shooter enemies.
+///
+/// \param evil         enemy
+///
+///////////////////////////////////////////////////////////////////////////////
+void shooter_ai(entity_t *evil);
 #endif /* !ENTITY_H_ */

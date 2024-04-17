@@ -18,8 +18,9 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->has_spawn = 0;
     new->behavior = 0;
     new->last_action = 0;
-    new->speed = 0.6;
+    new->speed = 0.4;
     new->radius = 30;
+    // printf("%f\n", new->radius);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

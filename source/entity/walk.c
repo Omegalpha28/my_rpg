@@ -10,6 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+///////////////////////////////////////////////////////////////////////////////
 void duckwalk(entity_t *duck)
 {
     v2f_t move = movetowards2f(duck->actor->position,
@@ -31,6 +32,20 @@ void duckwalk(entity_t *duck)
 }
 
 /*
+
+enemies world 1:
+
+- weird caterpiller (melee)
+- mouse (pistol)
+- duck (stpid)
+-hamster (ak)
+- rat (shotgun)
+- racoon (also shotgun??)
+- croc (lunges at you)
+- at one point their is a fox??
+- tutorial boss (dont wanna talk about it)
+- sir crabington (dont wanna talk about it either)
+
 
 when it reaches a certain point it stops. and only moves
 

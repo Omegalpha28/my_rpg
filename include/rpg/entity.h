@@ -76,5 +76,5 @@ void shooter_ai(entity_t *evil);
 /// \param evil         enemy
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void melee(entity_t *evil);
+void caterkillah_ai(entity_t *evil);
 #endif /* !ENTITY_H_ */

@@ -56,6 +56,7 @@
     #define DEFAULT_KEY_INTERACT sfKeyE
     #define DEFAULT_KEY_PAUSE sfKeyEscape
     #define DEFAULT_KEY_SHOOT sfMouseLeft
+    #define DEFAULT_KEY_DANCE sfKeyC
     /** Alternative keybinds                                                 */
     #define ALT_UP sfKeyUp
     #define ALT_DOWN sfKeyDown
@@ -73,6 +74,7 @@
     #define RIGHT Keys.right.pressed
     #define LEFT Keys.left.pressed
     #define DASH Keys.dash.pressed
+    #define DANCE Keys.dance.pressed
     #define MOVE (UP || DOWN || RIGHT || LEFT)
     #define SPEED 8.5f
 
@@ -110,6 +112,7 @@ extern struct window_time_s {
 extern struct window_reference_s {
     sfView *view;
     sfRenderWindow *self;
+    sfKeyCode lastinput;
     uint_t width;
     uint_t height;
     float viewWidth;
@@ -154,6 +157,7 @@ extern struct keybind_s {
     key_track_t dash;
     key_track_t interact;
     key_track_t pause;
+    key_track_t dance;
     sfMouseButton shoot;
 } Keys;
 

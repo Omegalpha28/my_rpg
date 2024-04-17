@@ -37,10 +37,29 @@ extern struct entity_list_s {
 } Entities;
 
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Structure stat for of each creature
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct creature_stats_s {
+    uint_t health;
+    uint_t behavior;
+    float_t speed;
+    float_t radius;
+} creature_stats_t;
 
-static const entity_t entity_stat[CREATURE_COUNT] = {
-    {NULL, 0, 0, 0, 0, 0, 0},
-    {NULL, 10, 1, 0, 0, 0.6, 30},
+///////////////////////////////////////////////////////////////////////////////
+/// \brief setting the basic stat for each creature
+///
+///////////////////////////////////////////////////////////////////////////////
+static const creature_stats_t Stats[CREATURE_COUNT] = {
+    {100, 0, 0, 0},             //player
+    {100, 0, 0, 0},             //duck
+    {100, 0, 0, 0},             //crab boss
+    {100, 0, 0, 0},             //bald rat
+    {100, 0, 0, 0},             //dummy
+    {100, 0, 0, 0},             //baby crab
+    {100, 0, 0.4f, 30.0f},      //caterkillah
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -78,3 +97,16 @@ void shooter_ai(entity_t *evil);
 ///////////////////////////////////////////////////////////////////////////////
 void caterkillah_ai(entity_t *evil);
 #endif /* !ENTITY_H_ */
+
+
+/*
+
+//player
+//duck
+//crab boss
+//bald rat
+//dummy
+//baby crab
+//caterkillah
+
+*/

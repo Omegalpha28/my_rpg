@@ -39,4 +39,5 @@ void game_loop(void)
     actor_draw(act);
     draw_debug_line(act, cr);
     draw_debug_safe();
+    draw_bullets();
 }

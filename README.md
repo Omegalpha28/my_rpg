@@ -18,7 +18,7 @@
 ![https://github.com/natan-fievet](https://img.shields.io/badge/nathan%20fievet-blue?style=for-the-badge&logo=undertale&logoColor=E71D29)
 ![https://github.com/Omegalpha28](https://img.shields.io/badge/ossan%20msoili-blue?style=for-the-badge&logo=undertale&logoColor=E71D29)
 
-> [!NOTE]  
+> [!NOTE]
 > For any technical information about the project, please check the [wiki](https://github.com/EpitechPromo2028/B-MUL-200-LYN-2-1-myrpg-mallory.scotton/wiki).
 
 ## 📦 PROJECTS
@@ -28,7 +28,7 @@
 - __Language__: C
 - __Compilation__: via Makefile
 - __Allowed Functions__: malloc, free, memset, (s)rand, getline, (f)open, (f)read, (f)close, (f)write, opendir, readdir, closedir, all __CSFML__ functions, all __MATH__ functions
-- __Deadline__: 4 weeks
+- __Deadline__: 6 weeks
 - __Group size__: 4 developpers
 
 ### MANDATORY
@@ -58,7 +58,7 @@ The game __must__ have:
 - A basic fighting system.
 - An inventory and status menu.
 
-> [!WARNING]  
+> [!WARNING]
 > The starting menu and the game __must__ be two different scenes.
 
 ### SHOULD
@@ -89,5 +89,5 @@ The game __could__:
 
 The program __would__ be a real video game.
 
-> [!CAUTION]  
+> [!CAUTION]
 > The size of your repository (including the assets) must be as small as possible. Think of the format and the encoding of your resource files (sounds, music, images,...). An average maximal size might be 30MB, all included. Any repository exceeding this limit might not be evaluated at all.

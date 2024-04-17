@@ -33,6 +33,10 @@ void duckwalk(entity_t *duck)
 
 /*
 
+i could put the behavior in the structure.
+
+
+
 enemies world 1:
 
 - weird caterpiller (melee)

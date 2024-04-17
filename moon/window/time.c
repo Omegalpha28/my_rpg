@@ -31,9 +31,12 @@ bool_t init_time(void)
 bool_t update_time(void)
 {
     sfTime crt;
+    v2f_t viewSize = sfView_getSize(Win.view);
 
     if (Time.clock == NULL)
         return (false);
+    Win.viewWidth = viewSize.x;
+    Win.viewHeight = viewSize.y;
     crt = sfClock_getElapsedTime(Time.clock);
     Time.deltaTime = sfTime_asMilliseconds(crt) - Time.currentTime;
     Time.currentTime = sfTime_asMilliseconds(crt);

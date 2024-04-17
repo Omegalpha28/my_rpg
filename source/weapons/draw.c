@@ -14,10 +14,9 @@ static void drawing_bullets(bullet_t *bullet)
     sfVector2f position = sfSprite_getPosition(bullet->sprite);
     float vitesse = 5;
 
-    direction.x /= length;
-    direction.y /= length;
-    position.x += direction.x * vitesse;
-    position.y += direction.y * vitesse;
+    direction = divide2f(direction, (v2f_t){length, length});
+    direction = multiply2f(direction, (v2f_t){vitesse, vitesse});
+    position = add2f(position, direction);
     sfSprite_setPosition(bullet->sprite, position);
     sfRenderWindow_drawSprite(Win.self, bullet->sprite, NULL);
 }

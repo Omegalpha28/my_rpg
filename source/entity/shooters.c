@@ -24,4 +24,3 @@ void shooter_ai(entity_t *evil)
         "walk" : "idle");
     actor_draw(evil->actor);
 }
-

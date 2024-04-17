@@ -35,6 +35,38 @@
     #define CV2F(v) ((v2f_t){(float)v.x, (float)v.y})
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Calculate the horizontal scaling factor difference between the
+/// screen and the view
+///
+/// \param x            The value to calculate the scaling factor
+///
+/// \return The scaling factor
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define FACTORX(x) ((x) * Win.viewWidth / Win.width / 100.0f)
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Calculate the vertical scaling factor difference between the screen
+/// and the view
+///
+/// \param y            The value to calculate the scaling factor
+///
+/// \return The scaling factor
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define FACTORY(y) ((y) * Win.viewHeight / Win.height / 100.0f)
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Calculate the factor for a fixed size on the screen
+///
+/// \param v            The size to scale
+///
+/// \return The scaling factors to achieve this size
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define FACTORS(v) ((v2f_t){FACTORX(v.x), FACTORY(v.y)})
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Shortener for 'mapCoordsToPixel', convert the map coordinate system
 /// to the screen coordinate
 ///

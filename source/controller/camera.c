@@ -10,6 +10,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+static void view_move(v2f_t offset)
+{
+    offset = normalize2f(offset);
+    offset.x *= Time.deltaTime / 15;
+    offset.y *= Time.deltaTime / 15;
+    sfView_move(Win.view, offset);
+    sfRenderWindow_setView(Win.self, Win.view);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 void camera_move(void)
 {
@@ -26,11 +35,7 @@ void camera_move(void)
         offset.x = SPEED;
     if (player_pos.y > Win.height - padding.y)
         offset.y = SPEED;
-    offset = normalize2f(offset);
-    offset.x *= Time.deltaTime / 15;
-    offset.y *= Time.deltaTime / 15;
-    sfView_move(Win.view, offset);
-    sfRenderWindow_setView(Win.self, Win.view);
+    view_move(offset);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -38,14 +43,21 @@ void cursor_focus(void)
 {
     v2f_t padding = {30 * Win.width / Win.viewWidth,
         30 * Win.height / Win.viewHeight};
+    v2f_t center = sfView_getCenter(Win.view);
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
     v2f_t mouse = MAP_TO_PXF(cr);
     v2f_t offset = {0.0f, 0.0f};
+    v2f_t pos = Player.ref->position;
 
-    padding = padding;
-    mouse = mouse;
-    sfView_move(Win.view, offset);
-    sfRenderWindow_setView(Win.self, Win.view);
+    if (mouse.x < padding.x && pos.x < center.x + padding.x / 2)
+        offset.x = -SPEED;
+    if (mouse.y < padding.y && pos.y < center.y + padding.y / 3)
+        offset.y = -SPEED;
+    if (mouse.x > Win.width - padding.x && pos.x > center.x - padding.x / 2)
+        offset.x = SPEED;
+    if (mouse.y > Win.height - padding.y && pos.y > center.y - padding.y / 3)
+        offset.y = SPEED;
+    view_move(offset);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -63,7 +75,7 @@ void draw_debug_safe(void)
     sfRectangleShape_destroy(r);
     sfRectangleShape_setSize(cam, (v2f_t){Win.viewWidth - 150.0f,
         Win.viewHeight - 150.0f});
-    sfRectangleShape_setOutlineColor(cam, sfBlue);
+    sfRectangleShape_setOutlineColor(cam, sfGreen);
     sfRectangleShape_setOutlineThickness(cam, 1.0f);
     sfRectangleShape_setFillColor(cam, sfTransparent);
     sfRectangleShape_setOrigin(cam, (v2f_t){(Win.viewWidth - 150.0f) / 2,

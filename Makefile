@@ -176,7 +176,7 @@ P_D_CTRL	=	$(P_D_ROOT)controller/
 P_D_GAME	=	$(P_D_ROOT)game/
 P_D_ENTITY	=	$(P_D_ROOT)entity/
 P_D_EDITOR	=	$(P_D_ROOT)editor/
-P_D_WEAPONS =   $(P_D_ROOT)weapons
+P_D_WEAPONS =   $(P_D_ROOT)weapons/
 
 P_C_ROOT	=	$(P_D_ROOT)main.c
 P_C_CTRL	=	$(P_D_CTRL)animation.c										\

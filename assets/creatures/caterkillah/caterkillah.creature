@@ -1,0 +1,16 @@
+6
+
+[START-default]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           7           25          original            assets/creatures/caterkillah/caterkillah.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+spawn            0       4       DEFAULT     TRUE
+walk             5       10      DEFAULT     TRUE
+angrywalk        11      16      DEFAULT     TRUE
+dammage          17      18      DEFAULT     FALSE
+death            20      24      DEFAULT     FALSE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           7           25          debug               assets/creatures/caterkillah/debug.png
+[END]

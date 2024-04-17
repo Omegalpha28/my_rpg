@@ -14,6 +14,17 @@
     #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Editor scene enumeration
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef enum editor_scene_e {
+    editorSceneZoneSelection,
+    editorSceneCreation,
+    editorSceneSaving,
+    EDITOR_SCENE_COUNT
+} editor_scene_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Editor structure to keep every data needed for the level-editor
 ///
 /// \param fProps       Props array of the foreground
@@ -32,6 +43,7 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct editor_s {
+    editor_scene_t scene;
     prop_t **fProps;
     uint_t fCount;
     bool_t fDisplay;
@@ -41,7 +53,7 @@ extern struct editor_s {
     prop_t *focus;
     bool_t hover;
     bool_t dragging;
-    uint_t zoneId;
+    int zoneId;
     zone_t *zone;
     v2f_t oldMouse;
     v2f_t crtMouse;

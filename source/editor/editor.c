@@ -12,9 +12,10 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 struct editor_s Editor = {
+    editorSceneZoneSelection,
     NULL, 0, true,
     NULL, 0, true,
     NULL, false, false,
-    0, NULL,
+    -1, NULL,
     {0.0f, 0.0f}, {0.0f, 0.0f}
 };

@@ -40,7 +40,7 @@
 
     /** Default FrameRate                                                    */
     #define FRAME_PER_MS(x) (1000 / x)
-    #define DEFAULT_CREATURE_FR FRAME_PER_MS(7)
+    #define DEFAULT_CREATURE_FR FRAME_PER_MS(8)
     #define DEFAULT_PROP_FR FRAME_PER_MS(5)
 
 ///////////////////////////////////////////////////////////////////////////////

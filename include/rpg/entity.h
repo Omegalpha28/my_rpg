@@ -24,7 +24,7 @@ typedef struct entity_s {
     ulong_t last_action;
     bool_t has_spawn;
     float_t speed;
-    v2f_t target;
+    float_t radius;
 } entity_t;
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -20,7 +20,8 @@ void parse_mouse_input(sfMouseButtonEvent evt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed)
+static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed,
+    bool_t released)
 {
     if (evt.code == Keys.up.code || evt.code == ALT_UP)
         Keys.up.pressed = pressed;
@@ -33,7 +34,7 @@ static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed)
     if (evt.code == Keys.dash.code)
         Keys.dash.pressed = pressed;
     if (evt.code == Keys.dance.code && !pressed) {
-        Keys.dance.pressed = evt.type == sfEvtKeyReleased && !DANCE ? true : false;
+        Keys.dance.pressed = released && !DANCE ? true : false;
     }
 }
 
@@ -41,6 +42,7 @@ static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed)
 void parse_key_input(sfKeyEvent evt)
 {
     bool_t pressed = (evt.type == sfEvtKeyPressed);
+    bool_t released = (evt.type == sfEvtKeyReleased);
 
-    parse_movement_key_input(evt, pressed);
+    parse_movement_key_input(evt, pressed, released);
 }

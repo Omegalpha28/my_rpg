@@ -15,13 +15,13 @@ void player_movement(void)
     actor_t *act = Player.ref;
 
     Player.velocity = (v2f_t){0.0f, 0.0f};
-    if (UP)
+    if (UP && !DANCE)
         Player.velocity.y += -SPEED;
-    if (DOWN)
+    if (DOWN && !DANCE)
         Player.velocity.y += SPEED;
-    if (LEFT)
+    if (LEFT && !DANCE)
         Player.velocity.x += -SPEED;
-    if (RIGHT)
+    if (RIGHT && !DANCE)
         Player.velocity.x += SPEED;
     Player.velocity = normalize2f(Player.velocity);
     Player.velocity.x *= Time.deltaTime / 15;

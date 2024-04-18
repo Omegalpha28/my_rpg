@@ -42,13 +42,11 @@ v2f_t rand_pos(v2f_t origin, int min_range, int max_range)
 ///////////////////////////////////////////////////////////////////////////////
 void patrolling(entity_t *evil)
 {
-    float distance;
     v2f_t move;
 
     if (equal2f(evil->wanted_position, evil->actor->position)){
             evil->wanted_position = rand_pos(evil->actor->position, 30, 50);
         }
-    distance = distance2f(evil->wanted_position, evil->actor->position);
     move = movetowards2f(evil->actor->position, evil->wanted_position,
         (evil->speed * Time.deltaTime) / 25);
     evil->actor->scale.x = move.x - evil->actor->position.x > 0 ? 1.0f : -1.0f;

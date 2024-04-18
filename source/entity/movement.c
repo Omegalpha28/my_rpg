@@ -52,7 +52,7 @@ void patrolling(entity_t *evil)
     if (equal2f(evil->wanted_position, evil->actor->position))
             evil->wanted_position = rand_pos(evil->actor->position, 30, 50);
     move = movetowards2f(evil->actor->position, evil->wanted_position,
-        (evil->speed * Time.deltaTime) / 50);
+        (evil->speed * Time.deltaTime) / 25);
     evil->actor->scale.x = move.x - evil->actor->position.x > 0 ? 1.0f : -1.0f;
     evil->actor->position = move;
     actor_set_anim(evil->actor, "walk");
@@ -70,17 +70,21 @@ void patrolling(entity_t *evil)
 void approaching(entity_t *evil)
 {
     v2f_t move = movetowards2f(evil->actor->position,
-        endpoint2f(Player.ref->position, evil->actor->position,
-            evil->radius / 9), (evil->speed * 2 * Time.deltaTime) / 50);
+        endpoint2f(Player.ref->position, evil->actor->position, evil->radius),
+            (evil->speed * Time.deltaTime) / 25);
+    float_t curr_rad = distance2f(evil->actor->position, Player.ref->position);
 
     if (dist2f(evil->actor->position, Player.ref->position) >
         evil->insight * 2){
         evil->status = Patrol;
         return;
-        }
-    evil->actor->scale.x = move.x - evil->actor->position.x > 0 ? 1.0f : -1.0f;
-    evil->actor->position = move;
-    actor_set_anim(evil->actor, "walk");
+    }
+    evil->actor->scale.x = evil->actor->position.x - Player.ref->position.x > 0
+        ? -1.0f : 1.0f;
+    if (curr_rad >= evil->radius)
+        evil->actor->position = move;
+    actor_set_anim(evil->actor, equal2f(evil->actor->position, move) ?
+        "walk" : "idle");
 }
 
 ///////////////////////////////////////////////////////////////////////////////

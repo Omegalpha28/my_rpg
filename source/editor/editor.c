@@ -15,7 +15,7 @@ struct editor_s Editor = {
     editorSceneZoneSelection,
     NULL, 0, true,
     NULL, 0, true,
-    NULL, false, false,
+    NULL, NULL, false, false,
     -1, NULL,
     {0.0f, 0.0f}, {0.0f, 0.0f}
 };

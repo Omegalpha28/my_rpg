@@ -32,13 +32,14 @@ static void draw_hitbox(void)
         return;
     hitbox = sfRectangleShape_create();
     sfRectangleShape_setSize(hitbox, (v2f_t){
-        (float)Editor.focus->self->image->mask.width,
-        (float)Editor.focus->self->image->mask.height});
+        (float)Editor.focus->self->image->mask.width - 2.0f,
+        (float)Editor.focus->self->image->mask.height - 2.0f});
     sfRectangleShape_setFillColor(hitbox, sfTransparent);
     sfRectangleShape_setOrigin(hitbox, (v2f_t){
-        (float)Editor.focus->self->image->mask.width / 2.0f,
-        (float)Editor.focus->self->image->mask.height / 2.0f});
-    sfRectangleShape_setOutlineColor(hitbox, Editor.dragging ? sfRed : sfBlue);
+        (float)Editor.focus->self->image->mask.width / 2.0f - 1.0f,
+        (float)Editor.focus->self->image->mask.height / 2.0f - 1.0f});
+    sfRectangleShape_setOutlineColor(hitbox, Editor.dragging ?
+        sfColor_fromRGBA(255, 0, 0, 155) : sfColor_fromRGBA(0, 0, 255, 155));
     sfRectangleShape_setOutlineThickness(hitbox, 1.0f);
     sfRectangleShape_setPosition(hitbox, Editor.focus->position);
     sfRenderWindow_drawRectangleShape(Win.self, hitbox, NULL);

@@ -84,12 +84,12 @@ typedef struct creature_stats_s {
 ///////////////////////////////////////////////////////////////////////////////
 static const creature_stats_t Stats[CREATURE_COUNT] = {
     {100, 0, 0, 0, 0, 0},                   //player
-    {100, 0, 0, 0, 0, 0},                   //duck
+    {100, 0, 0, 0, 0, Bomber},              //duck
     {100, 0, 0, 0, 0, 0},                   //crab boss
-    {100, 0, 0, 0, 0, 0},                   //bald rat
+    {100, 0, 0.4f, 50.0f, 100.0f, Shooter}, //bald rat
     {100, 0, 0, 0, 0, 0},                   //dummy
-    {100, 0, 0, 0, 0, 0},                   //baby crab
-    {100, 0, 0.4f, 75.0f, 100.0f, Dash},    //caterkillah
+    {100, 0, 0, 0, 0, Dash},                //baby crab
+    {100, 0, 0.4f, 8.0f, 100.0f, Dash},     //caterkillah
 };
 
 ///////////////////////////////////////////////////////////////////////////////

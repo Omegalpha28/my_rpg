@@ -66,6 +66,11 @@ extern struct editor_s {
 void editor_loop(void);
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Handle all the events of the level editor windows
+///
+/// \param evt          The current event
+///
+///////////////////////////////////////////////////////////////////////////////
 void handle_editor_events(sfEvent evt);
 
 #endif /* !EDITOR_H_ */

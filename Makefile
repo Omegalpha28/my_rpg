@@ -192,9 +192,8 @@ P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)loop.c
 P_C_ENTITY =	$(P_D_ENTITY)entity.c										\
 				$(P_D_ENTITY)create.c										\
-				$(P_D_ENTITY)walk.c											\
-				$(P_D_ENTITY)shooters.c										\
-				$(P_D_ENTITY)melee.c
+				$(P_D_ENTITY)movement.c										\
+				$(P_D_ENTITY)update.c
 P_C_WEAPONS =	$(P_D_WEAPONS)draw.c										\
 				$(P_D_WEAPONS)create.c										\
 				$(P_D_WEAPONS)destroy.c										\

@@ -22,12 +22,15 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
         Stats[creature->id].speed;
     new->radius = CREATURE_COUNT >= creature->id ? 50 :
         Stats[creature->id].radius;
+    new->wanted_position = position;
     new->last_action = 0;
     new->has_spawn = 0;
+    new->is_attack = 0;
+    new->status = Patrol;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-entity_t *entity_creation(creature_t *creature, v2f_t position)
+entity_t *entity_create(creature_t *creature, v2f_t position)
 {
     entity_t *new = (entity_t *)malloc(sizeof(entity_t));
 

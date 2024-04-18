@@ -36,6 +36,7 @@ void game_loop(void)
     while (sfRenderWindow_pollEvent(Win.self, &evt))
             parse_events(evt);
     player_movement();
+    update_entity();
     actor_draw(act);
     draw_debug_line(act, cr);
     draw_debug_safe();

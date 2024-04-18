@@ -13,6 +13,30 @@
 ///////////////////////////////////////////////////////////////////////////////
     #include "rpg.h"
 
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief All possible status' for entities
+///
+///////////////////////////////////////////////////////////////////////////////
+
+typedef enum status_e {
+    Patrol,
+    Agressive,
+    Fear,
+    Dazed,
+    STATUS_COUNT,
+} status_t;
+
+
+typedef enum attack_types_e {
+    Dash,
+    Shooter,
+    Jumper,
+    Bomber,
+    ATTACK_COUNT,
+}attack_types_t;
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief structure containing pertinent information on each enemy
 ///
@@ -25,6 +49,10 @@ typedef struct entity_s {
     bool_t has_spawn;
     float_t speed;
     float_t radius;
+    bool_t is_attack;
+    status_t status;
+    v2f_t wanted_position;
+    attack_types_t attack;
 } entity_t;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -35,7 +63,6 @@ extern struct entity_list_s {
     entity_t **array;
     uint_t count;
 } Entities;
-
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Structure stat for of each creature
@@ -59,7 +86,7 @@ static const creature_stats_t Stats[CREATURE_COUNT] = {
     {100, 0, 0, 0},             //bald rat
     {100, 0, 0, 0},             //dummy
     {100, 0, 0, 0},             //baby crab
-    {100, 0, 0.4f, 30.0f},      //caterkillah
+    {100, 0, 0.2f, 75.0f},      //caterkillah
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -71,31 +98,12 @@ static const creature_stats_t Stats[CREATURE_COUNT] = {
 /// \return The newly created entity
 ///
 ///////////////////////////////////////////////////////////////////////////////
-entity_t *entity_creation(creature_t *creature, v2f_t position);
+entity_t *entity_create(creature_t *creature, v2f_t position);
 
-///////////////////////////////////////////////////////////////////////////////
-/// \brief test function creation of walking behavior
-///
-/// \param duck         its the duck actor
-///
-///////////////////////////////////////////////////////////////////////////////
-void duckwalk(entity_t *duck);
+void update_entity(void);
 
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Ai function for shooter enemies.
-///
-/// \param evil         enemy
-///
-///////////////////////////////////////////////////////////////////////////////
-void shooter_ai(entity_t *evil);
+void enemy_movement(entity_t *evil);
 
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Ai function for melee enemies.
-///
-/// \param evil         enemy
-///
-///////////////////////////////////////////////////////////////////////////////
-void caterkillah_ai(entity_t *evil);
 #endif /* !ENTITY_H_ */
 
 
@@ -108,5 +116,17 @@ void caterkillah_ai(entity_t *evil);
 //dummy
 //baby crab
 //caterkillah
+
+ai state graph
+
+new:
+
+attack_goal
+
+min attack_distance,
+max attack_distance,
+cooldown,
+attack length.
+status
 
 */

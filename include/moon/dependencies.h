@@ -27,5 +27,5 @@
     #include <stdarg.h>
     #include <dirent.h>
     #include <sys/stat.h>
-
+    #include <time.h>
 #endif /* !DEPENDENCIES_H_ */

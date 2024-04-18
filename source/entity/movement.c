@@ -10,27 +10,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Generates a new position based on minimum range and maximum range.
-///
-/// \param origin       Current vector position from which the new position
-///                     will be generated from.
-/// \param min_range    The minimum distance from the origin point to the new
-///                     position.
-/// \param max_range    The maximum distance from the origin point to the new
-///                     position.
-///
-/// \return New generated random position vector.
-///
-///////////////////////////////////////////////////////////////////////////////
-v2f_t rand_pos(v2f_t origin, int min_range, int max_range)
-{
-    float length = (float)(rand() % (max_range - min_range)) + min_range;
-
-    origin.x = (rand() % 2) ? origin.x + length : origin.x - length;
-    origin.y = (rand() % 2) ? origin.y + length : origin.y - length;
-    return (origin);
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Branch allowing for Patrolling behavioral movement.
@@ -62,7 +41,7 @@ void patrolling(entity_t *evil)
 /// \brief Branch allowing for aggressive behavioral movement.
 ///
 /// is now in chase/attack mode. the Entities movement goal is to stay with in
-/// a certain radius of the Player.
+/// a certain attack radius of the Player.
 ///
 /// \param evil         Entity in patrol mode.
 ///
@@ -70,8 +49,8 @@ void patrolling(entity_t *evil)
 void approaching(entity_t *evil)
 {
     v2f_t move = movetowards2f(evil->actor->position,
-        endpoint2f(Player.ref->position, evil->actor->position, evil->radius),
-            (evil->speed * Time.deltaTime) / 25);
+        endpoint2f(Player.ref->position, evil->actor->position,
+            evil->attack_radius), (evil->speed * Time.deltaTime) / 25);
     float_t curr_rad = distance2f(evil->actor->position, Player.ref->position);
 
     if (dist2f(evil->actor->position, Player.ref->position) >
@@ -81,10 +60,57 @@ void approaching(entity_t *evil)
     }
     evil->actor->scale.x = evil->actor->position.x - Player.ref->position.x > 0
         ? -1.0f : 1.0f;
-    if (curr_rad >= evil->radius)
+    if (curr_rad >= evil->attack_radius)
         evil->actor->position = move;
     actor_set_anim(evil->actor, equal2f(evil->actor->position, move) ?
         "walk" : "idle");
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Branch allowing for stun affect.
+///
+/// when a entity is stun, they no longer move untill the status effect is
+/// over. once recovered they will return to idle mode.
+///
+/// \param evil         Entity in patrol mode.
+///
+///////////////////////////////////////////////////////////////////////////////
+void stunned(entity_t *evil)
+{
+    if (evil->last_action - Time.currentTime >= evil->dizzy){
+        evil->status = Patrol;
+        evil->last_action = 0;
+        return;
+    }
+    actor_set_anim(evil->actor, "tired");
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Branch allowing for evasion of the Entity.
+///
+/// In this case, they flee in one x axis direction for a certain amount of
+/// time and then return back to patrol mode
+///
+/// \param evil         Entity in patrol mode.
+///
+///////////////////////////////////////////////////////////////////////////////
+void fleeing(entity_t *evil)
+{
+    v2f_t move;
+
+    if (evil->last_action - Time.currentTime >= evil->dizzy){
+        evil->status = Patrol;
+        evil->last_action = 0;
+        return;
+    }
+    if (equal2f(evil->wanted_position, evil->actor->position))
+            evil->wanted_position = flee_rand_pos(evil->actor->position,
+                15, 25);
+    move = movetowards2f(evil->actor->position, evil->wanted_position,
+        (evil->speed * 1.5 * Time.deltaTime) / 25);
+    evil->actor->scale.x = move.x - evil->actor->position.x > 0 ? 1.0f : -1.0f;
+    evil->actor->position = move;
+    actor_set_anim(evil->actor, "run");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -94,4 +120,8 @@ void enemy_movement(entity_t *evil)
         patrolling(evil);
     if (evil->status == Agressive)
         approaching(evil);
+    if (evil->status == Dazed)
+        stunned(evil);
+    if (evil->status == Fear)
+        fleeing(evil);
 }

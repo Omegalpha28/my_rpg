@@ -7,6 +7,23 @@
 
 #include "rpg.h"
 
+static sfCircleShape *create_circle(void)
+{
+    sfCircleShape *circle = sfCircleShape_create();
+    sfVector2f origin;
+
+    sfCircleShape_setRadius(circle, 200);
+    origin = (sfVector2f){sfCircleShape_getRadius(circle),
+        sfCircleShape_getRadius(circle)};
+    sfCircleShape_setOutlineThickness(circle, 2.0f);
+    sfCircleShape_setOutlineColor(circle, sfRed);
+    sfCircleShape_setFillColor(circle, sfTransparent);
+    sfCircleShape_setPosition(circle,
+        (sfVector2f){Player.ref->position.x, Player.ref->position.y});
+    sfCircleShape_setOrigin(circle, origin);
+    return circle;
+}
+
 static float rotation(bullet_t *bullet)
 {
     float_t my_x = bullet->destination.x - bullet->origin.x;
@@ -42,6 +59,8 @@ static void init_bullet(bullet_t *new, uint_t sender)
     new->position = (v2f_t){Player.ref->position.x, Player.ref->position.y};
     new->destination = endpoint2f(new->origin, cr, 100.0f);
     new->sprite = init_bullet_sprite(new);
+    new->destroyed = 0;
+    new->area = create_circle();
 }
 
 bullet_t *bullet_creation(uint_t sender)

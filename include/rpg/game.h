@@ -40,6 +40,10 @@ typedef struct bullet_s {
     v2f_t destination;
     v2f_t position;
     uint_t destroyed;
+    uint_t rect_sprite;
+    uint_t num_sheet;
+    uint_t size_max_x;
+    uint_t begin;
     sfCircleShape *area;
 } bullet_t;
 
@@ -79,7 +83,8 @@ extern struct player_s {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void game_loop(void);
-bullet_t *bullet_creation(uint_t sender);
+bullet_t *bullet_creation(uint_t sender, uint_t size_rect, uint_t spritesheet,
+    uint_t size_max);
 void draw_bullets(void);
 void destroy_bullet(bullet_t *bullet);
 

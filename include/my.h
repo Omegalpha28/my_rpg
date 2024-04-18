@@ -749,7 +749,7 @@ buffer_t *my_buffinit(void);
 /// \param str          The null-terminated string to append to the buffer.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void my_buffstr(buffer_t *buffer, string_t str);
+void my_buffstr(buffer_t *buffer, cstring_t str);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Append an integer to the content of a buffer.

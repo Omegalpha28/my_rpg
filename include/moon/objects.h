@@ -67,6 +67,8 @@ typedef struct prop_s {
     ulong_t time;
     ulong_t once;
     bool_t done;
+    bool_t collision;
+    byte_t data[4];
 } prop_t;
 
 ///////////////////////////////////////////////////////////////////////////////

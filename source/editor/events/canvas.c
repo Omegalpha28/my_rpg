@@ -11,6 +11,13 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+static void handle_editor_mouse_invertion(sfMouseButtonEvent evt)
+{
+    if (evt.button == sfMouseRight && Editor.focus)
+        Editor.focus->scale.x *= -1.0f;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void handle_editor_mouse_button(sfMouseButtonEvent evt)
 {
     recti_t bound = get_prop_bound(Editor.focus);
@@ -19,6 +26,7 @@ void handle_editor_mouse_button(sfMouseButtonEvent evt)
     if ((evt.type == sfEvtMouseButtonPressed && Editor.focus != NULL) &&
         ((mouse.x >= bound.left && mouse.x <= bound.left + bound.width) &&
         (mouse.y >= bound.top && mouse.y <= bound.top + bound.height))) {
+        handle_editor_mouse_invertion(evt);
         Editor.dragging = true;
         return;
     }

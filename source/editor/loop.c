@@ -24,6 +24,30 @@ void add_prop(sheet_t *sheet, prop_t ***array, uint_t *count)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+void remove_prop(prop_t *prop, prop_t ***array, uint_t *count)
+{
+    prop_t **tmp = NULL;
+    uint_t j = 0;
+    bool_t found = false;
+
+    for (uint_t i = 0; prop && i < (*count); i++)
+        found = (*array)[i] == prop ? true : found;
+    if (!found)
+        return;
+    tmp = malloc(sizeof(prop_t *) * ((*count) - 1));
+    for (uint_t i = 0; i < (*count); i++) {
+        if ((*array)[i] == prop)
+            continue;
+        tmp[j] = (*array)[i];
+        j++;
+    }
+    (*count)--;
+    FREE((*array));
+    (*array) = tmp;
+    prop_destroy(prop);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void draw_hitbox(void)
 {
     sfRectangleShape *hitbox;
@@ -69,10 +93,10 @@ void editor_loop(void)
         sfMouse_getPositionRenderWindow(Win.self), Win.view);
     while (sfRenderWindow_pollEvent(Win.self, &evt))
         handle_editor_events(evt);
-    for (uint_t i = 0; i < Editor.bCount; i++)
+    for (uint_t i = 0; Editor.bDisplay && i < Editor.bCount; i++)
         prop_draw(Editor.bProps[i]);
     actor_draw(Player.ref);
-    for (uint_t i = 0; i < Editor.fCount; i++)
+    for (uint_t i = 0; Editor.fDisplay && i < Editor.fCount; i++)
         prop_draw(Editor.fProps[i]);
     draw_hitbox();
     draw_ui();

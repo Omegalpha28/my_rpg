@@ -17,6 +17,9 @@ static void init_prop(prop_t *prop, sheet_t *sheet)
     prop->draw = true;
     prop->frame = 0;
     prop->done = false;
+    prop->collision = false;
+    for (uint_t i = 0; i < 4; i++)
+        prop->data[i] = 0;
     prop->once = sheet->animCount > 0 && !sheet->anims[0]->looped ? 1 : 0;
     prop->self = sheet;
     prop->sprite = sfSprite_create();

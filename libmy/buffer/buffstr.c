@@ -11,8 +11,8 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-void my_buffstr(buffer_t *buffer, string_t str)
+void my_buffstr(buffer_t *buffer, cstring_t str)
 {
-    for (; *str; str++)
-        my_buffchar(buffer, *str);
+    for (ulong_t i = 0; str[i]; i++)
+        my_buffchar(buffer, str[i]);
 }

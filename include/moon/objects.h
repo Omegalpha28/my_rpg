@@ -39,6 +39,7 @@ typedef struct actor_s {
     float rotation;
     bool_t draw;
     ulong_t time;
+    bool_t done;
 } actor_t;
 
 ///////////////////////////////////////////////////////////////////////////////

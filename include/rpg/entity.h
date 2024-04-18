@@ -58,6 +58,8 @@ typedef struct entity_s {
     attack_types_t attack;
     float_t insight;
     uint_t dizzy;
+    bool_t dead;
+    bool_t dying;
 } entity_t;
 
 
@@ -92,7 +94,7 @@ static const creature_stats_t Stats[CREATURE_COUNT] = {
     {100, 0, 0, 0, 0, 0},                    //player
     {100, 0.7, 0, 0, Bomber, 1000},            //duck
     {100, 0.5, 0, 100, Dash, 3000},          //crab boss (elite)
-    {100, 0.4f, 50.0f, 100.0f, Shooter, 0},  //bald rat
+    {0, 0.4f, 50.0f, 100.0f, Shooter, 0},  //bald rat
     {100, 0, 0, 0, 0, 0},                    //dummy
     {100, 0, 0, 0, Dash, 3000},              //baby crab
     {100, 0.4f, 75.0f, 100.0f, Dash, 0},     //caterkillah
@@ -163,29 +165,12 @@ v2f_t rand_pos(v2f_t origin, int min_range, int max_range);
 v2f_t flee_rand_pos(v2f_t origin, int min_range, int max_range);
 
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Checks entities vitals.
+///
+/// \param evil         Entity in patrol mode.
+///
+///////////////////////////////////////////////////////////////////////////////
+void health_examination(entity_t *evil);
+
 #endif /* !ENTITY_H_ */
-
-
-/*
-
-//player
-//duck
-//crab boss
-//bald rat
-//dummy
-//baby crab
-//caterkillah
-
-ai state graph
-
-new:
-
-attack_goal
-
-min attack_distance,
-max attack_distance,
-cooldown,
-attack length.
-status
-
-*/

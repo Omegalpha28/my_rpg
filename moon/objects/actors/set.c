@@ -25,6 +25,7 @@ bool_t actor_set_anim(actor_t *act, cstring_t name)
             return (true);
         act->animId = i;
         act->time = Time.currentTime;
+        act->done = false;
         return (true);
     }
     return (false);
@@ -44,6 +45,7 @@ bool_t actor_set_anim_id(actor_t *act, uint_t id)
         return (true);
     act->time = Time.currentTime;
     act->animId = id;
+    act->done = false;
     return (true);
 }
 

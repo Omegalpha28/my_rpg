@@ -30,6 +30,8 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->last_action = 0;
     new->has_spawn = 0;
     new->is_attack = 0;
+    new->dead = false;
+    new->dying = false;
     new->status = Patrol;
 }
 

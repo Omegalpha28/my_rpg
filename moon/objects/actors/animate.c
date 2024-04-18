@@ -36,6 +36,8 @@ static recti_t actor_generate_mask(actor_t *act)
         anim->startingFrame);
     mask.left = (act->frame % sheet->image->grid.x) * mask.width;
     mask.top = (act->frame / sheet->image->grid.x) * mask.height;
+    if (!anim->looped && act->frame == anim->endingFrame)
+        act->done = true;
     return (mask);
 }
 

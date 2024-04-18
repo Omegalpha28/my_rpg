@@ -20,7 +20,10 @@ void enemy_update(entity_t *evil)
 void update_entity(void)
 {
     for (uint_t i = 0; i < Entities.count; i++){
+        if (Entities.array[i]->dead)
+            continue;
         enemy_update(Entities.array[i]);
         actor_draw(Entities.array[i]->actor);
+        health_examination(Entities.array[i]);
     }
 }

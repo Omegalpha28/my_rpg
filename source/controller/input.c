@@ -16,7 +16,7 @@ void parse_mouse_input(sfMouseButtonEvent evt)
     bool_t pressed = (evt.type == sfEvtMouseButtonPressed);
 
     if (evt.button == Keys.shoot && pressed)
-        bullet_creation(0);
+        bullet_creation(0, 26, 5, 130);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

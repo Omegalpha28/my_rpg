@@ -26,6 +26,18 @@ static void remove_bullet(bullet_t *bullet)
     FREE(bullet);
 }
 
+static void animation_bullet_destroyed(bullet_t *bullet)
+{
+    recti_t rect = (sfIntRect){bullet->begin + bullet->rect_sprite, 0,
+        bullet->rect_sprite, bullet->rect_sprite};
+
+    bullet->begin += bullet->rect_sprite;
+    if (bullet->begin < bullet->size_max_x)
+        sfSprite_setTextureRect(bullet->sprite, rect);
+    else
+        remove_bullet(bullet);
+}
+
 void destroy_bullet(bullet_t *bullet)
 {
     v2f_t pos = sfSprite_getPosition(bullet->sprite);
@@ -34,7 +46,6 @@ void destroy_bullet(bullet_t *bullet)
     float distance = sqrt(pow(pos.x - c_pos.x, 2) + pow(pos.y - c_pos.y, 2));
 
     if (distance > radius) {
-        remove_bullet(bullet);
+        animation_bullet_destroyed(bullet);
     }
 }
-

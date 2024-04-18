@@ -33,10 +33,10 @@ static float rotation(bullet_t *bullet)
     return rotationDegrees;
 }
 
-static sfSprite *init_bullet_sprite(bullet_t *bullet)
+static sfSprite *init_bullet_sprite(bullet_t *bullet, uint_t rec_size)
 {
     sfSprite *bullet_sprite = sfSprite_create();
-    recti_t rect = (sfIntRect){0, 0, 26, 26};
+    recti_t rect = (sfIntRect){0, 0, rec_size, rec_size};
     sfTexture *texture =
         sfTexture_createFromFile("assets/bullets/BulletShotgun.png", NULL);
 
@@ -50,24 +50,32 @@ static sfSprite *init_bullet_sprite(bullet_t *bullet)
     return bullet_sprite;
 }
 
-static void init_bullet(bullet_t *new, uint_t sender)
+static void init_bullet(bullet_t *new, uint_t sender, v2f_t size, uint_t sheet)
 {
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
+    uint_t rec = (uint_t)size.x;
+    uint_t size_max = (uint_t)size.y;
 
     new->sender = sender;
+    new->rect_sprite = rec;
+    new->num_sheet = sheet;
+    new->size_max_x = size_max;
+    new->begin = 0;
     new->origin = (v2f_t){Player.ref->position.x, Player.ref->position.y};
     new->position = (v2f_t){Player.ref->position.x, Player.ref->position.y};
     new->destination = endpoint2f(new->origin, cr, 100.0f);
-    new->sprite = init_bullet_sprite(new);
+    new->sprite = init_bullet_sprite(new, rec);
     new->destroyed = 0;
     new->area = create_circle();
 }
 
-bullet_t *bullet_creation(uint_t sender)
+bullet_t *bullet_creation(uint_t sender, uint_t size_rect, uint_t spritesheet,
+    uint_t size_max)
 {
     bullet_t *new = (bullet_t *)malloc(sizeof(bullet_t));
+    v2f_t size = (v2f_t){size_rect, size_max};
 
-    init_bullet(new, sender);
+    init_bullet(new, sender, size, spritesheet);
     Bullet_List.count++;
     Bullet_List.array = REALLOC(Bullet_List.array, sizeof(bullet_t *),
         Bullet_List.count);

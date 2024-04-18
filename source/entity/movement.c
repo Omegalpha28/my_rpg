@@ -19,7 +19,7 @@
 /// \param evil         Entity in patrol mode.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void patrolling(entity_t *evil)
+static void patrolling(entity_t *evil)
 {
     v2f_t move;
 
@@ -43,10 +43,10 @@ void patrolling(entity_t *evil)
 /// is now in chase/attack mode. the Entities movement goal is to stay with in
 /// a certain attack radius of the Player.
 ///
-/// \param evil         Entity in patrol mode.
+/// \param evil         Entity is approaching.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void approaching(entity_t *evil)
+static void approaching(entity_t *evil)
 {
     v2f_t move = movetowards2f(evil->actor->position,
         endpoint2f(Player.ref->position, evil->actor->position,
@@ -72,10 +72,10 @@ void approaching(entity_t *evil)
 /// when a entity is stun, they no longer move untill the status effect is
 /// over. once recovered they will return to idle mode.
 ///
-/// \param evil         Entity in patrol mode.
+/// \param evil         Entity is in a daz.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void stunned(entity_t *evil)
+static void stunned(entity_t *evil)
 {
     if (evil->last_action - Time.currentTime >= evil->dizzy){
         evil->status = Patrol;
@@ -91,10 +91,10 @@ void stunned(entity_t *evil)
 /// In this case, they flee in one x axis direction for a certain amount of
 /// time and then return back to patrol mode
 ///
-/// \param evil         Entity in patrol mode.
+/// \param evil         Entity running away.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void fleeing(entity_t *evil)
+static void fleeing(entity_t *evil)
 {
     v2f_t move;
 

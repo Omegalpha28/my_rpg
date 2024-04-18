@@ -18,7 +18,7 @@ static recti_t prop_generate_mask(prop_t *prop)
     ulong_t ems = (Time.currentTime - prop->time);
     recti_t mask = sheet->image->mask;
 
-    if (sheet->animCount == 0 || !sheet->anims[0]->looped)
+    if (sheet->animCount == 0 || !prop->animated)
         return (prop->done ? (recti_t){anim->endingFrame %
             sheet->image->grid.x * mask.width, anim->endingFrame /
             sheet->image->grid.x * mask.height, mask.width, mask.height} :
@@ -28,7 +28,7 @@ static recti_t prop_generate_mask(prop_t *prop)
     mask.left = (prop->frame % sheet->image->grid.x) * mask.width;
     mask.top = (prop->frame / sheet->image->grid.x) * mask.height;
     if (prop->once && prop->frame == prop->self->anims[0]->endingFrame) {
-        prop->self->anims[0]->looped = false;
+        prop->animated = false;
         prop->done = true;
     }
     return (mask);
@@ -59,5 +59,5 @@ void prop_animate(prop_t *prop)
         return;
     prop->time = Time.currentTime;
     prop->done = false;
-    prop->self->anims[0]->looped = true;
+    prop->animated = true;
 }

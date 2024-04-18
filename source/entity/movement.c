@@ -38,17 +38,46 @@ v2f_t rand_pos(v2f_t origin, int min_range, int max_range)
 /// generates a new position to idly walk to while checking its surroundings.
 ///
 /// \param evil         Entity in patrol mode.
-
+///
 ///////////////////////////////////////////////////////////////////////////////
 void patrolling(entity_t *evil)
 {
     v2f_t move;
 
-    if (equal2f(evil->wanted_position, evil->actor->position)){
+    if (dist2f(evil->actor->position, Player.ref->position) <= evil->insight
+        && evil->attack != Bomber) {
+        evil->status = Agressive;
+        return;
+    }
+    if (equal2f(evil->wanted_position, evil->actor->position))
             evil->wanted_position = rand_pos(evil->actor->position, 30, 50);
-        }
     move = movetowards2f(evil->actor->position, evil->wanted_position,
-        (evil->speed * Time.deltaTime) / 25);
+        (evil->speed * Time.deltaTime) / 50);
+    evil->actor->scale.x = move.x - evil->actor->position.x > 0 ? 1.0f : -1.0f;
+    evil->actor->position = move;
+    actor_set_anim(evil->actor, "walk");
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Branch allowing for aggressive behavioral movement.
+///
+/// is now in chase/attack mode. the Entities movement goal is to stay with in
+/// a certain radius of the Player.
+///
+/// \param evil         Entity in patrol mode.
+///
+///////////////////////////////////////////////////////////////////////////////
+void approaching(entity_t *evil)
+{
+    v2f_t move = movetowards2f(evil->actor->position,
+        endpoint2f(Player.ref->position, evil->actor->position,
+            evil->radius / 9), (evil->speed * 2 * Time.deltaTime) / 50);
+
+    if (dist2f(evil->actor->position, Player.ref->position) >
+        evil->insight * 2){
+        evil->status = Patrol;
+        return;
+        }
     evil->actor->scale.x = move.x - evil->actor->position.x > 0 ? 1.0f : -1.0f;
     evil->actor->position = move;
     actor_set_anim(evil->actor, "walk");
@@ -59,4 +88,6 @@ void enemy_movement(entity_t *evil)
 {
     if (evil->status == Patrol)
         patrolling(evil);
+    if (evil->status == Agressive)
+        approaching(evil);
 }

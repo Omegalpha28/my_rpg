@@ -16,16 +16,16 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->actor = actor_create(creature, position);
     new->health = CREATURE_COUNT < creature->id ? 100 :
         Stats[creature->id].health;
-    new->behavior = CREATURE_COUNT < creature->id ? 0 :
-        Stats[creature->id].behavior;
     new->speed = CREATURE_COUNT < creature->id ? 0.6 :
         Stats[creature->id].speed;
-    new->radius = CREATURE_COUNT < creature->id ? 50 :
-        Stats[creature->id].radius;
-    new->insight = CREATURE_COUNT < creature->id ? 50 :
+    new->attack_radius = CREATURE_COUNT < creature->id ? 50 :
+        Stats[creature->id].attack_radius;
+    new->insight = CREATURE_COUNT < creature->id ? 100 :
         Stats[creature->id].insight;
     new->attack = CREATURE_COUNT < creature->id ? 1 :
         Stats[creature->id].attack;
+    new->dizzy = CREATURE_COUNT < creature->id ? 0 :
+        Stats[creature->id].dizzy;
     new->wanted_position = position;
     new->last_action = 0;
     new->has_spawn = 0;

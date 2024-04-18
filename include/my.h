@@ -769,4 +769,15 @@ void my_buffint(buffer_t *buffer, int value, uint_t bytes);
 ///////////////////////////////////////////////////////////////////////////////
 void my_bufftroy(buffer_t *buffer);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Write the content of a buffer to a file.
+///
+/// \param buffer       The buffer containing the content to be written.
+/// \param path         The filename to write the content to.
+///
+/// \return True on successful write, false otherwise.
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t my_fbuff(buffer_t *buffer, cstring_t path);
+
 #endif /* !LIBMY_H_ */

@@ -12,7 +12,7 @@ static sfCircleShape *create_circle(void)
     sfCircleShape *circle = sfCircleShape_create();
     sfVector2f origin;
 
-    sfCircleShape_setRadius(circle, 200);
+    sfCircleShape_setRadius(circle, 250);
     origin = (sfVector2f){sfCircleShape_getRadius(circle),
         sfCircleShape_getRadius(circle)};
     sfCircleShape_setOutlineThickness(circle, 2.0f);

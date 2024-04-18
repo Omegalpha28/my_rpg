@@ -95,6 +95,7 @@ L_D_NUMBER	=	$(L_D_ROOT)number/
 L_D_PUTS	=	$(L_D_ROOT)puts/
 L_D_STRINGS	=	$(L_D_ROOT)strings/
 L_D_SYSTEM	=	$(L_D_ROOT)system/
+L_D_BUFFER	=	$(L_D_ROOT)buffer/
 
 L_C_CHAR	=	$(L_D_CHAR)countchar.c										\
 				$(L_D_CHAR)isalnum.c										\
@@ -156,13 +157,19 @@ L_C_SYSTEM	=	$(L_D_SYSTEM)basename.c										\
 				$(L_D_SYSTEM)dirlen.c										\
 				$(L_D_SYSTEM)extname.c										\
 				$(L_D_SYSTEM)isdir.c
+L_C_BUFFER	=	$(L_D_BUFFER)buffchar.c										\
+				$(L_D_BUFFER)buffinit.c										\
+				$(L_D_BUFFER)buffint.c										\
+				$(L_D_BUFFER)buffstr.c										\
+				$(L_D_BUFFER)bufftroy.c
 
 L_SOURCES	=	$(L_C_CHAR)													\
 				$(L_C_MEMORY)												\
 				$(L_C_NUMBER)												\
 				$(L_C_PUTS)													\
 				$(L_C_STRINGS)												\
-				$(L_C_SYSTEM)
+				$(L_C_SYSTEM)												\
+				$(L_C_BUFFER)
 
 L_OBJECTS	=	$(L_SOURCES:.c=.o)
 

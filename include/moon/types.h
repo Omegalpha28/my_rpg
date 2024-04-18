@@ -49,5 +49,9 @@ typedef enum {
     false,
     true
 } bool_t;
+typedef struct buffer_s {
+    string_t content;
+    ulong_t size;
+} buffer_t;
 
 #endif /* !TYPES_H_ */

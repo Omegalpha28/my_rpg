@@ -1,0 +1,23 @@
+/*
+** EPITECH PROJECT, 2024
+** B-MUL-200-LYN-2-1-myrpg-mallory.scotton
+** File description:
+** buffinit
+*/
+
+///////////////////////////////////////////////////////////////////////////////
+// Headers
+///////////////////////////////////////////////////////////////////////////////
+#include "my.h"
+
+///////////////////////////////////////////////////////////////////////////////
+buffer_t *my_buffinit(void)
+{
+    buffer_t *buffer = (buffer_t *)malloc(sizeof(buffer_t));
+
+    if (buffer == NULL)
+        return (NULL);
+    buffer->content = NULL;
+    buffer->size = 0;
+    return (buffer);
+}

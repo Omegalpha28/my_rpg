@@ -15,6 +15,17 @@
     #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Keyboard function shortener. Give the pressed status of a certain
+/// key
+///
+/// \param key          The key to check for pressed status
+///
+/// \return The pressed status of the key
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define PRESSED(key) sfKeyboard_isKeyPressed(key);
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Convert any vector to a sfVector2i
 ///
 /// \param v            The vector to convert

@@ -53,6 +53,7 @@ typedef struct entity_s {
     status_t status;
     v2f_t wanted_position;
     attack_types_t attack;
+    float_t insight;
 } entity_t;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -73,6 +74,8 @@ typedef struct creature_stats_s {
     uint_t behavior;
     float_t speed;
     float_t radius;
+    float_t insight;
+    attack_types_t attack;
 } creature_stats_t;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -80,13 +83,13 @@ typedef struct creature_stats_s {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 static const creature_stats_t Stats[CREATURE_COUNT] = {
-    {100, 0, 0, 0},             //player
-    {100, 0, 0, 0},             //duck
-    {100, 0, 0, 0},             //crab boss
-    {100, 0, 0, 0},             //bald rat
-    {100, 0, 0, 0},             //dummy
-    {100, 0, 0, 0},             //baby crab
-    {100, 0, 0.2f, 75.0f},      //caterkillah
+    {100, 0, 0, 0, 0, 0},                   //player
+    {100, 0, 0, 0, 0, 0},                   //duck
+    {100, 0, 0, 0, 0, 0},                   //crab boss
+    {100, 0, 0, 0, 0, 0},                   //bald rat
+    {100, 0, 0, 0, 0, 0},                   //dummy
+    {100, 0, 0, 0, 0, 0},                   //baby crab
+    {100, 0, 0.4f, 75.0f, 100.0f, Dash},    //caterkillah
 };
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -47,25 +47,34 @@ static void draw_hitbox(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void draw_ui(void)
+{
+    sfRectangleShape *container = sfRectangleShape_create();
+    v2f_t size = {175, 320};
+
+    sfRectangleShape_setFillColor(container, sfColor_fromRGB(100, 100, 100));
+    sfRectangleShape_setSize(container, size);
+    sfRectangleShape_setScale(container, FACTORS(size));
+    sfRectangleShape_setPosition(container, PX_TO_MAPF(((v2f_t){10, 25})));
+    sfRenderWindow_drawRectangleShape(Win.self, container, NULL);
+    sfRectangleShape_destroy(container);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void editor_loop(void)
 {
     sfEvent evt;
 
-    if (Editor.hover == false) {
-        add_prop(Assets.zones[0]->categories[0]->sheets[0], &(Editor.fProps),
-            &(Editor.fCount));
-        add_prop(Assets.zones[0]->categories[5]->sheets[2], &(Editor.fProps),
-            &(Editor.fCount));
-        Editor.hover = true;
-    }
     Editor.crtMouse = sfRenderWindow_mapPixelToCoords(Win.self,
         sfMouse_getPositionRenderWindow(Win.self), Win.view);
     while (sfRenderWindow_pollEvent(Win.self, &evt))
         handle_editor_events(evt);
     for (uint_t i = 0; i < Editor.bCount; i++)
         prop_draw(Editor.bProps[i]);
+    actor_draw(Player.ref);
     for (uint_t i = 0; i < Editor.fCount; i++)
         prop_draw(Editor.fProps[i]);
     draw_hitbox();
+    draw_ui();
     Editor.oldMouse = Editor.crtMouse;
 }

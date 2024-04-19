@@ -10,6 +10,21 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+static v2f_t move_in(v2f_t offset, v2f_t center, v2f_t padding)
+{
+    v2f_t pos = Player.ref->position;
+
+    if (pos.x > center.x + padding.x / 6)
+        offset.x = SPEED;
+    if (pos.y > center.y + padding.y / 9)
+        offset.y = SPEED;
+    if (pos.x < center.x - padding.x / 6)
+        offset.x = -SPEED;
+    if (pos.y < center.y - padding.y / 9)
+        offset.y = -SPEED;
+    return offset;
+}
+
 static void view_move(v2f_t offset)
 {
     offset = normalize2f(offset);
@@ -57,6 +72,9 @@ void cursor_focus(void)
         offset.x = SPEED;
     if (mouse.y > Win.height - padding.y && pos.y > center.y - padding.y / 3)
         offset.y = SPEED;
+    if (mouse.x > padding.x && mouse.y > padding.y &&
+        mouse.x < Win.width - padding.x && mouse.y < Win.height - padding.y)
+        offset = move_in(offset, center, padding);
     view_move(offset);
 }
 

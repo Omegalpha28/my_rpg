@@ -38,14 +38,53 @@ static void animation_bullet_destroyed(bullet_t *bullet)
         remove_bullet(bullet);
 }
 
+static int entities_impact(bullet_t *bullet, v2f_t pos)
+{
+    float_t distance_ennemy;
+    v2f_t pos_ennemy;
+    float_t radius = 20;
+
+    for (uint_t i = 0; i < Entities.count; i++) {
+        pos_ennemy = Entities.array[i]->actor->position;
+        distance_ennemy = sqrt(pow(pos_ennemy.x - pos.x, 2) +
+            pow(pos_ennemy.y - pos.y, 2));
+        if (distance_ennemy < radius) {
+            animation_bullet_destroyed(bullet);
+            return 0;
+        }
+    }
+    return 1;
+}
+
+static int player_impact(bullet_t *bullet, v2f_t pos)
+{
+    float_t distance_ennemy;
+    v2f_t pos_player;
+    float_t radius = 20;
+
+    for (uint_t i = 0; i < Entities.count; i++) {
+        pos_player = Player.ref->position;
+        distance_ennemy = sqrt(pow(pos_player.x - pos.x, 2) +
+            pow(pos_player.y - pos.y, 2));
+        if (distance_ennemy < radius) {
+            animation_bullet_destroyed(bullet);
+            return 0;
+        }
+    }
+    return 1;
+}
+
 void destroy_bullet(bullet_t *bullet)
 {
     v2f_t pos = sfSprite_getPosition(bullet->sprite);
     v2f_t c_pos = sfCircleShape_getPosition(bullet->area);
     float_t radius = sfCircleShape_getRadius(bullet->area);
-    float distance = sqrt(pow(pos.x - c_pos.x, 2) + pow(pos.y - c_pos.y, 2));
+    float_t distance = sqrt(pow(pos.x - c_pos.x, 2) + pow(pos.y - c_pos.y, 2));
+    uint_t count = Entities.count;
 
-    if (distance > radius) {
-        animation_bullet_destroyed(bullet);
-    }
+    if (bullet->sender == 0) {
+        DOIF(count > 0, DOIF(entities_impact(bullet, pos) == 0, return));
+    } else
+        DOIF(player_impact(bullet, pos) == 0, return);
+    DOIF(distance > radius, animation_bullet_destroyed(bullet));
 }

@@ -47,7 +47,7 @@ typedef enum attack_types_e {
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct entity_s {
     actor_t *actor;
-    uint_t health;
+    int health;
     ulong_t last_action;
     bool_t has_spawn;
     float_t speed;

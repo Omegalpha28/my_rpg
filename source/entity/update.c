@@ -22,8 +22,8 @@ static void enemy_update(entity_t *evil)
 static void entity_draw(void)
 {
     for (uint_t i = 0; i < Entities.count; i++){
-        actor_draw(Entities.array[i]->actor);
         health_examination(Entities.array[i]);
+        actor_draw(Entities.array[i]->actor);
     }
 }
 

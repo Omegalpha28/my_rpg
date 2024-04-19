@@ -74,7 +74,7 @@ static int player_impact(bullet_t *bullet, v2f_t pos)
     return 1;
 }
 
-void destroy_bullet(bullet_t *bullet)
+int destroy_bullet(bullet_t *bullet)
 {
     v2f_t pos = sfSprite_getPosition(bullet->sprite);
     v2f_t c_pos = sfCircleShape_getPosition(bullet->area);
@@ -83,8 +83,9 @@ void destroy_bullet(bullet_t *bullet)
     uint_t count = Entities.count;
 
     if (bullet->sender == 0) {
-        DOIF(count > 0, DOIF(entities_impact(bullet, pos) == 0, return));
+        DOIF(count > 0, DOIF(entities_impact(bullet, pos) == 0, return 0));
     } else
-        DOIF(player_impact(bullet, pos) == 0, return);
+        DOIF(player_impact(bullet, pos) == 0, return 0);
     DOIF(distance > radius, animation_bullet_destroyed(bullet));
+    return 0;
 }

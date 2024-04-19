@@ -24,7 +24,7 @@ static void patrolling(entity_t *evil)
     v2f_t move;
 
     if (dist2f(evil->actor->position, Player.ref->position) <= evil->insight
-        && evil->attack != Bomber) {
+        && evil->attack_types != Bomber) {
         evil->status = Agressive;
         return;
     }

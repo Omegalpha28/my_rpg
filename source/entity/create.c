@@ -22,8 +22,8 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
         Stats[creature->id].attack_radius;
     new->insight = CREATURE_COUNT < creature->id ? 100 :
         Stats[creature->id].insight;
-    new->attack = CREATURE_COUNT < creature->id ? 1 :
-        Stats[creature->id].attack;
+    new->attack_types = CREATURE_COUNT < creature->id ? 1 :
+        Stats[creature->id].attack_types;
     new->dizzy = CREATURE_COUNT < creature->id ? 0 :
         Stats[creature->id].dizzy;
     new->wanted_position = position;
@@ -31,7 +31,7 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->has_spawn = 0;
     new->is_attack = 0;
     new->dead = false;
-    new->dying = false;
+    new->is_dammaged = false;
     new->status = Patrol;
 }
 

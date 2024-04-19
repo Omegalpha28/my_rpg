@@ -10,10 +10,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-///////////////////////////////////////////////////////////////////////////////
-static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
+static void init_entity_stat_block(entity_t *new, creature_t *creature,
+    v2f_t position)
 {
-    new->actor = actor_create(creature, position);
     new->health = CREATURE_COUNT < creature->id ? 100 :
         Stats[creature->id].health;
     new->speed = CREATURE_COUNT < creature->id ? 0.6 :
@@ -27,6 +26,15 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->dizzy = CREATURE_COUNT < creature->id ? 0 :
         Stats[creature->id].dizzy;
     new->wanted_position = position;
+    new->collision = (float)(Assets.creatures[creatureBaldRat]->sheets[0]->
+        image->mask.width / 2);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
+{
+    new->actor = actor_create(creature, position);
+    init_entity_stat_block(new, creature, position);
     new->last_action = 0;
     new->has_spawn = 0;
     new->is_attack = 0;

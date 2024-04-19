@@ -11,6 +11,7 @@
 #include "rpg.h"
 
 
+///////////////////////////////////////////////////////////////////////////////
 void termination(entity_t *evil)
 {
     if (evil->actor->done && evil->actor->draw){

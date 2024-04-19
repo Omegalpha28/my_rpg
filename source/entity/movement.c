@@ -56,14 +56,16 @@ static void approaching(entity_t *evil)
     if (dist2f(evil->actor->position, Player.ref->position) >
         evil->insight * 2){
         evil->status = Patrol;
+        evil->wanted_position = evil->actor->position;
         return;
     }
     evil->actor->scale.x = evil->actor->position.x - Player.ref->position.x > 0
         ? -1.0f : 1.0f;
-    if (curr_rad >= evil->attack_radius)
+    if ((int)curr_rad >= (int)evil->attack_radius)
         evil->actor->position = move;
-    actor_set_anim(evil->actor, equal2f(evil->actor->position, move) ?
-        "walk" : "idle");
+    actor_set_anim(evil->actor, !equal2f(evil->actor->position,
+        evil->wanted_position) ? "walk" : "idle");
+    evil->wanted_position = evil->actor->position;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -60,6 +60,7 @@ typedef struct entity_s {
     uint_t dizzy;
     bool_t dead;
     bool_t is_dammaged;
+    float_t collision;
 } entity_t;
 
 

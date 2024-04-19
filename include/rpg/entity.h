@@ -55,11 +55,11 @@ typedef struct entity_s {
     bool_t is_attack;
     status_t status;
     v2f_t wanted_position;
-    attack_types_t attack;
+    attack_types_t attack_types;
     float_t insight;
     uint_t dizzy;
     bool_t dead;
-    bool_t dying;
+    bool_t is_dammaged;
 } entity_t;
 
 
@@ -82,7 +82,7 @@ typedef struct creature_stats_s {
     float_t speed;
     float_t attack_radius;
     float_t insight;
-    attack_types_t attack;
+    attack_types_t attack_types;
     uint_t dizzy;
 } creature_stats_t;
 
@@ -173,12 +173,4 @@ v2f_t flee_rand_pos(v2f_t origin, int min_range, int max_range);
 ///////////////////////////////////////////////////////////////////////////////
 void health_examination(entity_t *evil);
 
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Once animation is done, stop drawing.
-///
-/// \param evil         Entity in patrol mode.
-///
-///////////////////////////////////////////////////////////////////////////////
-void termination(entity_t *evil);
 #endif /* !ENTITY_H_ */

@@ -83,14 +83,7 @@ void draw_debug_safe(void)
 {
     sfRectangleShape *cam = sfRectangleShape_create();
     v2f_t center = {Win.width / 2, Win.height / 2};
-    sfRectangleShape *r = sfRectangleShape_create();
 
-    sfRectangleShape_setSize(r, (v2f_t){20, 20});
-    sfRectangleShape_setOrigin(r, (v2f_t){10, 10});
-    sfRectangleShape_setPosition(r, (v2f_t){0, 0});
-    sfRectangleShape_setFillColor(r, sfCyan);
-    sfRenderWindow_drawRectangleShape(Win.self, r, NULL);
-    sfRectangleShape_destroy(r);
     sfRectangleShape_setSize(cam, (v2f_t){Win.viewWidth - 150.0f,
         Win.viewHeight - 150.0f});
     sfRectangleShape_setOutlineColor(cam, sfGreen);

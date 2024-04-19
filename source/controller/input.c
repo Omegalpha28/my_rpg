@@ -15,7 +15,7 @@ void parse_mouse_input(sfMouseButtonEvent evt)
 {
     bool_t pressed = (evt.type == sfEvtMouseButtonPressed);
 
-    if (evt.button == Keys.shoot && pressed)
+    if (evt.button == Keys.shoot && pressed && !DANCE && !DASH)
         bullet_creation(0, 26, 5, 130);
 }
 
@@ -35,6 +35,11 @@ static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed,
         Keys.dash.pressed = pressed;
     if (evt.code == Keys.dance.code && !pressed) {
         Keys.dance.pressed = released && !DANCE ? true : false;
+        if (DANCE) {
+            sfMusic_play(Assets.musics[14]->self);
+            sfMusic_setLoop(Assets.musics[14]->self, sfTrue);
+        } else
+            sfMusic_pause(Assets.musics[14]->self);
     }
 }
 

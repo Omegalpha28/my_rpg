@@ -86,6 +86,7 @@ void game_loop(void);
 bullet_t *bullet_creation(uint_t sender, uint_t size_rect, uint_t spritesheet,
     uint_t size_max);
 void draw_bullets(void);
-void destroy_bullet(bullet_t *bullet);
+int destroy_bullet(bullet_t *bullet);
+
 
 #endif /* !GAME_H_ */

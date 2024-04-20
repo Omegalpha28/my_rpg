@@ -8,7 +8,7 @@
 spawn            0       4       DEFAULT     TRUE
 walk             5       10      DEFAULT     TRUE
 angrywalk        11      16      DEFAULT     TRUE
-dammage          17      18      DEFAULT     FALSE
+damage          17      18      DEFAULT     FALSE
 death            20      24      DEFAULT     FALSE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH

@@ -26,8 +26,8 @@ static void init_entity_stat_block(entity_t *new, creature_t *creature,
     new->dizzy = CREATURE_COUNT < creature->id ? 0 :
         Stats[creature->id].dizzy;
     new->wanted_position = position;
-    new->collision = (float)(Assets.creatures[creatureBaldRat]->sheets[0]->
-        image->mask.width / 2);
+    new->collision = (float)(Assets.creatures[creature->id]->sheets[0]->
+        image->mask.width) / 3;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -41,6 +41,7 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->dead = false;
     new->is_dammaged = false;
     new->status = Patrol;
+    new->invincible = false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

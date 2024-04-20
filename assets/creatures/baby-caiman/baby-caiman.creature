@@ -1,0 +1,17 @@
+8
+
+[START-default]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+3            12          35          original            assets/creatures/baby-caiman/baby-caiman.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       3       DEFAULT     TRUE
+walk            4       8       DEFAULT     TRUE
+damage          9       10      DEFAULT     FALSE
+death           11      12      DEFAULT     FALSE
+anticipation    13      18      DEFAULT     TRUE
+attack          19      34      DEFAULT     TRUE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+3            12          35          debug               assets/creatures/baby-caiman/debug.png
+[END]

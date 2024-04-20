@@ -61,6 +61,7 @@ typedef struct entity_s {
     bool_t dead;
     bool_t is_dammaged;
     float_t collision;
+    bool_t invincible;
 } entity_t;
 
 
@@ -92,13 +93,14 @@ typedef struct creature_stats_s {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 static const creature_stats_t Stats[CREATURE_COUNT] = {
-    {100, 0, 0, 0, 0, 0},                    //player
-    {100, 0.7, 0, 0, Bomber, 1000},            //duck
-    {100, 0.5, 0, 100, Dash, 3000},          //crab boss (elite)
-    {100, 0.4f, 50.0f, 100.0f, Shooter, 0},  //bald rat
-    {100, 0, 0, 0, 0, 0},                    //dummy
-    {100, 0, 0, 0, Dash, 3000},              //baby crab
-    {100, 0.4f, 75.0f, 100.0f, Dash, 0},     //caterkillah
+    {100, 0, 0, 0, 0, 0},                       //player
+    {100, 0.7, 0, 0, Bomber, 1000},             //duck
+    {100, 0.5, 0, 100, Dash, 3000},             //crab boss
+    {100, 0.4f, 50.0f, 100.0f, Shooter, 0},     //bald rat
+    {100, 0, 0, 0, 0, 0},                       //dummy
+    {100, 0, 0, 0, Dash, 3000},                 //baby crab (elite)
+    {100, 0.4f, 75.0f, 100.0f, Dash, 0},        //caterkillah
+    {100, 0.4f, 75.0f, 100.0f, Shooter, 0},     //cinnamon rat
 };
 
 ///////////////////////////////////////////////////////////////////////////////

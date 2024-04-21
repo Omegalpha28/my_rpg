@@ -1,0 +1,15 @@
+11
+
+[START-default]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+13           1           13          original            assets/creatures/brat/Brat.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       4       DEFAULT     TRUE
+walk            5       8       DEFAULT     TRUE
+damage          9       10      DEFAULT     FALSE
+death           11      12      DEFAULT     FALSE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+13           1           13          debug               assets/creatures/brat/debug.png
+[END]

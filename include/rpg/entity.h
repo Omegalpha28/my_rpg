@@ -109,6 +109,7 @@ static const creature_stats_t Stats[CREATURE_COUNT] = {
     {100, 0.5f, 50.0f, 100.0f, Jumper, 0},     //baby caiman
     {100, 0.4f, 125.0f, 175.0f, Shooter, 0},     //elite racoon
     {100, 0.4f, 100.0f, 150.0f, Shooter, 0},     //elite fox
+    {100, 0.4f, 60.0f, 100.0f, Shooter, 0},     //Brat
 };
 
 ///////////////////////////////////////////////////////////////////////////////

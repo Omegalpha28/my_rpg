@@ -55,6 +55,7 @@ static void dash_animation(void)
         Player.velocity.x *= Time.deltaTime / 10;
         Player.velocity.y *= Time.deltaTime / 10;
         actor_move(Player.ref, Player.velocity);
+        camera_move();
     }
 }
 

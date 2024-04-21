@@ -65,3 +65,12 @@ void destroy_assets_musics(void)
     Assets.musics = NULL;
     Assets.musicCount = 0;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+sfMusic *find_music(cstring_t name)
+{
+    for (uint_t i = 0; i < Assets.musicCount; i++)
+        if (CMP(name, Assets.musics[i]->name))
+            return (Assets.musics[i]->self);
+    return (NULL);
+}

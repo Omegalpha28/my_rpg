@@ -162,7 +162,8 @@ L_C_BUFFER	=	$(L_D_BUFFER)buffchar.c										\
 				$(L_D_BUFFER)buffint.c										\
 				$(L_D_BUFFER)buffstr.c										\
 				$(L_D_BUFFER)bufftroy.c										\
-				$(L_D_BUFFER)fbuff.c
+				$(L_D_BUFFER)fbuff.c										\
+				$(L_D_BUFFER)rbuffint.c
 
 L_SOURCES	=	$(L_C_CHAR)													\
 				$(L_C_MEMORY)												\

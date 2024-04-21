@@ -26,32 +26,34 @@ static void remove_bullet(bullet_t *bullet)
     FREE(bullet);
 }
 
-static void animation_bullet_destroyed(bullet_t *bullet)
+static int animation_bullet_destroyed(bullet_t *bullet)
 {
     recti_t rect = (sfIntRect){bullet->begin + bullet->rect_sprite, 0,
         bullet->rect_sprite, bullet->rect_sprite};
 
     bullet->begin += bullet->rect_sprite;
-    if (bullet->begin < bullet->size_max_x)
+    if (bullet->begin + bullet->rect_sprite < bullet->size_max_x) {
         sfSprite_setTextureRect(bullet->sprite, rect);
-    else
+        return 0;
+    } else {
         remove_bullet(bullet);
+        return 1;
+    }
 }
 
 static int entities_impact(bullet_t *bullet, v2f_t pos)
 {
     float_t distance_ennemy;
     v2f_t pos_ennemy;
-    float_t radius = 20;
+    float_t radius;
 
     for (uint_t i = 0; i < Entities.count; i++) {
+        radius = Entities.array[i]->collision;
         pos_ennemy = Entities.array[i]->actor->position;
         distance_ennemy = sqrt(pow(pos_ennemy.x - pos.x, 2) +
             pow(pos_ennemy.y - pos.y, 2));
-        if (distance_ennemy < radius) {
-            animation_bullet_destroyed(bullet);
-            return 0;
-        }
+        if (distance_ennemy < radius || bullet->begin != 0)
+            DOIF(animation_bullet_destroyed(bullet) == 0, return 0);
     }
     return 1;
 }
@@ -66,10 +68,8 @@ static int player_impact(bullet_t *bullet, v2f_t pos)
         pos_player = Player.ref->position;
         distance_ennemy = sqrt(pow(pos_player.x - pos.x, 2) +
             pow(pos_player.y - pos.y, 2));
-        if (distance_ennemy < radius) {
-            animation_bullet_destroyed(bullet);
-            return 0;
-        }
+        if (distance_ennemy < radius || bullet->begin != 0)
+            DOIF(animation_bullet_destroyed(bullet) == 0, return 0);
     }
     return 1;
 }
@@ -83,9 +83,9 @@ int destroy_bullet(bullet_t *bullet)
     uint_t count = Entities.count;
 
     if (bullet->sender == 0) {
-        DOIF(count > 0, DOIF(entities_impact(bullet, pos) == 0, return 0));
+        DOIF(count > 0, DOIF(entities_impact(bullet, pos) == 1, return 1));
     } else
-        DOIF(player_impact(bullet, pos) == 0, return 0);
+        DOIF(player_impact(bullet, pos) == 1, return 1);
     DOIF(distance > radius, animation_bullet_destroyed(bullet));
     return 0;
 }

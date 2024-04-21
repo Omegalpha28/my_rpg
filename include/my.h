@@ -791,4 +791,5 @@ bool_t my_fbuff(buffer_t *buffer, cstring_t path);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 uint_t my_rbuffint(cstring_t buff, uint_t bytes, ulong_t *idx);
+
 #endif /* !LIBMY_H_ */

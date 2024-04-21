@@ -42,6 +42,9 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->is_dammaged = false;
     new->status = Patrol;
     new->invincible = false;
+    new->can_attack = true;
+    new->cooldown = 3000;
+    new->attack_started = false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

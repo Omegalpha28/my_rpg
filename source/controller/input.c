@@ -31,8 +31,10 @@ static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed,
         Keys.right.pressed = pressed;
     if (evt.code == Keys.left.code || evt.code == ALT_LEFT)
         Keys.left.pressed = pressed;
-    if (evt.code == Keys.dash.code)
+    if (evt.code == Keys.dash.code && pressed)
         Keys.dash.pressed = pressed;
+    if (evt.code == Keys.heal.code)
+        use_competence();
     if (evt.code == Keys.dance.code && !pressed) {
         Keys.dance.pressed = released && !DANCE ? true : false;
         if (DANCE) {

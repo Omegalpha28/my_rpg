@@ -65,4 +65,6 @@ void player_movement(void);
 ///////////////////////////////////////////////////////////////////////////////
 void dash_movement(void);
 
+void use_competence(void);
+
 #endif /* !CONTROLLER_H_ */

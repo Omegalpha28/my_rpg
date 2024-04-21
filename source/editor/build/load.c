@@ -29,19 +29,6 @@ static string_t readf(cstring_t filepath, ulong_t *readed)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static int my_rbuffint(cstring_t buff, uint_t bytes, ulong_t *idx)
-{
-    int value = 0;
-
-    for (uint_t i = 0; i < bytes; i++) {
-        value <<= 8;
-        value |= buff[(*idx)];
-        (*idx)++;
-    }
-    return (value);
-}
-
-///////////////////////////////////////////////////////////////////////////////
 static void load_prop(cstring_t buff, prop_t ***array, uint_t *count,
     ulong_t *idx)
 {

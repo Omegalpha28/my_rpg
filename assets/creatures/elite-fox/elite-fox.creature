@@ -4,11 +4,11 @@
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 4            7           25          original            assets/creatures/elite-fox/elite-fox.png
 
-WHAT          START   END     FRAMERATE   LOOPED
-idle            0      5        DEFAULT     TRUE
-walk            6      10       DEFAULT     TRUE
-damage          11     13       DEFAULT     FALSE
-death           14     24       DEFAULT     FALSE
+# WHAT          START   END     FRAMERATE   LOOPED
+idle             0      5        DEFAULT     TRUE
+walk             6      10       DEFAULT     TRUE
+damage           11     13       DEFAULT     FALSE
+death            14     24       DEFAULT     FALSE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 4           7           25          debug               assets/creatures/elite-fox/debug.png

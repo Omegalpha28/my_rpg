@@ -13,18 +13,18 @@
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Once animation is done, stop drawing.
 ///
-/// \param evil         Entity in patrol mode.
+/// \param evil         taking damage.
 ///
 ///////////////////////////////////////////////////////////////////////////////
 static void termination(entity_t *evil)
 {
-    printf("getting terminated\n");
-    if (evil->actor->done && evil->actor->draw){
-        if (evil->is_dammaged)
-            evil->is_dammaged = !evil->is_dammaged;
-        else
-            evil->actor->draw = !evil->actor->draw;
-    }
+    if (!evil->actor->done || !evil->actor->draw)
+        return;
+    if (evil->is_dammaged){
+        evil->is_dammaged = !evil->is_dammaged;
+        evil->invincible = !evil->invincible;
+    } else
+        evil->actor->draw = !evil->actor->draw;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

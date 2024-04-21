@@ -2,14 +2,24 @@
 
 [START-default]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-4            7           25          original            assets/creatures/elite-fox/elite-fox.png
+4            4           13          original            assets/creatures/elite-fox/living/living.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-idle             0      5        DEFAULT     TRUE
-walk             6      10       DEFAULT     TRUE
-damage           11     13       DEFAULT     FALSE
-death            14     24       DEFAULT     FALSE
+idle             0      4        DEFAULT     TRUE
+walk             5      10       DEFAULT     TRUE
+damage           11     12       DEFAULT     FALSE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-4           7           25          debug               assets/creatures/elite-fox/debug.png
+4           4           13          debug               assets/creatures/elite-fox/living/debug.png
+[END]
+
+[START-death]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4            7           25          original            assets/creatures/elite-fox/dead/elite-fox.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+death            13     24       DEFAULT     FALSE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           7           25          debug               assets/creatures/elite-fox/dead/debug.png
 [END]

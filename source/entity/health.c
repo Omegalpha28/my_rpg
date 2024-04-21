@@ -34,6 +34,10 @@ void health_examination(entity_t *evil)
         actor_set_anim(evil->actor, "damage");
     if (evil->health <= 0 && !evil->dead && !evil->is_dammaged){
         evil->dead = !evil->dead;
+        if (actor_set_sheet(evil->actor, "death"))
+            evil->actor->position.x +=
+            (evil->actor->self->sheets[evil->actor->sheetId]->image->mask.width
+            / 4) * ((evil->actor->scale.x) < 0 ? 1 : -1);
         actor_set_anim(evil->actor, "death");
     }
     if (evil->dead || evil->is_dammaged)

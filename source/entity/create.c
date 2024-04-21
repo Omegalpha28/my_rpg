@@ -27,7 +27,7 @@ static void init_entity_stat_block(entity_t *new, creature_t *creature,
         Stats[creature->id].dizzy;
     new->wanted_position = position;
     new->collision = (float)(Assets.creatures[creature->id]->sheets[0]->
-        image->mask.width) / 3;
+        image->mask.height) / 2.5;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

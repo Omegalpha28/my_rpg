@@ -2,14 +2,25 @@
 
 [START-default]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-5            6           29          original            assets/creatures/elite-racoon/elite-racoon.png
+5           3           15          original            assets/creatures/elite-racoon/living/living.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-idle             0      5        DEFAULT     TRUE
-walk             6      12       DEFAULT     TRUE
-damage           13     14       DEFAULT     FALSE
-death            15     28       DEFAULT     FALSE
+idle             0      5       DEFAULT     TRUE
+walk             6      12      DEFAULT     TRUE
+damage           13     14      DEFAULT     FALSE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-5           6           29          debug               assets/creatures/elite-racoon/debug.png
+5           3           15          debug               assets/creatures/elite-racoon/living/debug.png
+[END]
+
+
+[START-death]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+5           6           29          original            assets/creatures/elite-racoon/dead/elite-racoon.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+death            15     28      DEFAULT     FALSE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+5           6           29          debug               assets/creatures/elite-racoon/dead/debug.png
 [END]

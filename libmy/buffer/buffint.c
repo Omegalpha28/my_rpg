@@ -11,7 +11,7 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-void my_buffint(buffer_t *buffer, int value, uint_t bytes)
+void my_buffint(buffer_t *buffer, uint_t value, uint_t bytes)
 {
     for (; (bytes - 1) > 0; bytes--)
         my_buffchar(buffer, (value >> (8 * (bytes - 1))) & 255);

@@ -759,7 +759,7 @@ void my_buffstr(buffer_t *buffer, cstring_t str);
 /// \param bytes        The number of bytes to consider from the integer.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void my_buffint(buffer_t *buffer, int value, uint_t bytes);
+void my_buffint(buffer_t *buffer, uint_t value, uint_t bytes);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Deallocate memory for a buffer.
@@ -779,5 +779,17 @@ void my_bufftroy(buffer_t *buffer);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 bool_t my_fbuff(buffer_t *buffer, cstring_t path);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Read an unsigned int from a buffer
+///
+/// \param buff         The buffer to read from
+/// \param bytes        The number of bytes in the int
+/// \param idx          Pointer to the current reading index
+///
+/// \return The unsigned integer readed from the buffer
+///
+///////////////////////////////////////////////////////////////////////////////
+uint_t my_rbuffint(cstring_t buff, uint_t bytes, ulong_t *idx);
 
 #endif /* !LIBMY_H_ */

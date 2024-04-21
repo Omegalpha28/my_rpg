@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2024
 ** B-MUL-200-LYN-2-1-myrpg-mallory.scotton
 ** File description:
-** buffint
+** rbuffint
 */
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -11,9 +11,14 @@
 #include "my.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-void my_buffint(buffer_t *buffer, uint_t value, uint_t bytes)
+uint_t my_rbuffint(cstring_t buff, uint_t bytes, ulong_t *idx)
 {
-    for (; (bytes - 1) > 0; bytes--)
-        my_buffchar(buffer, (value >> (8 * (bytes - 1))) & 255);
-    my_buffchar(buffer, (value) & 255);
+    uint_t value = 0;
+
+    for (uint_t i = 0; i < bytes; i++) {
+        value <<= 8;
+        value |= (uchar_t)buff[(*idx)];
+        (*idx)++;
+    }
+    return (value);
 }

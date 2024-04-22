@@ -43,11 +43,17 @@ void draw(void)
 {
     for (uint_t i = 0; i < Editor.bCount; i++)
         prop_draw(Editor.bProps[i]);
+    for (uint_t i = 0; i < Pool.effectCount; i++)
+        if (Pool.effects[i]->self->background)
+            effect_draw(Pool.effects[i]);
     sort_actors_pool();
     for (uint_t i = 0; i < Pool.actorCount; i++)
         actor_draw(Pool.actors[i]);
     for (uint_t i = 0; i < Editor.fCount; i++)
         prop_draw(Editor.fProps[i]);
+    for (uint_t i = 0; i < Pool.effectCount; i++)
+        if (!Pool.effects[i]->self->background)
+            effect_draw(Pool.effects[i]);
     draw_bullets();
     draw_debug_safe();
 }

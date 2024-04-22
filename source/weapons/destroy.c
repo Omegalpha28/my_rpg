@@ -80,13 +80,12 @@ static bool_t player_impact(bullet_t *bullet, v2f_t pos)
         if ((distance_ennemy < radius || bullet->begin) &&
             !animation_bullet_destroyed(bullet))
             return (false);
-
     }
     return (true);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-int destroy_bullet(bullet_t *bullet)
+bool_t destroy_bullet(bullet_t *bullet)
 {
     v2f_t pos = sfSprite_getPosition(bullet->sprite);
     v2f_t c_pos = sfCircleShape_getPosition(bullet->area);

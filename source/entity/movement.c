@@ -135,6 +135,10 @@ static void fleeing(entity_t *evil)
 ///////////////////////////////////////////////////////////////////////////////
 void enemy_movement(entity_t *evil)
 {
+    if (evil->attack_types == Dash && evil->can_attack)
+        return;
+    if (evil->invincible)
+        evil->invincible = !evil->invincible;
     if (evil->status == Patrol)
         patrolling(evil);
     if (evil->status == Agressive || evil->status == ranger)

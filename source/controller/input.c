@@ -38,10 +38,10 @@ static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed,
     if (evt.code == Keys.dance.code && !pressed) {
         Keys.dance.pressed = released && !DANCE ? true : false;
         if (DANCE) {
-            sfMusic_play(Assets.musics[14]->self);
-            sfMusic_setLoop(Assets.musics[14]->self, sfTrue);
+            sfMusic_play(find_music("blingblangblang"));
+            sfMusic_setLoop(find_music("blingblangblang"), sfTrue);
         } else
-            sfMusic_pause(Assets.musics[14]->self);
+            sfMusic_pause(find_music("blingblangblang"));
     }
 }
 

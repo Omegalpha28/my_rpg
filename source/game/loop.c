@@ -33,8 +33,9 @@ void game_loop(void)
     sfEvent evt;
 
     while (sfRenderWindow_pollEvent(Win.self, &evt))
-            parse_events(evt);
+        parse_events(evt);
     player_movement();
+    cursor_focus();
     update_entity();
     draw();
     draw_debug_line(Player.ref, cr);

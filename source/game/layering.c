@@ -55,5 +55,4 @@ void draw(void)
         if (!Pool.effects[i]->self->background)
             effect_draw(Pool.effects[i]);
     draw_bullets();
-    draw_debug_safe();
 }

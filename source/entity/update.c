@@ -16,6 +16,7 @@ static void enemy_update(entity_t *evil)
     if (evil->is_dammaged)
         return;
     enemy_movement(evil);
+    enemy_action(evil);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -46,7 +46,7 @@ static bool_t add_assets_vfx(string_t path)
     vfx = create_assets_vfx(wa);
     vfx->self = add_image(path, true, vfx->grid, vfx->name);
     Assets.vfxCount++;
-    Assets.vfx = REALLOC(Assets.vfx, sizeof(vfx_t *),Assets.vfxCount);
+    Assets.vfx = REALLOC(Assets.vfx, sizeof(vfx_t *), Assets.vfxCount);
     Assets.vfx[Assets.vfxCount - 1] = vfx;
     my_watroy(wa);
     return (true);

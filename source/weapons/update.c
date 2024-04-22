@@ -10,27 +10,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+
 ///////////////////////////////////////////////////////////////////////////////
-static void remove_bullet(bullet_t *bullet)
-{
-    bullet_t **tmp = NULL;
-    uint_t j = 0;
-
-    if (bullet == NULL)
-        return;
-    tmp = malloc(sizeof(bullet_t *) * (Bullet_List.count - 1));
-    for (uint_t i = 0; i < Bullet_List.count; i++) {
-        if (Bullet_List.array[i] == bullet)
-            continue;
-        tmp[j] = Bullet_List.array[i];
-        j++;
-    }
-    Bullet_List.count--;
-    FREE(Bullet_List.array);
-    Bullet_List.array = tmp;
-    FREE(bullet);
-}
-
+/// \brief verifies if bullet has hit a target. if it has then give bullet,
+/// hit condition.
+///
+/// \param bullet       Pointer to bullet structure.
+///
+/// \return true if hit
+///
 ///////////////////////////////////////////////////////////////////////////////
 static bool_t animation_bullet_destroyed(bullet_t *bullet)
 {
@@ -42,19 +30,19 @@ static bool_t animation_bullet_destroyed(bullet_t *bullet)
         sfSprite_setTextureRect(bullet->sprite, rect);
         return (false);
     } else {
-        remove_bullet(bullet);
+        bullet->hit = true;
         return (true);
     }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void entity_hit(entity_t *evil)
+static void entity_hit(entity_t *evil)
 {
-    if (!evil->dead && !evil->invincible){
-        evil->health -= 10;
-        evil->is_dammaged = true;
-        evil->invincible = true;
-    }
+    if (!evil || evil->dead || evil->invincible)
+        return;
+    evil->health -= 10;
+    evil->is_dammaged = true;
+    evil->invincible = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -63,25 +51,27 @@ void entity_hit(entity_t *evil)
 /// \param bullet       Pointer to bullet structure.
 /// \param pos          Bullet position.
 ///
+/// \return true if hit
+///
 ///////////////////////////////////////////////////////////////////////////////
 static bool_t entities_impact(bullet_t *bullet, v2f_t pos)
 {
-    float_t distance_ennemy;
-    v2f_t pos_ennemy;
+    float_t distance_enemy;
+    v2f_t pos_enemy;
     float_t radius;
 
     for (uint_t i = 0; i < Entities.count; i++) {
         radius = Entities.array[i]->collision;
-        pos_ennemy = Entities.array[i]->actor->position;
-        distance_ennemy = sqrt(pow(pos_ennemy.x - pos.x, 2) +
-            pow(pos_ennemy.y - pos.y, 2));
-        if ((distance_ennemy < radius || bullet->begin) &&
+        pos_enemy = Entities.array[i]->actor->position;
+        distance_enemy = sqrt(pow(pos_enemy.x - pos.x, 2) +
+            pow(pos_enemy.y - pos.y, 2));
+        if ((distance_enemy < radius || bullet->begin) &&
             !animation_bullet_destroyed(bullet)){
             entity_hit(Entities.array[i]);
-            return (false);
+            return (true);
         }
     }
-    return (true);
+    return (false);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -93,35 +83,41 @@ static bool_t entities_impact(bullet_t *bullet, v2f_t pos)
 ///////////////////////////////////////////////////////////////////////////////
 static bool_t player_impact(bullet_t *bullet, v2f_t pos)
 {
-    float_t distance_ennemy;
-    v2f_t pos_player;
+    float_t distance_enemy;
+    v2f_t pos_player = Player.ref->position;
     float_t radius = 20;
 
-    for (uint_t i = 0; i < Entities.count; i++) {
-        pos_player = Player.ref->position;
-        distance_ennemy = sqrt(pow(pos_player.x - pos.x, 2) +
-            pow(pos_player.y - pos.y, 2));
-        if ((distance_ennemy < radius || bullet->begin) &&
-            !animation_bullet_destroyed(bullet))
-            return (false);
-    }
-    return (true);
+    distance_enemy = sqrt(pow(pos_player.x - pos.x, 2) +
+        pow(pos_player.y - pos.y, 2));
+    if ((distance_enemy < radius || bullet->begin) &&
+        !animation_bullet_destroyed(bullet))
+        return (true);
+    return (false);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-bool_t destroy_bullet(bullet_t *bullet)
+/// \brief Verifies bullet collision with entitiy.
+///
+/// \param bullet       Pointer to bullet structure.
+/// \param pos          Bullet position.
+///
+/// \return true if hit
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t bullet_collision(bullet_t *bullet)
 {
     v2f_t pos = sfSprite_getPosition(bullet->sprite);
     v2f_t c_pos = sfCircleShape_getPosition(bullet->area);
     float_t radius = sfCircleShape_getRadius(bullet->area);
     float_t distance = sqrt(pow(pos.x - c_pos.x, 2) + pow(pos.y - c_pos.y, 2));
-    uint_t count = Entities.count;
 
-    if (!bullet->sender && count > 0 && entities_impact(bullet, pos) == 1){
-        return (true);
-    } else if (player_impact(bullet, pos))
-        return (true);
-    if (distance > radius)
+    if (distance > radius){
         animation_bullet_destroyed(bullet);
+        return (true);
+    }
+    if ((!bullet->sender && Entities.count > 0 &&
+        !entities_impact(bullet, pos)) ||
+        (bullet->sender && !player_impact(bullet, pos)))
+        return (true);
     return (false);
 }

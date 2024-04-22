@@ -213,10 +213,11 @@ P_C_ENTITY =	$(P_D_ENTITY)entity.c										\
 				$(P_D_ENTITY)movement.c										\
 				$(P_D_ENTITY)update.c										\
 				$(P_D_ENTITY)random_pos.c									\
-				$(P_D_ENTITY)health.c
-P_C_WEAPONS =	$(P_D_WEAPONS)draw.c										\
-				$(P_D_WEAPONS)create.c										\
-				$(P_D_WEAPONS)destroy.c										\
+				$(P_D_ENTITY)health.c										\
+				$(P_D_ENTITY)action.c
+P_C_WEAPONS =	$(P_D_WEAPONS)create.c										\
+				$(P_D_WEAPONS)update.c										\
+				$(P_D_WEAPONS)collisions.c									\
 				$(P_D_WEAPONS)weapons.c
 P_SOURCES	=	$(P_C_ROOT)													\
 				$(P_C_EDITOR)												\

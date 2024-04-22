@@ -15,7 +15,8 @@ static void swap_actors(uint_t j, bool_t *swapped)
 {
     actor_t *tmp = Pool.actors[j];
 
-    if (Pool.actors[j]->position.y < Pool.actors[j + 1]->position.y)
+    if (floorf(Pool.actors[j]->position.y) <=
+        floorf(Pool.actors[j + 1]->position.y))
         return;
     Pool.actors[j] = Pool.actors[j + 1];
     Pool.actors[j + 1] = tmp;
@@ -54,5 +55,5 @@ void draw(void)
     for (uint_t i = 0; i < Pool.effectCount; i++)
         if (!Pool.effects[i]->self->background)
             effect_draw(Pool.effects[i]);
-    draw_bullets();
+    bullet_update();
 }

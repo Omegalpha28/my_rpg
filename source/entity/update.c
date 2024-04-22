@@ -13,7 +13,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 static void enemy_update(entity_t *evil)
 {
-    health_examination(evil);
     if (evil->is_dammaged)
         return;
     enemy_movement(evil);
@@ -23,6 +22,7 @@ static void enemy_update(entity_t *evil)
 void update_entity(void)
 {
     for (uint_t i = 0; i < Entities.count; i++){
+        health_examination(Entities.array[i]);
         if (Entities.array[i]->dead)
             continue;
         enemy_update(Entities.array[i]);

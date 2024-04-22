@@ -4,9 +4,13 @@
 ** File description:
 ** bullet_animation
 */
-
+///////////////////////////////////////////////////////////////////////////////
+// Headers
+///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+
+///////////////////////////////////////////////////////////////////////////////
 static sfCircleShape *create_circle(void)
 {
     sfCircleShape *circle = sfCircleShape_create();
@@ -24,6 +28,7 @@ static sfCircleShape *create_circle(void)
     return circle;
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static float rotation(bullet_t *bullet)
 {
     float_t my_x = bullet->destination.x - bullet->origin.x;
@@ -33,6 +38,7 @@ static float rotation(bullet_t *bullet)
     return rotationDegrees;
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static sfSprite *init_bullet_sprite(bullet_t *bullet, uint_t rec_size)
 {
     sfSprite *bullet_sprite = sfSprite_create();
@@ -51,6 +57,7 @@ static sfSprite *init_bullet_sprite(bullet_t *bullet, uint_t rec_size)
     return bullet_sprite;
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static void init_bullet(bullet_t *new, uint_t sender, v2f_t size, uint_t sheet)
 {
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
@@ -67,9 +74,11 @@ static void init_bullet(bullet_t *new, uint_t sender, v2f_t size, uint_t sheet)
     new->destination = endpoint2f(new->origin, cr, 100.0f);
     new->sprite = init_bullet_sprite(new, rec);
     new->destroyed = 0;
+    new->hit = false;
     new->area = create_circle();
 }
 
+///////////////////////////////////////////////////////////////////////////////
 bullet_t *bullet_creation(uint_t sender, uint_t size_rect, uint_t spritesheet,
     uint_t size_max)
 {
@@ -82,4 +91,25 @@ bullet_t *bullet_creation(uint_t sender, uint_t size_rect, uint_t spritesheet,
         Bullet_List.count);
     Bullet_List.array[Bullet_List.count - 1] = new;
     return (new);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void remove_bullet(bullet_t *bullet)
+{
+    bullet_t **tmp = NULL;
+    uint_t j = 0;
+
+    if (bullet == NULL)
+        return;
+    tmp = malloc(sizeof(bullet_t *) * (Bullet_List.count - 1));
+    for (uint_t i = 0; i < Bullet_List.count; i++) {
+        if (Bullet_List.array[i] == bullet)
+            continue;
+        tmp[j] = Bullet_List.array[i];
+        j++;
+    }
+    Bullet_List.count--;
+    FREE(Bullet_List.array);
+    Bullet_List.array = tmp;
+    FREE(bullet);
 }

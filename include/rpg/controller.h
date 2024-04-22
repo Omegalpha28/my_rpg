@@ -46,12 +46,6 @@ void parse_events(sfEvent evt);
 void camera_move(void);
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief TEMPORARY FUNCTION
-///
-///////////////////////////////////////////////////////////////////////////////
-void draw_debug_safe(void);
-
-///////////////////////////////////////////////////////////////////////////////
 /// \brief
 /// use movements buttons to do the move the player
 ///
@@ -66,5 +60,7 @@ void player_movement(void);
 void dash_movement(void);
 
 void use_competence(void);
+
+void cursor_focus(void);
 
 #endif /* !CONTROLLER_H_ */

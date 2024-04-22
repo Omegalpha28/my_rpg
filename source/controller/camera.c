@@ -10,21 +10,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-static v2f_t move_in(v2f_t offset, v2f_t center, v2f_t padding)
-{
-    v2f_t pos = Player.ref->position;
-
-    if (pos.x > center.x + padding.x / 2)
-        offset.x = SPEED;
-    if (pos.y > center.y + padding.y / 3)
-        offset.y = SPEED;
-    if (pos.x < center.x - padding.x / 2)
-        offset.x = -SPEED;
-    if (pos.y < center.y - padding.y / 2)
-        offset.y = -SPEED;
-    return offset;
-}
-
 static void view_move(v2f_t offset)
 {
     offset = normalize2f(offset);
@@ -53,33 +38,42 @@ void camera_move(void)
     view_move(offset);
 }
 
-///////////////////////////////////////////////////////////////////////////////
-void cursor_focus(void)
+float easeInOutCirc(float t)
 {
-    v2f_t padding = {60 * Win.width / Win.viewWidth,
-        60 * Win.height / Win.viewHeight};
-    v2f_t center = sfView_getCenter(Win.view);
-    v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
-    v2f_t mouse = MAP_TO_PXF(cr);
-    v2f_t offset = {0.0f, 0.0f};
-    v2f_t pos = Player.ref->position;
+    if (t < 0.5f)
+        return (1 - sqrt(1 - 2 * t)) * 0.5f;
+    else
+        return (1 + sqrt(2 * t - 1)) * 0.5f;
+}
 
-    if (mouse.x < padding.x && pos.x < center.x + padding.x)
-        offset.x = -SPEED;
-    if (mouse.y < padding.y && pos.y < center.y + padding.y)
-        offset.y = -SPEED;
-    if (mouse.x > Win.width - padding.x && pos.x > center.x - padding.x)
-        offset.x = SPEED;
-    if (mouse.y > Win.height - padding.y && pos.y > center.y - padding.y)
-        offset.y = SPEED;
-    if (mouse.x > padding.x && mouse.y > padding.y &&
-        mouse.x < Win.width - padding.x && mouse.y < Win.height - padding.y)
-        offset = move_in(offset, center, padding);
-    view_move(offset);
+v2f_t cursor_cap(void)
+{
+    v2f_t max_cam = {0.0f, 0.0f};
+    v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
+    v2f_t pos = Player.ref->position;
+    v2f_t dist = {mouse.x - pos.x, mouse.y - pos.y};
+
+    max_cam.x = easeInOutCirc(dist.x);
+    max_cam.y = easeInOutCirc(dist.y);
+    return (max_cam);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void draw_debug_safe(void)
+void cursor_focus(void)
 {
-    cursor_focus();
+    v2f_t cap = cursor_cap();
+    v2f_t pos = Player.ref->position;
+    v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
+    v2f_t offset = {0.0f, 0.0f};
+    v2f_t dist = {mouse.x - pos.x, mouse.y - pos.y};
+
+    if (dist.x > cap.x * 20 && dist.x < cap.x * 30)
+        offset.x = cap.x;
+    if (dist.y > cap.y * 20 && dist.y < cap.y * 30)
+        offset.y = cap.y;
+    if (dist.x < cap.x * 20 && dist.x > cap.x * 30)
+        offset.x = cap.x;
+    if (dist.y < cap.y * 20 && dist.y > cap.y * 30)
+        offset.y = cap.y;
+    view_move(offset);
 }

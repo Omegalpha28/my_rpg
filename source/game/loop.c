@@ -34,11 +34,11 @@ void game_loop(void)
     sfEvent evt;
 
     while (sfRenderWindow_pollEvent(Win.self, &evt))
-            parse_events(evt);
+        parse_events(evt);
     player_movement();
+    cursor_focus();
     update_entity();
     actor_draw(act);
     draw_debug_line(act, cr);
-    draw_debug_safe();
     draw_bullets();
 }

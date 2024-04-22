@@ -65,6 +65,7 @@ E_C_ASSETS	=	$(E_D_ASSETS)assets.c										\
 				$(E_D_ASSETS)images.c										\
 				$(E_D_ASSETS)musics.c										\
 				$(E_D_ASSETS)sort.c											\
+				$(E_D_ASSETS)vfx.c											\
 				$(E_D_ASSETS)zones.c
 E_C_OBJECTS	=	$(E_D_OBJECTS)pool.c										\
 				$(E_D_OBJECTS)actors/animate.c								\
@@ -120,6 +121,7 @@ L_C_NUMBER	=	$(L_D_NUMBER)atob.c											\
 				$(L_D_NUMBER)atof.c											\
 				$(L_D_NUMBER)atoi.c											\
 				$(L_D_NUMBER)isbool.c										\
+				$(L_D_NUMBER)iscoord.c										\
 				$(L_D_NUMBER)isfloat.c										\
 				$(L_D_NUMBER)isint.c
 L_C_PUTS	=	$(L_D_PUTS)error.c											\
@@ -193,8 +195,8 @@ P_C_CTRL	=	$(P_D_CTRL)animation.c										\
 				$(P_D_CTRL)events.c											\
 				$(P_D_CTRL)input.c
 P_C_GAME	=	$(P_D_GAME)loop.c											\
+				$(P_D_GAME)layering.c										\
 				$(P_D_GAME)player.c
-
 P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)browser.c										\
 				$(P_D_EDITOR)events.c										\

@@ -15,6 +15,7 @@ struct assets_s Assets = {
     NULL, 0,
     NULL, 0,
     NULL, 0,
+    NULL, 0,
     NULL, 0
 };
 
@@ -23,7 +24,8 @@ bool_t init_assets(void)
 {
     if (!init_assets_creatures() ||
         !init_assets_musics() ||
-        !init_assets_zones())
+        !init_assets_zones() ||
+        !init_assets_vfx())
         return (false);
     sort_creatures();
     return (true);
@@ -32,5 +34,8 @@ bool_t init_assets(void)
 ///////////////////////////////////////////////////////////////////////////////
 void destroy_assets(void)
 {
+    destroy_assets_musics();
+    destroy_assets_zones();
+    destroy_assets_vfx();
     return;
 }

@@ -13,18 +13,10 @@
 ///////////////////////////////////////////////////////////////////////////////
 static void enemy_update(entity_t *evil)
 {
+    health_examination(evil);
     if (evil->is_dammaged)
         return;
     enemy_movement(evil);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-static void entity_draw(void)
-{
-    for (uint_t i = 0; i < Entities.count; i++){
-        health_examination(Entities.array[i]);
-        actor_draw(Entities.array[i]->actor);
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -35,5 +27,4 @@ void update_entity(void)
             continue;
         enemy_update(Entities.array[i]);
     }
-    entity_draw();
 }

@@ -88,5 +88,10 @@ bullet_t *bullet_creation(uint_t sender, uint_t size_rect, uint_t spritesheet,
 void draw_bullets(void);
 int destroy_bullet(bullet_t *bullet);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Handle drawing
+///
+///////////////////////////////////////////////////////////////////////////////
+void draw(void);
 
 #endif /* !GAME_H_ */

@@ -792,4 +792,14 @@ bool_t my_fbuff(buffer_t *buffer, cstring_t path);
 ///////////////////////////////////////////////////////////////////////////////
 uint_t my_rbuffint(cstring_t buff, uint_t bytes, ulong_t *idx);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Check if a string is a coordinate or not [%dx%d]
+///
+/// \param str          The string to check
+///
+/// \return True if the string is a coord, false otherwise
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t my_iscoord(string_t str);
+
 #endif /* !LIBMY_H_ */

@@ -19,21 +19,12 @@ static void enemy_update(entity_t *evil)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void entity_draw(void)
-{
-    for (uint_t i = 0; i < Entities.count; i++){
-        health_examination(Entities.array[i]);
-        actor_draw(Entities.array[i]->actor);
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////
 void update_entity(void)
 {
     for (uint_t i = 0; i < Entities.count; i++){
+        health_examination(Entities.array[i]);
         if (Entities.array[i]->dead)
             continue;
         enemy_update(Entities.array[i]);
     }
-    entity_draw();
 }

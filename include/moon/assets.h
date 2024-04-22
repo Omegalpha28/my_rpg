@@ -22,7 +22,7 @@
     /** Assets location                                                      */
     #define DIR_ASSETS "assets"
     #define DIR_CREATURES DIR_ASSETS "/creatures"
-    #define DIR_EFFECTS DIR_ASSETS "/effects"
+    #define DIR_VFX DIR_ASSETS "/vfx"
     #define DIR_UI DIR_ASSETS "/interfaces"
     #define DIR_MUSICS DIR_ASSETS "/musics"
     #define DIR_SOUNDS DIR_ASSETS "/sounds"
@@ -42,6 +42,7 @@
     #define FRAME_PER_MS(x) (1000 / x)
     #define DEFAULT_CREATURE_FR FRAME_PER_MS(8)
     #define DEFAULT_PROP_FR FRAME_PER_MS(5)
+    #define DEFAULT_VFX_FR FRAME_PER_MS(6)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief List of predefined creature index
@@ -209,6 +210,28 @@ typedef struct zone_s {
 } zone_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Vfx assets structures to hold vfx assets
+///
+/// \param self         The image of the vfx
+/// \param name         The name of the vfx
+/// \param looped       If the vfx is looped or will disapear after
+/// \param background   If the vfx is drawed before the actors or not
+/// \param grid         Temporary variable to parse the grid of the sprite
+/// \param startingFrame The index of the first frame of the animation
+/// \param endingFrame The index of the last frame of the animation
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct vfx_s {
+    image_t *self;
+    cstring_t name;
+    bool_t looped;
+    bool_t background;
+    v2u_t grid;
+    uint_t startingFrame;
+    uint_t endingFrame;
+} vfx_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Main assets structure for management
 ///
 /// \param images       All the images of the game
@@ -227,6 +250,8 @@ extern struct assets_s {
     uint_t musicCount;
     zone_t **zones;
     uint_t zoneCount;
+    vfx_t **vfx;
+    uint_t vfxCount;
 } Assets;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -325,5 +350,11 @@ void destroy_assets(void);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 sfMusic *find_music(cstring_t name);
+
+///////////////////////////////////////////////////////////////////////////////
+bool_t init_assets_vfx(void);
+
+///////////////////////////////////////////////////////////////////////////////
+void destroy_assets_vfx(void);
 
 #endif /* !ASSETS_H_ */

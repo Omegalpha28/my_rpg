@@ -29,7 +29,6 @@ static void draw_debug_line(actor_t *act, v2f_t cr)
 ///////////////////////////////////////////////////////////////////////////////
 void game_loop(void)
 {
-    actor_t *act = Player.ref;
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
     sfEvent evt;
 
@@ -38,7 +37,6 @@ void game_loop(void)
     player_movement();
     cursor_focus();
     update_entity();
-    actor_draw(act);
-    draw_debug_line(act, cr);
-    draw_bullets();
+    draw();
+    draw_debug_line(Player.ref, cr);
 }

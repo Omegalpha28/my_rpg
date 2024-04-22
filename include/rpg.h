@@ -16,6 +16,7 @@
     #include "rpg/controller.h"
     #include "rpg/game.h"
     #include "rpg/entity.h"
+    #include "rpg/weapons.h"
     #include "rpg/editor.h"
 
 ///////////////////////////////////////////////////////////////////////////////

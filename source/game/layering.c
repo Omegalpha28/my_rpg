@@ -11,29 +11,28 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-static void swap_entities(uint_t j, bool_t *swapped)
+static void swap_actors(uint_t j, bool_t *swapped)
 {
-    entity_t *tmp = Entities.array[j];
+    actor_t *tmp = Pool.actors[j];
 
-    if (Entities.array[j]->actor->position.y >
-        Entities.array[j + 1]->actor->position.y)
+    if (Pool.actors[j]->position.y < Pool.actors[j + 1]->position.y)
         return;
-    Entities.array[j] = Entities.array[j + 1];
-    Entities.array[j + 1] = tmp;
+    Pool.actors[j] = Pool.actors[j + 1];
+    Pool.actors[j + 1] = tmp;
     *swapped = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void sort_entities_verticaly(void)
+void sort_actors_pool(void)
 {
     bool_t swapped = false;
 
-    if (Entities.count == 0)
+    if (Pool.actorCount == 0)
         return;
-    for (uint_t i = 0; i < Entities.count - 1; i++) {
+    for (uint_t i = 0; i < Pool.actorCount - 1; i++) {
         swapped = false;
-        for (uint_t j = 0; j < Entities.count - i - 1; j++)
-            swap_entities(j, &swapped);
+        for (uint_t j = 0; j < Pool.actorCount - i - 1; j++)
+            swap_actors(j, &swapped);
         if (swapped == false)
             break;
     }
@@ -42,21 +41,11 @@ void sort_entities_verticaly(void)
 ///////////////////////////////////////////////////////////////////////////////
 void draw(void)
 {
-    bool_t playerDrawn = false;
-
     for (uint_t i = 0; i < Editor.bCount; i++)
         prop_draw(Editor.bProps[i]);
-    sort_entities_verticaly();
-    for (uint_t i = 0; i < Entities.count; i++) {
-        if (!playerDrawn && Entities.array[i]->actor->position.y >
-            Player.ref->position.y) {
-            actor_draw(Player.ref);
-            playerDrawn = true;
-        }
-        actor_draw(Entities.array[i]->actor);
-    }
-    if (!playerDrawn)
-        actor_draw(Player.ref);
+    sort_actors_pool();
+    for (uint_t i = 0; i < Pool.actorCount; i++)
+        actor_draw(Pool.actors[i]);
     for (uint_t i = 0; i < Editor.fCount; i++)
         prop_draw(Editor.fProps[i]);
     draw_bullets();

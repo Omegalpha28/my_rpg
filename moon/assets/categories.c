@@ -78,6 +78,7 @@ static category_t *create_category(zone_t *zone, cstring_t path)
     cat->sheetCount = 0;
     cat->sheets = NULL;
     cat->type = catOther;
+    cat->expand = false;
     zone->categoryCount++;
     zone->categories = REALLOC(zone->categories, sizeof(category_t *),
         zone->categoryCount);

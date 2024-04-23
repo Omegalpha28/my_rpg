@@ -195,6 +195,7 @@ typedef struct category_s {
     category_type_t type;
     sheet_t **sheets;
     uint_t sheetCount;
+    bool_t expand;
 } category_t;
 
 ///////////////////////////////////////////////////////////////////////////////

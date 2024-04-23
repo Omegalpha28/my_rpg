@@ -59,6 +59,7 @@ extern struct editor_s {
     zone_t *zone;
     v2f_t oldMouse;
     v2f_t crtMouse;
+    float scrollingOffset;
 } Editor;
 
 ///////////////////////////////////////////////////////////////////////////////

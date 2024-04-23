@@ -18,6 +18,7 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef enum weapon_type_e {
+    WEAPON_TYPE_EXPLOSIVE,
     WEAPON_TYPE_LASER,
     WEAPON_TYPE_MELEE,
     WEAPON_TYPE_PISTOL,
@@ -33,6 +34,11 @@ typedef enum weapon_type_e {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 enum weapons_e {
+    WEAPON_EXPLOSIVE_BUCCANEER,
+    WEAPON_EXPLOSIVE_GRENADE,
+    WEAPON_EXPLOSIVE_G_LAUNCHER,
+    WEAPON_EXPLOSIVE_HAMMER_HEAD,
+    WEAPON_EXPLOSIVE_HYDRA,
     WEAPON_LASER_BLASTER,
     WEAPON_LASER_REGULATOR,
     WEAPON_LASER_PHASER,
@@ -68,11 +74,6 @@ enum weapons_e {
     WEAPON_SNIPER_CRABBER,
     WEAPON_SNIPER_SUC_2,
     WEAPON_SNIPER_B_A_S,
-    WEAPON_EXPLOSIVE_BUCCANEER,
-    WEAPON_EXPLOSIVE_GRENADE,
-    WEAPON_EXPLOSIVE_G_LAUNCHER,
-    WEAPON_EXPLOSIVE_HAMMER_HEAD,
-    WEAPON_EXPLOSIVE_HYDRA,
     WEAPON_COUNT
 };
 

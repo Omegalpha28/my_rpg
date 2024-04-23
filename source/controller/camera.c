@@ -38,7 +38,7 @@ void camera_move(void)
     view_move(offset);
 }
 
-float easeInOutCirc(float t)
+float ease_in_out_circle(float t)
 {
     if (t < 0.5f)
         return (1 - sqrt(1 - 2 * t)) * 0.5f;

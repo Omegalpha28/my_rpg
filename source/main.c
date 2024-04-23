@@ -20,8 +20,10 @@ static void check_program_flags(int argc, warray_t argv)
         Editor.zone = Assets.zones[0];
         Engine.scene = SCENE_LEVEL_EDITOR;
     }
-    if (WCMP(argv, "--debug") || WCMP(argv, "-d"))
+    if (WCMP(argv, "--debug") || WCMP(argv, "-d")) {
         Engine.debugMode = true;
+        actor_set_variant(Player.ref, "debug", 0);
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

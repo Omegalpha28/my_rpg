@@ -11,7 +11,14 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-void dashing(entity_t *evil)
+///////////////////////////////////////////////////////////////////////////////
+bool_t v2f_empty(v2f_t vector)
+{
+    return (vector.x != 0.0f || vector.y != 0.0f);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void dashing(entity_t *evil)
 {
     v2f_t move;
     v2f_t velocity;
@@ -32,8 +39,7 @@ void dashing(entity_t *evil)
     evil->actor->scale.x = move.x - evil->actor->position.x > 0 ? 1.0f : -1.0f;
     evil->actor->position = move;
     evil->invincible = true;
-    actor_set_anim(evil->actor, velocity.x != 0.0f || velocity.y != 0.0f ?
-        "angrywalk" : "walk");
+    actor_set_anim(evil->actor, v2f_empty(velocity) ? "angrywalk" : "walk");
 }
 
 ///////////////////////////////////////////////////////////////////////////////

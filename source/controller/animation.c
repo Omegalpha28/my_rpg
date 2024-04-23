@@ -18,13 +18,13 @@ void use_competence(void)
 void player_movement(void)
 {
     Player.velocity = (v2f_t){0.0f, 0.0f};
-    if (UP && !DANCE)
+    if (UP && !DANCE && !DASH)
         Player.velocity.y += -SPEED;
-    if (DOWN && !DANCE)
+    if (DOWN && !DANCE && !DASH)
         Player.velocity.y += SPEED;
-    if (LEFT && !DANCE)
+    if (LEFT && !DANCE && !DASH)
         Player.velocity.x += -SPEED;
-    if (RIGHT && !DANCE)
+    if (RIGHT && !DANCE && !DASH)
         Player.velocity.x += SPEED;
     get_last_input();
     Player.velocity = normalize2f(Player.velocity);
@@ -40,22 +40,22 @@ void player_movement(void)
 
 static void dash_animation(void)
 {
-    v2f_t velocity = Player.velocity;
+    v2f_t velocity = Player.last_velocity;
 
     actor_set_anim(Player.ref, "dash");
     if (!Player.ref->done) {
-        if (UP || Player.last_velocity.y < 0.0f)
-            velocity.y += -SPEED;
-        if (DOWN || Player.last_velocity.y > 0.0f)
-            velocity.y += SPEED;
-        if (LEFT || Player.last_velocity.x < 0.0f)
-            velocity.x += -SPEED;
-        if (RIGHT || Player.last_velocity.x > 0.0f)
-            velocity.x += SPEED;
-        velocity = normalize2f(velocity);
-        velocity.x *= Time.deltaTime / 10;
-        velocity.y *= Time.deltaTime / 10;
-        actor_move(Player.ref, velocity);
+        if ((UP && velocity.y < 0.0f) || velocity.y < 0.0f)
+            Player.velocity.y += -SPEED;
+        if ((DOWN && velocity.y > 0.0f) || velocity.y > 0.0f)
+            Player.velocity.y += SPEED;
+        if ((LEFT && velocity.x < 0.0f) || velocity.x < 0.0f)
+            Player.velocity.x += -SPEED;
+        if ((RIGHT && velocity.x > 0.0f) || velocity.x > 0.0f)
+            Player.velocity.x += SPEED;
+        Player.velocity = normalize2f(Player.velocity);
+        Player.velocity.x *= Time.deltaTime / 12;
+        Player.velocity.y *= Time.deltaTime / 12;
+        actor_move(Player.ref, Player.velocity);
         camera_move();
     }
 }

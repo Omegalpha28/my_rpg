@@ -190,6 +190,7 @@ P_D_GAME	=	$(P_D_ROOT)game/
 P_D_ENTITY	=	$(P_D_ROOT)entity/
 P_D_EDITOR	=	$(P_D_ROOT)editor/
 P_D_WEAPONS =   $(P_D_ROOT)weapons/
+P_D_UI		=	$(P_D_ROOT)interfaces/
 
 P_C_ROOT	=	$(P_D_ROOT)main.c
 P_C_CTRL	=	$(P_D_CTRL)animation.c										\
@@ -200,12 +201,16 @@ P_C_GAME	=	$(P_D_GAME)loop.c											\
 				$(P_D_GAME)layering.c										\
 				$(P_D_GAME)player.c
 P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
-				$(P_D_EDITOR)browser.c										\
 				$(P_D_EDITOR)events.c										\
 				$(P_D_EDITOR)loop.c											\
+				$(P_D_EDITOR)props.c										\
 				$(P_D_EDITOR)events/canvas.c								\
 				$(P_D_EDITOR)events/focus.c									\
 				$(P_D_EDITOR)events/keyboard.c								\
+				$(P_D_EDITOR)interfaces/browser.c							\
+				$(P_D_EDITOR)interfaces/canvas.c							\
+				$(P_D_EDITOR)interfaces/interfaces.c						\
+				$(P_D_EDITOR)interfaces/utils.c								\
 				$(P_D_EDITOR)build/save.c									\
 				$(P_D_EDITOR)build/load.c
 P_C_ENTITY =	$(P_D_ENTITY)entity.c										\
@@ -219,12 +224,16 @@ P_C_WEAPONS =	$(P_D_WEAPONS)create.c										\
 				$(P_D_WEAPONS)update.c										\
 				$(P_D_WEAPONS)collisions.c									\
 				$(P_D_WEAPONS)weapons.c
+P_C_UI		=	$(P_D_UI)video/load.c										\
+				$(P_D_UI)video/loop.c
+
 P_SOURCES	=	$(P_C_ROOT)													\
 				$(P_C_EDITOR)												\
 				$(P_C_CTRL)													\
 				$(P_C_GAME)													\
 				$(P_C_ENTITY)												\
-				$(P_C_WEAPONS)
+				$(P_C_WEAPONS)												\
+				$(P_C_UI)
 
 P_OBJECTS	=	$(P_SOURCES:.c=.o)
 
@@ -237,12 +246,13 @@ E_NAME		=	$(E_D_ROOT)moon.a
 P_NAME		=	my_rpg
 L_NAME		=	$(L_D_ROOT)libmy.a
 
-PRINT_OK	=	echo -ne "\033[104m[👍]\033[0m '$<'\033[1K\r"
-PRINT_KO	=	echo -e "\033[103m[👎]\033[0m '$<'"
+PRINT_OK	=	echo -ne "\033[0m\033[104m[👍]\033[0m '$<'\033[1K\r"
+PRINT_KO	=	echo -e "\033[0m\033[103m[👎]\033[0m '$<'"
 GREP_STATUS	=	grep -q "warning:" && $(PRINT_KO) || $(PRINT_OK)
 
 %.o: %.c
 	echo -ne "\033[104m[🙏]\033[0m '$<' \r"
+	echo -ne "\033[0;33m"
 	$(CC) $(FLAG) -c $< -o $@ 2>&1 | tee /dev/tty | $(GREP_STATUS)
 
 build_library: $(L_OBJECTS)

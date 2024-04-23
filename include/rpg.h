@@ -18,6 +18,7 @@
     #include "rpg/entity.h"
     #include "rpg/weapons.h"
     #include "rpg/editor.h"
+    #include "rpg/interfaces.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 ///
@@ -35,7 +36,7 @@
 /// Promotion:      2028
 /// Language:       C
 /// Compilation:    Makefile
-/// Libraries:      CSFML, Maths
+/// Libraries:      CSFML, Maths, Libc
 /// Authors:
 ///     - Mallory Scotton (@mallory-scotton)
 ///     - Nathan Fievet (@natan-fievet)

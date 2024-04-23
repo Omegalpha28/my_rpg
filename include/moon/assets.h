@@ -53,18 +53,18 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef enum creature_index_e {
-    creaturePlayer,
-    creatureDuck,
-    creatureCrabBoss,
-    creatureBaldRat,
-    creatureEliteBabyCrab,
-    creatureDummy,
-    creatureCaterkillah,
-    creatureCinnamonRat,
-    creatureBabyCaiman,
-    creatureEliteRacoon,
-    creatureEliteFox,
-    creatureBrat,
+    CREATURE_PLAYER,
+    CREATURE_DUCK,
+    CREATURE_CRAB_BOSS,
+    CREATURE_BALD_RAT,
+    CREATURE_ELITE_BABY_CRAB,
+    CREATURE_DUMMY,
+    CREATURE_CATEKILLAH,
+    CREATURE_CINNAMON_RAT,
+    CREATURE_BABY_CAIMAN,
+    CREATURE_ELITE_RACOON,
+    CREATURE_ELITE_FOX,
+    CREATURE_BRAT,
     CREATURE_COUNT
 } creature_index_t;
 
@@ -195,6 +195,7 @@ typedef struct category_s {
     category_type_t type;
     sheet_t **sheets;
     uint_t sheetCount;
+    bool_t expand;
 } category_t;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -356,8 +357,16 @@ void destroy_assets(void);
 sfMusic *find_music(cstring_t name);
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Initialize all the VFX assets
+///
+/// \return True if everything is loaded, False otherwise
+///
+///////////////////////////////////////////////////////////////////////////////
 bool_t init_assets_vfx(void);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Destroy all the loaded VFX assets and set the values back to 0
+///
 ///////////////////////////////////////////////////////////////////////////////
 void destroy_assets_vfx(void);
 

@@ -27,6 +27,7 @@
     #define DIR_MUSICS DIR_ASSETS "/musics"
     #define DIR_SOUNDS DIR_ASSETS "/sounds"
     #define DIR_WEAPONS DIR_ASSETS "/weapons"
+    #define DIR_RELOADS DIR_WEAPONS "/reloads"
     #define DIR_ZONES DIR_ASSETS "/zones"
     #define DIR_VIDEO DIR_ASSETS "/videos"
     #define DIR_INTRO DIR_VIDEO "/intro"
@@ -47,6 +48,12 @@
     #define DEFAULT_PROP_FR FRAME_PER_MS(5)
     #define DEFAULT_VFX_FR FRAME_PER_MS(6)
     #define VIDEO_FRAMERATE FRAME_PER_MS(12)
+
+    /** Weapon Size                                                          */
+    #define WEAPON_SHEET_W 256
+    #define WEAPON_SHEET_H 160
+    #define WEAPON_GRID_X 4
+    #define WEAPON_GRID_Y 3
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief List of predefined creature index
@@ -257,6 +264,8 @@ extern struct assets_s {
     uint_t zoneCount;
     vfx_t **vfx;
     uint_t vfxCount;
+    image_t **weapons;
+    uint_t weaponCount;
 } Assets;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -369,5 +378,19 @@ bool_t init_assets_vfx(void);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void destroy_assets_vfx(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief TODO:
+///
+/// \return TODO:
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t init_assets_weapons(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief TODO:
+///
+///////////////////////////////////////////////////////////////////////////////
+void destroy_assets_weapons(void);
 
 #endif /* !ASSETS_H_ */

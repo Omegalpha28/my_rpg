@@ -204,4 +204,15 @@ void draw_editor_focus_hitbox(void);
 ///////////////////////////////////////////////////////////////////////////////
 void draw_editor_map_border(void);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draw a rectangle based on the screen size and position and not
+/// on the view sizing and coordinate system
+///
+/// \param size         The size of the rectangle
+/// \param pos          The position of the rectangle
+/// \param color        The color of the rectangle
+///
+///////////////////////////////////////////////////////////////////////////////
+void draw_rect(v2f_t size, v2f_t pos, sfColor color);
+
 #endif /* !EDITOR_H_ */

@@ -209,6 +209,7 @@ P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)interfaces/browser.c							\
 				$(P_D_EDITOR)interfaces/canvas.c							\
 				$(P_D_EDITOR)interfaces/interfaces.c						\
+				$(P_D_EDITOR)interfaces/utils.c								\
 				$(P_D_EDITOR)build/save.c									\
 				$(P_D_EDITOR)build/load.c
 P_C_ENTITY =	$(P_D_ENTITY)entity.c										\

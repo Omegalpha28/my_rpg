@@ -26,11 +26,11 @@ typedef enum weapon_type_e {
 } weapon_type_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief
+/// \brief TODO:
 ///
-/// \param sender
-/// \param origin
-/// \param destination
+/// \param sender       TODO:
+/// \param origin       TODO:
+/// \param destination  TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct bullet_s {
@@ -48,12 +48,12 @@ typedef struct bullet_s {
 } bullet_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief
+/// \brief TODO:
 ///
-/// \param type
-/// \param ammos
-/// \param damage
-/// \param firerate
+/// \param type         TODO:
+/// \param ammos        TODO:
+/// \param damage       TODO:
+/// \param firerate     TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct weapon_s {
@@ -64,10 +64,10 @@ typedef struct weapon_s {
 } weapon_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief
+/// \brief TODO:
 ///
-/// \param array
-/// \param count
+/// \param array        TODO:
+/// \param count        TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct bullet_list_s {
@@ -78,20 +78,22 @@ extern struct bullet_list_s {
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief create new bullets when players and enemies engage in shooting.
 ///
-/// \param sender the bullet id (who is the shooter?)
-/// \param size_rect the size of the first sprite
-/// \param sprite_shett numbre of sprite_sheet
-/// \param size_max the maximum size of the sprite_sheet
+/// \param sender       The bullet id (who is the shooter?)
+/// \param size_rect    The size of the first sprite
+/// \param sprite_shett Number of sprite_sheet
+/// \param size_max     The maximum size of the sprite_sheet
+///
+/// \return TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
 bullet_t *bullet_creation(uint_t sender, uint_t size_rect, uint_t spritesheet,
     uint_t size_max);
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief updates all general information on all bullets.
+/// \brief Updates all general information on all bullets.
 ///
-/// starts off by rendering the bullet and updating its position and velocity.
-/// once done it checks for collision. and then deletes all unwanted bullets.
+/// Starts off by rendering the bullet and updating its position and velocity.
+/// once done it checks for collision, and then deletes all unwanted bullets.
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void bullet_update(void);
@@ -99,20 +101,22 @@ void bullet_update(void);
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Verifies collision and bullet distance.
 ///
-/// if one of those condition are met. bullet will enter destroyed mode, and
+/// If one of those condition are met. Bullet will enter destroyed mode, and
 /// will be skipped during bullet update, and then deleted.
 ///
-/// \param bullet the sprite_sheet of the bullet.
+/// \param bullet       the sprite_sheet of the bullet.
+///
+/// \return TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
 bool_t bullet_collision(bullet_t *bullet);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief destroy bullets when they hit their targets or get out of the
+/// circle.
 ///
-///        circle.
+/// \param bullet       the sprite_sheet of the bullet.
 ///
-/// \param bullet the sprite_sheet of the bullet.
 ///////////////////////////////////////////////////////////////////////////////
 void remove_bullet(bullet_t *bullet);
 

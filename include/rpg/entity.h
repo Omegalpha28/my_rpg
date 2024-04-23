@@ -104,7 +104,7 @@ static const creature_stats_t Stats[CREATURE_COUNT] = {
     {100, 0.4f, 65.0f, 100.0f, sniper, 0},     //bald rat
     {100, 0, 0, 0, 0, 0},                       //dummy
     {100, 0, 0, 0, Dash, 3000},                 //baby crab (elite)
-    {100, 0.4f, 75.0f, 100.0f, Dash, 0},        //caterkillah
+    {30, 0.5f, 0.0f, 100.0f, Dash, 0},        //caterkillah
     {100, 0.4f, 50.0f, 100.0f, Shooter, 0},     //cinnamon rat
     {100, 0.5f, 50.0f, 100.0f, Jumper, 0},     //baby caiman
     {100, 0.4f, 125.0f, 175.0f, Shooter, 0},     //elite racoon
@@ -137,7 +137,7 @@ void update_entity(void);
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Calls upon all possible movement branch.
 ///
-/// \param evil         Entity in patrol mode.
+/// \param evil         Pointer to Entity info structure.
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void enemy_movement(entity_t *evil);
@@ -185,4 +185,11 @@ v2f_t flee_rand_pos(v2f_t origin, int min_range, int max_range);
 ///////////////////////////////////////////////////////////////////////////////
 void health_examination(entity_t *evil);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Calls upon all possible acion branch.
+///
+/// \param evil         Pointer to Entity info structure.
+///
+///////////////////////////////////////////////////////////////////////////////
+void enemy_action(entity_t *evil);
 #endif /* !ENTITY_H_ */

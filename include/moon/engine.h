@@ -29,6 +29,7 @@ typedef enum scene_e {
     sceneLevelEditor,
     sceneGame,
     sceneSettings,
+    sceneVideo,
     SCENE_COUNT
 } scene_t;
 
@@ -41,6 +42,11 @@ typedef enum scene_e {
 extern struct engine_s {
     bool_t debugMode;
     scene_t scene;
+    sfTexture **frames;
+    uint_t videoFrame;
+    uint_t videoFrameCount;
+    ulong_t time;
+    sfSprite *sprite;
 } Engine;
 
 #endif /* !ENGINE_H_ */

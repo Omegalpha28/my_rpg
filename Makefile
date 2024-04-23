@@ -238,19 +238,24 @@ P_NAME		=	my_rpg
 L_NAME		=	$(L_D_ROOT)libmy.a
 
 %.o: %.c
+	echo -e "\033[103m[COMPILING]\033[0m '$<'"
 	$(CC) $(FLAG) -c $< -o $@
+	echo -e "\033[102m[COMPILED]\033[0m  '$<'"
 
 build_library: $(L_OBJECTS)
+	echo -e "\033[105mFlags:\033[0m $(FLAG)"
 	echo -e "\033[106m?? Building library\033[0m"
 	ar -rc $(L_NAME) $(L_OBJECTS)
 	echo -e "\t\033[102m-> Library builded\033[0m"
 
 build_engine: $(E_OBJECTS)
+	echo -e "\033[105mFlags:\033[0m $(FLAG)"
 	echo -e "\033[106m?? Building engine\033[0m"
 	ar -rc $(E_NAME) $(E_OBJECTS)
 	echo -e "\t\033[102m-> Engine builded\033[0m"
 
 build_program: build_library build_engine $(P_OBJECTS)
+	echo -e "\033[105mFlags:\033[0m $(FLAG)"
 	echo -e "\033[106m?? Building program\033[0m"
 	$(CC) $(FLAG) -o $(P_NAME) $(P_OBJECTS) $(E_NAME) $(L_NAME)
 	echo -e "\t\033[102m-> Program builded\033[0m"
@@ -312,5 +317,24 @@ style:
 	coding-style . . > /dev/null
 	mv -f coding-style-reports.log old.log > /dev/null
 	./style.sh
+
+#-----------------------------------------------------------------------------#
+
+#-----------------------------------------------------------------------------#
+#! ARCHIVE MANIPULATION FOR ASSETS
+
+ARCHIVE		:=	assets
+
+EXTENSION	:=	.tar.xz
+
+compress:
+	echo -e "\e[34mCompressing assets...\e[0m"
+	tar -cJf $(ARCHIVE)$(EXTENSION) assets
+	echo -e "\e[32mCompression done.\e[0m"
+
+decompress:
+	echo -e "\e[34mDecompressing assets...\e[0m"
+	tar -xJf $(ARCHIVE)$(EXTENSION)
+	echo -e "\e[32mDecompression done.\e[0m"
 
 #-----------------------------------------------------------------------------#

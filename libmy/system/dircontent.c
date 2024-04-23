@@ -13,12 +13,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 warray_t my_dircontent(cstring_t path)
 {
-    u8_t len = my_dirlen(path);
+    ulong_t len = my_dirlen(path);
     DIR *dir;
     warray_t content;
-    u8_t i = 0;
+    ulong_t i = 0;
 
-    RETURN(len == 0 || len == (uchar_t)-1, NULL);
+    RETURN(len == 0 || len == (ulong_t)-1, NULL);
     dir = opendir(path);
     RETURN(dir == NULL, NULL);
     content = malloc(sizeof(string_t) * (len + 1));

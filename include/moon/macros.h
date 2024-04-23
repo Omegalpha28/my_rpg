@@ -46,6 +46,19 @@
     #define CV2F(v) ((v2f_t){(float)v.x, (float)v.y})
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Calculate the scaling factor based on the desired size, total size,
+/// and screen size.
+///
+/// \param x            The desired size to scale
+/// \param total        The total size of the view (width or height)
+/// \param screen       The size of the screen (width or height)
+///
+/// \return The calculated scaling factor
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define SCALE_FACTOR(x, total, screen) ((x) * (total) / (screen))
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Calculate the horizontal scaling factor difference between the
 /// screen and the view
 ///
@@ -54,7 +67,7 @@
 /// \return The scaling factor
 ///
 ///////////////////////////////////////////////////////////////////////////////
-    #define FACTORX(x) ((x) * Win.viewWidth / Win.width / 100.0f)
+    #define FACTORX(x) SCALE_FACTOR(x, Win.viewWidth, Win.width)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Calculate the vertical scaling factor difference between the screen
@@ -65,7 +78,7 @@
 /// \return The scaling factor
 ///
 ///////////////////////////////////////////////////////////////////////////////
-    #define FACTORY(y) ((y) * Win.viewHeight / Win.height / 100.0f)
+    #define FACTORY(y) SCALE_FACTOR(y, Win.viewHeight, Win.height)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Calculate the factor for a fixed size on the screen
@@ -75,7 +88,7 @@
 /// \return The scaling factors to achieve this size
 ///
 ///////////////////////////////////////////////////////////////////////////////
-    #define FACTORS(v) ((v2f_t){FACTORX(v.x), FACTORY(v.y)})
+    #define FACTORS(v) ((v2f_t){FACTORX(v.x) / v.x, FACTORY(v.y) / v.y})
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Shortener for 'mapCoordsToPixel', convert the map coordinate system

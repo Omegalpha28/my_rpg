@@ -28,6 +28,9 @@
     #define DIR_SOUNDS DIR_ASSETS "/sounds"
     #define DIR_WEAPONS DIR_ASSETS "/weapons"
     #define DIR_ZONES DIR_ASSETS "/zones"
+    #define DIR_VIDEO DIR_ASSETS "/videos"
+    #define DIR_INTRO DIR_VIDEO "/intro"
+    #define DIR_OUTRO DIR_VIDEO "/outro"
 
     /** Zones restricted name                                                */
     #define CAT_TRAP "traps"
@@ -43,6 +46,7 @@
     #define DEFAULT_CREATURE_FR FRAME_PER_MS(8)
     #define DEFAULT_PROP_FR FRAME_PER_MS(5)
     #define DEFAULT_VFX_FR FRAME_PER_MS(6)
+    #define VIDEO_FRAMERATE FRAME_PER_MS(12)
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief List of predefined creature index

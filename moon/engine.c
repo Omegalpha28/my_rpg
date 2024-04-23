@@ -13,5 +13,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 struct engine_s Engine = {
     false,
-    sceneGame
+    sceneGame,
+    NULL, 0, 0, 0, NULL
 };

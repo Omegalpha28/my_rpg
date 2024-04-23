@@ -187,6 +187,17 @@
     #define CMP(str1, str2) (!my_strcmp(str1, str2))
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Check if a value exists in a null-terminated array of strings.
+///
+/// \param wa           The null-terminated array of strings to be checked.
+/// \param search       The value to be searched for in the array.
+///
+/// \return True if the value is found, false otherwise.
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define WCMP(wa, str) (my_wacmp(wa, str))
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Orealloc shortener
 ///
 /// \param ptr          The pointer to realloc

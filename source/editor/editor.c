@@ -12,7 +12,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 struct editor_s Editor = {
-    EDITOR_SCENE_ZONE_SELECT,
+    EDITOR_SCENE_ZONE_SELECTION,
     NULL, 0, true,
     NULL, 0, true,
     NULL, NULL, false, false,

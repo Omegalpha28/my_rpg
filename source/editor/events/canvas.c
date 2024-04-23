@@ -47,8 +47,8 @@ static void handle_editor_zoom(sfMouseWheelScrollEvent evt)
 {
     float zoomFactor = evt.delta < 0 ? 1.1f : 0.9f;
     v2f_t worldMouse = Editor.crtMouse;
-    v2f_t newWorldMouse = {0.0f, 0.0f};
-    v2f_t offset = {0.0f, 0.0f};
+    v2f_t newWorldMouse = V2F1(0.0f);
+    v2f_t offset = V2F1(0.0f);
 
     sfView_zoom(Win.view, zoomFactor);
     newWorldMouse = sfRenderWindow_mapPixelToCoords(Win.self,
@@ -61,7 +61,7 @@ static void handle_editor_zoom(sfMouseWheelScrollEvent evt)
 ///////////////////////////////////////////////////////////////////////////////
 static void handle_editor_move(sfMouseWheelScrollEvent evt)
 {
-    v2f_t offset = {0.0f, 0.0f};
+    v2f_t offset = V2F1(0.0f);
     bool_t ctrl = (PRESSED(sfKeyRControl) || PRESSED(sfKeyLControl));
 
     if ((ctrl && evt.wheel == 0) || (!ctrl && evt.wheel == 1))
@@ -83,7 +83,7 @@ static void handle_editor_ui_scroll(sfMouseWheelScrollEvent evt)
 void handle_editor_mouse_scroll(sfMouseWheelScrollEvent evt)
 {
     bool_t alt = PRESSED(sfKeyLAlt) || PRESSED(sfKeyRAlt);
-    v2f_t newViewSize = {0.0f, 0.0f};
+    v2f_t newViewSize = V2F1(0.0f);
     v2i_t cr = sfMouse_getPositionRenderWindow(Win.self);
 
     if ((cr.x >= 0 && cr.x <= 250.0f && cr.y >= 84.0f))

@@ -15,9 +15,8 @@ void draw_editor_map_border(void)
 {
     sfRectangleShape *border = sfRectangleShape_create();
 
-    sfRectangleShape_setSize(border, (v2f_t){65536.0f * 2.0f,
-        65536.0f * 2.0f});
-    sfRectangleShape_setOrigin(border, (v2f_t){65536.0f, 65536.0f});
+    sfRectangleShape_setSize(border, V2F1(65536.0f * 2.0f));
+    sfRectangleShape_setOrigin(border, V2F1(65536.0f));
     sfRectangleShape_setFillColor(border, sfWhite);
     sfRenderWindow_drawRectangleShape(Win.self, border, NULL);
     sfRectangleShape_destroy(border);

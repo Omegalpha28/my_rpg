@@ -30,7 +30,7 @@ static bool_t animation_bullet_destroyed(bullet_t *bullet)
         sfSprite_setTextureRect(bullet->sprite, rect);
         return (false);
     } else {
-        bullet->hit = true;
+        bullet->destroyed = true;
         return (true);
     }
 }
@@ -66,7 +66,7 @@ static bool_t entities_impact(bullet_t *bullet, v2f_t pos)
         distance_enemy = sqrt(pow(pos_enemy.x - pos.x, 2) +
             pow(pos_enemy.y - pos.y, 2));
         if ((distance_enemy < radius || bullet->begin) &&
-            !animation_bullet_destroyed(bullet)){
+            !Entities.array[i]->dead && !animation_bullet_destroyed(bullet)){
             entity_hit(Entities.array[i]);
             return (true);
         }

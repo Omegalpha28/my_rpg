@@ -38,13 +38,13 @@ void bullet_update(void)
     if (Bullet_List.array == NULL)
         return;
     for (uint_t i = 0; i < Bullet_List.count; i++) {
-        if (Bullet_List.array[i]->hit)
+        if (Bullet_List.array[i]->destroyed)
             continue;
         bullet_render(Bullet_List.array[i]);
         bullet_collision(Bullet_List.array[i]);
     }
     for (uint_t i = 0; i < Bullet_List.count; i++) {
-        if (!Bullet_List.array[i]->hit)
+        if (!Bullet_List.array[i]->destroyed)
             continue;
         remove_bullet(Bullet_List.array[i]);
         i--;

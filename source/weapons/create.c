@@ -73,8 +73,7 @@ static void init_bullet(bullet_t *new, uint_t sender, v2f_t size, uint_t sheet)
     new->position = (v2f_t){Player.ref->position.x, Player.ref->position.y};
     new->destination = endpoint2f(new->origin, cr, 100.0f);
     new->sprite = init_bullet_sprite(new, rec);
-    new->destroyed = 0;
-    new->hit = false;
+    new->destroyed = false;
     new->area = create_circle();
 }
 

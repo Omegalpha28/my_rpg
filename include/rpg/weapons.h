@@ -39,13 +39,12 @@ typedef struct bullet_s {
     v2f_t origin;
     v2f_t destination;
     v2f_t position;
-    uint_t destroyed;
+    bool_t destroyed;
     uint_t rect_sprite;
     uint_t num_sheet;
     uint_t size_max_x;
     uint_t begin;
     sfCircleShape *area;
-    bool_t hit;
 } bullet_t;
 
 ///////////////////////////////////////////////////////////////////////////////

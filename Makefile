@@ -251,6 +251,8 @@ PRINT_OK	=	echo -ne "\033[0m\033[104m[👍]\033[0m '$<'\033[1K\r"
 PRINT_KO	=	echo -e "\033[0m\033[103m[👎]\033[0m '$<'"
 GREP_STATUS	=	grep -q "warning:" && $(PRINT_KO) || $(PRINT_OK)
 
+all: $(P_NAME)
+
 %.o: %.c
 	echo -ne "\033[104m[🙏]\033[0m '$<' \r"
 	echo -ne "\033[0;33m"
@@ -314,8 +316,6 @@ tests_fclean: tests_clean
 
 #-----------------------------------------------------------------------------#
 #! Misc
-
-all: $(P_NAME)
 
 re: fclean all
 

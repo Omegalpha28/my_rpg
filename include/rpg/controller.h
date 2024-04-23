@@ -63,4 +63,6 @@ void use_competence(void);
 
 void cursor_focus(void);
 
+void get_last_input(void);
+
 #endif /* !CONTROLLER_H_ */

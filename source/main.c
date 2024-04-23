@@ -25,6 +25,17 @@ static void check_program_flags(int argc, warray_t argv)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void switch_scene_loop(void)
+{
+    if (Engine.scene == SCENE_GAME)
+        game_loop();
+    if (Engine.scene == SCENE_LEVEL_EDITOR)
+        editor_loop();
+    if (Engine.scene == SCENE_VIDEO)
+        video_loop();
+}
+
+///////////////////////////////////////////////////////////////////////////////
 int main(int argc, warray_t argv)
 {
     srand((unsigned)time(NULL));
@@ -35,12 +46,7 @@ int main(int argc, warray_t argv)
     while (sfRenderWindow_isOpen(Win.self)) {
         update_time();
         sfRenderWindow_clear(Win.self, EDITOR_BACKGROUND);
-        if (Engine.scene == SCENE_GAME)
-            game_loop();
-        if (Engine.scene == SCENE_LEVEL_EDITOR)
-            editor_loop();
-        if (Engine.scene == SCENE_VIDEO)
-            video_loop();
+        switch_scene_loop();
         sfRenderWindow_display(Win.self);
     }
     destroy_window();

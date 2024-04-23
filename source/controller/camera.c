@@ -53,8 +53,8 @@ v2f_t cursor_cap(void)
     v2f_t pos = Player.ref->position;
     v2f_t dist = {mouse.x - pos.x, mouse.y - pos.y};
 
-    max_cam.x = easeInOutCirc(dist.x);
-    max_cam.y = easeInOutCirc(dist.y);
+    max_cam.x = ease_in_out_circle(dist.x);
+    max_cam.y = ease_in_out_circle(dist.y);
     return (max_cam);
 }
 

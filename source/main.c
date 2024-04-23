@@ -20,10 +20,8 @@ static void check_program_flags(int argc, warray_t argv)
         Editor.zone = Assets.zones[0];
         Engine.scene = SCENE_LEVEL_EDITOR;
     }
-    if (WCMP(argv, "--debug") || WCMP(argv, "-d")) {
+    if (WCMP(argv, "--debug") || WCMP(argv, "-d"))
         Engine.debugMode = true;
-        actor_set_variant(Player.ref, "debug", 0);
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -32,8 +30,8 @@ int main(int argc, warray_t argv)
     srand((unsigned)time(NULL));
     if (!init_time() || !init_assets() || !create_window(0, 0, WIN_WINDOWED))
         return (EXIT_FAILURE);
-    Player.ref = actor_create(Assets.creatures[CREATURE_PLAYER], V2F1(0.0f));
     check_program_flags(argc, argv);
+    Player.ref = actor_create(Assets.creatures[CREATURE_PLAYER], V2F1(0.0f));
     while (sfRenderWindow_isOpen(Win.self)) {
         update_time();
         sfRenderWindow_clear(Win.self, EDITOR_BACKGROUND);

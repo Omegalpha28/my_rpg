@@ -38,5 +38,6 @@ void game_loop(void)
     cursor_focus();
     update_entity();
     draw();
-    draw_debug_line(Player.ref, cr);
+    if (Engine.debugMode)
+        draw_debug_line(Player.ref, cr);
 }

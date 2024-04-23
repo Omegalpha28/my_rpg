@@ -40,6 +40,8 @@ actor_t *actor_create(creature_t *creature, v2f_t position)
     Pool.actorCount++;
     Pool.actors = REALLOC(Pool.actors, sizeof(actor_t *), Pool.actorCount);
     Pool.actors[Pool.actorCount - 1] = act;
+    if (Engine.debugMode == true)
+        actor_set_variant(act, "debug", 0);
     return (act);
 }
 

@@ -66,7 +66,8 @@ E_C_ASSETS	=	$(E_D_ASSETS)assets.c										\
 				$(E_D_ASSETS)musics.c										\
 				$(E_D_ASSETS)sort.c											\
 				$(E_D_ASSETS)vfx.c											\
-				$(E_D_ASSETS)zones.c
+				$(E_D_ASSETS)zones.c										\
+				$(E_D_ASSETS)weapons.c
 E_C_OBJECTS	=	$(E_D_OBJECTS)pool.c										\
 				$(E_D_OBJECTS)actors/animate.c								\
 				$(E_D_OBJECTS)actors/create.c								\
@@ -257,21 +258,21 @@ GREP_STATUS	=	grep -q "warning:" && $(PRINT_KO) || $(PRINT_OK)
 
 build_library: $(L_OBJECTS)
 	echo -ne "\033[104m[✅]\033[0m All Objects have been compiled\n"
-	echo -e "\033[106m[⚒️ ]\033[0m Building library"
+	echo -e "\033[106m[⚒️]\033[0m Building library"
 	echo -e "\033[105m[🏁]\033[0m $(FLAG)"
 	ar -rc $(L_NAME) $(L_OBJECTS)
 	echo -e "\033[102m[✅]\033[0m Library builded"
 
 build_engine: $(E_OBJECTS)
 	echo -ne "\033[104m[✅]\033[0m All Objects have been compiled\n"
-	echo -ne "\033[106m[⚒️ ]\033[0m Building engine \n"
+	echo -ne "\033[106m[⚒️]\033[0m Building engine \n"
 	echo -e "\033[105m[🏁]\033[0m $(FLAG)"
 	ar -rc $(E_NAME) $(E_OBJECTS)
 	echo -e "\033[102m[✅]\033[0m Engine builded"
 
 build_program: build_library build_engine $(P_OBJECTS)
 	echo -ne "\033[104m[✅]\033[0m All Objects have been compiled\n"
-	echo -e "\033[106m[⚒️ ]\033[0m Building program"
+	echo -e "\033[106m[⚒️]\033[0m Building program"
 	echo -e "\033[105m[🏁]\033[0m $(FLAG)"
 	$(CC) $(FLAG) -o $(P_NAME) $(P_OBJECTS) $(E_NAME) $(L_NAME)
 	echo -e "\033[102m[✅]\033[0m Program builded"

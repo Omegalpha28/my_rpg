@@ -26,5 +26,7 @@
     #define ERR_FD_CATEGORY "Unable to open the category folder."
     #define ERR_SHEET_SYNTAX "Invalid assets naming syntax."
     #define ERR_VFX_SYNTAX "Invalid vfx naming syntax."
+    #define ERR_TO_MANY_WEAPON "To many weapon sheet found."
+    #define ERR_TO_FEW_WEAPON "To few weapon sheet found."
 
 #endif /* !ERROR_H_ */

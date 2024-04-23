@@ -77,18 +77,18 @@ static category_t *create_category(zone_t *zone, cstring_t path)
     cat->name = my_strdup(my_basename(path));
     cat->sheetCount = 0;
     cat->sheets = NULL;
-    cat->type = catOther;
+    cat->type = CAT_OTHER;
     cat->expand = false;
     zone->categoryCount++;
     zone->categories = REALLOC(zone->categories, sizeof(category_t *),
         zone->categoryCount);
     zone->categories[zone->categoryCount - 1] = cat;
     if (CMP(cat->name, CAT_DESTRUCTIBLE))
-        cat->type = catDestructible;
+        cat->type = CAT_DESTRUCTIBLES;
     if (CMP(cat->name, CAT_DOOR))
-        cat->type = catDoors;
+        cat->type = CAT_DOORS;
     if (CMP(cat->name, CAT_TRAP))
-        cat->type = catTraps;
+        cat->type = CAT_TRAPS;
     return (cat);
 }
 

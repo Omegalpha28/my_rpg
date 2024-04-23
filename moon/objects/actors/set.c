@@ -64,6 +64,8 @@ bool_t actor_set_sheet(actor_t *act, cstring_t name)
             return (true);
         act->sheetId = i;
         act->time = Time.currentTime;
+        if (Engine.debugMode == true)
+            actor_set_variant(act, "debug", 0);
         return (true);
     }
     return (false);
@@ -81,6 +83,8 @@ bool_t actor_set_sheet_id(actor_t *act, uint_t id)
         return (false);
     act->time = Time.currentTime;
     act->sheetId = id;
+    if (Engine.debugMode == true)
+        actor_set_variant(act, "debug", 0);
     return (true);
 }
 

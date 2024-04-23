@@ -14,23 +14,75 @@
     #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief all current weapon types available to players/enemies
+/// \brief All current weapon types available to players/enemies
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef enum weapon_type_e {
-    weaponLaser,
-    weaponBullet,
-    weaponMelee,
-    weaponExplosive,
+    WEAPON_TYPE_EXPLOSIVE,
+    WEAPON_TYPE_LASER,
+    WEAPON_TYPE_MELEE,
+    WEAPON_TYPE_PISTOL,
+    WEAPON_TYPE_RIFLE,
+    WEAPON_TYPE_SHOTGUN,
+    WEAPON_TYPE_SMG,
+    WEAPON_TYPE_SNIPER,
     WEAPON_TYPE_COUNT
 } weapon_type_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief
+/// \brief List of predefined weapons
 ///
-/// \param sender
-/// \param origin
-/// \param destination
+///////////////////////////////////////////////////////////////////////////////
+enum weapons_e {
+    WEAPON_EXPLOSIVE_BUCCANEER,
+    WEAPON_EXPLOSIVE_GRENADE,
+    WEAPON_EXPLOSIVE_G_LAUNCHER,
+    WEAPON_EXPLOSIVE_HAMMER_HEAD,
+    WEAPON_EXPLOSIVE_HYDRA,
+    WEAPON_LASER_BLASTER,
+    WEAPON_LASER_REGULATOR,
+    WEAPON_LASER_PHASER,
+    WEAPON_LASER_ZAP_CANNON,
+    WEAPON_LASER_RAYGUN,
+    WEAPON_MELEE_AXELOTL,
+    WEAPON_MELEE_KATANA,
+    WEAPON_MELEE_BEHEADER,
+    WEAPON_MELEE_SCYTHE,
+    WEAPON_MELEE_MOTORBLADE,
+    WEAPON_PISTOL_POND_EAGLE,
+    WEAPON_PISTOL_TACTIC_GUN,
+    WEAPON_PISTOL_TADPOLES,
+    WEAPON_PISTOL_RATVOLVER,
+    WEAPON_PISTOL_WINGERS,
+    WEAPON_RIFLE_AK,
+    WEAPON_RIFLE_KARBINE,
+    WEAPON_RIFLE_COWPUP,
+    WEAPON_RIFLE_SUPER_SHOOTER,
+    WEAPON_RIFLE_BIG_AK,
+    WEAPON_SHOTGUN_SAWED_OFF,
+    WEAPON_SHOTGUN_SCATTERER,
+    WEAPON_SHOTGUN_MOSSTOAD,
+    WEAPON_SHOTGUN_TURBO_SHOTGUN,
+    WEAPON_SHOTGUN_DOOMGUN,
+    WEAPON_SMG_U_Z_1,
+    WEAPON_SMG_PEW_PEWER,
+    WEAPON_SMG_VERMINATOR,
+    WEAPON_SMG_B_BANGER,
+    WEAPON_SMG_GATORINGA,
+    WEAPON_SNIPER_HOGGEN,
+    WEAPON_SNIPER_KALAS,
+    WEAPON_SNIPER_CRABBER,
+    WEAPON_SNIPER_SUC_2,
+    WEAPON_SNIPER_B_A_S,
+    WEAPON_COUNT
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief TODO:
+///
+/// \param sender       TODO:
+/// \param origin       TODO:
+/// \param destination  TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct bullet_s {
@@ -48,12 +100,12 @@ typedef struct bullet_s {
 } bullet_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief
+/// \brief TODO:
 ///
-/// \param type
-/// \param ammos
-/// \param damage
-/// \param firerate
+/// \param type         TODO:
+/// \param ammos        TODO:
+/// \param damage       TODO:
+/// \param firerate     TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct weapon_s {
@@ -64,10 +116,10 @@ typedef struct weapon_s {
 } weapon_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief
+/// \brief TODO:
 ///
-/// \param array
-/// \param count
+/// \param array        TODO:
+/// \param count        TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct bullet_list_s {
@@ -78,20 +130,22 @@ extern struct bullet_list_s {
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief create new bullets when players and enemies engage in shooting.
 ///
-/// \param sender the bullet id (who is the shooter?)
-/// \param size_rect the size of the first sprite
-/// \param sprite_shett numbre of sprite_sheet
-/// \param size_max the maximum size of the sprite_sheet
+/// \param sender       The bullet id (who is the shooter?)
+/// \param size_rect    The size of the first sprite
+/// \param sprite_shett Number of sprite_sheet
+/// \param size_max     The maximum size of the sprite_sheet
+///
+/// \return TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
 bullet_t *bullet_creation(uint_t sender, uint_t size_rect, uint_t spritesheet,
     uint_t size_max);
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief updates all general information on all bullets.
+/// \brief Updates all general information on all bullets.
 ///
-/// starts off by rendering the bullet and updating its position and velocity.
-/// once done it checks for collision. and then deletes all unwanted bullets.
+/// Starts off by rendering the bullet and updating its position and velocity.
+/// once done it checks for collision, and then deletes all unwanted bullets.
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void bullet_update(void);
@@ -99,20 +153,22 @@ void bullet_update(void);
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Verifies collision and bullet distance.
 ///
-/// if one of those condition are met. bullet will enter destroyed mode, and
+/// If one of those condition are met. Bullet will enter destroyed mode, and
 /// will be skipped during bullet update, and then deleted.
 ///
-/// \param bullet the sprite_sheet of the bullet.
+/// \param bullet       the sprite_sheet of the bullet.
+///
+/// \return TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
 bool_t bullet_collision(bullet_t *bullet);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief destroy bullets when they hit their targets or get out of the
+/// circle.
 ///
-///        circle.
+/// \param bullet       the sprite_sheet of the bullet.
 ///
-/// \param bullet the sprite_sheet of the bullet.
 ///////////////////////////////////////////////////////////////////////////////
 void remove_bullet(bullet_t *bullet);
 

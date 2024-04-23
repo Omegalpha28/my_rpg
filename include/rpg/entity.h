@@ -192,4 +192,5 @@ void health_examination(entity_t *evil);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void enemy_action(entity_t *evil);
+
 #endif /* !ENTITY_H_ */

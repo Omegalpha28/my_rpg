@@ -68,3 +68,19 @@ void unload_image(image_t *img)
     sfTexture_destroy(img->self);
     img->self = NULL;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+void destroy_all_images(void)
+{
+    for (uint_t i = 0; i < Assets.imageCount; i++) {
+        if (Assets.images[i] == NULL)
+            continue;
+        FREE(Assets.images[i]->filepath);
+        FREE(Assets.images[i]->name);
+        if (Assets.images[i]->self != NULL)
+            sfTexture_destroy(Assets.images[i]->self);
+    }
+    FREE(Assets.images);
+    Assets.imageCount = 0;
+    Assets.images = NULL;
+}

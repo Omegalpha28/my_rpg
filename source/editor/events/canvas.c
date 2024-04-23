@@ -72,11 +72,22 @@ static void handle_editor_move(sfMouseWheelScrollEvent evt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void handle_editor_ui_scroll(sfMouseWheelScrollEvent evt)
+{
+    Editor.scrollingOffset += 10.0f * evt.delta;
+    if (Editor.scrollingOffset > 0)
+        Editor.scrollingOffset = 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void handle_editor_mouse_scroll(sfMouseWheelScrollEvent evt)
 {
     bool_t alt = PRESSED(sfKeyLAlt) || PRESSED(sfKeyRAlt);
     v2f_t newViewSize = {0.0f, 0.0f};
+    v2i_t cr = sfMouse_getPositionRenderWindow(Win.self);
 
+    if ((cr.x >= 0 && cr.x <= 250.0f && cr.y >= 84.0f))
+        return (handle_editor_ui_scroll(evt));
     if (alt)
         handle_editor_zoom(evt);
     else

@@ -80,4 +80,7 @@ void destroy_all_images(void)
         if (Assets.images[i]->self != NULL)
             sfTexture_destroy(Assets.images[i]->self);
     }
+    FREE(Assets.images);
+    Assets.imageCount = 0;
+    Assets.images = NULL;
 }

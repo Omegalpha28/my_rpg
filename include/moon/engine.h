@@ -25,11 +25,11 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef enum scene_e {
-    sceneMainMenu,
-    sceneLevelEditor,
-    sceneGame,
-    sceneSettings,
-    sceneVideo,
+    SCENE_MAIN_MENU,
+    SCENE_LEVEL_EDITOR,
+    SCENE_GAME,
+    SCENE_SETTINGS,
+    SCENE_VIDEO,
     SCENE_COUNT
 } scene_t;
 

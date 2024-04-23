@@ -53,18 +53,18 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef enum creature_index_e {
-    creaturePlayer,
-    creatureDuck,
-    creatureCrabBoss,
-    creatureBaldRat,
-    creatureEliteBabyCrab,
-    creatureDummy,
-    creatureCaterkillah,
-    creatureCinnamonRat,
-    creatureBabyCaiman,
-    creatureEliteRacoon,
-    creatureEliteFox,
-    creatureBrat,
+    CREATURE_PLAYER,
+    CREATURE_DUCK,
+    CREATURE_CRAB_BOSS,
+    CREATURE_BALD_RAT,
+    CREATURE_ELITE_BABY_CRAB,
+    CREATURE_DUMMY,
+    CREATURE_CATEKILLAH,
+    CREATURE_CINNAMON_RAT,
+    CREATURE_BABY_CAIMAN,
+    CREATURE_ELITE_RACOON,
+    CREATURE_ELITE_FOX,
+    CREATURE_BRAT,
     CREATURE_COUNT
 } creature_index_t;
 

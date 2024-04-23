@@ -237,8 +237,8 @@ E_NAME		=	$(E_D_ROOT)moon.a
 P_NAME		=	my_rpg
 L_NAME		=	$(L_D_ROOT)libmy.a
 
-PRINT_OK	=	echo -ne "\033[104m[👍]\033[0m '$<'\r"
-PRINT_KO	=	echo -e "\033[103m[👎]\033[0m '$<'"
+PRINT_OK	=	echo -ne "\033[104m[👍]\033[0m '$<'\033[1K\r"
+PRINT_KO	=	echo -e "\033[103m[👎]\033[0m '$<'\033[1K"
 GREP_STATUS	=	grep -q "warning:" && $(PRINT_KO) || $(PRINT_OK)
 
 %.o: %.c
@@ -246,21 +246,21 @@ GREP_STATUS	=	grep -q "warning:" && $(PRINT_KO) || $(PRINT_OK)
 	$(CC) $(FLAG) -c $< -o $@ 2>&1 | tee /dev/tty | $(GREP_STATUS)
 
 build_library: $(L_OBJECTS)
-	echo -ne "\033[102m[✅]\033[0m All Objects have been compiled\n"
+	echo -ne "\033[104m[✅]\033[0m All Objects have been compiled\n"
 	echo -e "\033[106m[⚒️ ]\033[0m Building library"
 	echo -e "\033[105m[🏁]\033[0m $(FLAG)"
 	ar -rc $(L_NAME) $(L_OBJECTS)
 	echo -e "\033[102m[✅]\033[0m Library builded"
 
 build_engine: $(E_OBJECTS)
-	echo -ne "\033[102m[✅]\033[0m All Objects have been compiled\n"
+	echo -ne "\033[104m[✅]\033[0m All Objects have been compiled\n"
 	echo -ne "\033[106m[⚒️ ]\033[0m Building engine \n"
 	echo -e "\033[105m[🏁]\033[0m $(FLAG)"
 	ar -rc $(E_NAME) $(E_OBJECTS)
 	echo -e "\033[102m[✅]\033[0m Engine builded"
 
 build_program: build_library build_engine $(P_OBJECTS)
-	echo -ne "\033[102m[✅]\033[0m All Objects have been compiled\n"
+	echo -ne "\033[104m[✅]\033[0m All Objects have been compiled\n"
 	echo -e "\033[106m[⚒️ ]\033[0m Building program"
 	echo -e "\033[105m[🏁]\033[0m $(FLAG)"
 	$(CC) $(FLAG) -o $(P_NAME) $(P_OBJECTS) $(E_NAME) $(L_NAME)

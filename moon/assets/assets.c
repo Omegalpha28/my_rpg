@@ -40,4 +40,5 @@ void destroy_assets(void)
     destroy_assets_zones();
     destroy_assets_vfx();
     destroy_assets_weapons();
+    destroy_all_images();
 }

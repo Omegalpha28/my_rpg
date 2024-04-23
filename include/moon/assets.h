@@ -181,10 +181,10 @@ typedef struct music_s {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef enum category_type_e {
-    catOther,
-    catTraps,
-    catDoors,
-    catDestructible,
+    CAT_OTHER,
+    CAT_TRAPS,
+    CAT_DOORS,
+    CAT_DESTRUCTIBLES,
     CATEGORY_TYPE_COUNT
 } category_type_t;
 

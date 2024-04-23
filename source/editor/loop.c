@@ -25,7 +25,7 @@ void editor_loop(void)
     actor_draw(Player.ref);
     for (uint_t i = 0; Editor.fDisplay && i < Editor.fCount; i++)
         prop_draw(Editor.fProps[i]);
-    draw_hitbox();
+    draw_editor_focus_hitbox();
     draw_editor_ui();
     Editor.oldMouse = Editor.crtMouse;
 }

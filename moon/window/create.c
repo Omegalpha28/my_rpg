@@ -14,7 +14,6 @@
 struct window_reference_s Win = {
     NULL,
     NULL,
-    sfFalse,
     DEFAULT_WIDTH,
     DEFAULT_HEIGHT,
     DEFAULT_VIEW_WIDTH,

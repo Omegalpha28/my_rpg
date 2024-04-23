@@ -11,4 +11,4 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-struct player_s Player = {NULL, {0.0f, 0.0f}};
+struct player_s Player = {NULL, {0.0f, 0.0f}, {0.0f, 0.0f}};

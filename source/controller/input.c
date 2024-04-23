@@ -19,6 +19,19 @@ void parse_mouse_input(sfMouseButtonEvent evt)
         bullet_creation(0, 26, 5, 130);
 }
 
+void get_last_input(void)
+{
+    v2f_t vel = Player.last_velocity;
+
+    if ((UP || DOWN) && !RIGHT && !LEFT)
+        vel.x = 0.0f;
+    if ((RIGHT || LEFT) && !UP && !DOWN)
+        vel.y = 0.0f;
+    vel.x = Player.velocity.x != 0.0f ? Player.velocity.x : vel.x;
+    vel.y = Player.velocity.y != 0.0f ? Player.velocity.y : vel.y;
+    Player.last_velocity = vel;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed,
     bool_t released)

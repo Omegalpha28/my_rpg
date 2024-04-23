@@ -20,6 +20,7 @@
 extern struct player_s {
     actor_t *ref;
     v2f_t velocity;
+    v2f_t last_velocity;
 } Player;
 
 ///////////////////////////////////////////////////////////////////////////////

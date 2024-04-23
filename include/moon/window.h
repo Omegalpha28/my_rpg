@@ -112,7 +112,6 @@ extern struct window_time_s {
 extern struct window_reference_s {
     sfView *view;
     sfRenderWindow *self;
-    sfKeyCode lastinput;
     uint_t width;
     uint_t height;
     float viewWidth;

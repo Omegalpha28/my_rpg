@@ -51,7 +51,7 @@ extern struct editor_s {
     prop_t **bProps;
     uint_t bCount;
     bool_t bDisplay;
-    prop_t *copy;
+    sheet_t *copy;
     prop_t *focus;
     bool_t hover;
     bool_t dragging;

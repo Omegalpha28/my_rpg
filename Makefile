@@ -237,12 +237,13 @@ E_NAME		=	$(E_D_ROOT)moon.a
 P_NAME		=	my_rpg
 L_NAME		=	$(L_D_ROOT)libmy.a
 
-PRINT_OK	=	echo -ne "\033[104m[👍]\033[0m '$<'\033[1K\r"
-PRINT_KO	=	echo -e "\033[103m[👎]\033[0m '$<'"
+PRINT_OK	=	echo -ne "\033[0m\033[104m[👍]\033[0m '$<'\033[1K\r"
+PRINT_KO	=	echo -e "\033[0m\033[103m[👎]\033[0m '$<'"
 GREP_STATUS	=	grep -q "warning:" && $(PRINT_KO) || $(PRINT_OK)
 
 %.o: %.c
 	echo -ne "\033[104m[🙏]\033[0m '$<' \r"
+	echo -ne "\033[0;33m"
 	$(CC) $(FLAG) -c $< -o $@ 2>&1 | tee /dev/tty | $(GREP_STATUS)
 
 build_library: $(L_OBJECTS)

@@ -190,6 +190,7 @@ P_D_GAME	=	$(P_D_ROOT)game/
 P_D_ENTITY	=	$(P_D_ROOT)entity/
 P_D_EDITOR	=	$(P_D_ROOT)editor/
 P_D_WEAPONS =   $(P_D_ROOT)weapons/
+P_D_UI		=	$(P_D_ROOT)interfaces/
 
 P_C_ROOT	=	$(P_D_ROOT)main.c
 P_C_CTRL	=	$(P_D_CTRL)animation.c										\
@@ -223,12 +224,16 @@ P_C_WEAPONS =	$(P_D_WEAPONS)create.c										\
 				$(P_D_WEAPONS)update.c										\
 				$(P_D_WEAPONS)collisions.c									\
 				$(P_D_WEAPONS)weapons.c
+P_C_UI		=	$(P_D_UI)video/load.c										\
+				$(P_D_UI)video/loop.c
+
 P_SOURCES	=	$(P_C_ROOT)													\
 				$(P_C_EDITOR)												\
 				$(P_C_CTRL)													\
 				$(P_C_GAME)													\
 				$(P_C_ENTITY)												\
-				$(P_C_WEAPONS)
+				$(P_C_WEAPONS)												\
+				$(P_C_UI)
 
 P_OBJECTS	=	$(P_SOURCES:.c=.o)
 

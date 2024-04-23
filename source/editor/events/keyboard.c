@@ -27,10 +27,10 @@ static void handle_editor_key_copy_paste(sfKeyEvent evt)
     bool_t ctrl = PRESSED(sfKeyLControl) || PRESSED(sfKeyRControl);
 
     if (Editor.focus && ((evt.code == sfKeyC || evt.code == sfKeyD) && ctrl))
-        Editor.copy = Editor.focus;
+        Editor.copy = Editor.focus->self;
     if ((Editor.copy && (evt.code == sfKeyV && ctrl)) || (Editor.focus &&
         (evt.code == sfKeyD && ctrl))) {
-        add_prop(Editor.copy->self, &(Editor.fProps), &(Editor.fCount));
+        add_prop(Editor.copy, &(Editor.fProps), &(Editor.fCount));
         Editor.fProps[Editor.fCount - 1]->position.x =
             floorf(Editor.crtMouse.x);
         Editor.fProps[Editor.fCount - 1]->position.y =

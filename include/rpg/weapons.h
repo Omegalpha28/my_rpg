@@ -18,10 +18,10 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef enum weapon_type_e {
-    weaponLaser,
-    weaponBullet,
-    weaponMelee,
-    weaponExplosive,
+    WEAPON_TYPE_LASER,
+    WEAPON_TYPE_BULLET,
+    WEAPON_TYPE_MELEE,
+    WEAPON_TYPE_EXPLOSIVE,
     WEAPON_TYPE_COUNT
 } weapon_type_t;
 

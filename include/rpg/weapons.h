@@ -14,16 +14,67 @@
     #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief all current weapon types available to players/enemies
+/// \brief All current weapon types available to players/enemies
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef enum weapon_type_e {
     WEAPON_TYPE_LASER,
-    WEAPON_TYPE_BULLET,
     WEAPON_TYPE_MELEE,
-    WEAPON_TYPE_EXPLOSIVE,
+    WEAPON_TYPE_PISTOL,
+    WEAPON_TYPE_RIFLE,
+    WEAPON_TYPE_SHOTGUN,
+    WEAPON_TYPE_SMG,
+    WEAPON_TYPE_SNIPER,
     WEAPON_TYPE_COUNT
 } weapon_type_t;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief List of predefined weapons
+///
+///////////////////////////////////////////////////////////////////////////////
+enum weapons_e {
+    WEAPON_LASER_BLASTER,
+    WEAPON_LASER_REGULATOR,
+    WEAPON_LASER_PHASER,
+    WEAPON_LASER_ZAP_CANNON,
+    WEAPON_LASER_RAYGUN,
+    WEAPON_MELEE_AXELOTL,
+    WEAPON_MELEE_KATANA,
+    WEAPON_MELEE_BEHEADER,
+    WEAPON_MELEE_SCYTHE,
+    WEAPON_MELEE_MOTORBLADE,
+    WEAPON_PISTOL_POND_EAGLE,
+    WEAPON_PISTOL_TACTIC_GUN,
+    WEAPON_PISTOL_TADPOLES,
+    WEAPON_PISTOL_RATVOLVER,
+    WEAPON_PISTOL_WINGERS,
+    WEAPON_RIFLE_AK,
+    WEAPON_RIFLE_KARBINE,
+    WEAPON_RIFLE_COWPUP,
+    WEAPON_RIFLE_SUPER_SHOOTER,
+    WEAPON_RIFLE_BIG_AK,
+    WEAPON_SHOTGUN_SAWED_OFF,
+    WEAPON_SHOTGUN_SCATTERER,
+    WEAPON_SHOTGUN_MOSSTOAD,
+    WEAPON_SHOTGUN_TURBO_SHOTGUN,
+    WEAPON_SHOTGUN_DOOMGUN,
+    WEAPON_SMG_U_Z_1,
+    WEAPON_SMG_PEW_PEWER,
+    WEAPON_SMG_VERMINATOR,
+    WEAPON_SMG_B_BANGER,
+    WEAPON_SMG_GATORINGA,
+    WEAPON_SNIPER_HOGGEN,
+    WEAPON_SNIPER_KALAS,
+    WEAPON_SNIPER_CRABBER,
+    WEAPON_SNIPER_SUC_2,
+    WEAPON_SNIPER_B_A_S,
+    WEAPON_EXPLOSIVE_BUCCANEER,
+    WEAPON_EXPLOSIVE_GRENADE,
+    WEAPON_EXPLOSIVE_G_LAUNCHER,
+    WEAPON_EXPLOSIVE_HAMMER_HEAD,
+    WEAPON_EXPLOSIVE_HYDRA,
+    WEAPON_COUNT
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief TODO:

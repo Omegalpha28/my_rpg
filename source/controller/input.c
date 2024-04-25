@@ -23,9 +23,9 @@ void get_last_input(void)
 {
     v2f_t vel = Player.last_velocity;
 
-    if ((UP || DOWN) && !RIGHT && !LEFT)
+    if ((UP || DOWN) && !RIGHT && !LEFT && !DASH)
         vel.x = 0.0f;
-    if ((RIGHT || LEFT) && !UP && !DOWN)
+    if ((RIGHT || LEFT) && !UP && !DOWN && !DASH)
         vel.y = 0.0f;
     vel.x = Player.velocity.x != 0.0f ? Player.velocity.x : vel.x;
     vel.y = Player.velocity.y != 0.0f ? Player.velocity.y : vel.y;

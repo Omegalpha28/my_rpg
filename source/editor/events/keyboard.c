@@ -25,18 +25,20 @@ static void handle_editor_key_prop_movement(sfKeyEvent evt)
 static void handle_editor_key_copy_paste(sfKeyEvent evt)
 {
     bool_t ctrl = PRESSED(sfKeyLControl) || PRESSED(sfKeyRControl);
+    prop_t ***arr = Editor.layer == EDITOR_LAYER_FOREGROUND ?
+        &(Editor.fProps) : &(Editor.bProps);
+    uint_t *counter = Editor.layer == EDITOR_LAYER_FOREGROUND ?
+        &(Editor.fCount) : &(Editor.bCount);
 
     if (Editor.focus && ((evt.code == sfKeyC || evt.code == sfKeyD) && ctrl))
         Editor.copy = Editor.focus->self;
     if ((Editor.copy && (evt.code == sfKeyV && ctrl)) || (Editor.focus &&
         (evt.code == sfKeyD && ctrl))) {
-        add_prop(Editor.copy, &(Editor.fProps), &(Editor.fCount));
-        Editor.fProps[Editor.fCount - 1]->position.x =
-            floorf(Editor.crtMouse.x);
-        Editor.fProps[Editor.fCount - 1]->position.y =
-            floorf(Editor.crtMouse.y);
-        prop_set_transform(Editor.fProps[Editor.fCount - 1]);
-        Editor.focus = Editor.fProps[Editor.fCount - 1];
+        add_prop(Editor.copy, arr, counter);
+        (*arr)[(*counter) - 1]->position.x = floorf(Editor.crtMouse.x);
+        (*arr)[(*counter) - 1]->position.y = floorf(Editor.crtMouse.y);
+        prop_set_transform((*arr)[(*counter) - 1]);
+        Editor.focus = (*arr)[(*counter) - 1];
     }
 }
 

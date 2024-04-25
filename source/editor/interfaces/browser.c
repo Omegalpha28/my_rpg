@@ -27,7 +27,8 @@ static void draw_editor_browser_category(uint_t i, float offsetY)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void set_category_items_sprite(uint_t i, uint_t j, sfSprite *sprt)
+static void set_category_items_sprite(uint_t i, uint_t j, sfSprite *sprt,
+    float offsetY)
 {
     category_t *cat = Editor.zone->categories[i];
     recti_t mask = cat->sheets[j]->image->mask;
@@ -40,6 +41,8 @@ static void set_category_items_sprite(uint_t i, uint_t j, sfSprite *sprt)
     sfSprite_setTextureRect(sprt, mask);
     sfSprite_setOrigin(sprt, V2F(mask.width / 2.0f, mask.height / 2.0f));
     sfSprite_setScale(sprt, fact);
+    sfSprite_setPosition(sprt, PX_TO_MAPF((V2F(65.0f + (j % 2) * 120.0f,
+        139.0f + (i + 1) * 52.0f + (j / 2) * 110.0f + offsetY))));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -62,6 +65,23 @@ static void handle_click_on_browser_item(sheet_t *sheet)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void draw_editor_items_hover(v2f_t pos)
+{
+    bool_t pressed = sfMouse_isButtonPressed(sfMouseLeft);
+    sfTexture *txt = pressed ? Assets.ui[UI_BUTTON_MORE_PRESSED]->self :
+        Assets.ui[UI_BUTTON_MORE_IDLE]->self;
+    sfSprite *sprt = sfSprite_create();
+    v2u_t size = sfTexture_getSize(txt);
+
+    sfSprite_setTexture(sprt, txt, false);
+    sfSprite_setPosition(sprt, PX_TO_MAPF(add2f(pos, V2F1(50.0f))));
+    sfSprite_setScale(sprt, multiply2f(FACTORS(size), V2F1(2.0f)));
+    sfSprite_setOrigin(sprt, V2F(size.x / 2.0f, size.y / 2.0f));
+    sfRenderWindow_drawSprite(Win.self, sprt, NULL);
+    sfSprite_destroy(sprt);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void draw_editor_browser_category_items(uint_t i, float *offsetY,
     sfSprite *sprt)
 {
@@ -77,11 +97,10 @@ static void draw_editor_browser_category_items(uint_t i, float *offsetY,
         draw_rect(size, pos, hover ? EDITOR_HOVER : EDITOR_BUTTON);
         if (hover && sfMouse_isButtonPressed(sfMouseLeft) && Editor.released)
             handle_click_on_browser_item(cat->sheets[j]);
-        set_category_items_sprite(i, j, sprt);
-        sfSprite_setPosition(sprt, PX_TO_MAPF((V2F(
-            65.0f + (j % 2) * 120.0f, 139.0f + (i + 1) * 52.0f + (j / 2) *
-            110.0f + (*offsetY)))));
+        set_category_items_sprite(i, j, sprt, (*offsetY));
         sfRenderWindow_drawSprite(Win.self, sprt, NULL);
+        if (hover)
+            draw_editor_items_hover(pos);
     }
     (*offsetY) += 110.0f * ((cat->sheetCount + 1) / 2) + 10.0f;
 }

@@ -41,6 +41,16 @@ typedef enum editor_scene_e {
 } editor_scene_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Editor layers selection
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef enum editor_layer_e {
+    EDITOR_LAYER_BACKGROUND,
+    EDITOR_LAYER_FOREGROUND,
+    EDITOR_LAYER_COUNT
+} editor_layer_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Editor structure to keep every data needed for the level-editor
 ///
 /// \param fProps       Props array of the foreground
@@ -60,6 +70,7 @@ typedef enum editor_scene_e {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct editor_s {
+    editor_layer_t layer;
     editor_scene_t scene;
     prop_t **fProps;
     uint_t fCount;

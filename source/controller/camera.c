@@ -14,8 +14,8 @@
 static void view_move(v2f_t offset)
 {
     offset = normalize2f(offset);
-    offset.x *= Time.deltaTime / 15;
-    offset.y *= Time.deltaTime / 15;
+    offset.x *= Time.deltaTime / (DASH ? 12 : 15);
+    offset.y *= Time.deltaTime / (DASH ? 12 : 15);
     sfView_move(Win.view, offset);
     sfRenderWindow_setView(Win.self, Win.view);
 }

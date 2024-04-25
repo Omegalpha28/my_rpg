@@ -33,6 +33,7 @@ void handle_editor_mouse_button(sfMouseButtonEvent evt)
     if (evt.type == sfEvtMouseButtonPressed)
         search_for_focus(evt);
     if (evt.type == sfEvtMouseButtonReleased) {
+        Editor.released = true;
         Editor.dragging = false;
         if (Editor.focus) {
             Editor.focus->position.x = floorf(Editor.focus->position.x);
@@ -86,8 +87,11 @@ void handle_editor_mouse_scroll(sfMouseWheelScrollEvent evt)
     v2f_t newViewSize = V2F1(0.0f);
     v2i_t cr = sfMouse_getPositionRenderWindow(Win.self);
 
-    if ((cr.x >= 0 && cr.x <= 250.0f && cr.y >= 84.0f))
+    if ((cr.x >= 0 && cr.x <= EDITOR_PANEL_W && cr.y >= EDITOR_PANEL_H * 2))
         return (handle_editor_ui_scroll(evt));
+    if (cr.x <= EDITOR_PANEL_W || cr.x >= Win.width - EDITOR_PANEL_W ||
+        cr.y <= EDITOR_PANEL_H * 2 || cr.y >= Win.height - EDITOR_PANEL_H)
+        return;
     if (alt)
         handle_editor_zoom(evt);
     else

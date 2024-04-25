@@ -15,9 +15,10 @@ void handle_editor_events(sfEvent evt)
 {
     if (evt.type == sfEvtClosed)
         sfRenderWindow_close(Win.self);
-    if (evt.type == sfEvtMouseButtonPressed ||
-        evt.type == sfEvtMouseButtonReleased)
+    if (evt.type == sfEvtMouseButtonPressed)
         handle_editor_mouse_button(evt.mouseButton);
+    if (evt.type == sfEvtMouseButtonReleased)
+        handle_editor_mouse_released(evt.mouseButton);
     if (evt.type == sfEvtMouseWheelScrolled)
         handle_editor_mouse_scroll(evt.mouseWheelScroll);
     if (evt.type == sfEvtKeyPressed)

@@ -94,6 +94,57 @@ typedef struct image_s {
 } image_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief List of all UI's elements in the assets
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef enum ui_element_e {
+    UI_FONT_ATLAS,
+    UI_BUTTON_ACCEPT_IDLE,
+    UI_BUTTON_ACCEPT_PRESSED,
+    UI_BUTTON_BIN_DISABLED,
+    UI_BUTTON_BIN_IDLE,
+    UI_BUTTON_BIN_PRESSED,
+    UI_BUTTON_DENY_IDLE,
+    UI_BUTTON_DENY_PRESSED,
+    UI_BUTTON_GENERIC_DISABLED,
+    UI_BUTTON_MORE_DISABLED,
+    UI_BUTTON_MORE_IDLE,
+    UI_BUTTON_MORE_PRESSED,
+    UI_BUTTON_NEXT_DISABLED,
+    UI_BUTTON_NEXT_IDLE,
+    UI_BUTTON_NEXT_PRESSED,
+    UI_BUTTON_REFRESH_DISABLED,
+    UI_BUTTON_REFRESH_IDLE,
+    UI_BUTTON_REFRESH_PRESSED,
+    UI_ELEMENT_COUNT
+} ui_element_t;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Paths to the UI elements
+///
+///////////////////////////////////////////////////////////////////////////////
+static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
+    DIR_UI"/font-atlas.png",
+    DIR_UI"/common/buttons/accept_idle.png",
+    DIR_UI"/common/buttons/accept_pressed.png",
+    DIR_UI"/common/buttons/bin_disabled.png",
+    DIR_UI"/common/buttons/bin_idle.png",
+    DIR_UI"/common/buttons/bin_pressed.png",
+    DIR_UI"/common/buttons/deny_idle.png",
+    DIR_UI"/common/buttons/deny_pressed.png",
+    DIR_UI"/common/buttons/generic_disabled.png",
+    DIR_UI"/common/buttons/more_disabled.png",
+    DIR_UI"/common/buttons/more_idle.png",
+    DIR_UI"/common/buttons/more_pressed.png",
+    DIR_UI"/common/buttons/next_disabled.png",
+    DIR_UI"/common/buttons/next_idle.png",
+    DIR_UI"/common/buttons/next_pressed.png",
+    DIR_UI"/common/buttons/refresh_disabled.png",
+    DIR_UI"/common/buttons/refresh_idle.png",
+    DIR_UI"/common/buttons/refresh_pressed.png"
+};
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Animation structure, containing information about differents
 /// variants
 ///
@@ -266,6 +317,8 @@ extern struct assets_s {
     uint_t vfxCount;
     image_t **weapons;
     uint_t weaponCount;
+    image_t **ui;
+    uint_t uiCount;
 } Assets;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -399,5 +452,19 @@ void destroy_assets_weapons(void);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void destroy_all_images(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Load every assets of the interface
+///
+/// \return True if everything is loaded, false otherwise
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t init_assets_ui(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Destroy every interface assets
+///
+///////////////////////////////////////////////////////////////////////////////
+void destroy_assets_ui(void);
 
 #endif /* !ASSETS_H_ */

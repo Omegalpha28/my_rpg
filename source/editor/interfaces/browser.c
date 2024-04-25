@@ -13,11 +13,17 @@
 ///////////////////////////////////////////////////////////////////////////////
 static void draw_editor_browser_category(uint_t i, float offsetY)
 {
+    category_t *cat = Editor.zone->categories[i];
     v2f_t pos = V2F(15.0f, 84.0f + i * 52.0f + offsetY);
     v2f_t size = V2F(220.0f, EDITOR_PANEL_H);
-    sfColor color = cursor_inbound(pos, size) ? RGB(200, 0, 0) : sfRed;
+    bool_t hover = cursor_inbound(pos, size);
+    sfColor color = hover ? RGB(200, 0, 0) : sfRed;
 
     draw_rect(size, pos, color);
+    if (hover && sfMouse_isButtonPressed(sfMouseLeft) && Editor.released) {
+        cat->expand = !cat->expand;
+        Editor.released = false;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -37,18 +43,40 @@ static void set_category_items_sprite(uint_t i, uint_t j, sfSprite *sprt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void handle_click_on_browser_item(sheet_t *sheet)
+{
+    prop_t ***arr = Editor.layer == EDITOR_LAYER_FOREGROUND ?
+        &(Editor.fProps) : &(Editor.bProps);
+    uint_t *counter = Editor.layer == EDITOR_LAYER_FOREGROUND ?
+        &(Editor.fCount) : &(Editor.bCount);
+    prop_t *prop = NULL;
+
+    add_prop(sheet, arr, counter);
+    prop = (*arr)[*(counter) - 1];
+    prop->position = PX_TO_MAPF(V2F(Win.width / 2.0f, Win.height / 2.0f));
+    prop->position.x = floorf(prop->position.x);
+    prop->position.y = floorf(prop->position.y);
+    prop_set_transform(prop);
+    Editor.focus = prop;
+    Editor.released = false;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void draw_editor_browser_category_items(uint_t i, float *offsetY,
     sfSprite *sprt)
 {
     category_t *cat = Editor.zone->categories[i];
     v2f_t pos = V2F1(0.0f);
     v2f_t size = V2F(100.0f, 100.0f);
+    bool_t hover = false;
 
     for (uint_t j = 0; j < cat->sheetCount; j++) {
         pos.x = 15.0f + (j % 2) * 120.0f;
         pos.y = 89.0f + (i + 1) * 52.0f + (j / 2) * 110.0f + (*offsetY);
-        draw_rect(size, pos, cursor_inbound(pos, size) ? EDITOR_HOVER :
-            EDITOR_BUTTON);
+        hover = cursor_inbound(pos, size);
+        draw_rect(size, pos, hover ? EDITOR_HOVER : EDITOR_BUTTON);
+        if (hover && sfMouse_isButtonPressed(sfMouseLeft) && Editor.released)
+            handle_click_on_browser_item(cat->sheets[j]);
         set_category_items_sprite(i, j, sprt);
         sfSprite_setPosition(sprt, PX_TO_MAPF((V2F(
             65.0f + (j % 2) * 120.0f, 139.0f + (i + 1) * 52.0f + (j / 2) *

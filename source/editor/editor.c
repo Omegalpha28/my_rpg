@@ -17,5 +17,5 @@ struct editor_s Editor = {
     NULL, 0, true,
     NULL, NULL, false, false,
     -1, NULL,
-    {0.0f, 0.0f}, {0.0f, 0.0f}, 0.0f
+    {0.0f, 0.0f}, {0.0f, 0.0f}, 0.0f, false
 };

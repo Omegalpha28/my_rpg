@@ -45,7 +45,9 @@ static void handle_editor_key_copy_paste(sfKeyEvent evt)
 ///////////////////////////////////////////////////////////////////////////////
 static void handle_editor_key_delete(sfKeyEvent evt)
 {
-    if (Editor.focus && (evt.code == sfKeyDelete)) {
+    if (Editor.focus && (evt.code == sfKeyDelete || evt.code == sfKeyX)) {
+        if (evt.code == sfKeyX)
+            Editor.copy = Editor.focus->self;
         remove_prop(Editor.focus, &(Editor.fProps), &(Editor.fCount));
         remove_prop(Editor.focus, &(Editor.bProps), &(Editor.bCount));
         Editor.focus = NULL;
@@ -85,8 +87,8 @@ static void handle_editor_key_animation(sfKeyEvent evt)
 void handle_editor_key_pressed(sfKeyEvent evt)
 {
     handle_editor_key_prop_movement(evt);
-    handle_editor_key_copy_paste(evt);
     handle_editor_key_delete(evt);
+    handle_editor_key_copy_paste(evt);
     handle_editor_key_animation(evt);
     handle_editor_key_tests(evt);
 }

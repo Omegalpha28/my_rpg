@@ -75,6 +75,15 @@ static void handle_editor_key_canvas(sfKeyEvent evt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void handle_editor_key_layers(sfKeyEvent evt)
+{
+    if (evt.code == sfKeyF)
+        Editor.layer = EDITOR_LAYER_FOREGROUND;
+    if (evt.code == sfKeyB)
+        Editor.layer = EDITOR_LAYER_BACKGROUND;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void handle_editor_key_pressed(sfKeyEvent evt)
 {
     handle_editor_key_prop_movement(evt);
@@ -82,4 +91,5 @@ void handle_editor_key_pressed(sfKeyEvent evt)
     handle_editor_key_copy_paste(evt);
     handle_editor_key_animation(evt);
     handle_editor_key_canvas(evt);
+    handle_editor_key_layers(evt);
 }

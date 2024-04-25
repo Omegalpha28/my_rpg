@@ -154,6 +154,14 @@ recti_t get_prop_bound(prop_t *prop);
 void handle_editor_mouse_button(sfMouseButtonEvent evt);
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Handle mouse release on the level editor
+///
+/// \param evt          The mouse event to parse
+///
+///////////////////////////////////////////////////////////////////////////////
+void handle_editor_mouse_released(sfMouseButtonEvent evt);
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Parse and handle differents event when scrolling on the canvas.
 /// Zoom or move on the canvas (ALT/CTRL)
 ///

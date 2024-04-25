@@ -32,6 +32,11 @@ void handle_editor_mouse_button(sfMouseButtonEvent evt)
     }
     if (evt.type == sfEvtMouseButtonPressed)
         search_for_focus(evt);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void handle_editor_mouse_released(sfMouseButtonEvent evt)
+{
     if (evt.type == sfEvtMouseButtonReleased) {
         Editor.released = true;
         Editor.dragging = false;

@@ -55,32 +55,23 @@ static void handle_editor_key_delete(sfKeyEvent evt)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void handle_editor_key_tests(sfKeyEvent evt)
-{
-    int l = rand() % 2 ? true : false;
-    int c = rand() % Editor.zone->categoryCount;
-    int s = rand() % Editor.zone->categories[c]->sheetCount;
-
-    if (evt.code == sfKeyNumpad0)
-        level_save("test_level.lvl");
-    if (evt.code == sfKeyNumpad2)
-        level_load("test_level.lvl");
-    if (evt.code == sfKeyAdd) {
-        add_prop(Editor.zone->categories[c]->sheets[s],
-            l ? &(Editor.fProps) : &(Editor.bProps),
-            l ? &(Editor.fCount) : &(Editor.bCount));
-    }
-    if (evt.code == sfKeyNum0)
-        Editor.bDisplay = !Editor.bDisplay;
-    if (evt.code == sfKeyNum1)
-        Editor.fDisplay = !Editor.fDisplay;
-}
-
-///////////////////////////////////////////////////////////////////////////////
 static void handle_editor_key_animation(sfKeyEvent evt)
 {
     if (Editor.focus && evt.code == sfKeySpace)
         prop_animate(Editor.focus);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void handle_editor_key_canvas(sfKeyEvent evt)
+{
+    if (evt.code == sfKeyO) {
+        Win.viewWidth = DEFAULT_VIEW_WIDTH;
+        Win.viewHeight = (float)((float)(DEFAULT_VIEW_WIDTH /
+            (float)Win.width)) * Win.height;
+        sfView_setSize(Win.view, V2F(Win.viewWidth, Win.viewHeight));
+        sfView_setCenter(Win.view, V2F1(0.0f));
+        sfRenderWindow_setView(Win.self, Win.view);
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -90,5 +81,5 @@ void handle_editor_key_pressed(sfKeyEvent evt)
     handle_editor_key_delete(evt);
     handle_editor_key_copy_paste(evt);
     handle_editor_key_animation(evt);
-    handle_editor_key_tests(evt);
+    handle_editor_key_canvas(evt);
 }

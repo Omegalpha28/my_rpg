@@ -55,6 +55,9 @@
     #define WEAPON_GRID_X 4
     #define WEAPON_GRID_Y 3
 
+    /** Lowered characters                                                   */
+    #define FONT_LOWERED_CHAR "gjpqyJQ"
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief List of predefined creature index
 ///

@@ -210,6 +210,8 @@ P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)events/focus.c									\
 				$(P_D_EDITOR)events/keyboard.c								\
 				$(P_D_EDITOR)interfaces/browser.c							\
+				$(P_D_EDITOR)interfaces/bottom.c							\
+				$(P_D_EDITOR)interfaces/context.c							\
 				$(P_D_EDITOR)interfaces/canvas.c							\
 				$(P_D_EDITOR)interfaces/interfaces.c						\
 				$(P_D_EDITOR)interfaces/utils.c								\

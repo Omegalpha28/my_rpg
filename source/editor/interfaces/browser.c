@@ -11,19 +11,37 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+static void draw_category_expand_status(category_t *cat, v2f_t pos)
+{
+    sfSprite *expand = sfSprite_create();
+
+    sfSprite_setTexture(expand, Assets.ui[UI_BUTTON_NEXT_IDLE]->self, false);
+    sfSprite_setPosition(expand, PX_TO_MAPF(add2f(pos, V2F(198.0f, 10.0f))));
+    sfSprite_setScale(expand, FACTORS(V2F(11.0f, 20.0f)));
+    sfSprite_setOrigin(expand, V2F(5.5f, 10.0f));
+    if (cat->expand == true)
+        sfSprite_setRotation(expand, 90.0f);
+    sfRenderWindow_drawSprite(Win.self, expand, NULL);
+    sfSprite_destroy(expand);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void draw_editor_browser_category(uint_t i, float offsetY)
 {
     category_t *cat = Editor.zone->categories[i];
     v2f_t pos = V2F(15.0f, 84.0f + i * 52.0f + offsetY);
     v2f_t size = V2F(220.0f, EDITOR_PANEL_H);
     bool_t hover = cursor_inbound(pos, size);
-    sfColor color = hover ? RGB(200, 0, 0) : sfRed;
+    sfColor color = hover ? RGB(100, 100, 100) : RGB(87, 87, 87);
 
     draw_rect(size, pos, color);
     if (hover && sfMouse_isButtonPressed(sfMouseLeft) && Editor.released) {
         cat->expand = !cat->expand;
         Editor.released = false;
     }
+    pos = add2f(pos, V2F(6.0f, 11.0f));
+    draw_text(cat->name, PX_TO_MAPF(pos), FACTORS(V2F1(20.0f)).x, sfWhite);
+    draw_category_expand_status(cat, pos);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

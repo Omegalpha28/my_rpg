@@ -84,7 +84,7 @@ static void handle_editor_move(sfMouseWheelScrollEvent evt)
 ///////////////////////////////////////////////////////////////////////////////
 static void handle_editor_ui_scroll(sfMouseWheelScrollEvent evt)
 {
-    Editor.scrollingOffset += 10.0f * evt.delta;
+    Editor.scrollingOffset += 20.0f * evt.delta;
     if (Editor.scrollingOffset > 0)
         Editor.scrollingOffset = 0;
 }

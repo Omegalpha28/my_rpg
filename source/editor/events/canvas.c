@@ -22,14 +22,18 @@ void handle_editor_mouse_button(sfMouseButtonEvent evt)
 {
     recti_t bound = get_prop_bound(Editor.focus);
     v2f_t mouse = Editor.crtMouse;
+    v2i_t cr = sfMouse_getPositionRenderWindow(Win.self);
 
     if ((evt.type == sfEvtMouseButtonPressed && Editor.focus != NULL) &&
         ((mouse.x >= bound.left && mouse.x <= bound.left + bound.width) &&
         (mouse.y >= bound.top && mouse.y <= bound.top + bound.height))) {
         handle_editor_mouse_invertion(evt);
         Editor.dragging = true;
+        Editor.released = false;
         return;
     }
+    if ((cr.x >= 0 && cr.x <= EDITOR_PANEL_W && cr.y >= EDITOR_PANEL_H * 2))
+        return;
     if (evt.type == sfEvtMouseButtonPressed)
         search_for_focus(evt);
 }

@@ -319,6 +319,7 @@ tests_fclean: tests_clean
 #! Misc
 
 re: fclean all
+	cat axolotl.art
 
 re_library:
 	$(RM) $(L_OBJECTS) $(L_NAME)

@@ -261,14 +261,20 @@ void draw_editor_browser(void);
 bool_t cursor_inbound(v2f_t position, v2f_t size);
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief TODO:
+/// \brief Draw a text at a specific point
 ///
-/// \param str          TODO:
-/// \param pos          TODO:
-/// \param scale        TODO:
-/// \param color        TODO:
+/// \param str          The string to draw
+/// \param pos          The position of the string
+/// \param scale        The scale of the string
+/// \param color        The color to add
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void draw_text(cstring_t str, v2f_t pos, float scale, sfColor color);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draw the editor bottom bar with every information
+///
+///////////////////////////////////////////////////////////////////////////////
+void draw_editor_bottom_bar(void);
 
 #endif /* !EDITOR_H_ */

@@ -17,7 +17,7 @@ void draw_editor_ui(void)
         V2F(Win.width - EDITOR_PANEL_W, EDITOR_PANEL_H * 2), EDITOR_WIDGET);
     draw_editor_browser();
     draw_editor_bottom_bar();
-    draw_rect(V2F(Win.width, EDITOR_PANEL_H), V2F1(0.0f), EDITOR_WIDGET);
+    draw_editor_context_menu();
     draw_rect(V2F(Win.width, EDITOR_PANEL_H), V2F(0.0f, EDITOR_PANEL_H),
         EDITOR_WIDGET);
 }

@@ -59,7 +59,11 @@ static void handle_editor_zoom(sfMouseWheelScrollEvent evt)
     v2f_t worldMouse = Editor.crtMouse;
     v2f_t newWorldMouse = V2F1(0.0f);
     v2f_t offset = V2F1(0.0f);
+    float currentZoom = Win.viewWidth / DEFAULT_VIEW_WIDTH;
 
+    if ((currentZoom >= 1000.0f && evt.delta < 0) ||
+        (currentZoom <= 0.1f && evt.delta > 0))
+        return;
     sfView_zoom(Win.view, zoomFactor);
     newWorldMouse = sfRenderWindow_mapPixelToCoords(Win.self,
         sfMouse_getPositionRenderWindow(Win.self), Win.view);

@@ -45,11 +45,10 @@ bool_t search_in_props(bool_t isDisplayed, uint_t propCount, prop_t **props)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void search_for_focus(sfMouseButtonEvent evt)
+void search_for_focus(void)
 {
     if (search_in_props(Editor.fDisplay, Editor.fCount, Editor.fProps) ||
         search_in_props(Editor.bDisplay, Editor.bCount, Editor.bProps))
         return;
-    (evt) = (evt);
     Editor.focus = NULL;
 }

@@ -24,34 +24,18 @@ static void handle_editor_key_prop_movement(sfKeyEvent evt)
 ///////////////////////////////////////////////////////////////////////////////
 static void handle_editor_key_copy_paste(sfKeyEvent evt)
 {
-    bool_t ctrl = PRESSED(sfKeyLControl) || PRESSED(sfKeyRControl);
-    prop_t ***arr = Editor.layer == EDITOR_LAYER_FOREGROUND ?
-        &(Editor.fProps) : &(Editor.bProps);
-    uint_t *counter = Editor.layer == EDITOR_LAYER_FOREGROUND ?
-        &(Editor.fCount) : &(Editor.bCount);
-
-    if (Editor.focus && ((evt.code == sfKeyC || evt.code == sfKeyD) && ctrl))
-        Editor.copy = Editor.focus->self;
-    if ((Editor.copy && (evt.code == sfKeyV && ctrl)) || (Editor.focus &&
-        (evt.code == sfKeyD && ctrl))) {
-        add_prop(Editor.copy, arr, counter);
-        (*arr)[(*counter) - 1]->position.x = floorf(Editor.crtMouse.x);
-        (*arr)[(*counter) - 1]->position.y = floorf(Editor.crtMouse.y);
-        prop_set_transform((*arr)[(*counter) - 1]);
-        Editor.focus = (*arr)[(*counter) - 1];
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////
-static void handle_editor_key_delete(sfKeyEvent evt)
-{
-    if (Editor.focus && (evt.code == sfKeyDelete || evt.code == sfKeyX)) {
-        if (evt.code == sfKeyX)
-            Editor.copy = Editor.focus->self;
-        remove_prop(Editor.focus, &(Editor.fProps), &(Editor.fCount));
-        remove_prop(Editor.focus, &(Editor.bProps), &(Editor.bCount));
-        Editor.focus = NULL;
-    }
+    if (evt.code == sfKeyDelete)
+        editor_delete();
+    if (!(PRESSED(sfKeyLControl) || PRESSED(sfKeyRControl)))
+        return;
+    if (evt.code == sfKeyC)
+        editor_copy();
+    if (evt.code == sfKeyV)
+        editor_paste();
+    if (evt.code == sfKeyD)
+        editor_duplicate();
+    if (evt.code == sfKeyX)
+        editor_cut();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -87,7 +71,6 @@ static void handle_editor_key_layers(sfKeyEvent evt)
 void handle_editor_key_pressed(sfKeyEvent evt)
 {
     handle_editor_key_prop_movement(evt);
-    handle_editor_key_delete(evt);
     handle_editor_key_copy_paste(evt);
     handle_editor_key_animation(evt);
     handle_editor_key_canvas(evt);

@@ -24,6 +24,12 @@ void handle_editor_mouse_button(sfMouseButtonEvent evt)
     v2f_t mouse = Editor.crtMouse;
     v2i_t cr = sfMouse_getPositionRenderWindow(Win.self);
 
+    if (!Editor.hover)
+        editor_hide_context();
+    if (cr.x <= EDITOR_PANEL_W || cr.y <= EDITOR_PANEL_H * 2 || cr.x >=
+        Win.width - EDITOR_PANEL_W || cr.y >= Win.height - 32.0f ||
+        Editor.hover)
+        return;
     if ((evt.type == sfEvtMouseButtonPressed && Editor.focus != NULL) &&
         ((mouse.x >= bound.left && mouse.x <= bound.left + bound.width) &&
         (mouse.y >= bound.top && mouse.y <= bound.top + bound.height))) {
@@ -32,23 +38,18 @@ void handle_editor_mouse_button(sfMouseButtonEvent evt)
         Editor.released = false;
         return;
     }
-    if ((cr.x >= 0 && cr.x <= EDITOR_PANEL_W && cr.y >= EDITOR_PANEL_H * 2))
-        return;
-    if (evt.type == sfEvtMouseButtonPressed)
-        search_for_focus(evt);
+    search_for_focus();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void handle_editor_mouse_released(sfMouseButtonEvent evt)
+void handle_editor_mouse_released(void)
 {
-    if (evt.type == sfEvtMouseButtonReleased) {
-        Editor.released = true;
-        Editor.dragging = false;
-        if (Editor.focus) {
-            Editor.focus->position.x = floorf(Editor.focus->position.x);
-            Editor.focus->position.y = floorf(Editor.focus->position.y);
-            prop_set_transform(Editor.focus);
-        }
+    Editor.released = true;
+    Editor.dragging = false;
+    if (Editor.focus && !Editor.hover) {
+        Editor.focus->position.x = floorf(Editor.focus->position.x);
+        Editor.focus->position.y = floorf(Editor.focus->position.y);
+        prop_set_transform(Editor.focus);
     }
 }
 

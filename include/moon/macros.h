@@ -38,6 +38,17 @@
     #define PRESSED(key) sfKeyboard_isKeyPressed(key)
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Mouse function shortener. Give the pressed status of a certain mouse
+/// button
+///
+/// \param btn          The button to check the status
+///
+/// \return The pressed status
+///
+///////////////////////////////////////////////////////////////////////////////
+    #define MPRESSED(btn) sfMouse_isButtonPressed(btn)
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Convert any vector to a sfVector2i
 ///
 /// \param v            The vector to convert

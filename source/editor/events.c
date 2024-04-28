@@ -18,7 +18,7 @@ void handle_editor_events(sfEvent evt)
     if (evt.type == sfEvtMouseButtonPressed)
         handle_editor_mouse_button(evt.mouseButton);
     if (evt.type == sfEvtMouseButtonReleased)
-        handle_editor_mouse_released(evt.mouseButton);
+        handle_editor_mouse_released();
     if (evt.type == sfEvtMouseWheelScrolled)
         handle_editor_mouse_scroll(evt.mouseWheelScroll);
     if (evt.type == sfEvtKeyPressed)

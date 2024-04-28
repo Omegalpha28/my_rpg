@@ -11,6 +11,51 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+void draw_cursor(void)
+{
+    sfSprite *cursor = sfSprite_create();
+    v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
+    sfBool pressed = sfMouse_isButtonPressed(sfMouseLeft);
+    sfIntRect rect = {0, 0, 20, 20};
+
+    if (HOVER)
+        rect.left += 20;
+    if (pressed)
+        rect.top = 20;
+    if (DEAD)
+        rect.left += 40;
+    sfSprite_setPosition(cursor, mouse);
+    sfSprite_setOrigin(cursor, V2F(7.0f, 7.0f));
+    sfSprite_setTexture(cursor, Assets.ui[UI_CURSOR]->self, false);
+    sfSprite_setTextureRect(cursor, rect);
+    sfSprite_rotate(cursor, -35);
+    sfRenderWindow_drawSprite(Win.self, cursor, false);
+    sfSprite_destroy(cursor);
+    sfRenderWindow_setMouseCursorVisible(Win.self, sfFalse);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void draw_autors(void)
+{
+    sfSprite *black = sfSprite_create();
+    sfSprite *autors = sfSprite_create();
+
+    sfSprite_setTexture(black, Assets.ui[UI_BLACK_FADE]->self, false);
+    sfSprite_setTexture(autors, Assets.ui[UI_AUTORS_CORNER]->self, false);
+    sfSprite_setPosition(black, PX_TO_MAPF(((v2f_t){0.0f, 0.0f})));
+    sfSprite_setPosition(autors, PX_TO_MAPF(((v2f_t){Win.width, Win.height})));
+    sfSprite_setScale(black, (v2f_t){Win.viewWidth / 1701.0f,
+        Win.viewHeight / 1384.0f});
+    sfSprite_setScale(autors, (v2f_t){Win.viewWidth / 831.0f / 4,
+        Win.viewHeight / 381.0f / 4});
+    sfSprite_setOrigin(autors, V2F(831.0f, 381.0f));
+    sfRenderWindow_drawSprite(Win.self, black, NULL);
+    sfRenderWindow_drawSprite(Win.self, autors, NULL);
+    sfSprite_destroy(black);
+    sfSprite_destroy(autors);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void draw_menu_background(void)
 {
     sfSprite *back = sfSprite_create();
@@ -65,8 +110,9 @@ static sfColor get_color(float y)
     v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
     sfSprite *select;
 
-    RETURN(mouse.x > pos.x + 250 || mouse.x < pos.x + 50, sfWhite);
+    RETURN(mouse.x > pos.x + 200 || mouse.x < pos.x + 35, sfWhite);
     RETURN(!(mouse.y >= (y - 10) && mouse.y <= (y + 15)), sfWhite);
+    Keys.hover = true;
     select = sfSprite_create();
     sfSprite_setTexture(select, Assets.ui[UI_DUAL_MARK]->self, false);
     sfSprite_setPosition(select, V2F(32 + pos.x, y - 8));
@@ -87,6 +133,8 @@ void menu_loop(void)
             sfRenderWindow_close(Win.self);
     draw_menu_background();
     draw_logo();
+    draw_autors();
+    Keys.hover = false;
     draw_text("Play", V2F(pos.x + 110, pos.y + 125),
         0.45F, get_color(pos.y + 125));
     draw_text("Settings", V2F(pos.x + 97, pos.y + 150),
@@ -95,4 +143,5 @@ void menu_loop(void)
         0.45F, get_color(pos.y + 175));
     draw_text("Quit", V2F(pos.x + 110, pos.y + 200),
         0.45F, get_color(pos.y + 200));
+    draw_cursor();
 }

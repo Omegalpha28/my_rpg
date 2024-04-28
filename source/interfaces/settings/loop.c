@@ -12,7 +12,14 @@
 
 static void draw_shadow(void)
 {
-    return;
+    v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
+    sfRectangleShape *shadow = sfRectangleShape_create();
+
+    sfRectangleShape_setPosition(shadow, pos);
+    sfRectangleShape_setSize(shadow, V2F(Win.width, Win.height));
+    sfRectangleShape_setFillColor(shadow, RGBA(0, 0, 0, 50));
+    sfRenderWindow_drawRectangleShape(Win.self, shadow, false);
+    sfRectangleShape_destroy(shadow);
 }
 
 static void button_functions(float y)

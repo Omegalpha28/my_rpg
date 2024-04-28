@@ -77,6 +77,7 @@
     #define DANCE Keys.dance.pressed
     #define MOVE (UP || DOWN || RIGHT || LEFT)
     #define SPEED 8.5f
+    #define HOVER Keys.hover
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -158,6 +159,7 @@ extern struct keybind_s {
     key_track_t pause;
     key_track_t dance;
     sfMouseButton shoot;
+    bool_t hover;
 } Keys;
 
 ///////////////////////////////////////////////////////////////////////////////

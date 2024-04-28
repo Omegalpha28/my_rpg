@@ -123,6 +123,9 @@ typedef enum ui_element_e {
     UI_LOGO,
     UI_DUAL_MARK,
     UI_DUAL_MARK_SMALL,
+    UI_AUTORS_CORNER,
+    UI_BLACK_FADE,
+    UI_CURSOR,
     UI_ELEMENT_COUNT
 } ui_element_t;
 
@@ -152,7 +155,10 @@ static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
     DIR_UI"/common/cover.jpg",
     DIR_UI"/common/logo.png",
     DIR_UI"/common/selection_mark_dual.png",
-    DIR_UI"/common/selection_mark_dual_small.png"
+    DIR_UI"/common/selection_mark_dual_small.png",
+    DIR_UI"/common/creators.png",
+    DIR_UI"/common/corner.png",
+    DIR_UI"/common/cursor.png"
 };
 
 ///////////////////////////////////////////////////////////////////////////////

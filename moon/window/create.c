@@ -33,7 +33,8 @@ struct keybind_s Keys = {
     (key_track_t){DEFAULT_KEY_INTERACT, false},
     (key_track_t){DEFAULT_KEY_PAUSE, false},
     (key_track_t){DEFAULT_KEY_DANCE, false},
-    DEFAULT_KEY_SHOOT
+    DEFAULT_KEY_SHOOT,
+    false
 };
 
 ///////////////////////////////////////////////////////////////////////////////

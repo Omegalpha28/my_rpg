@@ -31,7 +31,7 @@ static void draw_editor_browser_category(uint_t i, float offsetY)
     category_t *cat = Editor.zone->categories[i];
     v2f_t pos = V2F(15.0f, 84.0f + i * 52.0f + offsetY);
     v2f_t size = V2F(220.0f, EDITOR_PANEL_H);
-    bool_t hover = cursor_inbound(pos, size);
+    bool_t hover = !Editor.hover && cursor_inbound(pos, size);
     sfColor color = hover ? RGB(100, 100, 100) : RGB(87, 87, 87);
 
     draw_rect(size, pos, color);
@@ -111,7 +111,7 @@ static void draw_editor_browser_category_items(uint_t i, float *offsetY,
     for (uint_t j = 0; j < cat->sheetCount; j++) {
         pos.x = 15.0f + (j % 2) * 120.0f;
         pos.y = 89.0f + (i + 1) * 52.0f + (j / 2) * 110.0f + (*offsetY);
-        hover = cursor_inbound(pos, size);
+        hover = !Editor.hover && cursor_inbound(pos, size);
         draw_rect(size, pos, hover ? EDITOR_HOVER : EDITOR_BUTTON);
         if (hover && sfMouse_isButtonPressed(sfMouseLeft) && Editor.released)
             handle_click_on_browser_item(cat->sheets[j]);

@@ -11,38 +11,50 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-context_t CONTEXTS[CONTEXT_COUNT]= {
-    {"Return", false, {
-        {"Zone selection", NULL, false, NULL},
-        {"Main menu", NULL, false, NULL}
-    }, 2},
-    {"File", false, {
-        {"Open level", NULL, false, "CTRL O"},
-        {"Save level", NULL, false, "CTRL S"},
-        {"Change zone", NULL, false, NULL}
-    }, 3},
-    {"Edit", false, {
-        {"Copy", &editor_copy, false, "CTRL C"},
-        {"Cut", &editor_cut, false, "CTRL X"},
-        {"Paste", &editor_paste, false, "CTRL V"},
-        {"Duplicate", &editor_duplicate, false, "CTRL D"},
-        {"Delete", &editor_delete, false, "SUPPR"},
-        {"Clear", NULL, false, NULL},
-        {"Flip", NULL, false, NULL}
-    }, 7},
-    {"Select", false, {
-        {"All", NULL, false, "CTRL A"},
-        {"Deselect", NULL, false, NULL}
-    }, 2},
-    {"View", false, {
-        {"Zoom in", NULL, false, NULL},
-        {"Zoom out", NULL, false, NULL},
-        {"To origin", NULL, false, "O "}
-    }, 3},
-    {"Help", false, {
-        {"Shortcuts", NULL, false, "CTRL H"},
-        {"About", NULL, false, NULL}
-    }, 2}
+context_t CONTEXTS[CONTEXT_COUNT] = {
+    {
+        "Return", false, {
+            {"Zone selection", NULL, false, NULL},
+            {"Main menu", NULL, false, NULL}
+        }, 2
+    },
+    {
+        "File", false, {
+            {"Open level", NULL, false, "CTRL O"},
+            {"Save level", NULL, false, "CTRL S"},
+            {"Change zone", NULL, false, NULL}
+        }, 3
+    },
+    {
+        "Edit", false, {
+            {"Copy", &editor_copy, false, "CTRL C"},
+            {"Cut", &editor_cut, false, "CTRL X"},
+            {"Paste", &editor_paste, false, "CTRL V"},
+            {"Duplicate", &editor_duplicate, false, "CTRL D"},
+            {"Delete", &editor_delete, false, "SUPPR"},
+            {"Clear", NULL, false, NULL},
+            {"Flip", NULL, false, NULL}
+        }, 7
+    },
+    {
+        "Select", false, {
+            {"All", NULL, false, "CTRL A"},
+            {"Deselect", NULL, false, NULL}
+        }, 2
+    },
+    {
+        "View", false, {
+            {"Zoom in", NULL, false, NULL},
+            {"Zoom out", NULL, false, NULL},
+            {"To origin", NULL, false, "O "}
+        }, 3
+    },
+    {
+        "Help", false, {
+            {"Shortcuts", NULL, false, "CTRL H"},
+            {"About", NULL, false, NULL}
+        }, 2
+    }
 };
 
 ///////////////////////////////////////////////////////////////////////////////

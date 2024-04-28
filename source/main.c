@@ -27,6 +27,8 @@ static void check_program_flags(int argc, warray_t argv)
 ///////////////////////////////////////////////////////////////////////////////
 static void switch_scene_loop(void)
 {
+    if (Engine.scene == SCENE_MAIN_MENU)
+        menu_loop();
     if (Engine.scene == SCENE_GAME)
         game_loop();
     if (Engine.scene == SCENE_LEVEL_EDITOR)
@@ -39,7 +41,7 @@ static void switch_scene_loop(void)
 int main(int argc, warray_t argv)
 {
     srand((unsigned)time(NULL));
-    if (!init_time() || !init_assets() || !create_window(0, 0, WIN_WINDOWED))
+    if (!init_time() || !init_assets() || !create_window(0, 0, WIN_FULLSCREEN))
         return (EXIT_FAILURE);
     check_program_flags(argc, argv);
     Player.ref = actor_create(Assets.creatures[CREATURE_PLAYER], V2F1(0.0f));

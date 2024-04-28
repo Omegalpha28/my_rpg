@@ -119,6 +119,9 @@ typedef enum ui_element_e {
     UI_BUTTON_REFRESH_DISABLED,
     UI_BUTTON_REFRESH_IDLE,
     UI_BUTTON_REFRESH_PRESSED,
+    UI_BACKGROUND,
+    UI_LOGO,
+    UI_DUAL_MARK,
     UI_ELEMENT_COUNT
 } ui_element_t;
 
@@ -144,7 +147,10 @@ static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
     DIR_UI"/common/buttons/next_pressed.png",
     DIR_UI"/common/buttons/refresh_disabled.png",
     DIR_UI"/common/buttons/refresh_idle.png",
-    DIR_UI"/common/buttons/refresh_pressed.png"
+    DIR_UI"/common/buttons/refresh_pressed.png",
+    DIR_UI"/common/cover.jpg",
+    DIR_UI"/common/logo.png",
+    DIR_UI"/common/selection_mark_dual.png"
 };
 
 ///////////////////////////////////////////////////////////////////////////////

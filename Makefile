@@ -230,7 +230,8 @@ P_C_WEAPONS =	$(P_D_WEAPONS)create.c										\
 				$(P_D_WEAPONS)weapons.c
 P_C_UI		=	$(P_D_UI)video/load.c										\
 				$(P_D_UI)video/loop.c										\
-				$(P_D_UI)menu/loop.c
+				$(P_D_UI)menu/loop.c										\
+				$(P_D_UI)settings/loop.c
 
 P_SOURCES	=	$(P_C_ROOT)													\
 				$(P_C_EDITOR)												\

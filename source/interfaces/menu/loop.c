@@ -11,7 +11,7 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_background(void)
+void draw_menu_background(void)
 {
     sfSprite *back = sfSprite_create();
 
@@ -85,7 +85,7 @@ void menu_loop(void)
     while (sfRenderWindow_pollEvent(Win.self, &evt))
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);
-    draw_background();
+    draw_menu_background();
     draw_logo();
     draw_text("Play", V2F(pos.x + 110, pos.y + 125),
         0.45F, get_color(pos.y + 125));

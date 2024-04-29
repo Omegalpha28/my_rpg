@@ -85,6 +85,7 @@ bullet_t *bullet_creation(uint_t sender, uint_t size_rect, uint_t spritesheet,
     v2f_t size = (v2f_t){size_rect, size_max};
 
     init_bullet(new, sender, size, spritesheet);
+    shake(2.5f, 0.15f);
     Bullet_List.count++;
     Bullet_List.array = REALLOC(Bullet_List.array, sizeof(bullet_t *),
         Bullet_List.count);

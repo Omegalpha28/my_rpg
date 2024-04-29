@@ -212,11 +212,15 @@ P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)events/keyboard.c								\
 				$(P_D_EDITOR)utils/clipboard.c								\
 				$(P_D_EDITOR)utils/window.c									\
+				$(P_D_EDITOR)utils/inputs.c									\
 				$(P_D_EDITOR)utils/canvas.c									\
 				$(P_D_EDITOR)interfaces/browser.c							\
 				$(P_D_EDITOR)interfaces/bottom.c							\
+				$(P_D_EDITOR)interfaces/init.c								\
 				$(P_D_EDITOR)interfaces/context.c							\
 				$(P_D_EDITOR)interfaces/canvas.c							\
+				$(P_D_EDITOR)interfaces/settings.c							\
+				$(P_D_EDITOR)interfaces/input.c								\
 				$(P_D_EDITOR)interfaces/interfaces.c						\
 				$(P_D_EDITOR)interfaces/utils.c								\
 				$(P_D_EDITOR)build/save.c									\
@@ -328,7 +332,6 @@ tests_fclean: tests_clean
 #! Misc
 
 re: fclean all
-	cat axolotl.art
 
 re_library:
 	$(RM) $(L_OBJECTS) $(L_NAME)

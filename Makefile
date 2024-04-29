@@ -212,6 +212,7 @@ P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)events/keyboard.c								\
 				$(P_D_EDITOR)utils/clipboard.c								\
 				$(P_D_EDITOR)utils/window.c									\
+				$(P_D_EDITOR)utils/canvas.c									\
 				$(P_D_EDITOR)interfaces/browser.c							\
 				$(P_D_EDITOR)interfaces/bottom.c							\
 				$(P_D_EDITOR)interfaces/context.c							\

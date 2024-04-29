@@ -29,6 +29,7 @@ void draw_cursor(void)
     sfSprite_setTexture(cursor, Assets.ui[UI_CURSOR]->self, false);
     sfSprite_setTextureRect(cursor, rect);
     sfSprite_rotate(cursor, -35);
+    sfSprite_setScale(cursor, (v2f_t){0.75f, 0.75f});
     sfRenderWindow_drawSprite(Win.self, cursor, false);
     sfSprite_destroy(cursor);
     sfRenderWindow_setMouseCursorVisible(Win.self, sfFalse);

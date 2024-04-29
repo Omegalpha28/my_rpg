@@ -25,8 +25,10 @@ static void draw_shadow(void)
 static void button_functions(float y)
 {
     sfBool pressed = sfMouse_isButtonPressed(sfMouseLeft);
-    v2f_t pos = PX_TO_MAPF(V2F(Win.width / 2 - 32, Win.height - 100));
+    v2f_t pos;// = PX_TO_MAPF(V2F(Win.width / 2 - 32, Win.height - 100));
 
+    pos.x = -(32.0f * (Win.viewWidth / Win.width));
+    pos.y = Win.viewHeight / 2.0f - 30.0f;
     if (pressed && y == pos.y)
         Engine.scene = SCENE_MAIN_MENU;
 }
@@ -51,8 +53,10 @@ static sfColor get_color(v2f_t pos)
 void settings_loop(void)
 {
     sfEvent evt;
-    v2f_t pos = PX_TO_MAPF(V2F(Win.width / 2 - 32, Win.height - 100));
+    v2f_t pos;//= PX_TO_MAPF(V2F(Win.width / 2 - 32.0f, 0.0f));
 
+    pos.x = -(112.0f * (Win.viewWidth / Win.width));
+    pos.y = Win.viewHeight / 2.0f - 30.0f;
     while (sfRenderWindow_pollEvent(Win.self, &evt))
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);

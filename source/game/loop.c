@@ -16,13 +16,13 @@ static void draw_visor(void)
     sfSprite *visor = sfSprite_create();
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
     sfBool pressed = sfMouse_isButtonPressed(sfMouseLeft);
-    sfIntRect rect = {16, 18, 14, 14};
+    sfIntRect rect = {39, 16, 16, 16};
     float angle = 5.0f * (float)Time.currentTime / 100.0f;
 
     if (pressed)
-        rect = (sfIntRect){39,16, 16, 16};
+        rect = (sfIntRect){16, 18, 14, 14};
     sfSprite_setTexture(visor, Assets.ui[UI_VISOR]->self, false);
-    sfSprite_setOrigin(visor, pressed ? V2F(8.0f, 8.0f) : V2F(7.0f, 7.0f));
+    sfSprite_setOrigin(visor, !pressed ? V2F(8.0f, 8.0f) : V2F(7.0f, 7.0f));
     sfSprite_setPosition(visor, mouse);
     sfSprite_setTextureRect(visor, rect);
     sfSprite_setScale(visor, V2F(0.75f, 0.75f));
@@ -59,6 +59,7 @@ void game_loop(void)
     player_movement();
     cursor_focus();
     update_entity();
+    update_shaking();
     draw();
     if (Engine.debugMode)
         draw_debug_line(Player.ref, cr);

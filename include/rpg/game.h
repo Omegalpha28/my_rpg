@@ -21,6 +21,12 @@ extern struct player_s {
     actor_t *ref;
     v2f_t velocity;
     v2f_t last_velocity;
+    v2f_t shakeOffset;
+    ulong_t shakeStarting;
+    float shakeIntensity;
+    ulong_t shakeDuration;
+    bool_t shaking;
+    v2f_t viewCenter;
 } Player;
 
 ///////////////////////////////////////////////////////////////////////////////

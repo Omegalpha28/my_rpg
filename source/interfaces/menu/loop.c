@@ -45,10 +45,8 @@ void draw_autors(void)
     sfSprite_setTexture(autors, Assets.ui[UI_AUTORS_CORNER]->self, false);
     sfSprite_setPosition(black, PX_TO_MAPF(((v2f_t){0.0f, 0.0f})));
     sfSprite_setPosition(autors, PX_TO_MAPF(((v2f_t){Win.width, Win.height})));
-    sfSprite_setScale(black, (v2f_t){Win.viewWidth / 1701.0f,
-        Win.viewHeight / 1384.0f});
-    sfSprite_setScale(autors, (v2f_t){Win.viewWidth / 831.0f / 4,
-        Win.viewHeight / 381.0f / 4});
+    sfSprite_setScale(black, V2F1(Win.viewWidth / 1701.0f));
+    sfSprite_setScale(autors, V2F1(Win.viewWidth / 831.0f / 4));
     sfSprite_setOrigin(autors, V2F(831.0f, 381.0f));
     sfRenderWindow_drawSprite(Win.self, black, NULL);
     sfRenderWindow_drawSprite(Win.self, autors, NULL);

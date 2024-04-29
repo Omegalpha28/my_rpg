@@ -48,14 +48,8 @@ static void handle_editor_key_animation(sfKeyEvent evt)
 ///////////////////////////////////////////////////////////////////////////////
 static void handle_editor_key_canvas(sfKeyEvent evt)
 {
-    if (evt.code == sfKeyO) {
-        Win.viewWidth = DEFAULT_VIEW_WIDTH;
-        Win.viewHeight = (float)((float)(DEFAULT_VIEW_WIDTH /
-            (float)Win.width)) * Win.height;
-        sfView_setSize(Win.view, V2F(Win.viewWidth, Win.viewHeight));
-        sfView_setCenter(Win.view, V2F1(0.0f));
-        sfRenderWindow_setView(Win.self, Win.view);
-    }
+    if (evt.code == sfKeyO)
+        editor_to_origin();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

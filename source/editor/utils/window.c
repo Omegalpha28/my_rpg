@@ -28,3 +28,14 @@ void editor_switch_background(void)
 {
     Editor.bDisplay = !Editor.bDisplay;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+void editor_return_menu(void)
+{
+    if (Editor.zone != NULL)
+        unload_zone(Editor.zone->name);
+    editor_reset();
+    Engine.scene = SCENE_MAIN_MENU;
+    sfMouse_setPositionRenderWindow(V2I(Win.width / 2, Win.height / 2),
+        Win.self);
+}

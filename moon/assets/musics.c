@@ -25,6 +25,7 @@ static bool_t add_music(string_t path)
         FREE(music);
         return (my_error(ERR_LOAD_MUSIC));
     }
+    sfMusic_setLoop(music->self, true);
     Assets.musicCount++;
     Assets.musics = REALLOC(Assets.musics, sizeof(music_t *),
         Assets.musicCount);

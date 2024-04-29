@@ -15,7 +15,7 @@ context_t CONTEXTS[CONTEXT_COUNT] = {
     {
         "Return", false, {
             {"Zone selection", NULL, false, NULL},
-            {"Main menu", NULL, false, NULL}
+            {"Main menu", &editor_return_menu, false, NULL}
         }, 2
     },
     {
@@ -32,7 +32,7 @@ context_t CONTEXTS[CONTEXT_COUNT] = {
             {"Paste", &editor_paste, false, "CTRL V"},
             {"Duplicate", &editor_duplicate, false, "CTRL D"},
             {"Delete", &editor_delete, false, "SUPPR"},
-            {"Clear", NULL, false, NULL},
+            {"Clear", &editor_clear, false, NULL},
             {"Flip", NULL, false, NULL}
         }, 7
     },
@@ -44,9 +44,9 @@ context_t CONTEXTS[CONTEXT_COUNT] = {
     },
     {
         "View", false, {
-            {"Zoom in", NULL, false, NULL},
-            {"Zoom out", NULL, false, NULL},
-            {"To origin", NULL, false, "O "}
+            {"Zoom in", &editor_zoom_in, false, NULL},
+            {"Zoom out", &editor_zoom_out, false, NULL},
+            {"To origin", &editor_to_origin, false, "O "}
         }, 3
     },
     {
@@ -117,7 +117,7 @@ static void draw_context_buttons(cstring_t str, v2f_t pos, uint_t ci)
     if (CONTEXTS[ci].expand == false)
         return;
     for (uint_t i = 0; i < CONTEXTS[ci].itemCount; i++)
-        draw_context_item(pos, ci, i, fact);
+        draw_context_item(pos, ci, i, FACTORS(V2F1(20.0f)).x);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

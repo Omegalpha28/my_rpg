@@ -24,6 +24,7 @@ void handle_editor_mouse_button(sfMouseButtonEvent evt)
     v2f_t mouse = Editor.crtMouse;
     v2i_t cr = sfMouse_getPositionRenderWindow(Win.self);
 
+    Editor.inputFocused = NULL;
     if (!Editor.hover)
         editor_hide_context();
     if (cr.x <= EDITOR_PANEL_W || cr.y <= EDITOR_PANEL_H * 2 || cr.x >=
@@ -49,6 +50,8 @@ void handle_editor_mouse_released(void)
     if (Editor.focus && !Editor.hover) {
         Editor.focus->position.x = floorf(Editor.focus->position.x);
         Editor.focus->position.y = floorf(Editor.focus->position.y);
+        input_updatef(Editor.inputs[EDITOR_INPUT_X], Editor.focus->position.x);
+        input_updatef(Editor.inputs[EDITOR_INPUT_Y], Editor.focus->position.y);
         prop_set_transform(Editor.focus);
     }
 }
@@ -125,4 +128,6 @@ void handle_mouse_move(void)
     Editor.focus->position.y += (Editor.crtMouse.y - Editor.oldMouse.y);
     Editor.oldMouse = Editor.crtMouse;
     prop_set_transform(Editor.focus);
+    input_updatef(Editor.inputs[EDITOR_INPUT_X], Editor.focus->position.x);
+    input_updatef(Editor.inputs[EDITOR_INPUT_Y], Editor.focus->position.y);
 }

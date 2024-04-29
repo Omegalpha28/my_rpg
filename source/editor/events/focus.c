@@ -51,4 +51,6 @@ void search_for_focus(void)
         search_in_props(Editor.bDisplay, Editor.bCount, Editor.bProps))
         return;
     Editor.focus = NULL;
+    input_clear(Editor.inputs[EDITOR_INPUT_X]);
+    input_clear(Editor.inputs[EDITOR_INPUT_Y]);
 }

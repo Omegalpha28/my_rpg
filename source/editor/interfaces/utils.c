@@ -51,6 +51,18 @@ void draw_text(cstring_t str, v2f_t pos, float scale, sfColor color)
     sfSprite_destroy(font);
 }
 
+void draw_text_right(cstring_t str, v2f_t pos, float scale, sfColor color)
+{
+    pos.x -= (strlen(str) * 16.0f * scale * Win.width / Win.viewWidth);
+    draw_text(str, PX_TO_MAPF(pos), scale, color);
+}
+
+void draw_text_center(cstring_t str, v2f_t pos, float scale, sfColor color)
+{
+    pos.x -= (strlen(str) / 2.0f) * 16.0f * scale * Win.width / Win.viewWidth;
+    draw_text(str, PX_TO_MAPF(pos), scale, color);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 void draw_rect(v2f_t size, v2f_t pos, sfColor color)
 {

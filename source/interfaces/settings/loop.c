@@ -10,6 +10,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+static void draw_colums(void)
+{
+    return;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void draw_shadow(void)
 {
     v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
@@ -22,6 +28,7 @@ static void draw_shadow(void)
     sfRectangleShape_destroy(shadow);
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static void button_functions(float y)
 {
     sfBool pressed = sfMouse_isButtonPressed(sfMouseLeft);
@@ -31,6 +38,7 @@ static void button_functions(float y)
         Engine.scene = SCENE_MAIN_MENU;
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static sfColor get_color(v2f_t pos)
 {
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
@@ -48,6 +56,7 @@ static sfColor get_color(v2f_t pos)
     return (sfColor_fromRGB(243, 199, 77));
 }
 
+///////////////////////////////////////////////////////////////////////////////
 void settings_loop(void)
 {
     sfEvent evt;
@@ -58,6 +67,7 @@ void settings_loop(void)
             sfRenderWindow_close(Win.self);
     draw_menu_background();
     draw_shadow();
+    draw_colums();
     Keys.hover = false;
     draw_text("Back", pos, 0.45f, get_color(pos));
     draw_cursor();

@@ -261,6 +261,7 @@ PRINT_KO	=	echo -e "\033[0m\033[103m[👎]\033[0m '$<'"
 GREP_STATUS	=	grep -q "warning:" && $(PRINT_KO) || $(PRINT_OK)
 
 all: $(P_NAME)
+	cat axolotl.art
 
 %.o: %.c
 	echo -ne "\033[104m[🙏]\033[0m '$<' \r"

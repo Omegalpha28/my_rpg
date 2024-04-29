@@ -18,6 +18,7 @@ static void check_program_flags(int argc, warray_t argv)
     if (WCMP(argv, "--editor") || WCMP(argv, "-e")) {
         load_zone("biome1");
         Editor.zone = Assets.zones[0];
+        sfRenderWindow_setMouseCursorVisible(Win.self, true);
         Engine.scene = SCENE_LEVEL_EDITOR;
     }
     if (WCMP(argv, "--debug") || WCMP(argv, "-d"))
@@ -47,6 +48,7 @@ int main(int argc, warray_t argv)
         return (EXIT_FAILURE);
     check_program_flags(argc, argv);
     Player.ref = actor_create(Assets.creatures[CREATURE_PLAYER], V2F1(0.0f));
+    sfRenderWindow_setMouseCursorVisible(Win.self, sfFalse);
     while (sfRenderWindow_isOpen(Win.self)) {
         update_time();
         sfRenderWindow_clear(Win.self, EDITOR_BACKGROUND);

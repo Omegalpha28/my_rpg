@@ -32,7 +32,6 @@ void draw_cursor(void)
     sfSprite_setScale(cursor, (v2f_t){0.75f, 0.75f});
     sfRenderWindow_drawSprite(Win.self, cursor, false);
     sfSprite_destroy(cursor);
-    sfRenderWindow_setMouseCursorVisible(Win.self, sfFalse);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -95,6 +94,7 @@ static void button_functions(float y)
     if (pressed && y == pos.y + 150)
         Engine.scene = SCENE_SETTINGS;
     if (pressed && y == pos.y + 175) {
+        sfRenderWindow_setMouseCursorVisible(Win.self, true);
         Engine.scene = SCENE_LEVEL_EDITOR;
         load_zone("biome1");
         Editor.zone = Assets.zones[0];

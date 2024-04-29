@@ -12,7 +12,14 @@
 
 static void draw_colums(void)
 {
-    return;
+    float scal = 7.5f * 16.0f * Win.width / Win.viewWidth * 0.45f;
+
+    draw_text_right("Audio", V2F(Win.width / 2.0f - scal, 20.0f),
+        0.45f, sfWhite);
+    draw_text_center("Video", V2F(Win.width / 2.0f, 20.0f),
+        0.45f, sfWhite);
+    draw_text("Keybinds", PX_TO_MAPF(V2F(Win.width / 2.0f + scal, 20.0f)),
+        0.45f, sfWhite);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -34,7 +41,7 @@ static void button_functions(float y)
     sfBool pressed = sfMouse_isButtonPressed(sfMouseLeft);
     v2f_t pos = {-32.0f * 0.45f, Win.viewHeight / 2.0f - 30.0f};
 
-    if (pressed && y == pos.y)
+    if (pressed)
         Engine.scene = SCENE_MAIN_MENU;
 }
 
@@ -49,7 +56,7 @@ static sfColor get_color(v2f_t pos)
     Keys.hover = true;
     select = sfSprite_create();
     sfSprite_setTexture(select, Assets.ui[UI_DUAL_MARK_SMALL]->self, false);
-    sfSprite_setPosition(select, V2F(pos.x - 55, pos.y - 8));
+    sfSprite_setPosition(select, V2F(pos.x - 69.5f, pos.y - 8));
     sfRenderWindow_drawSprite(Win.self, select, NULL);
     sfSprite_destroy(select);
     button_functions(pos.y);
@@ -61,6 +68,7 @@ void settings_loop(void)
 {
     sfEvent evt;
     v2f_t pos = {-32.0f * 0.45f, Win.viewHeight / 2.0f - 30.0f};
+    v2f_t posi = { Win.width / 2.0f, Win.height - 150.0f};
 
     while (sfRenderWindow_pollEvent(Win.self, &evt))
         if (evt.type == sfEvtClosed)
@@ -69,6 +77,6 @@ void settings_loop(void)
     draw_shadow();
     draw_colums();
     Keys.hover = false;
-    draw_text("Back", pos, 0.45f, get_color(pos));
+    draw_text_center("Back", posi, 0.45f, get_color(PX_TO_MAPF(posi)));
     draw_cursor();
 }

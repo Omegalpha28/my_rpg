@@ -52,4 +52,7 @@ void draw_menu_background(void);
 ///////////////////////////////////////////////////////////////////////////////
 void draw_cursor(void);
 
+void draw_text_right(cstring_t str, v2f_t pos, float scale, sfColor color);
+void draw_text_center(cstring_t str, v2f_t pos, float scale, sfColor color);
+
 #endif /* !INTERFACES_H_ */

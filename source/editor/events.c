@@ -21,8 +21,11 @@ void handle_editor_events(sfEvent evt)
         handle_editor_mouse_released();
     if (evt.type == sfEvtMouseWheelScrolled)
         handle_editor_mouse_scroll(evt.mouseWheelScroll);
-    if (evt.type == sfEvtKeyPressed)
+    if (evt.type == sfEvtKeyPressed && !Editor.inputFocused)
         handle_editor_key_pressed(evt.key);
+    if (evt.type == sfEvtKeyPressed && Editor.inputFocused &&
+        Editor.inputFocused->type != INPUT_CHECKBOX)
+        handle_editor_key_input(evt.key);
     if (evt.type == sfEvtMouseMoved)
         handle_mouse_move();
 }

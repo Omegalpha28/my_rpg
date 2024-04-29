@@ -65,4 +65,6 @@ void editor_delete(void)
     Editor.focus = NULL;
     if (Editor.hover)
         editor_hide_context();
+    input_clear(Editor.inputs[EDITOR_INPUT_X]);
+    input_clear(Editor.inputs[EDITOR_INPUT_Y]);
 }

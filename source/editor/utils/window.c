@@ -38,4 +38,5 @@ void editor_return_menu(void)
     Engine.scene = SCENE_MAIN_MENU;
     sfMouse_setPositionRenderWindow(V2I(Win.width / 2, Win.height / 2),
         Win.self);
+    sfRenderWindow_setMouseCursorVisible(Win.self, false);
 }

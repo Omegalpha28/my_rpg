@@ -21,7 +21,7 @@ static uint_t get_character_atlas_index(char ch)
         return ((ch - 'A'));
     if (ch == '.')
         return (62);
-    if (ch == '!')
+    if (ch == '-')
         return (63);
     return (0);
 }
@@ -38,7 +38,7 @@ void draw_text(cstring_t str, v2f_t pos, float scale, sfColor color)
     sfSprite_setColor(font, color);
     sfSprite_setScale(font, V2F1(scale));
     for (ulong_t i = 0; str[i]; i++) {
-        if (!my_isalnum(str[i]) && str[i] != '.' && str[i] != '!')
+        if (!my_isalnum(str[i]) && str[i] != '.' && str[i] != '-')
             continue;
         index = get_character_atlas_index(str[i]);
         sfSprite_setPosition(font, V2F(pos.x + (size - 2 * scale) * i, pos.y +
@@ -85,4 +85,53 @@ bool_t cursor_inbound(v2f_t position, v2f_t size)
         (cursor.y >= position.y && cursor.y <= position.y + size.y))
         return (true);
     return (false);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+input_t *create_input(input_type_t type, v2f_t position, v2f_t size,
+    cstring_t text)
+{
+    input_t *in = (input_t *)malloc(sizeof(input_t));
+
+    in->checked = false;
+    in->content = NULL;
+    in->focused = false;
+    in->length = 0;
+    in->maxLength = 16;
+    in->placeholder = my_strdup(text);
+    in->position = position;
+    in->onInput = NULL;
+    in->range[0] = 0;
+    in->range[1] = 0;
+    in->size = size;
+    in->type = type;
+    in->disabled = false;
+    Editor.inputCount++;
+    Editor.inputs = REALLOC(Editor.inputs, sizeof(input_t *),
+        Editor.inputCount);
+    Editor.inputs[Editor.inputCount - 1] = in;
+    return (in);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void destroy_input(input_t *input)
+{
+    input_t **arr = NULL;
+    uint_t j = 0;
+
+    if (input == NULL)
+        return;
+    FREE(input->content);
+    FREE(input->placeholder);
+    arr = malloc(sizeof(input_t *) * (Editor.inputCount - 1));
+    for (uint_t i = 0; i < Editor.inputCount; i++) {
+        if (Editor.inputs[i] == input)
+            continue;
+        arr[j] = Editor.inputs[i];
+        j++;
+    }
+    Editor.inputCount--;
+    FREE(Editor.inputs);
+    Editor.inputs = arr;
+    FREE(input);
 }

@@ -54,6 +54,7 @@ static sfColor get_color(v2f_t pos)
     sfSprite_destroy(select);
     if (CLICK_REL)
         Engine.scene = SCENE_MAIN_MENU;
+    Setting.hover = true;
     return (sfColor_fromRGB(243, 199, 77));
 }
 
@@ -69,10 +70,10 @@ void settings_loop(void)
             sfRenderWindow_close(Win.self);
     CLICK_REL = (evt.type == sfEvtMouseButtonReleased &&
         evt.mouseButton.button == Setting.shoot);
+    Setting.hover = false;
     draw_menu_background();
     draw_shadow();
     draw_colums();
-    Setting.hover = false;
     draw_text_center("Back", pos, 0.45f, get_color(PX_TO_MAPF(pos)));
     draw_cursor();
 }

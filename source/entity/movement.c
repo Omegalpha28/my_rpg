@@ -14,10 +14,12 @@
 ///////////////////////////////////////////////////////////////////////////////
 static void patrol_position_calc(entity_t *evil)
 {
-    if (equal2f(evil->wanted_position, evil->actor->position)){
+    if (equal2f(evil->wanted_position, evil->actor->position) ||
+        Time.currentTime - evil->movement >= 4000){
         if (!evil->attack_started){
             evil->attack_started = !evil->attack_started;
             evil->last_action = Time.currentTime;
+            evil->movement = Time.currentTime;
         }
         if (Time.currentTime - evil->last_action >=
             (ulong_t)(rand() % 500 + 500) && evil->attack_started){
@@ -136,6 +138,7 @@ static void fleeing(entity_t *evil)
 ///////////////////////////////////////////////////////////////////////////////
 void enemy_movement(entity_t *evil)
 {
+    collision_check(evil);
     if (evil->attack_types == Dash && evil->can_attack)
         return;
     if (evil->invincible)
@@ -148,5 +151,4 @@ void enemy_movement(entity_t *evil)
         stunned(evil);
     if (evil->status == Fear)
         fleeing(evil);
-    collision_check(evil);
 }

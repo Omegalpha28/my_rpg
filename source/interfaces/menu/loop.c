@@ -87,7 +87,8 @@ static void draw_logo(void)
 ///////////////////////////////////////////////////////////////////////////////
 static void button_functions(float y, sfEvent evt)
 {
-    bool_t pressed = (evt.type == sfEvtMouseButtonReleased);
+    bool_t pressed = (evt.type == sfEvtMouseButtonReleased &&
+        evt.mouseButton.button == Keys.shoot);
     v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
 
     if (pressed && y == pos.y + 125)

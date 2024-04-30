@@ -14,13 +14,14 @@
 static void draw_colums(void)
 {
     float scal = 7.5f * 16.0f * Win.width / Win.viewWidth * 0.45f;
+    float up = 3.0f * 16.0f * Win.width / Win.viewWidth * 0.45f;
 
-    draw_text_right("Audio", V2F(Win.width / 2.0f - scal, 20.0f),
-        0.45f, colums(V2F(Win.width / 2.0f - scal, 20.0f), "Audio", 0.45f, 3));
-    draw_text_center("Video", V2F(Win.width / 2.0f, 20.0f),
-        0.45f, colums(V2F(Win.width / 2.0f, 20.0f), "Video", 0.45f, 2));
-    draw_text("Keybinds", PX_TO_MAPF(V2F(Win.width / 2.0f + scal, 20.0f)),
-        0.45f, colums(V2F(Win.width / 2.0f + scal, 20.0f),
+    draw_text_right("Audio", V2F(Win.width / 2.0f - scal, up),
+        0.45f, colums(V2F(Win.width / 2.0f - scal, up), "Audio", 0.45f, 3));
+    draw_text_center("Video", V2F(Win.width / 2.0f, up),
+        0.45f, colums(V2F(Win.width / 2.0f, up), "Video", 0.45f, 2));
+    draw_text("Keybinds", PX_TO_MAPF(V2F(Win.width / 2.0f + scal, up)),
+        0.45f, colums(V2F(Win.width / 2.0f + scal, up),
         "Keybinds", 0.45f, 1));
 }
 
@@ -32,7 +33,7 @@ static void draw_shadow(void)
 
     sfRectangleShape_setPosition(shadow, pos);
     sfRectangleShape_setSize(shadow, V2F(Win.width, Win.height));
-    sfRectangleShape_setFillColor(shadow, RGBA(0, 0, 0, 50));
+    sfRectangleShape_setFillColor(shadow, RGBA(35, 21, 39, 200));
     sfRenderWindow_drawRectangleShape(Win.self, shadow, false);
     sfRectangleShape_destroy(shadow);
 }
@@ -40,7 +41,8 @@ static void draw_shadow(void)
 ///////////////////////////////////////////////////////////////////////////////
 static void button_functions(sfEvent evt)
 {
-    sfBool pressed = (evt.type == sfEvtMouseButtonReleased);
+    sfBool pressed = (evt.type == sfEvtMouseButtonReleased &&
+        evt.mouseButton.button == Keys.shoot);
 
     if (pressed)
         Engine.scene = SCENE_MAIN_MENU;
@@ -68,7 +70,8 @@ static sfColor get_color(v2f_t pos, sfEvent evt)
 void settings_loop(void)
 {
     sfEvent evt;
-    v2f_t pos = { Win.width / 2.0f, Win.height - 150.0f};
+    float scal = 4.0f * 16.0f * Win.width / Win.viewWidth * 0.45f;
+    v2f_t pos = {Win.width / 2.0f, Win.height - scal};
 
     while (sfRenderWindow_pollEvent(Win.self, &evt))
         if (evt.type == sfEvtClosed)

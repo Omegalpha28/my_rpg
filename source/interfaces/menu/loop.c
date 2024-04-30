@@ -84,9 +84,9 @@ static void draw_logo(void)
     sfSprite_destroy(logo);
 }
 
-static void button_functions(float y)
+static void button_functions(float y, sfEvent evt)
 {
-    sfBool pressed = sfMouse_isButtonPressed(sfMouseLeft);
+    bool_t pressed = (evt.type == sfEvtMouseButtonReleased);
     v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
 
     if (pressed && y == pos.y + 125)
@@ -103,7 +103,7 @@ static void button_functions(float y)
         sfRenderWindow_close(Win.self);
 }
 
-static sfColor get_color(float y)
+static sfColor get_color(float y, sfEvent evt)
 {
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
     v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
@@ -117,7 +117,7 @@ static sfColor get_color(float y)
     sfSprite_setPosition(select, V2F(32 + pos.x, y - 8));
     sfRenderWindow_drawSprite(Win.self, select, NULL);
     sfSprite_destroy(select);
-    button_functions(y);
+    button_functions(y, evt);
     return (sfColor_fromRGB(243, 199, 77));
 }
 
@@ -135,12 +135,12 @@ void menu_loop(void)
     draw_autors();
     Keys.hover = false;
     draw_text("Play", V2F(pos.x + 110, pos.y + 125),
-        0.45F, get_color(pos.y + 125));
+        0.45F, get_color(pos.y + 125, evt));
     draw_text("Settings", V2F(pos.x + 97, pos.y + 150),
-        0.45F, get_color(pos.y + 150));
+        0.45F, get_color(pos.y + 150, evt));
     draw_text("Level editor", V2F(pos.x + 87, pos.y + 175),
-        0.45F, get_color(pos.y + 175));
+        0.45F, get_color(pos.y + 175, evt));
     draw_text("Quit", V2F(pos.x + 110, pos.y + 200),
-        0.45F, get_color(pos.y + 200));
+        0.45F, get_color(pos.y + 200, evt));
     draw_cursor();
 }

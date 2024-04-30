@@ -11,6 +11,18 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+void input_focus_update(void)
+{
+    if (!Editor.focus)
+        return;
+    input_updatef(Editor.inputs[EDITOR_INPUT_X], Editor.focus->position.x);
+    input_updatef(Editor.inputs[EDITOR_INPUT_Y], Editor.focus->position.y);
+    Editor.inputs[EDITOR_INPUT_COLLISION]->checked = Editor.focus->collision;
+    Editor.inputs[EDITOR_INPUT_FLIP]->checked = Editor.focus->scale.x == -1.0f;
+    Editor.inputs[EDITOR_INPUT_FRAME]->checked = (Editor.focus->data[0] == 1);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void handle_editor_mouse_invertion(sfMouseButtonEvent evt)
 {
     if (evt.button == sfMouseRight && Editor.focus)
@@ -50,8 +62,7 @@ void handle_editor_mouse_released(void)
     if (Editor.focus && !Editor.hover) {
         Editor.focus->position.x = floorf(Editor.focus->position.x);
         Editor.focus->position.y = floorf(Editor.focus->position.y);
-        input_updatef(Editor.inputs[EDITOR_INPUT_X], Editor.focus->position.x);
-        input_updatef(Editor.inputs[EDITOR_INPUT_Y], Editor.focus->position.y);
+        input_focus_update();
         prop_set_transform(Editor.focus);
     }
 }
@@ -128,6 +139,5 @@ void handle_mouse_move(void)
     Editor.focus->position.y += (Editor.crtMouse.y - Editor.oldMouse.y);
     Editor.oldMouse = Editor.crtMouse;
     prop_set_transform(Editor.focus);
-    input_updatef(Editor.inputs[EDITOR_INPUT_X], Editor.focus->position.x);
-    input_updatef(Editor.inputs[EDITOR_INPUT_Y], Editor.focus->position.y);
+    input_focus_update();
 }

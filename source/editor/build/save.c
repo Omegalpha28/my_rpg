@@ -29,11 +29,6 @@ static void find_ids(prop_t *prop, uint_t *catId, uint_t *shtId)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-//
-// CATEGORY_ID SHEET_ID POS_X POS_Y INVERT COLLIDE DATA
-//     (2)       (2)     (3)   (3)    (1)    (1)    (4)   = 16 byte/tile
-//
-///////////////////////////////////////////////////////////////////////////////
 static void save_prop(prop_t *prop, buffer_t *buff)
 {
     uint_t catId = 0;

@@ -212,6 +212,8 @@ P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)events/keyboard.c								\
 				$(P_D_EDITOR)utils/clipboard.c								\
 				$(P_D_EDITOR)utils/window.c									\
+				$(P_D_EDITOR)utils/layer.c									\
+				$(P_D_EDITOR)utils/move.c									\
 				$(P_D_EDITOR)utils/inputs.c									\
 				$(P_D_EDITOR)utils/canvas.c									\
 				$(P_D_EDITOR)interfaces/browser.c							\
@@ -220,6 +222,7 @@ P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)interfaces/context.c							\
 				$(P_D_EDITOR)interfaces/canvas.c							\
 				$(P_D_EDITOR)interfaces/settings.c							\
+				$(P_D_EDITOR)interfaces/tools.c								\
 				$(P_D_EDITOR)interfaces/input.c								\
 				$(P_D_EDITOR)interfaces/interfaces.c						\
 				$(P_D_EDITOR)interfaces/utils.c								\
@@ -236,12 +239,16 @@ P_C_ENTITY =	$(P_D_ENTITY)entity.c										\
 P_C_WEAPONS =	$(P_D_WEAPONS)create.c										\
 				$(P_D_WEAPONS)update.c										\
 				$(P_D_WEAPONS)collisions.c									\
+				$(P_D_WEAPONS)init_weapon.c								 	\
 				$(P_D_WEAPONS)weapons.c
 P_C_UI		=	$(P_D_UI)video/load.c										\
 				$(P_D_UI)video/loop.c										\
 				$(P_D_UI)menu/loop.c										\
 				$(P_D_UI)settings/loop.c									\
-				$(P_D_UI)settings/colums_settings.c       \
+				$(P_D_UI)settings/colums_settings.c							\
+				$(P_D_UI)settings/audio_settings.c							\
+				$(P_D_UI)settings/video_settings.c							\
+				$(P_D_UI)settings/key_settings.c							\
 				$(P_D_UI)text.c
 
 P_SOURCES	=	$(P_C_ROOT)													\

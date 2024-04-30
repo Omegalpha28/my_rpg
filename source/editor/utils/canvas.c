@@ -53,6 +53,12 @@ void editor_reset(void)
     Editor.bDisplay = true;
     Editor.copy = NULL;
     Editor.hover = false;
+    for (uint_t i = 0; i < Editor.inputCount; i++)
+        destroy_input(Editor.inputs[i]);
+    FREE(Editor.inputs);
+    Editor.inputs = NULL;
+    Editor.inputCount = 0;
+    Editor.inputFocused = NULL;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

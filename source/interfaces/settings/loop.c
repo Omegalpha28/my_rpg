@@ -14,13 +14,14 @@
 static void draw_colums(void)
 {
     float scal = 7.5f * 16.0f * Win.width / Win.viewWidth * 0.45f;
+    float up = 3.0f * 16.0f * Win.width / Win.viewWidth * 0.45f;
 
-    draw_text_right("Audio", V2F(Win.width / 2.0f - scal, 20.0f),
-        0.45f, colums(V2F(Win.width / 2.0f - scal, 20.0f), "Audio", 0.45f, 3));
-    draw_text_center("Video", V2F(Win.width / 2.0f, 20.0f),
-        0.45f, colums(V2F(Win.width / 2.0f, 20.0f), "Video", 0.45f, 2));
-    draw_text("Keybinds", PX_TO_MAPF(V2F(Win.width / 2.0f + scal, 20.0f)),
-        0.45f, colums(V2F(Win.width / 2.0f + scal, 20.0f),
+    draw_text_right("Audio", V2F(Win.width / 2.0f - scal, up),
+        0.45f, colums(V2F(Win.width / 2.0f - scal, up), "Audio", 0.45f, 3));
+    draw_text_center("Video", V2F(Win.width / 2.0f, up),
+        0.45f, colums(V2F(Win.width / 2.0f, up), "Video", 0.45f, 2));
+    draw_text("Keybinds", PX_TO_MAPF(V2F(Win.width / 2.0f + scal, up)),
+        0.45f, colums(V2F(Win.width / 2.0f + scal, up),
         "Keybinds", 0.45f, 1));
 }
 
@@ -32,35 +33,27 @@ static void draw_shadow(void)
 
     sfRectangleShape_setPosition(shadow, pos);
     sfRectangleShape_setSize(shadow, V2F(Win.width, Win.height));
-    sfRectangleShape_setFillColor(shadow, RGBA(0, 0, 0, 50));
+    sfRectangleShape_setFillColor(shadow, RGBA(35, 21, 39, 200));
     sfRenderWindow_drawRectangleShape(Win.self, shadow, false);
     sfRectangleShape_destroy(shadow);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void button_functions(sfEvent evt)
-{
-    sfBool pressed = (evt.type == sfEvtMouseButtonReleased);
-
-    if (pressed)
-        Engine.scene = SCENE_MAIN_MENU;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-static sfColor get_color(v2f_t pos, sfEvent evt)
+static sfColor get_color(v2f_t pos)
 {
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
     sfSprite *select;
 
     RETURN(mouse.x > 50 || mouse.x < -25, sfWhite);
     RETURN(!(mouse.y >= (pos.y - 10) && mouse.y <= (pos.y + 15)), sfWhite);
-    Keys.hover = true;
+    Setting.hover = true;
     select = sfSprite_create();
     sfSprite_setTexture(select, Assets.ui[UI_DUAL_MARK_SMALL]->self, false);
     sfSprite_setPosition(select, V2F(pos.x - 69.5f, pos.y - 8));
     sfRenderWindow_drawSprite(Win.self, select, NULL);
     sfSprite_destroy(select);
-    button_functions(evt);
+    if (CLICK_REL)
+        Engine.scene = SCENE_MAIN_MENU;
     return (sfColor_fromRGB(243, 199, 77));
 }
 
@@ -68,15 +61,18 @@ static sfColor get_color(v2f_t pos, sfEvent evt)
 void settings_loop(void)
 {
     sfEvent evt;
-    v2f_t pos = { Win.width / 2.0f, Win.height - 150.0f};
+    float scal = 4.0f * 16.0f * Win.width / Win.viewWidth * 0.45f;
+    v2f_t pos = {Win.width / 2.0f, Win.height - scal};
 
     while (sfRenderWindow_pollEvent(Win.self, &evt))
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);
+    CLICK_REL = (evt.type == sfEvtMouseButtonReleased &&
+        evt.mouseButton.button == Setting.shoot);
     draw_menu_background();
     draw_shadow();
     draw_colums();
-    Keys.hover = false;
-    draw_text_center("Back", pos, 0.45f, get_color(PX_TO_MAPF(pos), evt));
+    Setting.hover = false;
+    draw_text_center("Back", pos, 0.45f, get_color(PX_TO_MAPF(pos)));
     draw_cursor();
 }

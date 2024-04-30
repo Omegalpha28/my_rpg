@@ -16,8 +16,27 @@ void editor_copy(void)
     if (!Editor.focus)
         return;
     Editor.copy = Editor.focus->self;
+    Editor.copyCollide = Editor.focus->collision;
+    Editor.copyData[0] = Editor.focus->data[0];
+    Editor.copyData[1] = Editor.focus->data[1];
+    Editor.copyData[2] = Editor.focus->data[2];
+    Editor.copyData[3] = Editor.focus->data[3];
+    Editor.copyScale = Editor.focus->scale.x;
     if (Editor.hover)
         editor_hide_context();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void editor_paste_data(prop_t *new)
+{
+    new->collision = Editor.copyCollide;
+    new->data[0] = Editor.copyData[0];
+    new->data[1] = Editor.copyData[1];
+    new->data[2] = Editor.copyData[2];
+    new->data[3] = Editor.copyData[3];
+    if (new->data[0] == 1)
+        new->frame = new->data[1];
+    new->scale.x = Editor.copyScale;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -35,6 +54,7 @@ void editor_paste(void)
     add_prop(Editor.copy, arr, counter);
     (*arr)[(*counter) - 1]->position.x = floorf(pos.x);
     (*arr)[(*counter) - 1]->position.y = floorf(pos.y);
+    editor_paste_data((*arr)[(*counter) - 1]);
     prop_set_transform((*arr)[(*counter) - 1]);
     Editor.focus = (*arr)[(*counter) - 1];
     if (Editor.hover)

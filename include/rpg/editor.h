@@ -21,6 +21,7 @@
     #define EDITOR_WIDGET RGB(71, 71, 71)
     #define EDITOR_BUTTON RGB(53, 53, 53)
     #define EDITOR_HOVER EDITOR_BACKGROUND
+    #define WHITE sfWhite
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Sizing
@@ -101,6 +102,7 @@ typedef enum input_type_e {
     INPUT_INTEGER,
     INPUT_FLOAT,
     INPUT_CHECKBOX,
+    INPUT_BUTTON,
     INPUT_TYPE_COUNT
 } input_type_t;
 
@@ -111,6 +113,17 @@ typedef enum input_type_e {
 enum input_editor_e {
     EDITOR_INPUT_X,
     EDITOR_INPUT_Y,
+    EDITOR_INPUT_COLLISION,
+    EDITOR_INPUT_FLIP,
+    EDITOR_INPUT_FORE,
+    EDITOR_INPUT_BACK,
+    EDITOR_INPUT_DOWN,
+    EDITOR_INPUT_UP,
+    EDITOR_INPUT_ADOWN,
+    EDITOR_INPUT_AUP,
+    EDITOR_INPUT_FRAME,
+    EDITOR_INPUT_PREVIOUS,
+    EDITOR_INPUT_NEXT,
     EDITOR_INPUT_COUNT
 };
 
@@ -129,6 +142,9 @@ enum input_editor_e {
 /// \param range        The range of the input (type float/int)
 /// \param checked      The check status (type checkbox)
 /// \param disabled     Allows to disable an input
+/// \param cActive      The color of the input when active
+/// \param cHover       The color of the input when hovered
+/// \param cDisabled    The color of the input when disabled;
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct input_s {
@@ -144,6 +160,10 @@ typedef struct input_s {
     int range[2];
     bool_t checked;
     bool_t disabled;
+    sfColor cActive;
+    sfColor cHover;
+    sfColor cDisabled;
+    bool_t draw;
 } input_t;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -158,7 +178,20 @@ typedef struct input_s {
 /// \param copy         The prop currently copied
 /// \param focus        The prop currently focused
 /// \param hover        Is the focused p    draw_context_buttons("Quit")
-
+/// \param dragging     Is the user currently dragging
+/// \param zoneId       The id of the zone
+/// \param zone         The zone pointer
+/// \param oldMouse     The old mouse position
+/// \param crtMouse     The current mouse position
+/// \param scollingOffset The scrolling offset for the browser
+/// \param released     Is the mouse button released
+/// \param inputFocused The current focused input
+/// \param inputs       The list of inputs
+/// \param inputCount   The number of input
+/// \param copyScale    The copy holder for the scale
+/// \param copyCollide  The copy holder for collision
+/// \param copyData     The copy holder for data
+///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct editor_s {
     editor_layer_t layer;
@@ -182,6 +215,9 @@ extern struct editor_s {
     input_t *inputFocused;
     input_t **inputs;
     uint_t inputCount;
+    float copyScale;
+    bool_t copyCollide;
+    int copyData[4];
 } Editor;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -518,5 +554,64 @@ void input_updatef(input_t *input, float value);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void editor_settings_init_input(v2f_t pos);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Update the value of the inputs based on the current focused prop
+///
+///////////////////////////////////////////////////////////////////////////////
+void input_focus_update(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draw the toolbar of the editor
+///
+///////////////////////////////////////////////////////////////////////////////
+void draw_editor_toolbar(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Move the current focused prop to the foreground
+///
+///////////////////////////////////////////////////////////////////////////////
+void editor_to_foreground(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Move the current focused prop to the background
+///
+///////////////////////////////////////////////////////////////////////////////
+void editor_to_background(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Move the current focused prop all the way under
+///
+///////////////////////////////////////////////////////////////////////////////
+void editor_all_down(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Move the current focused prop all the way up
+///
+///////////////////////////////////////////////////////////////////////////////
+void editor_all_up(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Move the current focused prop one up
+///
+///////////////////////////////////////////////////////////////////////////////
+void editor_move_up(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Move the current focused prop one down
+///
+///////////////////////////////////////////////////////////////////////////////
+void editor_move_down(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Find the stack and the index of the props
+///
+/// \param prop         Pointer to the wanted prop
+/// \param idx          Pointer to a variable holding the index
+///
+/// \return The stack containing the prop, or NULL
+///
+///////////////////////////////////////////////////////////////////////////////
+prop_t **find_prop_stack(prop_t *prop, uint_t *idx);
 
 #endif /* !EDITOR_H_ */

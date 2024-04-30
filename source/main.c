@@ -28,6 +28,7 @@ static void check_program_flags(int argc, warray_t argv)
 ///////////////////////////////////////////////////////////////////////////////
 static void switch_scene_loop(void)
 {
+    Setting.shoot = INVERT ? sfMouseRight : sfMouseLeft;
     if (Engine.scene == SCENE_MAIN_MENU)
         menu_loop();
     if (Engine.scene == SCENE_GAME)

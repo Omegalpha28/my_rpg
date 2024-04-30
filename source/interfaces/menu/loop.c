@@ -15,7 +15,7 @@ void draw_cursor(void)
 {
     sfSprite *cursor = sfSprite_create();
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
-    sfBool pressed = sfMouse_isButtonPressed(sfMouseLeft);
+    sfBool pressed = sfMouse_isButtonPressed(Setting.shoot);
     sfIntRect rect = {0, 0, 20, 20};
 
     if (HOVER)
@@ -82,8 +82,10 @@ void draw_menu_background(void)
         Win.viewHeight / 1080.0f});
     sfRenderWindow_drawSprite(Win.self, back, NULL);
     sfSprite_destroy(back);
-    draw_logo();
-    draw_autors();
+    if (Engine.scene == SCENE_MAIN_MENU) {
+        draw_logo();
+        draw_autors();
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

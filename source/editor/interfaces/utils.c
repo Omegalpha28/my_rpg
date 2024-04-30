@@ -45,7 +45,7 @@ input_t *create_input(input_type_t type, v2f_t position, v2f_t size,
     in->focused = false;
     in->length = 0;
     in->maxLength = 16;
-    in->placeholder = my_strdup(text);
+    in->placeholder = text ? my_strdup(text) : NULL;
     in->position = position;
     in->onInput = NULL;
     in->range[0] = 0;

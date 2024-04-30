@@ -20,11 +20,11 @@ void editor_loop(void)
         sfMouse_getPositionRenderWindow(Win.self), Win.view);
     while (sfRenderWindow_pollEvent(Win.self, &evt))
         handle_editor_events(evt);
-    for (uint_t i = 0; Editor.bDisplay && i < Editor.bCount; i++)
-        prop_draw(Editor.bProps[i]);
+    if (Editor.bDisplay)
+        draw_visible_props(Editor.bProps, Editor.bCount);
     actor_draw(Player.ref);
-    for (uint_t i = 0; Editor.fDisplay && i < Editor.fCount; i++)
-        prop_draw(Editor.fProps[i]);
+    if (Editor.fDisplay)
+        draw_visible_props(Editor.fProps, Editor.fCount);
     draw_editor_focus_hitbox();
     draw_editor_ui();
     Editor.oldMouse = Editor.crtMouse;

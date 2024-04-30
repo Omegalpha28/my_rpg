@@ -17,7 +17,7 @@ struct assets_s Assets = {
     NULL, 0,
     NULL, 0,
     NULL, 0,
-    NULL, 0,
+    NULL,
     NULL, 0
 };
 
@@ -41,7 +41,6 @@ void destroy_assets(void)
     destroy_assets_musics();
     destroy_assets_zones();
     destroy_assets_vfx();
-    destroy_assets_weapons();
     destroy_assets_ui();
     destroy_all_images();
 }

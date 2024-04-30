@@ -239,7 +239,6 @@ P_C_ENTITY =	$(P_D_ENTITY)entity.c										\
 P_C_WEAPONS =	$(P_D_WEAPONS)create.c										\
 				$(P_D_WEAPONS)update.c										\
 				$(P_D_WEAPONS)collisions.c									\
-				$(P_D_WEAPONS)init_weapon.c								 	\
 				$(P_D_WEAPONS)weapons.c
 P_C_UI		=	$(P_D_UI)video/load.c										\
 				$(P_D_UI)video/loop.c										\

@@ -34,7 +34,7 @@ struct keybind_s Setting = {
     (key_track_t){DEFAULT_KEY_PAUSE, false},
     (key_track_t){DEFAULT_KEY_DANCE, false},
     DEFAULT_KEY_SHOOT,
-    false, 100.0f, 100.0f, 100.0f, NULL, 0, 60, true, true, 0, true, 1.0f,
+    false, 100.0f, 100.0f, 100.0f, NULL, 0, 60, true, true, 0, false, 1.0f,
     false
 };
 

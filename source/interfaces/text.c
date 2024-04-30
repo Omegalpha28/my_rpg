@@ -56,7 +56,7 @@ void draw_text(cstring_t str, v2f_t pos, float scale, sfColor color)
             continue;
         index = get_character_atlas_index(str[i]);
         sfSprite_setPosition(font, V2F(pos.x + (size - 2 * scale) * i, pos.y +
-            (my_strchr(FONT_LOWERED_CHAR, str[i]) ? 1 * scale : 0)));
+            (my_strchr(FONT_LOWERED_CHAR, str[i]) ? 2.5f * scale : 0.0f)));
         mask.top = (index / 8) * 20.0f;
         mask.left = (index % 8) * 20.0f;
         sfSprite_setTextureRect(font, mask);

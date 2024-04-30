@@ -42,16 +42,16 @@ static void handle_checkbox_input(input_t *input)
 ///////////////////////////////////////////////////////////////////////////////
 void editor_settings_init_input(v2f_t pos)
 {
-    create_input(INPUT_INTEGER, add2f(pos, V2F(40.0f, 140.0f)),
+    create_input(INPUT_INTEGER, add2f(pos, V2F(40.0f, 170.0f)),
         V2F(200.0f, 42.0f), "Coordinate X");
     Editor.inputs[EDITOR_INPUT_X]->onInput = &handle_coord_input;
-    create_input(INPUT_INTEGER, add2f(pos, V2F(40.0f, 192.0f)),
+    create_input(INPUT_INTEGER, add2f(pos, V2F(40.0f, 222.0f)),
         V2F(200.0f, 42.0f), "Coordinate Y");
     Editor.inputs[EDITOR_INPUT_Y]->onInput = &handle_coord_input;
-    create_input(INPUT_CHECKBOX, add2f(pos, V2F(198.0f, 244.0f)),
+    create_input(INPUT_CHECKBOX, add2f(pos, V2F(198.0f, 274.0f)),
         V2F(42.0f, 42.0f), NULL);
     Editor.inputs[EDITOR_INPUT_COLLISION]->onInput = &handle_checkbox_input;
-    create_input(INPUT_CHECKBOX, add2f(pos, V2F(198.0f, 296.0f)),
+    create_input(INPUT_CHECKBOX, add2f(pos, V2F(198.0f, 326.0f)),
         V2F(42.0f, 42.0f), NULL);
     Editor.inputs[EDITOR_INPUT_FLIP]->onInput = &handle_checkbox_input;
 }

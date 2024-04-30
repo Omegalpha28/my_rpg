@@ -35,15 +35,15 @@ void draw_cursor(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void draw_autors(void)
+static void draw_autors(void)
 {
     sfSprite *black = sfSprite_create();
     sfSprite *autors = sfSprite_create();
 
     sfSprite_setTexture(black, Assets.ui[UI_BLACK_FADE]->self, false);
     sfSprite_setTexture(autors, Assets.ui[UI_AUTORS_CORNER]->self, false);
-    sfSprite_setPosition(black, PX_TO_MAPF(((v2f_t){0.0f, 0.0f})));
-    sfSprite_setPosition(autors, PX_TO_MAPF(((v2f_t){Win.width, Win.height})));
+    sfSprite_setPosition(black, PX_TO_MAPF((V2F1(0.0f))));
+    sfSprite_setPosition(autors, PX_TO_MAPF((V2F(Win.width, Win.height))));
     sfSprite_setScale(black, V2F1(Win.viewWidth / 1701.0f));
     sfSprite_setScale(autors, V2F1(Win.viewWidth / 831.0f / 4));
     sfSprite_setOrigin(autors, V2F(831.0f, 381.0f));
@@ -59,7 +59,7 @@ void draw_menu_background(void)
     sfSprite *back = sfSprite_create();
 
     sfSprite_setTexture(back, Assets.ui[UI_BACKGROUND]->self, false);
-    sfSprite_setPosition(back, PX_TO_MAPF(((v2f_t){0.0f, 0.0f})));
+    sfSprite_setPosition(back, PX_TO_MAPF((V2F1(0.0f))));
     sfSprite_setScale(back, (v2f_t){Win.viewWidth / 1920.0f,
         Win.viewHeight / 1080.0f});
     sfRenderWindow_drawSprite(Win.self, back, NULL);
@@ -84,6 +84,7 @@ static void draw_logo(void)
     sfSprite_destroy(logo);
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static void button_functions(float y, sfEvent evt)
 {
     bool_t pressed = (evt.type == sfEvtMouseButtonReleased);
@@ -103,6 +104,7 @@ static void button_functions(float y, sfEvent evt)
         sfRenderWindow_close(Win.self);
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static sfColor get_color(float y, sfEvent evt)
 {
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));

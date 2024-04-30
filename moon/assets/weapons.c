@@ -20,17 +20,19 @@ static int my_sort_strcmp(const void *a, const void *b)
 bool_t init_assets_weapons(void)
 {
     warray_t ctn = my_dircontent(DIR_WEAPONS);
+    uint_t j = 0;
 
     qsort(ctn, my_walen(ctn), sizeof(ctn[0]), my_sort_strcmp);
     Assets.weapons = (image_t **)malloc(sizeof(image_t *) * WEAPON_TYPE_COUNT);
-    for (uint_t i = 0; ctn[i]; i++) {
+    for (uint_t i = 0; ctn[i] && j < WEAPON_TYPE_COUNT; i++) {
         if (my_isdir(ctn[i]) == true)
             continue;
         if (Assets.weaponCount == WEAPON_TYPE_COUNT)
             return (my_error(ERR_TO_MANY_WEAPON));
         Assets.weaponCount++;
-        Assets.weapons[i] = add_image(ctn[i], true, V2U(WEAPON_GRID_X,
+        Assets.weapons[j] = add_image(ctn[i], true, V2U(WEAPON_GRID_X,
             WEAPON_GRID_Y), "WEAPONS");
+        j++;
     }
     if (Assets.weaponCount != WEAPON_TYPE_COUNT)
         return (my_error(ERR_TO_FEW_WEAPON));

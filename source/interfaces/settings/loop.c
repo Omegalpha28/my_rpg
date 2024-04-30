@@ -10,6 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+///////////////////////////////////////////////////////////////////////////////
 static void draw_colums(void)
 {
     float scal = 7.5f * 16.0f * Win.width / Win.viewWidth * 0.45f;
@@ -39,7 +40,7 @@ static void draw_shadow(void)
 ///////////////////////////////////////////////////////////////////////////////
 static void button_functions(sfEvent evt)
 {
-    bool_t pressed = (evt.type == sfEvtMouseButtonReleased);
+    sfBool pressed = (evt.type == sfEvtMouseButtonReleased);
 
     if (pressed)
         Engine.scene = SCENE_MAIN_MENU;
@@ -67,7 +68,7 @@ static sfColor get_color(v2f_t pos, sfEvent evt)
 void settings_loop(void)
 {
     sfEvent evt;
-    v2f_t posi = { Win.width / 2.0f, Win.height - 150.0f};
+    v2f_t pos = { Win.width / 2.0f, Win.height - 150.0f};
 
     while (sfRenderWindow_pollEvent(Win.self, &evt))
         if (evt.type == sfEvtClosed)
@@ -76,6 +77,6 @@ void settings_loop(void)
     draw_shadow();
     draw_colums();
     Keys.hover = false;
-    draw_text_center("Back", posi, 0.45f, get_color(PX_TO_MAPF(posi), evt));
+    draw_text_center("Back", pos, 0.45f, get_color(PX_TO_MAPF(pos)));
     draw_cursor();
 }

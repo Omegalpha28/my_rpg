@@ -55,11 +55,12 @@ static bool_t set_window_icon(void)
 ///////////////////////////////////////////////////////////////////////////////
 static void init_view(void)
 {
+    float aspectRatio = (float)Win.width / (float)Win.height;
+
     Win.viewWidth = DEFAULT_VIEW_WIDTH;
-    Win.viewHeight = (float)((float)(DEFAULT_VIEW_WIDTH / (float)Win.width))
-        * Win.height;
-    sfView_setSize(Win.view, (v2f_t){Win.viewWidth, Win.viewHeight});
-    sfView_setCenter(Win.view, (v2f_t){0, 0});
+    Win.viewHeight = Win.viewWidth / aspectRatio;
+    sfView_setSize(Win.view, V2F(Win.viewWidth, Win.viewHeight));
+    sfView_setCenter(Win.view, V2F1(0.0f));
     sfRenderWindow_setView(Win.self, Win.view);
 }
 
@@ -71,17 +72,19 @@ bool_t create_window(uint_t width, uint_t height, int mode)
 
     if (!width || !height)
         vm = (sfVideoMode){DEFAULT_WIDTH, DEFAULT_HEIGHT, DEFAULT_BITS};
+    sc.bitsPerPixel = DEFAULT_BITS;
     destroy_window();
-    Win.width = mode == WIN_FULLSCREEN ? sc.width : vm.width;
-    Win.height = mode == WIN_FULLSCREEN ? sc.height : vm.height;
+    Win.width = (mode == WIN_FULLSCREEN) ? sc.width : vm.width;
+    Win.height = (mode == WIN_FULLSCREEN) ? sc.height : vm.height;
     Win.view = sfView_create();
-    Win.self = sfRenderWindow_create(vm, DEFAULT_TITLE, mode, NULL);
+    Win.self = sfRenderWindow_create((mode == WIN_FULLSCREEN) ? sc : vm,
+        DEFAULT_TITLE, mode, NULL);
     if (!Win.view || !Win.self)
         return (false);
     init_view();
     sfRenderWindow_setFramerateLimit(Win.self, DEFAULT_FPS);
-    sfRenderWindow_setPosition(Win.self, (v2i_t){MID(sc.width, Win.width),
-        MID(sc.height, Win.height)});
+    sfRenderWindow_setPosition(Win.self, V2I(MID(sc.width, Win.width),
+        MID(sc.height, Win.height)));
     Win.mode = mode;
     return (set_window_icon());
 }

@@ -55,6 +55,7 @@ void editor_reset(void)
     Editor.hover = false;
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static void editor_zoom(float factor)
 {
     float currentZoom = Win.viewWidth / DEFAULT_VIEW_WIDTH;

@@ -11,37 +11,11 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-static int my_sort_strcmp(const void *a, const void *b)
-{
-    return (strcmp(*(cstring_t *)a, *(cstring_t *)b));
-}
-
-///////////////////////////////////////////////////////////////////////////////
 bool_t init_assets_weapons(void)
 {
-    warray_t ctn = my_dircontent(DIR_WEAPONS);
-    uint_t j = 0;
-
-    qsort(ctn, my_walen(ctn), sizeof(ctn[0]), my_sort_strcmp);
-    Assets.weapons = (image_t **)malloc(sizeof(image_t *) * WEAPON_TYPE_COUNT);
-    for (uint_t i = 0; ctn[i] && j < WEAPON_TYPE_COUNT; i++) {
-        if (my_isdir(ctn[i]) == true)
-            continue;
-        if (Assets.weaponCount == WEAPON_TYPE_COUNT)
-            return (my_error(ERR_TO_MANY_WEAPON));
-        Assets.weaponCount++;
-        Assets.weapons[j] = add_image(ctn[i], true, V2U(WEAPON_GRID_X,
-            WEAPON_GRID_Y), "WEAPONS");
-        j++;
-    }
-    if (Assets.weaponCount != WEAPON_TYPE_COUNT)
-        return (my_error(ERR_TO_FEW_WEAPON));
+    Assets.weapons = add_image(DIR_WEAPONS"/weapons.png", true, V2U(8 * 5, 3),
+        "WEAPONS");
+    if (Assets.weapons == NULL)
+        return (false);
     return (true);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-void destroy_assets_weapons(void)
-{
-    FREE(Assets.weapons);
-    return;
 }

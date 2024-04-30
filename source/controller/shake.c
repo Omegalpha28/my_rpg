@@ -13,6 +13,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 void shake(float intensity, float duration)
 {
+    if (!Setting.shake)
+        return;
     Player.shaking = true;
     Player.shakeDuration = (ulong_t)(duration * 1e3);
     Player.shakeIntensity = intensity / 100.0f;

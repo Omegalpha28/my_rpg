@@ -18,10 +18,11 @@ sfColor on_off(v2f_t pos, bool_t *on)
         mouse.x < PX_TO_MAPF(V2F1(Win.width / 8 * 5 + marge)).x &&
         mouse.y > PX_TO_MAPF(V2F1(pos.y - marge)).y &&
         mouse.y < PX_TO_MAPF(V2F1(pos.y + marge * 2)).y;
+    sfColor color = (*on ? sfWhite : sfColor_fromRGB(53, 49, 46));
 
     pos.x = Win.width / 8 * 5;
     draw_text(*on ? "on" : "off", PX_TO_MAPF(pos), 0.35f,
-        (mouse_in ? sfColor_fromRGB(243, 199, 77) : sfWhite));
+        (mouse_in ? sfColor_fromRGB(243, 199, 77) : color));
     RETURN(!mouse_in, sfWhite);
     if (CLICK_REL)
         *on = !(*on);

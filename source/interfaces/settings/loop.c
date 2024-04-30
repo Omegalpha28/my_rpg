@@ -16,11 +16,12 @@ static void draw_colums(void)
     float scal = 7.5f * 16.0f * Win.width / Win.viewWidth * 0.45f;
 
     draw_text_right("Audio", V2F(Win.width / 2.0f - scal, 20.0f),
-        0.45f, sfWhite);
+        0.45f, colums(V2F(Win.width / 2.0f - scal, 20.0f), "Audio", 0.45f, 3));
     draw_text_center("Video", V2F(Win.width / 2.0f, 20.0f),
-        0.45f, sfWhite);
+        0.45f, colums(V2F(Win.width / 2.0f, 20.0f), "Video", 0.45f, 2));
     draw_text("Keybinds", PX_TO_MAPF(V2F(Win.width / 2.0f + scal, 20.0f)),
-        0.45f, sfWhite);
+        0.45f, colums(V2F(Win.width / 2.0f + scal, 20.0f),
+        "Keybinds", 0.45f, 1));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -37,16 +38,16 @@ static void draw_shadow(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void button_functions(void)
+static void button_functions(sfEvent evt)
 {
-    sfBool pressed = sfMouse_isButtonPressed(sfMouseLeft);
+    sfBool pressed = (evt.type == sfEvtMouseButtonReleased);
 
     if (pressed)
         Engine.scene = SCENE_MAIN_MENU;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static sfColor get_color(v2f_t pos)
+static sfColor get_color(v2f_t pos, sfEvent evt)
 {
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
     sfSprite *select;
@@ -59,7 +60,7 @@ static sfColor get_color(v2f_t pos)
     sfSprite_setPosition(select, V2F(pos.x - 69.5f, pos.y - 8));
     sfRenderWindow_drawSprite(Win.self, select, NULL);
     sfSprite_destroy(select);
-    button_functions();
+    button_functions(evt);
     return (sfColor_fromRGB(243, 199, 77));
 }
 

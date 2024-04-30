@@ -55,4 +55,6 @@ void draw_cursor(void);
 void draw_text_right(cstring_t str, v2f_t pos, float scale, sfColor color);
 void draw_text_center(cstring_t str, v2f_t pos, float scale, sfColor color);
 
+sfColor colums(v2f_t pos, cstring_t str, float scale, int center);
+
 #endif /* !INTERFACES_H_ */

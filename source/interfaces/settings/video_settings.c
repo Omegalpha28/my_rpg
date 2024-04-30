@@ -26,6 +26,7 @@ sfColor on_off(v2f_t pos, bool_t *on)
     RETURN(!mouse_in, sfWhite);
     if (CLICK_REL)
         *on = !(*on);
+    Setting.hover = true;
     return (sfColor_fromRGB(243, 199, 77));
 }
 

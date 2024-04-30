@@ -25,6 +25,7 @@ sfColor slide(v2f_t pos, float *sound)
     draw_text(buff, PX_TO_MAPF(pos), 0.35f,
         (mouse_in ? sfColor_fromRGB(243, 199, 77) : sfWhite));
     RETURN(!mouse_in, sfWhite);
+    Setting.hover = true;
     return (sfColor_fromRGB(243, 199, 77));
 }
 

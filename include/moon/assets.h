@@ -127,6 +127,7 @@ typedef enum ui_element_e {
     UI_BLACK_FADE,
     UI_CURSOR,
     UI_VISOR,
+    UI_BUTTONS,
     UI_ELEMENT_COUNT
 } ui_element_t;
 
@@ -160,7 +161,8 @@ static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
     DIR_UI"/common/creators.png",
     DIR_UI"/common/corner.png",
     DIR_UI"/common/cursor.png",
-    DIR_UI"/common/UICrosshair.png"
+    DIR_UI"/common/UICrosshair.png",
+    DIR_UI"/common/buttons.png"
 };
 
 ///////////////////////////////////////////////////////////////////////////////

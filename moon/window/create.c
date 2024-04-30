@@ -22,7 +22,7 @@ struct window_reference_s Win = {
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-struct keybind_s Keys = {
+struct keybind_s Setting = {
     (key_track_t){DEFAULT_KEY_UP, false},
     (key_track_t){DEFAULT_KEY_DOWN, false},
     (key_track_t){DEFAULT_KEY_LEFT, false},

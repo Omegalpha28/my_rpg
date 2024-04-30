@@ -19,6 +19,7 @@ void input_focus_update(void)
     input_updatef(Editor.inputs[EDITOR_INPUT_Y], Editor.focus->position.y);
     Editor.inputs[EDITOR_INPUT_COLLISION]->checked = Editor.focus->collision;
     Editor.inputs[EDITOR_INPUT_FLIP]->checked = Editor.focus->scale.x == -1.0f;
+    Editor.inputs[EDITOR_INPUT_FRAME]->checked = (Editor.focus->data[0] == 1);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -35,6 +35,17 @@ static recti_t prop_generate_mask(prop_t *prop)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+recti_t prop_generate_fixed_mask(prop_t *prop)
+{
+    sheet_t *sheet = prop->self;
+    recti_t mask = sheet->image->mask;
+
+    mask.left = (prop->frame % sheet->image->grid.x) * mask.width;
+    mask.top = (prop->frame / sheet->image->grid.x) * mask.height;
+    return (mask);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void prop_draw(prop_t *prop)
 {
     recti_t mask = {0, 0, 0, 0};
@@ -44,7 +55,8 @@ void prop_draw(prop_t *prop)
         prop->self->image->self == NULL)
         return;
     sfSprite_setTexture(prop->sprite, prop->self->image->self, false);
-    mask = prop_generate_mask(prop);
+    mask = (prop->data[0] == 1) ? prop_generate_fixed_mask(prop) :
+        prop_generate_mask(prop);
     sfSprite_setTextureRect(prop->sprite, mask);
     sfSprite_setOrigin(prop->sprite, (v2f_t){mask.width / 2.0f,
         mask.height / 2.0f});

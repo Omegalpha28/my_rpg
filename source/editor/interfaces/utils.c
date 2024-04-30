@@ -35,24 +35,34 @@ bool_t cursor_inbound(v2f_t position, v2f_t size)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-input_t *create_input(input_type_t type, v2f_t position, v2f_t size,
-    cstring_t text)
+static void input_set_default(input_t *in)
 {
-    input_t *in = (input_t *)malloc(sizeof(input_t));
-
     in->checked = false;
     in->content = NULL;
     in->focused = false;
     in->length = 0;
     in->maxLength = 16;
-    in->placeholder = text ? my_strdup(text) : NULL;
-    in->position = position;
     in->onInput = NULL;
     in->range[0] = 0;
     in->range[1] = 0;
+    in->disabled = false;
+    in->cActive = EDITOR_BUTTON;
+    in->cHover = EDITOR_HOVER;
+    in->draw = true;
+    in->cDisabled = RGB(85, 85, 85);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+input_t *create_input(input_type_t type, v2f_t position, v2f_t size,
+    cstring_t text)
+{
+    input_t *in = (input_t *)malloc(sizeof(input_t));
+
+    input_set_default(in);
+    in->placeholder = text ? my_strdup(text) : NULL;
+    in->position = position;
     in->size = size;
     in->type = type;
-    in->disabled = false;
     Editor.inputCount++;
     Editor.inputs = REALLOC(Editor.inputs, sizeof(input_t *),
         Editor.inputCount);

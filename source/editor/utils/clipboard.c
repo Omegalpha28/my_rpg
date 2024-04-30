@@ -34,6 +34,8 @@ static void editor_paste_data(prop_t *new)
     new->data[1] = Editor.copyData[1];
     new->data[2] = Editor.copyData[2];
     new->data[3] = Editor.copyData[3];
+    if (new->data[0] == 1)
+        new->frame = new->data[1];
     new->scale.x = Editor.copyScale;
 }
 

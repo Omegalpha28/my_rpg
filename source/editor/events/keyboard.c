@@ -11,11 +11,31 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+static void handle_editor_key_layer(sfKeyEvent evt)
+{
+    bool_t shift = PRESSED(sfKeyLShift) || PRESSED(sfKeyRShift);
+
+    if (!shift && evt.code == ALT_DOWN)
+        editor_move_down();
+    if (shift && evt.code == ALT_DOWN)
+        editor_all_down();
+    if (!shift && evt.code == ALT_UP)
+        editor_move_up();
+    if (shift && evt.code == ALT_UP)
+        editor_all_up();
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void handle_editor_key_prop_movement(sfKeyEvent evt)
 {
-    if (Editor.focus && (evt.code == ALT_UP || evt.code == ALT_DOWN))
+    bool_t ctrl = PRESSED(sfKeyLControl) || PRESSED(sfKeyRControl);
+
+    if (Editor.focus && (evt.code == ALT_UP || evt.code == ALT_DOWN)) {
+        if (ctrl)
+            return (handle_editor_key_layer(evt));
         Editor.focus->position.y += evt.code == sfKeyUp ? -1 : +1;
-    if (Editor.focus && (evt.code == sfKeyLeft || evt.code == sfKeyRight))
+    }
+    if (Editor.focus && (evt.code == ALT_LEFT || evt.code == ALT_RIGHT))
         Editor.focus->position.x += evt.code == sfKeyLeft ? -1 : +1;
     if (Editor.focus && (evt.code >= sfKeyLeft && evt.code <= sfKeyDown)) {
         prop_set_transform(Editor.focus);

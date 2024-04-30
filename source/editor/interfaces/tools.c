@@ -37,7 +37,7 @@ static void draw_memory_usage(void)
     char usage[76];
 
     if (bytes < 1e3)
-        snprintf(usage, 76, "%.3f b - %u props", bytes / 1.0f, total);
+        snprintf(usage, 76, "%.0f b - %u props", bytes / 1.0f, total);
     if (bytes > 1e3 && bytes < 1e6)
         snprintf(usage, 76, "%.3f Kb - %u props", bytes / 1000.0f, total);
     if (bytes > 1e6)
@@ -58,8 +58,20 @@ static void draw_framerate(void)
     snprintf(text, 12, "%.0f", roundf(fps));
     draw_text("Framerate", PX_TO_MAPF(V2F(855.0f, EDITOR_PANEL_H + 11.0f)),
         fact, WHITE);
-    draw_text(text, PX_TO_MAPF(V2F(990.0f, EDITOR_PANEL_H + 11.0f)),
+    draw_text(text, PX_TO_MAPF(V2F(1010.0f, EDITOR_PANEL_H + 11.0f)),
         fact, RGB(200, 0, 200));
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void draw_active_layer(void)
+{
+    float fact = FACTORS(V2F1(20.0f)).x;
+
+    draw_text("Layer", PX_TO_MAPF(V2F(1320.0f, EDITOR_PANEL_H + 11.0f)),
+        fact, WHITE);
+    draw_text(Editor.layer == EDITOR_LAYER_BACKGROUND ? "Background" :
+        "Foreground", PX_TO_MAPF(V2F(1420.0f, EDITOR_PANEL_H + 11.0f)),
+        fact, RGB(200, 200, 0));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -69,4 +81,5 @@ void draw_editor_toolbar(void)
         EDITOR_WIDGET);
     draw_memory_usage();
     draw_framerate();
+    draw_active_layer();
 }

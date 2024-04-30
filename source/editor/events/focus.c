@@ -38,6 +38,8 @@ bool_t search_in_props(bool_t isDisplayed, uint_t propCount, prop_t **props)
             (mouse.y >= bound.top && mouse.y <= bound.top + bound.height)) {
             Editor.focus = props[i];
             Editor.dragging = true;
+            Editor.layer = (props == Editor.fProps) ? EDITOR_LAYER_FOREGROUND :
+                EDITOR_LAYER_BACKGROUND;
             return (true);
         }
     }
@@ -55,5 +57,7 @@ void search_for_focus(void)
         input_clear(Editor.inputs[EDITOR_INPUT_X]);
         input_clear(Editor.inputs[EDITOR_INPUT_Y]);
         Editor.inputs[EDITOR_INPUT_COLLISION]->checked = false;
+        Editor.inputs[EDITOR_INPUT_FLIP]->checked = false;
+        Editor.inputs[EDITOR_INPUT_FRAME]->checked = false;
     }
 }

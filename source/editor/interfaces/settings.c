@@ -13,8 +13,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 static void settings_update_input_state(void)
 {
-    Editor.inputs[EDITOR_INPUT_X]->disabled = (Editor.focus == NULL);
-    Editor.inputs[EDITOR_INPUT_Y]->disabled = (Editor.focus == NULL);
+    bool_t focused = (Editor.focus != NULL);
+
+    Editor.inputs[EDITOR_INPUT_X]->disabled = !focused;
+    Editor.inputs[EDITOR_INPUT_Y]->disabled = !focused;
+    Editor.inputs[EDITOR_INPUT_COLLISION]->disabled = !focused;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -54,4 +57,6 @@ void draw_editor_settings(void)
         draw_focused_prop(add2f(pos, V2F(75.0f, 0.0f)));
     draw_text("X", PX_TO_MAPF(add2f(pos, V2F(10.0f, 151.0f))), fact, sfWhite);
     draw_text("Y", PX_TO_MAPF(add2f(pos, V2F(10.0f, 203.0f))), fact, sfWhite);
+    draw_text("Collision", PX_TO_MAPF(add2f(pos, V2F(10.0f, 255.0f))), fact,
+        sfWhite);
 }

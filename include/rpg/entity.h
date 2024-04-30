@@ -67,6 +67,7 @@ typedef struct entity_s {
     bool_t can_attack;
     uint_t cooldown;
     bool_t attack_started;
+    uint_t movement;
 } entity_t;
 
 
@@ -192,5 +193,14 @@ void health_examination(entity_t *evil);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void enemy_action(entity_t *evil);
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief checks all possible collisions.
+///
+/// \param evil         Pointer to Entity info structure.
+///
+///////////////////////////////////////////////////////////////////////////////
+void collision_check(entity_t *evil);
 
 #endif /* !ENTITY_H_ */

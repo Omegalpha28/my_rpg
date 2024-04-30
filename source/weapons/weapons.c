@@ -12,3 +12,4 @@
 
 ///////////////////////////////////////////////////////////////////////////////
 struct bullet_list_s Bullet_List = {NULL, 0};
+struct weapon_list_s Weapon_List = {NULL, 0};

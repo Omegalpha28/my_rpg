@@ -46,9 +46,9 @@ int main(int argc, warray_t argv)
     srand((unsigned)time(NULL));
     if (!init_time() || !init_assets() || !create_window(0, 0, WIN_FULLSCREEN))
         return (EXIT_FAILURE);
+    sfRenderWindow_setMouseCursorVisible(Win.self, false);
     check_program_flags(argc, argv);
     Player.ref = actor_create(Assets.creatures[CREATURE_PLAYER], V2F1(0.0f));
-    sfRenderWindow_setMouseCursorVisible(Win.self, sfFalse);
     while (sfRenderWindow_isOpen(Win.self)) {
         update_time();
         sfRenderWindow_clear(Win.self, EDITOR_BACKGROUND);

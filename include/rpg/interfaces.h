@@ -61,4 +61,6 @@ void draw_keybinds(void);
 void draw_audio(void);
 void draw_video(void);
 
+sfColor on_off(v2f_t pos, bool_t *on);
+
 #endif /* !INTERFACES_H_ */

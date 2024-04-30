@@ -36,19 +36,19 @@ void get_last_input(void)
 static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed,
     bool_t released)
 {
-    if (evt.code == UP || evt.code == ALT_UP)
-        Setting.up.pressed = pressed;
-    if (evt.code == DOWN || evt.code == ALT_DOWN)
-        Setting.down.pressed = pressed;
-    if (evt.code == RIGHT || evt.code == ALT_RIGHT)
-        Setting.right.pressed = pressed;
-    if (evt.code == LEFT || evt.code == ALT_LEFT)
-        Setting.left.pressed = pressed;
-    if (evt.code == DASH && pressed)
-        Setting.dash.pressed = pressed;
+    if (evt.code == Setting.up.code || evt.code == ALT_UP)
+        UP = pressed;
+    if (evt.code == Setting.down.code || evt.code == ALT_DOWN)
+        DOWN = pressed;
+    if (evt.code == Setting.right.code || evt.code == ALT_RIGHT)
+        RIGHT = pressed;
+    if (evt.code == Setting.left.code || evt.code == ALT_LEFT)
+        LEFT = pressed;
+    if (evt.code == Setting.dash.code && pressed)
+        DASH = pressed;
     if (evt.code == Setting.heal.code)
         use_competence();
-    if (evt.code == DANCE && !pressed) {
+    if (evt.code == Setting.dance.code && !pressed) {
         DANCE = released && !DANCE ? true : false;
         if (DANCE) {
             sfMusic_play(find_music("blingblangblang"));

@@ -54,19 +54,6 @@ static void draw_autors(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void draw_menu_background(void)
-{
-    sfSprite *back = sfSprite_create();
-
-    sfSprite_setTexture(back, Assets.ui[UI_BACKGROUND]->self, false);
-    sfSprite_setPosition(back, PX_TO_MAPF((V2F1(0.0f))));
-    sfSprite_setScale(back, (v2f_t){Win.viewWidth / 1920.0f,
-        Win.viewHeight / 1080.0f});
-    sfRenderWindow_drawSprite(Win.self, back, NULL);
-    sfSprite_destroy(back);
-}
-
-///////////////////////////////////////////////////////////////////////////////
 static void draw_logo(void)
 {
     sfSprite *logo = sfSprite_create();
@@ -85,28 +72,41 @@ static void draw_logo(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void button_functions(float y, sfEvent evt)
+void draw_menu_background(void)
 {
-    bool_t pressed = (evt.type == sfEvtMouseButtonReleased &&
-        evt.mouseButton.button == Setting.shoot);
+    sfSprite *back = sfSprite_create();
+
+    sfSprite_setTexture(back, Assets.ui[UI_BACKGROUND]->self, false);
+    sfSprite_setPosition(back, PX_TO_MAPF((V2F1(0.0f))));
+    sfSprite_setScale(back, (v2f_t){Win.viewWidth / 1920.0f,
+        Win.viewHeight / 1080.0f});
+    sfRenderWindow_drawSprite(Win.self, back, NULL);
+    sfSprite_destroy(back);
+    draw_logo();
+    draw_autors();
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void button_functions(float y)
+{
     v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
 
-    if (pressed && y == pos.y + 125)
+    if (CLICK_REL && y == pos.y + 125)
         Engine.scene = SCENE_GAME;
-    if (pressed && y == pos.y + 150)
+    if (CLICK_REL && y == pos.y + 150)
         Engine.scene = SCENE_SETTINGS;
-    if (pressed && y == pos.y + 175) {
+    if (CLICK_REL && y == pos.y + 175) {
         sfRenderWindow_setMouseCursorVisible(Win.self, true);
         Engine.scene = SCENE_LEVEL_EDITOR;
         load_zone("biome1");
         Editor.zone = Assets.zones[0];
     }
-    if (pressed && y == pos.y + 200)
+    if (CLICK_REL && y == pos.y + 200)
         sfRenderWindow_close(Win.self);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static sfColor get_color(float y, sfEvent evt)
+static sfColor get_color(float y)
 {
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
     v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
@@ -120,7 +120,7 @@ static sfColor get_color(float y, sfEvent evt)
     sfSprite_setPosition(select, V2F(32 + pos.x, y - 8));
     sfRenderWindow_drawSprite(Win.self, select, NULL);
     sfSprite_destroy(select);
-    button_functions(y, evt);
+    button_functions(y);
     return (sfColor_fromRGB(243, 199, 77));
 }
 
@@ -133,17 +133,17 @@ void menu_loop(void)
     while (sfRenderWindow_pollEvent(Win.self, &evt))
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);
+    CLICK_REL = (evt.type == sfEvtMouseButtonReleased &&
+        evt.mouseButton.button == Setting.shoot);
     draw_menu_background();
-    draw_logo();
-    draw_autors();
     Setting.hover = false;
     draw_text("Play", V2F(pos.x + 110, pos.y + 125),
-        0.45F, get_color(pos.y + 125, evt));
+        0.45F, get_color(pos.y + 125));
     draw_text("Settings", V2F(pos.x + 97, pos.y + 150),
-        0.45F, get_color(pos.y + 150, evt));
+        0.45F, get_color(pos.y + 150));
     draw_text("Level editor", V2F(pos.x + 87, pos.y + 175),
-        0.45F, get_color(pos.y + 175, evt));
+        0.45F, get_color(pos.y + 175));
     draw_text("Quit", V2F(pos.x + 110, pos.y + 200),
-        0.45F, get_color(pos.y + 200, evt));
+        0.45F, get_color(pos.y + 200));
     draw_cursor();
 }

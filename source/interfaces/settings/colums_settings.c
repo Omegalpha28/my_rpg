@@ -22,22 +22,21 @@ static void draw_in(void)
 
 void buttons_functions(v2f_t pos, int center, float scale, cstring_t str)
 {
-    sfBool pressed = sfMouse_isButtonPressed(sfMouseLeft);
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
     float str_map = strlen(str) * 16.0f * Win.width / Win.viewWidth * scale;
     float strmap = str_map / strlen(str);
     bool_t mouse_in = mouse.y < PX_TO_MAPF(V2F1(pos.y + strmap * 2)).y &&
         mouse.y > PX_TO_MAPF(V2F1(pos.y - strmap)).y;
 
-    if (center == 1 && pressed && mouse_in && mouse.x <
+    if (center == 1 && CLICK_REL && mouse_in && mouse.x <
         PX_TO_MAPF(V2F1(pos.x + strmap * 0.5 + str_map)).x &&
         mouse.x > PX_TO_MAPF(V2F1(pos.x - strmap * 0.5f)).x)
         Engine.colums = 1;
-    if (center == 2 && pressed && mouse_in && mouse.x <
+    if (center == 2 && CLICK_REL && mouse_in && mouse.x <
         PX_TO_MAPF(V2F1(pos.x + strmap * 0.5 + str_map / 2)).x &&
         mouse.x > PX_TO_MAPF(V2F1(pos.x - str_map / 2 - strmap * 0.5f)).x)
         Engine.colums = 2;
-    if (center == 3 && pressed && mouse_in && mouse.x <
+    if (center == 3 && CLICK_REL && mouse_in && mouse.x <
         PX_TO_MAPF(V2F1(pos.x + strmap * 0.5)).x &&
         mouse.x > PX_TO_MAPF(V2F1(pos.x - str_map - strmap * 0.5f)).x)
         Engine.colums = 3;

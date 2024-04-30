@@ -39,17 +39,7 @@ static void draw_shadow(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void button_functions(sfEvent evt)
-{
-    sfBool pressed = (evt.type == sfEvtMouseButtonReleased &&
-        evt.mouseButton.button == Setting.shoot);
-
-    if (pressed)
-        Engine.scene = SCENE_MAIN_MENU;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-static sfColor get_color(v2f_t pos, sfEvent evt)
+static sfColor get_color(v2f_t pos)
 {
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
     sfSprite *select;
@@ -62,7 +52,8 @@ static sfColor get_color(v2f_t pos, sfEvent evt)
     sfSprite_setPosition(select, V2F(pos.x - 69.5f, pos.y - 8));
     sfRenderWindow_drawSprite(Win.self, select, NULL);
     sfSprite_destroy(select);
-    button_functions(evt);
+    if (CLICK_REL)
+        Engine.scene = SCENE_MAIN_MENU;
     return (sfColor_fromRGB(243, 199, 77));
 }
 
@@ -76,10 +67,12 @@ void settings_loop(void)
     while (sfRenderWindow_pollEvent(Win.self, &evt))
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);
+    CLICK_REL = (evt.type == sfEvtMouseButtonReleased &&
+        evt.mouseButton.button == Setting.shoot);
     draw_menu_background();
     draw_shadow();
     draw_colums();
     Setting.hover = false;
-    draw_text_center("Back", pos, 0.45f, get_color(PX_TO_MAPF(pos), evt));
+    draw_text_center("Back", pos, 0.45f, get_color(PX_TO_MAPF(pos)));
     draw_cursor();
 }

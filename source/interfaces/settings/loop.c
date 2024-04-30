@@ -77,6 +77,6 @@ void settings_loop(void)
     draw_shadow();
     draw_colums();
     Keys.hover = false;
-    draw_text_center("Back", pos, 0.45f, get_color(PX_TO_MAPF(pos)));
+    draw_text_center("Back", pos, 0.45f, get_color(PX_TO_MAPF(pos), evt));
     draw_cursor();
 }

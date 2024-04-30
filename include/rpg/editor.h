@@ -21,6 +21,7 @@
     #define EDITOR_WIDGET RGB(71, 71, 71)
     #define EDITOR_BUTTON RGB(53, 53, 53)
     #define EDITOR_HOVER EDITOR_BACKGROUND
+    #define WHITE sfWhite
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Sizing
@@ -112,6 +113,7 @@ enum input_editor_e {
     EDITOR_INPUT_X,
     EDITOR_INPUT_Y,
     EDITOR_INPUT_COLLISION,
+    EDITOR_INPUT_FLIP,
     EDITOR_INPUT_COUNT
 };
 

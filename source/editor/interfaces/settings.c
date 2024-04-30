@@ -18,6 +18,7 @@ static void settings_update_input_state(void)
     Editor.inputs[EDITOR_INPUT_X]->disabled = !focused;
     Editor.inputs[EDITOR_INPUT_Y]->disabled = !focused;
     Editor.inputs[EDITOR_INPUT_COLLISION]->disabled = !focused;
+    Editor.inputs[EDITOR_INPUT_FLIP]->disabled = !focused;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -38,7 +39,7 @@ static void draw_focused_prop(v2f_t pos)
     sfRenderWindow_drawSprite(Win.self, preview, NULL);
     sfSprite_destroy(preview);
     draw_text(Editor.focus->self->name, PX_TO_MAPF(add2f(pos, V2F(-65.0f,
-        105.0f))), FACTORS(V2F1(20.0f)).x / 1.05f, sfWhite);
+        105.0f))), FACTORS(V2F1(20.0f)).x / 1.05f, WHITE);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -55,8 +56,9 @@ void draw_editor_settings(void)
     draw_rect(V2F1(100.0f), add2f(pos, V2F(75.0f, 0.0f)), EDITOR_BUTTON);
     if (Editor.focus)
         draw_focused_prop(add2f(pos, V2F(75.0f, 0.0f)));
-    draw_text("X", PX_TO_MAPF(add2f(pos, V2F(10.0f, 151.0f))), fact, sfWhite);
-    draw_text("Y", PX_TO_MAPF(add2f(pos, V2F(10.0f, 203.0f))), fact, sfWhite);
+    draw_text("X", PX_TO_MAPF(add2f(pos, V2F(10.0f, 151.0f))), fact, WHITE);
+    draw_text("Y", PX_TO_MAPF(add2f(pos, V2F(10.0f, 203.0f))), fact, WHITE);
     draw_text("Collision", PX_TO_MAPF(add2f(pos, V2F(10.0f, 255.0f))), fact,
-        sfWhite);
+        WHITE);
+    draw_text("Flip", PX_TO_MAPF(add2f(pos, V2F(10.0f, 307.0f))), fact, WHITE);
 }

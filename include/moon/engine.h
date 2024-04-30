@@ -47,6 +47,7 @@ extern struct engine_s {
     uint_t videoFrameCount;
     ulong_t time;
     sfSprite *sprite;
+    int colums;
 } Engine;
 
 #endif /* !ENGINE_H_ */

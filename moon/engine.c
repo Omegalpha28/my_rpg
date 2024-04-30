@@ -14,5 +14,5 @@
 struct engine_s Engine = {
     false,
     SCENE_MAIN_MENU,
-    NULL, 0, 0, 0, NULL
+    NULL, 0, 0, 0, NULL, 3
 };

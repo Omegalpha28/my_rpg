@@ -46,7 +46,7 @@
     #define FRAME_PER_MS(x) (1000 / x)
     #define DEFAULT_CREATURE_FR FRAME_PER_MS(8)
     #define DEFAULT_PROP_FR FRAME_PER_MS(5)
-    #define DEFAULT_VFX_FR FRAME_PER_MS(6)
+    #define DEFAULT_VFX_FR FRAME_PER_MS(8)
     #define VIDEO_FRAMERATE FRAME_PER_MS(12)
 
     /** Weapon Size                                                          */

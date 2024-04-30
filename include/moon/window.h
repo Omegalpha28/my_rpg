@@ -69,15 +69,15 @@
 ///
 ///////////////////////////////////////////////////////////////////////////////
 
-    #define UP Keys.up.pressed
-    #define DOWN Keys.down.pressed
-    #define RIGHT Keys.right.pressed
-    #define LEFT Keys.left.pressed
-    #define DASH Keys.dash.pressed
-    #define DANCE Keys.dance.pressed
+    #define UP Setting.up.pressed
+    #define DOWN Setting.down.pressed
+    #define RIGHT Setting.right.pressed
+    #define LEFT Setting.left.pressed
+    #define DASH Setting.dash.pressed
+    #define DANCE Setting.dance.pressed
     #define MOVE (UP || DOWN || RIGHT || LEFT)
     #define SPEED 8.5f
-    #define HOVER Keys.hover
+    #define HOVER Setting.hover
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -160,7 +160,7 @@ extern struct keybind_s {
     key_track_t dance;
     sfMouseButton shoot;
     bool_t hover;
-} Keys;
+} Setting;
 
 ///////////////////////////////////////////////////////////////////////////////
 //

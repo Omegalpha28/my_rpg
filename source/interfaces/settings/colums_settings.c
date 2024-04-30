@@ -10,56 +10,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-static void draw_keybinds(void)
-{
-    float scal = 3.5f * 16.0f * Win.height / Win.viewHeight * 0.45f;
-
-    draw_text("Invert clicks",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 - scal * 3)),
-        0.35F, sfWhite);
-    draw_text("Sensitivity",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 - scal * 2)),
-        0.35F, sfWhite);
-    draw_text("Change keybinds",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 - scal)), 0.35F, sfWhite);
-}
-
-static void draw_video(void)
-{
-    float scal = 3.5f * 16.0f * Win.height / Win.viewHeight * 0.45f;
-
-    draw_text("Resolution",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 - scal * 3)),
-        0.35F, sfWhite);
-    draw_text("Windo mode",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 - scal * 2)),
-        0.35F, sfWhite);
-    draw_text("Frame mode",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 - scal)), 0.35F, sfWhite);
-    draw_text("Shake mode",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2)), 0.35F, sfWhite);
-    draw_text("Blood mode",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 + scal)), 0.35F, sfWhite);
-    draw_text("Aimin mode",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 + scal * 2)),
-        0.35F, sfWhite);
-    draw_text("Debug mode",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 + scal * 3)),
-        0.35F, sfWhite);
-}
-
-static void draw_audio(void)
-{
-    float scal = 5.0f * 16.0f * Win.height / Win.viewHeight * 0.45f;
-
-    draw_text("Master sound",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 - scal)), 0.35F, sfWhite);
-    draw_text("Music sound",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2)), 0.35F, sfWhite);
-    draw_text("Sound effects",
-        PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 + scal)), 0.35F, sfWhite);
-}
-
 static void draw_in(void)
 {
     if (Engine.colums == 1)

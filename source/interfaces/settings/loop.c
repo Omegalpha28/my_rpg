@@ -42,7 +42,7 @@ static void draw_shadow(void)
 static void button_functions(sfEvent evt)
 {
     sfBool pressed = (evt.type == sfEvtMouseButtonReleased &&
-        evt.mouseButton.button == Keys.shoot);
+        evt.mouseButton.button == Setting.shoot);
 
     if (pressed)
         Engine.scene = SCENE_MAIN_MENU;
@@ -56,7 +56,7 @@ static sfColor get_color(v2f_t pos, sfEvent evt)
 
     RETURN(mouse.x > 50 || mouse.x < -25, sfWhite);
     RETURN(!(mouse.y >= (pos.y - 10) && mouse.y <= (pos.y + 15)), sfWhite);
-    Keys.hover = true;
+    Setting.hover = true;
     select = sfSprite_create();
     sfSprite_setTexture(select, Assets.ui[UI_DUAL_MARK_SMALL]->self, false);
     sfSprite_setPosition(select, V2F(pos.x - 69.5f, pos.y - 8));
@@ -79,7 +79,7 @@ void settings_loop(void)
     draw_menu_background();
     draw_shadow();
     draw_colums();
-    Keys.hover = false;
+    Setting.hover = false;
     draw_text_center("Back", pos, 0.45f, get_color(PX_TO_MAPF(pos), evt));
     draw_cursor();
 }

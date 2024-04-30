@@ -57,4 +57,8 @@ void draw_text_center(cstring_t str, v2f_t pos, float scale, sfColor color);
 
 sfColor colums(v2f_t pos, cstring_t str, float scale, int center);
 
+void draw_keybinds(void);
+void draw_audio(void);
+void draw_video(void);
+
 #endif /* !INTERFACES_H_ */

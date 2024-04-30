@@ -88,7 +88,7 @@ static void draw_logo(void)
 static void button_functions(float y, sfEvent evt)
 {
     bool_t pressed = (evt.type == sfEvtMouseButtonReleased &&
-        evt.mouseButton.button == Keys.shoot);
+        evt.mouseButton.button == Setting.shoot);
     v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
 
     if (pressed && y == pos.y + 125)
@@ -114,7 +114,7 @@ static sfColor get_color(float y, sfEvent evt)
 
     RETURN(mouse.x > pos.x + 200 || mouse.x < pos.x + 35, sfWhite);
     RETURN(!(mouse.y >= (y - 10) && mouse.y <= (y + 15)), sfWhite);
-    Keys.hover = true;
+    Setting.hover = true;
     select = sfSprite_create();
     sfSprite_setTexture(select, Assets.ui[UI_DUAL_MARK]->self, false);
     sfSprite_setPosition(select, V2F(32 + pos.x, y - 8));
@@ -136,7 +136,7 @@ void menu_loop(void)
     draw_menu_background();
     draw_logo();
     draw_autors();
-    Keys.hover = false;
+    Setting.hover = false;
     draw_text("Play", V2F(pos.x + 110, pos.y + 125),
         0.45F, get_color(pos.y + 125, evt));
     draw_text("Settings", V2F(pos.x + 97, pos.y + 150),

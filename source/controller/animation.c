@@ -73,7 +73,7 @@ void dash_movement(void)
     if (Player.ref->done && !DANCE && DASH) {
         actor_set_anim(Player.ref, (Player.velocity.x != 0.0f ||
             Player.velocity.y != 0.0f) ? "walk" : "idle");
-        Keys.dash.pressed = false;
+        DASH = false;
     }
     actor_move(Player.ref, Player.velocity);
     camera_move();

@@ -11,6 +11,20 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+static void settings_update_frame_input(void)
+{
+    prop_t *prop = Editor.focus;
+    animation_t *anim = NULL;
+
+    if (!prop || Editor.inputs[EDITOR_INPUT_PREVIOUS]->disabled)
+        return;
+    anim = prop->self->anims[0];
+    Editor.inputs[EDITOR_INPUT_PREVIOUS]->disabled = (prop->data[1] == 0);
+    Editor.inputs[EDITOR_INPUT_NEXT]->disabled = (prop->data[1] ==
+        anim->endingFrame);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void settings_update_input_state(void)
 {
     bool_t focused = (Editor.focus != NULL);
@@ -19,6 +33,20 @@ static void settings_update_input_state(void)
     Editor.inputs[EDITOR_INPUT_Y]->disabled = !focused;
     Editor.inputs[EDITOR_INPUT_COLLISION]->disabled = !focused;
     Editor.inputs[EDITOR_INPUT_FLIP]->disabled = !focused;
+    Editor.inputs[EDITOR_INPUT_FORE]->disabled = !focused;
+    Editor.inputs[EDITOR_INPUT_BACK]->disabled = !focused;
+    Editor.inputs[EDITOR_INPUT_DOWN]->disabled = !focused;
+    Editor.inputs[EDITOR_INPUT_UP]->disabled = !focused;
+    Editor.inputs[EDITOR_INPUT_ADOWN]->disabled = !focused;
+    Editor.inputs[EDITOR_INPUT_AUP]->disabled = !focused;
+    Editor.inputs[EDITOR_INPUT_FRAME]->disabled = !focused ||
+        !Editor.focus->self->animCount || Editor.focus->self->anims[0]->looped;
+    Editor.inputs[EDITOR_INPUT_PREVIOUS]->disabled =
+        Editor.inputs[EDITOR_INPUT_FRAME]->disabled ||
+        !Editor.inputs[EDITOR_INPUT_FRAME]->checked;
+    Editor.inputs[EDITOR_INPUT_NEXT]->disabled =
+        Editor.inputs[EDITOR_INPUT_PREVIOUS]->disabled;
+    settings_update_frame_input();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -86,6 +114,8 @@ static void draw_editor_settings_label(v2f_t pos, float fact)
     draw_text("Collision", PX_TO_MAPF(add2f(pos, V2F(10.0f, 285.0f))), fact,
         WHITE);
     draw_text("Flip", PX_TO_MAPF(add2f(pos, V2F(10.0f, 337.0f))), fact, WHITE);
+    draw_text("Fixed Frame", PX_TO_MAPF(add2f(pos, V2F(10.0f, 853.0f))), fact,
+        WHITE);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -102,4 +132,10 @@ void draw_editor_settings(void)
     draw_rect(V2F1(100.0f), add2f(pos, V2F(75.0f, 0.0f)), EDITOR_BUTTON);
     draw_editor_settings_info(pos, fact);
     draw_editor_settings_label(pos, fact);
+    draw_text("---------------", PX_TO_MAPF(add2f(pos, V2F(10.0f, 390.0f))),
+        fact, RGB(200, 200, 200));
+    draw_text("Layers", PX_TO_MAPF(add2f(pos, V2F(10.0f, 420.0f))), fact,
+        WHITE);
+    draw_text("---------------", PX_TO_MAPF(add2f(pos, V2F(10.0f, 815.0f))),
+        fact, RGB(200, 200, 200));
 }

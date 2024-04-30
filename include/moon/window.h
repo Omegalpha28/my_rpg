@@ -20,7 +20,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
     /** Mode for the window: 'fullscreen', 'borderless', 'windowed'.         */
-    #define WIN_FULLSCREEN (sfFullscreen)
+    #define WIN_FULLSCREEN (sfFullscreen | sfResize)
     #define WIN_BORDERLESS (sfNone)
     #define WIN_WINDOWED (sfTitlebar | sfClose)
 

@@ -14,8 +14,8 @@ static v2f_t input(v2f_t pos, float *sound, v2f_t max)
 {
     float marge = 16.0f * Win.height / Win.viewHeight * 0.35f;
     v2i_t mouse = (sfMouse_getPositionRenderWindow(Win.self));
-    bool_t mouse_in = mouse.x > pos.x - marge && mouse.y > pos.y - marge &&
-        mouse.x < pos.x + marge && mouse.y < pos.y + marge;
+    bool_t mouse_in = mouse.x > max.x - marge && mouse.y > pos.y - marge &&
+        mouse.x < max.y + marge && mouse.y < pos.y + marge;
     sfBool press = sfMouse_isButtonPressed(Setting.shoot);
 
     RETURN(!mouse_in || !press, pos);

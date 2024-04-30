@@ -2,7 +2,7 @@
 
 [START-default]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-10          3           20          original            assets/creatures/bald-rat/bald-rat.png
+10          2           20          original            assets/creatures/bald-rat/bald-rat.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
 idle            0       3       DEFAULT     TRUE

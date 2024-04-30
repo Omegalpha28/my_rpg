@@ -11,6 +11,7 @@
 #include "rpg.h"
 
 
+///////////////////////////////////////////////////////////////////////////////
 static void patrol_position_calc(entity_t *evil)
 {
     if (equal2f(evil->wanted_position, evil->actor->position)){
@@ -147,4 +148,5 @@ void enemy_movement(entity_t *evil)
         stunned(evil);
     if (evil->status == Fear)
         fleeing(evil);
+    collision_check(evil);
 }

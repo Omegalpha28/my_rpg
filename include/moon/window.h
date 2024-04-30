@@ -79,6 +79,11 @@
     #define SPEED 8.5f
     #define HOVER Setting.hover
 
+    #define SHAKE Setting.shake
+    #define BLOOD Setting.blood
+    #define INVERT Setting.invert
+    #define CLICK_REL Setting.release
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // STRUCTURES
@@ -133,7 +138,7 @@ typedef struct key_track_s {
 } key_track_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief Keybind structure to keep key configuration
+/// \brief setting structure to keep settings
 ///
 /// \param up           Key for deplacement to direction: Up
 /// \param down         Key for deplacement to direction: Down
@@ -160,6 +165,18 @@ extern struct keybind_s {
     key_track_t dance;
     sfMouseButton shoot;
     bool_t hover;
+    float master;
+    float music;
+    float sound;
+    sfVideoMode *modes;
+    ulong_t modesCunt;
+    uint_t framerate;
+    bool_t shake;
+    bool_t blood;
+    uint_t aiming;
+    bool_t invert;
+    float sensibilit;
+    bool_t release;
 } Setting;
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -15,7 +15,13 @@ static void draw_colums(void)
 {
     float scal = 7.5f * 16.0f * Win.width / Win.viewWidth * 0.45f;
     float up = 3.0f * 16.0f * Win.width / Win.viewWidth * 0.45f;
+    sfSprite *bac = sfSprite_create();
 
+    sfSprite_setTexture(bac, Assets.ui[UI_BAR]->self, false);
+    sfSprite_setOrigin(bac, V2F(230.0f, 13.0f));
+    sfSprite_setPosition(bac, PX_TO_MAPF(V2F(Win.width / 2, up + up / 5)));
+    sfRenderWindow_drawSprite(Win.self, bac, false);
+    sfSprite_destroy(bac);
     draw_text_right("Audio", V2F(Win.width / 2.0f - scal, up),
         0.45f, colums(V2F(Win.width / 2.0f - scal, up), "Audio", 0.45f, 3));
     draw_text_center("Video", V2F(Win.width / 2.0f, up),
@@ -71,6 +77,8 @@ void settings_loop(void)
     CLICK_REL = (evt.type == sfEvtMouseButtonReleased &&
         evt.mouseButton.button == Setting.shoot);
     Setting.hover = false;
+    if (evt.key.code == DEFAULT_KEY_PAUSE)
+        Engine.scene = SCENE_MAIN_MENU;
     draw_menu_background();
     draw_shadow();
     draw_colums();

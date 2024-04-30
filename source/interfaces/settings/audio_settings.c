@@ -10,6 +10,35 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+static void draw_caret(v2f_t pos, float *sound, sfColor color)
+{
+    sfSprite *caret = sfSprite_create();
+    float marge = 16.0f * Win.height / Win.viewHeight * 0.35f / 2;
+
+    pos.y += marge;
+    sfSprite_setTexture(caret, Assets.ui[UI_CARET]->self, false);
+    sfSprite_setOrigin(caret, V2F(16.0f, 16.0f));
+    sfSprite_rotate(caret, -45.0f);
+    sfSprite_setColor(caret, color);
+    sfSprite_setScale(caret, V2F1(0.5f));
+    sfSprite_setPosition(caret, PX_TO_MAPF(pos));
+    sfRenderWindow_drawSprite(Win.self, caret, false);
+    sfSprite_destroy(caret);
+}
+
+static void draw_that_slide(v2f_t pos, bool_t color, float *sound)
+{
+    v2f_t size = {pos.x - Win.width / 8 * 5,
+        16.0f * Win.height / Win.viewHeight * 0.35f};
+    v2f_t size_caret = {size.x * (*sound) / 100.0f, size.y};
+    sfColor colors = color ? sfColor_fromRGB(243, 199, 77) : sfWhite;
+
+    pos.x = Win.width / 2.0f + 120.0f * Win.width / Win.viewWidth * 0.35f;
+    draw_rect(size, pos, sfColor_fromRGB(134, 127, 138));
+    draw_rect(size_caret, pos, colors);
+    draw_caret(V2F(pos.x + size_caret.x, pos.y), sound, colors);
+}
+
 sfColor slide(v2f_t pos, float *sound)
 {
     float marge = 1.0f * 16.0f * Win.width / Win.viewWidth * 0.35f;
@@ -24,6 +53,7 @@ sfColor slide(v2f_t pos, float *sound)
     snprintf(buff, 8, "%.1f%%", *sound);
     draw_text(buff, PX_TO_MAPF(pos), 0.35f,
         (mouse_in ? sfColor_fromRGB(243, 199, 77) : sfWhite));
+    draw_that_slide(pos, mouse_in, sound);
     RETURN(!mouse_in, sfWhite);
     Setting.hover = true;
     return (sfColor_fromRGB(243, 199, 77));

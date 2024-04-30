@@ -54,5 +54,6 @@ void search_for_focus(void)
     if (Editor.inputCount > 0) {
         input_clear(Editor.inputs[EDITOR_INPUT_X]);
         input_clear(Editor.inputs[EDITOR_INPUT_Y]);
+        Editor.inputs[EDITOR_INPUT_COLLISION]->checked = false;
     }
 }

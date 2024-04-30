@@ -42,16 +42,14 @@ void sort_actors_pool(void)
 ///////////////////////////////////////////////////////////////////////////////
 void draw(void)
 {
-    for (uint_t i = 0; i < Editor.bCount; i++)
-        prop_draw(Editor.bProps[i]);
+    draw_visible_props(Editor.bProps, Editor.bCount);
     for (uint_t i = 0; i < Pool.effectCount; i++)
         if (Pool.effects[i]->self->background)
             effect_draw(Pool.effects[i]);
     sort_actors_pool();
     for (uint_t i = 0; i < Pool.actorCount; i++)
         actor_draw(Pool.actors[i]);
-    for (uint_t i = 0; i < Editor.fCount; i++)
-        prop_draw(Editor.fProps[i]);
+    draw_visible_props(Editor.fProps, Editor.fCount);
     for (uint_t i = 0; i < Pool.effectCount; i++)
         if (!Pool.effects[i]->self->background)
             effect_draw(Pool.effects[i]);

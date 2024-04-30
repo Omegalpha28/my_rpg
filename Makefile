@@ -220,6 +220,7 @@ P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)interfaces/context.c							\
 				$(P_D_EDITOR)interfaces/canvas.c							\
 				$(P_D_EDITOR)interfaces/settings.c							\
+				$(P_D_EDITOR)interfaces/tools.c								\
 				$(P_D_EDITOR)interfaces/input.c								\
 				$(P_D_EDITOR)interfaces/interfaces.c						\
 				$(P_D_EDITOR)interfaces/utils.c								\

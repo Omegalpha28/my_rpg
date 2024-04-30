@@ -21,6 +21,7 @@
     #define EDITOR_WIDGET RGB(71, 71, 71)
     #define EDITOR_BUTTON RGB(53, 53, 53)
     #define EDITOR_HOVER EDITOR_BACKGROUND
+    #define WHITE sfWhite
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Sizing
@@ -111,6 +112,8 @@ typedef enum input_type_e {
 enum input_editor_e {
     EDITOR_INPUT_X,
     EDITOR_INPUT_Y,
+    EDITOR_INPUT_COLLISION,
+    EDITOR_INPUT_FLIP,
     EDITOR_INPUT_COUNT
 };
 
@@ -182,6 +185,9 @@ extern struct editor_s {
     input_t *inputFocused;
     input_t **inputs;
     uint_t inputCount;
+    float copyScale;
+    bool_t copyCollide;
+    int copyData[4];
 } Editor;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -518,5 +524,17 @@ void input_updatef(input_t *input, float value);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void editor_settings_init_input(v2f_t pos);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Update the value of the inputs based on the current focused prop
+///
+///////////////////////////////////////////////////////////////////////////////
+void input_focus_update(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draw the toolbar of the editor
+///
+///////////////////////////////////////////////////////////////////////////////
+void draw_editor_toolbar(void);
 
 #endif /* !EDITOR_H_ */

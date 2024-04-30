@@ -46,7 +46,7 @@
     #define FRAME_PER_MS(x) (1000 / x)
     #define DEFAULT_CREATURE_FR FRAME_PER_MS(8)
     #define DEFAULT_PROP_FR FRAME_PER_MS(5)
-    #define DEFAULT_VFX_FR FRAME_PER_MS(6)
+    #define DEFAULT_VFX_FR FRAME_PER_MS(8)
     #define VIDEO_FRAMERATE FRAME_PER_MS(12)
 
     /** Weapon Size                                                          */
@@ -127,6 +127,7 @@ typedef enum ui_element_e {
     UI_BLACK_FADE,
     UI_CURSOR,
     UI_VISOR,
+    UI_BUTTONS,
     UI_ELEMENT_COUNT
 } ui_element_t;
 
@@ -160,7 +161,8 @@ static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
     DIR_UI"/common/creators.png",
     DIR_UI"/common/corner.png",
     DIR_UI"/common/cursor.png",
-    DIR_UI"/common/UICrosshair.png"
+    DIR_UI"/common/UICrosshair.png",
+    DIR_UI"/common/buttons.png"
 };
 
 ///////////////////////////////////////////////////////////////////////////////

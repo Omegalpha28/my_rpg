@@ -47,6 +47,9 @@ extern struct engine_s {
     uint_t videoFrameCount;
     ulong_t time;
     sfSprite *sprite;
+    warray_t content;
+    uint_t frameLoaded;
+    sfMusic *music;
     int colums;
 } Engine;
 

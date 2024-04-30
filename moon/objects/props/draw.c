@@ -61,3 +61,21 @@ void prop_animate(prop_t *prop)
     prop->done = false;
     prop->animated = true;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+void draw_visible_props(prop_t **list, uint_t n)
+{
+    v2f_t ctr = sfView_getCenter(Win.view);
+    rectf_t vBound = {ctr.x - Win.viewWidth / 2.0f, ctr.y - Win.viewHeight /
+        2.0f, Win.viewWidth, Win.viewHeight};
+    rectf_t bound = {0.0f, 0.0f, 0.0f, 0.0f};
+
+    for (uint_t i = 0; i < n; i++) {
+        bound.width = list[i]->self->image->mask.width;
+        bound.height = list[i]->self->image->mask.height;
+        bound.left = list[i]->position.x - (bound.width / 2.0f);
+        bound.top = list[i]->position.y - (bound.height / 2.0f);
+        if (sfFloatRect_intersects(&bound, &vBound, NULL))
+            prop_draw(list[i]);
+    }
+}

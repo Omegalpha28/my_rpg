@@ -46,3 +46,21 @@ void remove_prop(prop_t *prop, prop_t ***array, uint_t *count)
     (*array) = tmp;
     prop_destroy(prop);
 }
+
+///////////////////////////////////////////////////////////////////////////////
+prop_t **find_prop_stack(prop_t *prop, uint_t *idx)
+{
+    for (uint_t i = 0; i < Editor.fCount; i++) {
+        if (Editor.fProps[i] != prop)
+            continue;
+        (*idx) = i;
+        return (Editor.fProps);
+    }
+    for (uint_t i = 0; i < Editor.bCount; i++) {
+        if (Editor.bProps[i] != prop)
+            continue;
+        (*idx) = i;
+        return (Editor.bProps);
+    }
+    return (NULL);
+}

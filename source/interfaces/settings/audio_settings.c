@@ -10,12 +10,27 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-static void draw_caret(v2f_t pos, float *sound, sfColor color)
+static v2f_t input(v2f_t pos, float *sound, v2f_t max)
+{
+    float marge = 16.0f * Win.height / Win.viewHeight * 0.35f;
+    v2i_t mouse = (sfMouse_getPositionRenderWindow(Win.self));
+    bool_t mouse_in = mouse.x > pos.x - marge && mouse.y > pos.y - marge &&
+        mouse.x < pos.x + marge && mouse.y < pos.y + marge;
+    sfBool press = sfMouse_isButtonPressed(Setting.shoot);
+
+    RETURN(!mouse_in || !press, pos);
+    pos.x = clampf(mouse.x, max.x, max.y);
+    *sound = clampf((pos.x - max.x) / (max.y - max.x) * 100.0f, 0.0f, 100.0f);
+    return pos;
+}
+
+static void draw_caret(v2f_t pos, float *sound, sfColor color, v2f_t max)
 {
     sfSprite *caret = sfSprite_create();
     float marge = 16.0f * Win.height / Win.viewHeight * 0.35f / 2;
 
     pos.y += marge;
+    pos = input(pos, sound, max);
     sfSprite_setTexture(caret, Assets.ui[UI_CARET]->self, false);
     sfSprite_setOrigin(caret, V2F(16.0f, 16.0f));
     sfSprite_rotate(caret, -45.0f);
@@ -32,11 +47,13 @@ static void draw_that_slide(v2f_t pos, bool_t color, float *sound)
         16.0f * Win.height / Win.viewHeight * 0.35f};
     v2f_t size_caret = {size.x * (*sound) / 100.0f, size.y};
     sfColor colors = color ? sfColor_fromRGB(243, 199, 77) : sfWhite;
+    v2f_t max;
 
     pos.x = Win.width / 2.0f + 120.0f * Win.width / Win.viewWidth * 0.35f;
+    max = V2F(pos.x, pos.x + size.x);
     draw_rect(size, pos, sfColor_fromRGB(134, 127, 138));
     draw_rect(size_caret, pos, colors);
-    draw_caret(V2F(pos.x + size_caret.x, pos.y), sound, colors);
+    draw_caret(V2F(pos.x + size_caret.x, pos.y), sound, colors, max);
 }
 
 sfColor slide(v2f_t pos, float *sound)
@@ -50,10 +67,10 @@ sfColor slide(v2f_t pos, float *sound)
     char buff[8];
 
     pos.x = Win.width / 4 * 3;
+    draw_that_slide(pos, mouse_in, sound);
     snprintf(buff, 8, "%.1f%%", *sound);
     draw_text(buff, PX_TO_MAPF(pos), 0.35f,
         (mouse_in ? sfColor_fromRGB(243, 199, 77) : sfWhite));
-    draw_that_slide(pos, mouse_in, sound);
     RETURN(!mouse_in, sfWhite);
     Setting.hover = true;
     return (sfColor_fromRGB(243, 199, 77));

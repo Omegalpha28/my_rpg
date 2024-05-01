@@ -85,10 +85,10 @@ void draw(void)
             effect_draw(Pool.effects[i]);
     sort_actors_pool();
     for (uint_t i = 0; i < Pool.actorCount; i++) {
-        if (Player.ref == Pool.actors[i] && under)
+        if (Player.ref == Pool.actors[i] && under && !(DANCE || DASH))
             draw_weapon();
         actor_draw(Pool.actors[i]);
-        if (Player.ref == Pool.actors[i] && !under)
+        if (Player.ref == Pool.actors[i] && !under && !(DANCE || DASH))
             draw_weapon();
     }
     draw_visible_props(Editor.fProps, Editor.fCount);

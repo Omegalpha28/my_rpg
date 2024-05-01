@@ -59,6 +59,7 @@ static void dash_animation(void)
         Player.velocity.x *= Time.deltaTime / 12;
         Player.velocity.y *= Time.deltaTime / 12;
         actor_move(Player.ref, Player.velocity);
+        Player.ref->scale.x = Player.velocity.x < 0.0f ? -1.0f : 1.0f;
         camera_move();
     }
 }
@@ -68,6 +69,7 @@ void dash_movement(void)
 {
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
 
+    Player.ref->scale.x = Player.ref->position.x > cr.x ? -1.0f : 1.0f;
     if (DASH && !DANCE)
         dash_animation();
     if (Player.ref->done && !DANCE && DASH) {
@@ -77,5 +79,4 @@ void dash_movement(void)
     }
     actor_move(Player.ref, Player.velocity);
     camera_move();
-    Player.ref->scale.x = Player.ref->position.x > cr.x ? -1.0f : 1.0f;
 }

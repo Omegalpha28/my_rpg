@@ -48,9 +48,19 @@ static void save_prop(prop_t *prop, buffer_t *buff)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void check_level_directory(void)
+{
+    struct stat st = {0};
+
+    if (stat(DIR_LEVEL, &st) == -1)
+        mkdir(DIR_LEVEL, 0700);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 bool_t level_save(cstring_t filepath)
 {
     buffer_t *buff = my_buffinit();
+    string_t path = my_strdcat(DIR_LEVEL, filepath, ".level");
 
     my_buffstr(buff, Editor.zone->name);
     my_buffchar(buff, 0);
@@ -60,7 +70,9 @@ bool_t level_save(cstring_t filepath)
     my_buffint(buff, (int)Editor.bCount, 3);
     for (uint_t i = 0; i < Editor.bCount; i++)
         save_prop(Editor.bProps[i], buff);
-    my_fbuff(buff, filepath);
+    check_level_directory();
+    my_fbuff(buff, path);
+    FREE(path);
     my_bufftroy(buff);
     return (true);
 }

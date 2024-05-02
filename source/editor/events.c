@@ -11,6 +11,16 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+void handle_popup_events(sfEvent evt)
+{
+    if (evt.type == sfEvtMouseButtonPressed)
+        Editor.inputFocused = NULL;
+    if (evt.type == sfEvtKeyPressed && evt.key.code == sfKeyEnter)
+        Editor.inputs[EDITOR_INPUT_SUBMIT]->onInput(
+            Editor.inputs[EDITOR_INPUT_SUBMIT]);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void handle_editor_events(sfEvent evt)
 {
     if (evt.type == sfEvtClosed)
@@ -20,10 +30,8 @@ void handle_editor_events(sfEvent evt)
         handle_editor_key_input(evt.key);
     if (evt.type == sfEvtMouseButtonReleased)
         handle_editor_mouse_released();
-    if (evt.type == sfEvtMouseButtonPressed)
-        Editor.inputFocused = NULL;
     if (Editor.popupOpen)
-        return;
+        return (handle_popup_events(evt));
     if (evt.type == sfEvtMouseButtonPressed)
         handle_editor_mouse_button(evt.mouseButton);
     if (evt.type == sfEvtMouseWheelScrolled)

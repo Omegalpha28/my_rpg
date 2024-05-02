@@ -15,7 +15,7 @@ sfColor on_off(v2f_t pos, bool_t *on)
     float marge = 1.0f * 16.0f * Win.width / Win.viewWidth * 0.35f;
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
     bool_t mouse_in = mouse.x > PX_TO_MAPF(V2F1(pos.x - marge)).x &&
-        mouse.x < PX_TO_MAPF(V2F1(Win.width / 8 * 5 + marge)).x &&
+        mouse.x < PX_TO_MAPF(V2F1(Win.width / 8 * 5 + marge * 4)).x &&
         mouse.y > PX_TO_MAPF(V2F1(pos.y - marge)).y &&
         mouse.y < PX_TO_MAPF(V2F1(pos.y + marge * 2)).y;
     sfColor color = (*on ? sfWhite : sfColor_fromRGB(53, 49, 46));

@@ -25,3 +25,21 @@ void input_clear(input_t *input)
     FREE(input->content);
     input->length = 0;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+void open_save_popup(void)
+{
+    Editor.popupOpen = true;
+    Editor.popupType = POPUP_SAVE;
+    editor_hide_context();
+    Editor.inputFocused = Editor.inputs[EDITOR_INPUT_PATH];
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void open_open_popup(void)
+{
+    Editor.popupOpen = true;
+    Editor.popupType = POPUP_OPEN;
+    editor_hide_context();
+    Editor.inputFocused = Editor.inputs[EDITOR_INPUT_PATH];
+}

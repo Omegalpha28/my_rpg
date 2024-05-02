@@ -63,8 +63,7 @@ static void draw_context_item(v2f_t pos, uint_t ci, uint_t i, float fact)
     cstring_t sub = CONTEXTS[ci].items[i].subText;
     ulong_t len = sub ? strlen(sub) : 0;
     v2f_t bPos = V2F(pos.x, pos.y + 42.0f * i + 32.0f);
-    bool_t hover = cursor_inbound(bPos, V2F(300.0f, 42.0f)) &&
-        !Editor.popupOpen;
+    bool_t hover = cursor_inbound(bPos, V2F(300, 42)) && !Editor.popupOpen;
     sfColor clr = hover && !CONTEXTS[ci].items[i].disabled ? RGB(52, 130, 246)
         : RGB(225, 225, 225);
 

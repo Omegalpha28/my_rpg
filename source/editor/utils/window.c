@@ -11,22 +11,6 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-void open_save_popup(void)
-{
-    Editor.popupOpen = true;
-    Editor.popupType = POPUP_SAVE;
-    editor_hide_context();
-}
-
-///////////////////////////////////////////////////////////////////////////////
-void open_open_popup(void)
-{
-    Editor.popupOpen = true;
-    Editor.popupType = POPUP_OPEN;
-    editor_hide_context();
-}
-
-///////////////////////////////////////////////////////////////////////////////
 void editor_hide_context(void)
 {
     for (uint_t i = 0; i < CONTEXT_COUNT; i++)

@@ -17,7 +17,12 @@ void draw_editor_ui(void)
     draw_editor_browser();
     draw_editor_bottom_bar();
     draw_editor_toolbar();
-    for (uint_t i = 0; i < Editor.inputCount; i++)
+    for (uint_t i = 0; i < Editor.inputCount - 3; i++)
         editor_draw_input(Editor.inputs[i]);
     draw_editor_context_menu();
+    if (Editor.popupOpen) {
+        draw_editor_popup();
+        for (uint_t i = Editor.inputCount - 3; i < Editor.inputCount; i++)
+            editor_draw_input(Editor.inputs[i]);
+    }
 }

@@ -124,6 +124,39 @@ static void editor_settings_init_frame(v2f_t pos)
     Editor.inputs[EDITOR_INPUT_NEXT]->cActive = RGBA(0, 156, 0, 255);
 }
 
+static void handle_popup_click(input_t *input)
+{
+    if (Editor.inputs[EDITOR_INPUT_PATH]->content == NULL &&
+        input == Editor.inputs[EDITOR_INPUT_SUBMIT])
+        return;
+    if (input == Editor.inputs[EDITOR_INPUT_SUBMIT]) {
+        if (Editor.popupType == POPUP_OPEN)
+            level_load(Editor.inputs[EDITOR_INPUT_PATH]->content);
+        if (Editor.popupType == POPUP_SAVE)
+            level_save(Editor.inputs[EDITOR_INPUT_PATH]->content);
+    }
+    Editor.popupOpen = false;
+    input_clear(Editor.inputs[EDITOR_INPUT_PATH]);
+}
+
+static void editor_settings_init_popup(void)
+{
+    v2f_t pos = V2F(Win.width / 2.0f - 225.0f, Win.height / 2.0f - 75.0f);
+
+    create_input(INPUT_TEXT, add2f(pos, V2F(10.0f, 45.0f)),
+        V2F(430.0f, 42.0f), "Level Name");
+    create_input(INPUT_BUTTON, add2f(pos, V2F(10.0f, 97.0f)),
+        V2F(150.0f, 42.0f), "Cancel");
+    create_input(INPUT_BUTTON, add2f(pos, V2F(290.0f, 97.0f)),
+        V2F(150.0f, 42.0f), "Submit");
+    Editor.inputs[EDITOR_INPUT_SUBMIT]->cActive = RGBA(0, 200, 0, 155);
+    Editor.inputs[EDITOR_INPUT_SUBMIT]->cHover = RGBA(0, 200, 0, 255);
+    Editor.inputs[EDITOR_INPUT_CANCEL]->cActive = RGBA(200, 0, 0, 155);
+    Editor.inputs[EDITOR_INPUT_CANCEL]->cHover = RGBA(200, 0, 0, 255);
+    Editor.inputs[EDITOR_INPUT_CANCEL]->onInput = &handle_popup_click;
+    Editor.inputs[EDITOR_INPUT_SUBMIT]->onInput = &handle_popup_click;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 void editor_settings_init_input(v2f_t pos)
 {
@@ -141,4 +174,5 @@ void editor_settings_init_input(v2f_t pos)
     Editor.inputs[EDITOR_INPUT_FLIP]->onInput = &handle_checkbox_input;
     editor_settings_init_buttons(add2f(pos, V2F(10.0f, 460.0f)));
     editor_settings_init_frame(add2f(pos, V2F(0.0f, 800.0f)));
+    editor_settings_init_popup();
 }

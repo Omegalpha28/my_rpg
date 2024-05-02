@@ -218,6 +218,7 @@ P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)utils/inputs.c									\
 				$(P_D_EDITOR)utils/canvas.c									\
 				$(P_D_EDITOR)interfaces/browser.c							\
+				$(P_D_EDITOR)interfaces/popup.c								\
 				$(P_D_EDITOR)interfaces/bottom.c							\
 				$(P_D_EDITOR)interfaces/init.c								\
 				$(P_D_EDITOR)interfaces/context.c							\

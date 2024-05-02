@@ -58,6 +58,10 @@ static void handle_editor_key_copy_paste(sfKeyEvent evt)
         editor_duplicate();
     if (evt.code == sfKeyX)
         editor_cut();
+    if (evt.code == sfKeyS && (Editor.fCount + Editor.bCount) > 0)
+        open_save_popup();
+    if (evt.code == sfKeyO)
+        open_open_popup();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

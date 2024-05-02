@@ -44,7 +44,7 @@ void editor_to_foreground(void)
     if (arr == NULL || arr == Editor.fProps)
         return;
     move_prop_layer(&(Editor.bProps), &(Editor.fProps), Editor.focus);
-    Editor.layer = EDITOR_LAYER_BACKGROUND;
+    Editor.layer = EDITOR_LAYER_FOREGROUND;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -59,5 +59,5 @@ void editor_to_background(void)
     if (arr == NULL || arr == Editor.bProps)
         return;
     move_prop_layer(&(Editor.fProps), &(Editor.bProps), Editor.focus);
-    Editor.layer = EDITOR_LAYER_FOREGROUND;
+    Editor.layer = EDITOR_LAYER_BACKGROUND;
 }

@@ -17,6 +17,8 @@ static string_t readf(cstring_t filepath, ulong_t *readed)
     char *string;
     long fsize;
 
+    if (f == NULL)
+        return (NULL);
     fseek(f, 0, SEEK_END);
     fsize = ftell(f);
     fseek(f, 0, SEEK_SET);
@@ -86,9 +88,11 @@ static void load_layer(prop_t ***array, uint_t *count, cstring_t buff,
 bool_t level_load(cstring_t filepath)
 {
     ulong_t readed = 0;
-    cstring_t buff = (cstring_t)readf(filepath, &readed);
+    string_t path = my_strdcat(DIR_LEVEL, filepath, ".level");
+    cstring_t buff = (cstring_t)readf(path, &readed);
     ulong_t idx = 0;
 
+    FREE(path);
     if (buff == NULL)
         return (false);
     load_information(buff, &idx);

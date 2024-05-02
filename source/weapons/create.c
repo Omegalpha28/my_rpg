@@ -49,6 +49,7 @@ static sfSprite *init_bullet_sprite(bullet_t *bullet, uint_t rec_size)
 
     sfSprite_setTexture(bullet_sprite, texture, sfTrue);
     sfSprite_setTextureRect(bullet_sprite, rect);
+    sfSprite_setOrigin(bullet_sprite, V2F1(rec_size / 2.0f));
     sfSprite_setPosition(bullet_sprite, (v2f_t){bullet->position.x,
         bullet->position.y});
     sfSprite_setOrigin(bullet_sprite, (v2f_t){rect.width / 2,
@@ -70,7 +71,7 @@ static void init_bullet(bullet_t *new, uint_t sender, v2f_t size, uint_t sheet)
     new->size_max_x = size_max;
     new->begin = 0;
     new->origin = (v2f_t){Player.ref->position.x, Player.ref->position.y};
-    new->position = (v2f_t){Player.ref->position.x, Player.ref->position.y};
+    new->position = new->origin;
     new->destination = endpoint2f(new->origin, cr, 100.0f);
     new->sprite = init_bullet_sprite(new, rec);
     new->destroyed = false;
@@ -86,10 +87,10 @@ bullet_t *bullet_creation(uint_t sender, uint_t size_rect, uint_t spritesheet,
 
     init_bullet(new, sender, size, spritesheet);
     shake(2.5f, 0.15f);
-    Bullet_List.count++;
-    Bullet_List.array = REALLOC(Bullet_List.array, sizeof(bullet_t *),
-        Bullet_List.count);
-    Bullet_List.array[Bullet_List.count - 1] = new;
+    Pool.bulletCount++;
+    Pool.bullets = REALLOC(Pool.bullets, sizeof(bullet_t *),
+        Pool.bulletCount);
+    Pool.bullets[Pool.bulletCount - 1] = new;
     return (new);
 }
 
@@ -101,15 +102,15 @@ void remove_bullet(bullet_t *bullet)
 
     if (bullet == NULL)
         return;
-    tmp = malloc(sizeof(bullet_t *) * (Bullet_List.count - 1));
-    for (uint_t i = 0; i < Bullet_List.count; i++) {
-        if (Bullet_List.array[i] == bullet)
+    tmp = malloc(sizeof(bullet_t *) * (Pool.bulletCount - 1));
+    for (uint_t i = 0; i < Pool.bulletCount; i++) {
+        if (Pool.bullets[i] == bullet)
             continue;
-        tmp[j] = Bullet_List.array[i];
+        tmp[j] = Pool.bullets[i];
         j++;
     }
-    Bullet_List.count--;
-    FREE(Bullet_List.array);
-    Bullet_List.array = tmp;
+    Pool.bulletCount--;
+    FREE(Pool.bullets);
+    Pool.bullets = tmp;
     FREE(bullet);
 }

@@ -77,27 +77,12 @@ typedef enum weapons_enum_e {
     WEAPON_COUNT
 } weapon_enum_t;
 
-///////////////////////////////////////////////////////////////////////////////
-/// \brief TODO:
-///
-/// \param sender       TODO:
-/// \param origin       TODO:
-/// \param destination  TODO:
-///
-///////////////////////////////////////////////////////////////////////////////
-typedef struct bullet_s {
-    uint_t sender;
-    sfSprite *sprite;
-    v2f_t origin;
-    v2f_t destination;
-    v2f_t position;
-    bool_t destroyed;
-    uint_t rect_sprite;
-    uint_t num_sheet;
-    uint_t size_max_x;
-    uint_t begin;
-    sfCircleShape *area;
-} bullet_t;
+typedef enum fire_type_e {
+    FIRE_SINGLE,
+    FIRE_BURST,
+    FIRE_AUTO,
+    FIRE_TYPE_COUNT
+} fire_type_t;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief TODO:
@@ -112,43 +97,14 @@ typedef struct bullet_s {
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct weapon_s {
     weapon_type_t type;
-    sfSprite *sprite;
-    uint_t ammos;
+    fire_type_t fireType;
+    uint_t ammoPerMag;
     uint_t damage;
-    float_t firerate;
-    bool_t enable;
-    v2f_t origin;
-    v2f_t destination;
-    v2f_t position;
-    recti_t rect;
+    float firerate;
+    uint_t bulletType;
 } weapon_t;
 
-///////////////////////////////////////////////////////////////////////////////
-/// \brief TODO:
-///
-/// \param type          TODO:
-/// \param ammos         TODO:
-/// \param damage        TODO:
-/// \param firerate      TODO:
-/// \param weapon_type_t TODO:
-/// \param weapon_e      TODO:
-///
-///////////////////////////////////////////////////////////////////////////////
-extern struct weapon_list_s {
-    weapon_t **weapon;
-    uint_t count;
-} Weapon_List;
-///////////////////////////////////////////////////////////////////////////////
-/// \brief TODO:
-///
-/// \param array        TODO:
-/// \param count        TODO:
-///
-///////////////////////////////////////////////////////////////////////////////
-extern struct bullet_list_s {
-    bullet_t **array;
-    uint_t count;
-} Bullet_List;
+static const weapon_t WEAPON_STATS[WEAPON_COUNT] = {};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief create new bullets when players and enemies engage in shooting.

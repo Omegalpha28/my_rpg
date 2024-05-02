@@ -35,3 +35,28 @@ void sort_creatures(void)
             break;
     }
 }
+
+///////////////////////////////////////////////////////////////////////////////
+static void swap_alphabetically(warray_t arr, uint_t j)
+{
+    string_t tmp = NULL;
+
+    if (strcmp(my_basename(arr[j]), my_basename(arr[j + 1])) <= 0)
+        return;
+    tmp = arr[j];
+    arr[j] = arr[j + 1];
+    arr[j] = tmp;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void sort_warray(warray_t arr)
+{
+    ulong_t len = 0;
+
+    if (arr == NULL || arr[0] == NULL)
+        return;
+    len = my_walen(arr);
+    for (uint_t i = 0; i < len - 1; i++)
+        for (uint_t j = 0; j < len - 1 - i; j++)
+            swap_alphabetically(arr, j);
+}

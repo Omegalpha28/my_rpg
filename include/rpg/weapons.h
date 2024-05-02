@@ -102,6 +102,7 @@ typedef struct weapon_s {
     uint_t damage;
     float firerate;
     uint_t bulletType;
+    float shakingIntensity;
 } weapon_t;
 
 static const weapon_t WEAPON_STATS[WEAPON_COUNT] = {};

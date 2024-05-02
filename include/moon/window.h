@@ -83,6 +83,9 @@
     #define BLOOD Setting.blood
     #define INVERT Setting.invert
     #define CLICK_REL Setting.release
+    #define WIN_MODES Setting.winMode
+    #define FRAMERATE Setting.framerate
+    #define AIMING Setting.aiming
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -170,6 +173,7 @@ extern struct keybind_s {
     float sound;
     sfVideoMode *modes;
     ulong_t modesCunt;
+    uint_t winMode;
     uint_t framerate;
     bool_t shake;
     bool_t blood;

@@ -27,7 +27,7 @@ static void settings_update_frame_input(void)
 ///////////////////////////////////////////////////////////////////////////////
 static void settings_update_input_state(void)
 {
-    bool_t focused = (Editor.focus != NULL);
+    bool_t focused = (Editor.focus != NULL) && !Editor.popupOpen;
 
     Editor.inputs[EDITOR_INPUT_X]->disabled = !focused;
     Editor.inputs[EDITOR_INPUT_Y]->disabled = !focused;

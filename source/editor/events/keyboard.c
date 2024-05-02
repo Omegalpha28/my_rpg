@@ -77,12 +77,24 @@ static void handle_editor_single_key(sfKeyEvent evt)
         prop_animate(Editor.focus);
 }
 
+static void handle_editor_input_enter(void)
+{
+    if (Editor.inputFocused->type == INPUT_CHECKBOX)
+        Editor.inputFocused->checked = !Editor.inputFocused->checked;
+    if (Editor.inputFocused->type == INPUT_TEXT ||
+        Editor.inputFocused->type == INPUT_FLOAT ||
+        Editor.inputFocused->type == INPUT_INTEGER)
+        Editor.inputFocused = NULL;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 void handle_editor_key_pressed(sfKeyEvent evt)
 {
     handle_editor_key_prop_movement(evt);
     handle_editor_key_copy_paste(evt);
     handle_editor_single_key(evt);
+    if (Editor.inputFocused && evt.code == sfKeyEnter)
+        handle_editor_input_enter();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

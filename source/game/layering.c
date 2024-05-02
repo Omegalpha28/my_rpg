@@ -61,6 +61,7 @@ static void draw_weapon(void)
     float deltaY = cr.y - Player.ref->position.y;
     float angle = atan2f(deltaY, deltaX) * (180.0f / M_PI);
 
+    pos = endpoint2f(pos, cr, 5.0f);
     if (cr.x < pos.x) {
         sfSprite_setScale(wp, V2F(-1.0f, 1.0f));
         angle += 180.0f;

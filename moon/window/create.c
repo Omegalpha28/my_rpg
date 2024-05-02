@@ -34,7 +34,7 @@ struct keybind_s Setting = {
     (key_track_t){DEFAULT_KEY_PAUSE, false},
     (key_track_t){DEFAULT_KEY_DANCE, false},
     DEFAULT_KEY_SHOOT,
-    false, 100.0f, 100.0f, 100.0f, NULL, 0, 60, true, true, 0, false, 1.0f,
+    false, 100.0f, 100.0f, 100.0f, NULL, 0, 2, 60, true, true, 0, false, 1.0f,
     false
 };
 
@@ -83,7 +83,7 @@ bool_t create_window(uint_t width, uint_t height, int mode)
     if (!Win.view || !Win.self)
         return (false);
     init_view();
-    sfRenderWindow_setFramerateLimit(Win.self, DEFAULT_FPS);
+    sfRenderWindow_setFramerateLimit(Win.self, Setting.framerate);
     sfRenderWindow_setPosition(Win.self, V2I(MID(sc.width, Win.width),
         MID(sc.height, Win.height)));
     Win.mode = mode;

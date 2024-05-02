@@ -32,6 +32,7 @@
     #define DIR_VIDEO DIR_ASSETS "/videos"
     #define DIR_INTRO DIR_VIDEO "/intro"
     #define DIR_OUTRO DIR_VIDEO "/outro"
+    #define DIR_BULLET DIR_ASSETS "/bullet"
 
     /** Zones restricted name                                                */
     #define CAT_TRAP "traps"
@@ -169,6 +170,29 @@ static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
     DIR_UI"/game/shadow.png",
     DIR_UI"/common/titlebar.png",
     DIR_UI"/common/selection_mark.png"
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Hold every bullet textures
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef enum text_bullet_e {
+    T_AK_BASE,
+    T_AK_IMPACT_WALL,
+    T_AK_IMPACT_ENEMY,
+    T_AK_DISAPPEAR,
+    T_BULLET_COUNT
+} text_bullet_t;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Paths to bullet textures
+///
+///////////////////////////////////////////////////////////////////////////////
+static const cstring_t TEXT_BULLETS[T_BULLET_COUNT] = {
+    DIR_BULLET"/ak_base-1x1.png",
+    DIR_BULLET"/ak_disappear-5x1.png",
+    DIR_BULLET"/ak_impact_enemy-6x1.png",
+    DIR_BULLET"/ak_impact_wall-7x1.png"
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -345,6 +369,8 @@ extern struct assets_s {
     image_t *weapons;
     image_t **ui;
     uint_t uiCount;
+    image_t **bullets;
+    uint_t bulletCount;
 } Assets;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -486,5 +512,19 @@ bool_t init_assets_ui(void);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void destroy_assets_ui(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Load every assets of the bullets
+///
+/// \return True if everything is loaded, false otherwise
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t init_assets_bullets(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Destroy every bullets assets
+///
+///////////////////////////////////////////////////////////////////////////////
+void destroy_assets_bullets(void);
 
 #endif /* !ASSETS_H_ */

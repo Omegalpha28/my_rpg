@@ -23,6 +23,12 @@ static void check_program_flags(int argc, warray_t argv)
     }
     if (WCMP(argv, "--debug") || WCMP(argv, "-d"))
         Engine.debugMode = true;
+    if (WCMP(argv, "--borderless") || WCMP(argv, "-b"))
+        create_window(0, 0, WIN_BORDERLESS);
+    if (WCMP(argv, "--fullscreen") || WCMP(argv, "-f"))
+        create_window(0, 0, WIN_FULLSCREEN);
+    if (WCMP(argv, "--windowed") || WCMP(argv, "-w"))
+        create_window(0, 0, WIN_WINDOWED);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

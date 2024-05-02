@@ -43,9 +43,7 @@ static sfSprite *init_bullet_sprite(bullet_t *bullet, uint_t rec_size)
 {
     sfSprite *bullet_sprite = sfSprite_create();
     recti_t rect = (sfIntRect){0, 0, rec_size, rec_size};
-    sfTexture *texture =
-        sfTexture_createFromFile("assets/bullet/shotgun-ie-0x0-1x4.png",
-        NULL);
+    sfTexture *texture = Assets.bullets[T_AK_BASE]->self;
 
     sfSprite_setTexture(bullet_sprite, texture, sfTrue);
     sfSprite_setTextureRect(bullet_sprite, rect);

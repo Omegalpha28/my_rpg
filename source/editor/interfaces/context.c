@@ -20,8 +20,8 @@ context_t CONTEXTS[CONTEXT_COUNT] = {
     },
     {
         "File", false, {
-            {"Open level", NULL, false, "CTRL O"},
-            {"Save level", NULL, false, "CTRL S"},
+            {"Open level", &open_open_popup, false, "CTRL O"},
+            {"Save level", &open_save_popup, false, "CTRL S"},
             {"Change zone", NULL, false, NULL}
         }, 3
     },
@@ -63,7 +63,8 @@ static void draw_context_item(v2f_t pos, uint_t ci, uint_t i, float fact)
     cstring_t sub = CONTEXTS[ci].items[i].subText;
     ulong_t len = sub ? strlen(sub) : 0;
     v2f_t bPos = V2F(pos.x, pos.y + 42.0f * i + 32.0f);
-    bool_t hover = cursor_inbound(bPos, V2F(300.0f, 42.0f));
+    bool_t hover = cursor_inbound(bPos, V2F(300.0f, 42.0f)) &&
+        !Editor.popupOpen;
     sfColor clr = hover && !CONTEXTS[ci].items[i].disabled ? RGB(52, 130, 246)
         : RGB(225, 225, 225);
 
@@ -109,7 +110,7 @@ static void draw_context_buttons(cstring_t str, v2f_t pos, uint_t ci)
     float fact = FACTORS(V2F1(20.0f)).x;
     ulong_t len = strlen(str);
     v2f_t size = V2F((16.0f * len) + 20.0f, 32.0f);
-    bool_t hover = cursor_inbound(pos, size);
+    bool_t hover = cursor_inbound(pos, size) && !Editor.popupOpen;
 
     draw_rect(size, pos, hover ? EDITOR_HOVER : EDITOR_BUTTON);
     check_context_opening(hover, ci);

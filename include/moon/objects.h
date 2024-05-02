@@ -43,6 +43,28 @@ typedef struct actor_s {
 } actor_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief TODO:
+///
+/// \param sender       TODO:
+/// \param origin       TODO:
+/// \param destination  TODO:
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct bullet_s {
+    uint_t sender;
+    sfSprite *sprite;
+    v2f_t origin;
+    v2f_t destination;
+    v2f_t position;
+    bool_t destroyed;
+    uint_t rect_sprite;
+    uint_t num_sheet;
+    uint_t size_max_x;
+    uint_t begin;
+    sfCircleShape *area;
+} bullet_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Prop class, used to draw map
 ///
 /// \param self         References to the sheet of the prop
@@ -104,6 +126,8 @@ extern struct pool_s {
     uint_t propCount;
     effect_t **effects;
     uint_t effectCount;
+    bullet_t **bullets;
+    uint_t bulletCount;
 } Pool;
 
 ///////////////////////////////////////////////////////////////////////////////

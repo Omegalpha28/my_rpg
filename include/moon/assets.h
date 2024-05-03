@@ -132,6 +132,7 @@ typedef enum ui_element_e {
     PLAYER_SHADOW,
     UI_BAR,
     UI_CARET,
+    UI_KEY,
     UI_ELEMENT_COUNT
 } ui_element_t;
 
@@ -169,7 +170,8 @@ static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
     DIR_UI"/common/buttons.png",
     DIR_UI"/game/shadow.png",
     DIR_UI"/common/titlebar.png",
-    DIR_UI"/common/selection_mark.png"
+    DIR_UI"/common/selection_mark.png",
+    DIR_UI"/common/keyboard.png"
 };
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -19,6 +19,7 @@ static bool_t init_zone(cstring_t path)
 
     if (content == NULL)
         return (false);
+    sort_warray(content);
     zone = (zone_t *)malloc(sizeof(zone_t));
     zone->categoryCount = 0;
     zone->loaded = false;

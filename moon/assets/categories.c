@@ -101,6 +101,7 @@ bool_t init_assets_category(zone_t *zone, cstring_t path)
 
     if (content == NULL)
         return (true);
+    sort_warray(content);
     cat = create_category(zone, path);
     for (uint_t i = 0; success && content[i]; i++) {
         if (my_isdir(content[i]) == true || my_extname(content[i]) == NULL)

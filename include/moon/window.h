@@ -34,7 +34,7 @@
     #define DEFAULT_WIDTH 1920
     #define DEFAULT_HEIGHT 1080
     /** View settings                                                        */
-    #define DEFAULT_VIEW_WIDTH 512.0f
+    #define DEFAULT_VIEW_WIDTH 456.0f
     #define DEFAULT_VIEW_HEIGHT 288.0f
     /** Window color bits                                                    */
     #define DEFAULT_BITS 32
@@ -76,7 +76,7 @@
     #define DASH Setting.dash.pressed
     #define DANCE Setting.dance.pressed
     #define MOVE (UP || DOWN || RIGHT || LEFT)
-    #define SPEED 8.5f
+    #define SPEED 16.5f
     #define HOVER Setting.hover
 
     #define SHAKE Setting.shake

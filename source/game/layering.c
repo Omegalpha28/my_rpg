@@ -61,14 +61,15 @@ static void draw_weapon(void)
     float deltaY = cr.y - Player.ref->position.y;
     float angle = atan2f(deltaY, deltaX) * (180.0f / M_PI);
 
-    pos = endpoint2f(pos, cr, 5.0f);
+    pos = endpoint2f(pos, cr, 10.0f);
     if (cr.x < pos.x) {
         sfSprite_setScale(wp, V2F(-1.0f, 1.0f));
         angle += 180.0f;
     }
     sfSprite_setTexture(wp, Assets.weapons->self, false);
     sfSprite_setTextureRect(wp, (recti_t){42 * Player.weapon, 0, 42, 24});
-    sfSprite_setOrigin(wp, (v2f_t){15.0f, 12.0f});
+    sfSprite_setOrigin(wp, (v2f_t){21.0f, 12.0f});
+    //sfSprite_setOrigin(wp, (v2f_t){15.0f, 12.0f});
     sfSprite_setPosition(wp, pos);
     sfSprite_setRotation(wp, angle);
     sfRenderWindow_drawSprite(Win.self, wp, NULL);

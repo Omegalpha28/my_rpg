@@ -37,26 +37,19 @@ void sort_creatures(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void swap_alphabetically(warray_t arr, uint_t j)
-{
-    string_t tmp = NULL;
-
-    if (strcmp(my_basename(arr[j]), my_basename(arr[j + 1])) <= 0)
-        return;
-    tmp = arr[j];
-    arr[j] = arr[j + 1];
-    arr[j] = tmp;
-}
-
-///////////////////////////////////////////////////////////////////////////////
 void sort_warray(warray_t arr)
 {
-    ulong_t len = 0;
+    uint_t i = 0;
 
     if (arr == NULL || arr[0] == NULL)
         return;
-    len = my_walen(arr);
-    for (uint_t i = 0; i < len - 1; i++)
-        for (uint_t j = 0; j < len - 1 - i; j++)
-            swap_alphabetically(arr, j);
+    while (arr[i] && arr[i + 1]) {
+        if (strcmp(my_basename(arr[i]), my_basename(arr[i + 1])) > 0) {
+            string_t tmp = arr[i];
+            arr[i] = arr[i + 1];
+            arr[i + 1] = tmp;
+            i = 0;
+        } else
+            i++;
+    }
 }

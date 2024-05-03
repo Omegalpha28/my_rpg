@@ -50,7 +50,7 @@ extern struct engine_s {
     warray_t content;
     uint_t frameLoaded;
     sfMusic *music;
-    int colums;
+    int colum;
 } Engine;
 
 #endif /* !ENGINE_H_ */

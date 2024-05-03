@@ -10,6 +10,37 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+static char *conv(char key)
+{
+    char *str = malloc(2);
+
+    str[0] = key;
+    str[1] = '\0';
+    return str;
+}
+
+static void draw_button(void)
+{
+    float up = 3.0f * 16.0f * Win.width / Win.viewWidth * 0.45f;
+    sfSprite *bac = sfSprite_create();
+    string_t left = conv(Setting.left.code + 'a');
+    string_t right = conv(Setting.right.code + 'a');
+
+    sfSprite_setTexture(bac, Assets.ui[UI_KEY]->self, false);
+    sfSprite_setOrigin(bac, V2F(5.5f, 6.0f));
+    sfSprite_setPosition(bac, PX_TO_MAPF(V2F(up, up + up / 5)));
+    sfRenderWindow_drawSprite(Win.self, bac, false);
+    sfSprite_setPosition(bac, PX_TO_MAPF(V2F(Win.width - up, up + up / 5)));
+    sfRenderWindow_drawSprite(Win.self, bac, false);
+    sfSprite_destroy(bac);
+    draw_text_center(left, V2F(up, up + up / 5 - up / 6), 0.3f,
+        sfColor_fromRGB(124, 137, 138));
+    draw_text_center(right, V2F(Win.width - up, up + up / 5 - up / 6), 0.3f,
+        sfColor_fromRGB(124, 137, 138));
+    free(left);
+    free(right);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 static void draw_colums(void)
 {
@@ -20,6 +51,7 @@ static void draw_colums(void)
     sfSprite_setTexture(bac, Assets.ui[UI_BAR]->self, false);
     sfSprite_setOrigin(bac, V2F(230.0f, 13.0f));
     sfSprite_setPosition(bac, PX_TO_MAPF(V2F(Win.width / 2, up + up / 5)));
+    sfSprite_setScale(bac, V2F(0.85f, 1.0f));
     sfRenderWindow_drawSprite(Win.self, bac, false);
     sfSprite_destroy(bac);
     draw_text_right("Audio", V2F(Win.width / 2.0f - scal, up),
@@ -29,6 +61,7 @@ static void draw_colums(void)
     draw_text("Keybinds", PX_TO_MAPF(V2F(Win.width / 2.0f + scal, up)),
         0.45f, colums(V2F(Win.width / 2.0f + scal, up),
         "Keybinds", 0.45f, 1));
+    draw_button();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -77,8 +110,10 @@ void settings_loop(void)
     CLICK_REL = (evt.type == sfEvtMouseButtonReleased &&
         evt.mouseButton.button == Setting.shoot);
     Setting.hover = false;
-    if (evt.key.code == DEFAULT_KEY_PAUSE)
+    if (evt.key.code == Setting.pause.code)
         Engine.scene = SCENE_MAIN_MENU;
+    Engine.colum += (evt.key.code == Setting.left.code && Engine.colum != 3);
+    Engine.colum -= (evt.key.code == Setting.right.code && Engine.colum != 1);
     draw_menu_background();
     draw_shadow();
     draw_colums();

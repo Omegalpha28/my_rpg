@@ -31,6 +31,18 @@ static string_t readf(cstring_t filepath, ulong_t *readed)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void load_prop_data(cstring_t buff, prop_t *prop, ulong_t *idx)
+{
+    prop->data[0] = ((int)buff[(*idx)]);
+    prop->data[1] = ((int)buff[(*idx) + 1]);
+    prop->data[2] = ((int)buff[(*idx) + 2]);
+    prop->data[3] = ((int)buff[(*idx) + 3]);
+    if (prop->data[0] == 1)
+        prop->frame = prop->data[1];
+    (*idx) += 4;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void load_prop(cstring_t buff, prop_t ***array, uint_t *count,
     ulong_t *idx)
 {
@@ -52,7 +64,7 @@ static void load_prop(cstring_t buff, prop_t ***array, uint_t *count,
     (*idx)++;
     prop->collision = (buff[(*idx)]) ? true : false;
     (*idx)++;
-    (*idx) += 4;
+    load_prop_data(buff, prop, idx);
     prop_set_transform(prop);
 }
 

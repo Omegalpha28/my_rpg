@@ -55,7 +55,6 @@ int main(int argc, warray_t argv)
         return (EXIT_FAILURE);
     sfRenderWindow_setMouseCursorVisible(Win.self, false);
     check_program_flags(argc, argv);
-    level_load("tutorial01");
     Player.ref = actor_create(Assets.creatures[CREATURE_PLAYER], V2F1(0.0f));
     while (sfRenderWindow_isOpen(Win.self)) {
         update_time();

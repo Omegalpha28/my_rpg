@@ -95,15 +95,6 @@ typedef enum fire_type_e {
 /// \param weapon_e      TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
-typedef struct weapon_s {
-    weapon_type_t type;
-    fire_type_t fireType;
-    uint_t ammoPerMag;
-    uint_t damage;
-    float firerate;
-    uint_t bulletType;
-    float shakingIntensity;
-} weapon_t;
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief TODO:
@@ -126,17 +117,86 @@ typedef struct bullet_stat_s {
 ///////////////////////////////////////////////////////////////////////////////
 typedef enum bullet_list_e {
     BULLET_AK,
+    BULLET_SHOTGUN,
+    BULLET_SNIPER,
+    BULLET_SMG,
+    BULLET_PISTOL,
+    BULLET_ARROW,
+    BULLET_MELEE,
     BULLET_COUNT
 } bullet_list_t;
 
 ///////////////////////////////////////////////////////////////////////////////
 static const bullet_stat_t BULLET_STATS[BULLET_COUNT] = {
     {T_AK_BASE, T_AK_IMPACT_WALL, T_AK_IMPACT_ENEMY, T_AK_DISAPPEAR,
-        100.0f, 10.0f}
+        200.0f, 10.0f},
+    {T_SHOTGUN_BASE, T_SHOTGUN_IMPACT_WALL, T_SHOTGUN_IMPACT_ENEMY,
+        T_SHOTGUN_DISAPPEAR, 100.0f, 10.0f},
+    {T_SNIPER_BASE, T_SNIPER_IMPACT_WALL, T_SNIPER_IMPACT_ENEMY,
+        T_SHOTGUN_DISAPPEAR, 500.0f, 10.0f},
+    {T_SMG_BASE, T_SMG_IMPACT_WALL, T_SMG_IMPACT_ENEMY,
+        T_SMG_DISAPPEAR, 500.0f, 10.0f},
+    {T_PISTOL_BASE, T_PISTOL_IMPACT_WALL, T_PISTOL_IMPACT_ENEMY,
+        T_PISTOL_DISAPPEAR, 200.0f, 10.0f},
+    {T_ARROW_BASE, T_ARROW_STUCK_WALL, T_ARROW_IMPACT_ENEMY, T_ARROW_CHARGED,
+        300.0f, 10.0f},
+    {T_SWORD, T_SWORD, T_SWORD, T_SWORD, 50.0f, 0.0f}
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-static const weapon_t WEAPON_STATS[WEAPON_COUNT] = {};
+typedef struct weapon_s {
+    weapon_type_t type;
+    fire_type_t fireType;
+    uint_t ammoPerMag;
+    uint_t damage;
+    float firerate;
+    uint_t bulletType;
+    float shakingIntensity;
+} weapon_t;
+
+
+static const weapon_t WEAPON_STATS[WEAPON_COUNT] = {
+    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_SMG, 10.0f},
+    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_SMG, 10.0f},
+    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_SMG, 10.0f},
+    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_SMG, 10.0f},
+    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_SMG, 10.0f},
+    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 10.0f},
+    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 10.0f},
+    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 10.0f},
+    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 10.0f},
+    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 10.0f},
+    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 10.0f},
+    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 10.0f},
+    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 10.0f},
+    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 10.0f},
+    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 10.0f},
+    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 10.0f},
+    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 10.0f},
+    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 10.0f},
+    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 10.0f},
+    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 10.0f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 10.0f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 10.0f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 10.0f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 10.0f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 10.0f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 10.0f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 10.0f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 10.0f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 10.0f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 10.0f},
+    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 10.0f},
+    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 10.0f},
+    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 10.0f},
+    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 10.0f},
+    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 10.0f},
+    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 10.0f},
+    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 10.0f},
+    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 10.0f},
+    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 10.0f},
+    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 10.0f},
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief create new bullets when players and enemies engage in shooting.

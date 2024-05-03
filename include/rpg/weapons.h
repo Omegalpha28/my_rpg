@@ -205,40 +205,24 @@ static const weapon_t WEAPON_STATS[WEAPON_COUNT] = {
 };
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief create new bullets when players and enemies engage in shooting.
-///
-/// \param sender       The bullet id (who is the shooter?)
-/// \param size_rect    The size of the first sprite
-/// \param sprite_shett Number of sprite_sheet
-/// \param size_max     The maximum size of the sprite_sheet
+/// \brief verifying if every bullet hit their target or has an impact with
+/// someone or something else.
 ///
 /// \return TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bullet_t *bullet_creation(uint_t sender, uint_t size_rect, uint_t spritesheet,
-    uint_t size_max);
+void bullet_collision(void);
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief Updates all general information on all bullets.
+/// \brief destroy bullets when they hit their targets or get out of the
+/// circle.
 ///
-/// Starts off by rendering the bullet and updating its position and velocity.
-/// once done it checks for collision, and then deletes all unwanted bullets.
-///
-///////////////////////////////////////////////////////////////////////////////
-void bullet_update(void);
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Verifies collision and bullet distance.
-///
-/// If one of those condition are met. Bullet will enter destroyed mode, and
-/// will be skipped during bullet update, and then deleted.
-///
-/// \param bullet       the sprite_sheet of the bullet.
-///
-/// \return TODO:
+/// \param sender       The shooter.
+/// \param destination  The vector to design the target.
+/// \param weapon       The weapon used by the shooter.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-bool_t bullet_collision(bullet_t *bullet);
+void create_bullet(actor_t *sender, v2f_t destination, weapon_enum_t weapon);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief destroy bullets when they hit their targets or get out of the
@@ -249,4 +233,21 @@ bool_t bullet_collision(bullet_t *bullet);
 ///////////////////////////////////////////////////////////////////////////////
 void remove_bullet(bullet_t *bullet);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Renders a bullet, updating its position based on its origin,
+/// destination, and velocity.
+///
+/// \param              bullet pointer to bullet structure.
+///
+///////////////////////////////////////////////////////////////////////////////
+void bullet_render(bullet_t *bullet);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Drawing bullets.
+///
+///
+///////////////////////////////////////////////////////////////////////////////
+void draw_bullet(void);
+
+void bullet_render(bullet_t *bullet);
 #endif /* !WEAPONS_H_ */

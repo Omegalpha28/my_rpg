@@ -21,5 +21,6 @@ struct editor_s Editor = {
     {0.0f, 0.0f}, {0.0f, 0.0f}, 0.0f, false,
     NULL, NULL, 0,
     0.0f, false, {0, 0, 0, 0},
-    false, POPUP_SAVE
+    false, POPUP_SAVE,
+    {0, 0, 0, 0}
 };

@@ -250,4 +250,7 @@ void bullet_render(bullet_t *bullet);
 void draw_bullet(void);
 
 void bullet_render(bullet_t *bullet);
+
+void bullet_update(void);
+
 #endif /* !WEAPONS_H_ */

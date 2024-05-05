@@ -4,31 +4,8 @@
 ** File description:
 ** bullet_animation
 */
-///////////////////////////////////////////////////////////////////////////////
-// Headers
-///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-
-///////////////////////////////////////////////////////////////////////////////
-static sfCircleShape *create_circle(void)
-{
-    sfCircleShape *circle = sfCircleShape_create();
-    sfVector2f origin;
-
-    sfCircleShape_setRadius(circle, 250);
-    origin = (sfVector2f){sfCircleShape_getRadius(circle),
-        sfCircleShape_getRadius(circle)};
-    sfCircleShape_setOutlineThickness(circle, 2.0f);
-    sfCircleShape_setOutlineColor(circle, sfRed);
-    sfCircleShape_setFillColor(circle, sfTransparent);
-    sfCircleShape_setPosition(circle,
-        (sfVector2f){Player.ref->position.x, Player.ref->position.y});
-    sfCircleShape_setOrigin(circle, origin);
-    return circle;
-}
-
-///////////////////////////////////////////////////////////////////////////////
 static float rotation(bullet_t *bullet)
 {
     float_t my_x = bullet->destination.x - bullet->origin.x;
@@ -38,77 +15,86 @@ static float rotation(bullet_t *bullet)
     return rotationDegrees;
 }
 
-///////////////////////////////////////////////////////////////////////////////
-static sfSprite *init_bullet_sprite(bullet_t *bullet, uint_t rec_size)
+static sfSprite *create_asset_sprite(uint_t bullet_asset, uint_t sprite_state,
+    bullet_t *bullet)
 {
+    recti_t rec_size =
+        Assets.bullets[BULLET_STATS[bullet_asset].base + sprite_state]->mask;
     sfSprite *bullet_sprite = sfSprite_create();
-    recti_t rect = (sfIntRect){0, 0, rec_size, rec_size};
-    sfTexture *texture = Assets.bullets[T_AK_BASE]->self;
+    sfTexture *texture =
+        Assets.bullets[BULLET_STATS[bullet_asset].base + sprite_state]->self;
 
     sfSprite_setTexture(bullet_sprite, texture, sfTrue);
-    sfSprite_setTextureRect(bullet_sprite, rect);
-    sfSprite_setOrigin(bullet_sprite, V2F1(rec_size / 2.0f));
+    sfSprite_setTextureRect(bullet_sprite, rec_size);
+    sfSprite_setScale(bullet_sprite, (v2f_t){0.7f, 0.7f});
+    sfSprite_setOrigin(bullet_sprite, V2F1(rec_size.width / 2.0f));
     sfSprite_setPosition(bullet_sprite, (v2f_t){bullet->position.x,
-        bullet->position.y});
-    sfSprite_setOrigin(bullet_sprite, (v2f_t){rect.width / 2,
-        rect.height / 2});
+        bullet->position.y + 5});
+    sfSprite_setOrigin(bullet_sprite, (v2f_t){rec_size.width / 2,
+        rec_size.height / 2});
     sfSprite_setRotation(bullet_sprite, rotation(bullet));
     return bullet_sprite;
 }
 
-///////////////////////////////////////////////////////////////////////////////
-static void init_bullet(bullet_t *new, uint_t sender, v2f_t size, uint_t sheet)
+static sfCircleShape *create_circle(uint_t bullet_asset, actor_t *sender)
 {
-    v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
-    uint_t rec = (uint_t)size.x;
-    uint_t size_max = (uint_t)size.y;
+    sfCircleShape *circle = sfCircleShape_create();
+    sfVector2f origin = sender->position;
+    float range = BULLET_STATS[bullet_asset].range;
 
-    new->sender = sender;
-    new->rect_sprite = rec;
-    new->num_sheet = sheet;
-    new->size_max_x = size_max;
-    new->begin = 0;
-    new->origin = (v2f_t){Player.ref->position.x, Player.ref->position.y};
-    new->position = new->origin;
-    new->destination = endpoint2f(new->origin, cr, 100.0f);
-    new->sprite = init_bullet_sprite(new, rec);
-    new->destroyed = false;
-    new->area = create_circle();
+    sfCircleShape_setRadius(circle, range);
+    origin = (sfVector2f){sfCircleShape_getRadius(circle),
+        sfCircleShape_getRadius(circle)};
+    sfCircleShape_setOutlineThickness(circle, 2.0f);
+    sfCircleShape_setOutlineColor(circle, sfRed);
+    sfCircleShape_setFillColor(circle, sfTransparent);
+    sfCircleShape_setPosition(circle,
+        (sfVector2f){sender->position.x, sender->position.y});
+    sfCircleShape_setOrigin(circle, origin);
+    return circle;
 }
 
-///////////////////////////////////////////////////////////////////////////////
-bullet_t *bullet_creation(uint_t sender, uint_t size_rect, uint_t spritesheet,
-    uint_t size_max)
+static bullet_t *init_bullet(v2f_t destination, actor_t *sender,
+    uint_t bullet_asset, weapon_enum_t weapon)
 {
-    bullet_t *new = (bullet_t *)malloc(sizeof(bullet_t));
-    v2f_t size = (v2f_t){size_rect, size_max};
+    bullet_t *bullet = malloc(sizeof(bullet_t));
 
-    init_bullet(new, sender, size, spritesheet);
+    bullet->radius = BULLET_STATS[bullet_asset].range;
+    bullet->animation = 1;
+    bullet->speed = BULLET_STATS[bullet_asset].speed;
+    bullet->base_visisble = true;
+    bullet->destroyed = false;
+    bullet->impact_player_visisble = false;
+    bullet->impact_wall_visisble = false;
+    bullet->bullet_asset = bullet_asset;
+    bullet->weapon_asset = weapon;
+    bullet->area = create_circle(bullet_asset, sender);
+    bullet->destroyed = false;
+    bullet->origin = (v2f_t){sender->position.x, sender->position.y};
+    bullet->destination = destination;
+    bullet->position = sender->position;
+    return bullet;
+}
+
+void create_bullet(actor_t *sender, v2f_t destination, weapon_enum_t weapon)
+{
+    uint_t bullet_asset = WEAPON_STATS[weapon].bulletType;
+    bullet_t *bullet = malloc(sizeof(bullet));
+
+    if (WEAPON_STATS[weapon].type == WEAPON_TYPE_MELEE)
+        return;
+    bullet = init_bullet(destination, sender, bullet_asset, weapon);
+    if(sender == Player.ref)
+        bullet->sender = 0;
+    else
+        bullet->sender = 1;
+    bullet->base = create_asset_sprite(bullet_asset, 0, bullet);
+    bullet->impactWall = create_asset_sprite(bullet_asset, 1, bullet);
+    bullet->impactEnemy  = create_asset_sprite(bullet_asset, 2, bullet);
+    bullet->disappear = create_asset_sprite(bullet_asset, 3, bullet);
     shake(2.5f, 0.15f);
     Pool.bulletCount++;
     Pool.bullets = REALLOC(Pool.bullets, sizeof(bullet_t *),
         Pool.bulletCount);
-    Pool.bullets[Pool.bulletCount - 1] = new;
-    return (new);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-void remove_bullet(bullet_t *bullet)
-{
-    bullet_t **tmp = NULL;
-    uint_t j = 0;
-
-    if (bullet == NULL)
-        return;
-    tmp = malloc(sizeof(bullet_t *) * (Pool.bulletCount - 1));
-    for (uint_t i = 0; i < Pool.bulletCount; i++) {
-        if (Pool.bullets[i] == bullet)
-            continue;
-        tmp[j] = Pool.bullets[i];
-        j++;
-    }
-    Pool.bulletCount--;
-    FREE(Pool.bullets);
-    Pool.bullets = tmp;
-    FREE(bullet);
+    Pool.bullets[Pool.bulletCount - 1] = bullet;
 }

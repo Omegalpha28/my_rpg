@@ -97,5 +97,5 @@ void draw(void)
     for (uint_t i = 0; i < Pool.effectCount; i++)
         if (!Pool.effects[i]->self->background)
             effect_draw(Pool.effects[i]);
-    bullet_update();
+    draw_bullet();
 }

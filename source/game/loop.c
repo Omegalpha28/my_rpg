@@ -59,6 +59,7 @@ void game_loop(void)
     player_movement();
     cursor_focus();
     update_entity();
+    bullet_update();
     update_shaking();
     draw();
     if (Engine.debugMode)

@@ -37,7 +37,7 @@ bool_t init_assets_bullets(void)
     for (uint_t i = 0; i < T_BULLET_COUNT; i++) {
         Assets.bullets[i] = add_image(TEXT_BULLETS[i], true,
             get_bullet_grid(TEXT_BULLETS[i]), "BULLETS");
-        if (Assets.ui[i] == NULL)
+        if (Assets.bullets[i] == NULL)
             return (false);
     }
     Assets.bulletCount = T_BULLET_COUNT;

@@ -52,15 +52,24 @@ typedef struct actor_s {
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct bullet_s {
     uint_t sender;
-    sfSprite *sprite;
+    uint_t bullet_asset;
+    uint_t weapon_asset;
+    uint_t animation;
+    uint_t radius;
+    uint_t scale;
+    float speed;
     v2f_t origin;
     v2f_t destination;
     v2f_t position;
     bool_t destroyed;
-    uint_t rect_sprite;
-    uint_t num_sheet;
-    uint_t size_max_x;
-    uint_t begin;
+    bool_t base_visisble;
+    bool_t destroyed_visisble;
+    bool_t impact_wall_visisble;
+    bool_t impact_player_visisble;
+    sfSprite *base;
+    sfSprite *impactWall;
+    sfSprite *impactEnemy;
+    sfSprite *disappear;
     sfCircleShape *area;
 } bullet_t;
 

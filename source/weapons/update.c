@@ -4,44 +4,41 @@
 ** File description:
 ** update
 */
-
-///////////////////////////////////////////////////////////////////////////////
-// Headers
-///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Renders a bullet, updating its position based on its origin,
-/// destination, and velocity.
-///
-/// \param              bullet pointer to bullet structure.
-///
-///////////////////////////////////////////////////////////////////////////////
-static void bullet_render(bullet_t *bullet)
+void bullet_render(bullet_t *bullet)
 {
-    v2f_t direction = {bullet->destination.x - bullet->origin.x,
-        bullet->destination.y - bullet->origin.y};
-    float length = sqrt(direction.x * direction.x + direction.y * direction.y);
-    sfVector2f position = sfSprite_getPosition(bullet->sprite);
-    float vitesse = 5;
+    v2f_t direction;
+    float length;
+    sfVector2f position;
+    float vitesse = bullet->speed;
+    sfSprite *sprite;
 
+    if (bullet->base_visisble)
+        sprite = bullet->base;
+    else
+        return;
+    direction = (v2f_t){bullet->destination.x - bullet->origin.x,
+        bullet->destination.y - bullet->origin.y};
+    length = sqrt(direction.x * direction.x + direction.y * direction.y);
+    position = sfSprite_getPosition(sprite);
     direction = divide2f(direction, (v2f_t){length, length});
     direction = multiply2f(direction, (v2f_t){vitesse, vitesse});
     position = add2f(position, direction);
-    sfSprite_setPosition(bullet->sprite, position);
-    sfRenderWindow_drawSprite(Win.self, bullet->sprite, NULL);
+    sfSprite_setPosition(sprite, position);
 }
 
-///////////////////////////////////////////////////////////////////////////////
 void bullet_update(void)
 {
-    if (Pool.bullets == NULL)
+    if (Pool.bullets == NULL )
         return;
+    bullet_collision();
     for (uint_t i = 0; i < Pool.bulletCount; i++) {
-        if (Pool.bullets[i]->destroyed)
+        if (WEAPON_STATS[Pool.bullets[i]->weapon_asset].type ==
+            WEAPON_TYPE_MELEE || Pool.bullets[i]->destroyed == true) {
             continue;
+            }
         bullet_render(Pool.bullets[i]);
-        bullet_collision(Pool.bullets[i]);
     }
     for (uint_t i = 0; i < Pool.bulletCount; i++) {
         if (!Pool.bullets[i]->destroyed)

@@ -77,6 +77,7 @@ static void handle_editor_single_key(sfKeyEvent evt)
         prop_animate(Editor.focus);
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static void handle_editor_input_enter(void)
 {
     if (Editor.inputFocused->type == INPUT_CHECKBOX)
@@ -88,6 +89,27 @@ static void handle_editor_input_enter(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void handle_editor_camera_key(sfKeyEvent evt)
+{
+    if (evt.code == sfKeyNumpad8 && !PRESSED(sfKeyLControl))
+        Editor.camera[2]++;
+    if (evt.code == sfKeyNumpad8 && PRESSED(sfKeyLControl))
+        Editor.camera[2]--;
+    if (evt.code == sfKeyNumpad5 && !PRESSED(sfKeyLControl))
+        Editor.camera[3]++;
+    if (evt.code == sfKeyNumpad5 && PRESSED(sfKeyLControl))
+        Editor.camera[3]--;
+    if (evt.code == sfKeyNumpad4 && !PRESSED(sfKeyLControl))
+        Editor.camera[0]++;
+    if (evt.code == sfKeyNumpad4 && PRESSED(sfKeyLControl))
+        Editor.camera[0]--;
+    if (evt.code == sfKeyNumpad6 && !PRESSED(sfKeyLControl))
+        Editor.camera[1]++;
+    if (evt.code == sfKeyNumpad6 && PRESSED(sfKeyLControl))
+        Editor.camera[1]--;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void handle_editor_key_pressed(sfKeyEvent evt)
 {
     handle_editor_key_prop_movement(evt);
@@ -95,6 +117,7 @@ void handle_editor_key_pressed(sfKeyEvent evt)
     handle_editor_single_key(evt);
     if (Editor.inputFocused && evt.code == sfKeyEnter)
         handle_editor_input_enter();
+    handle_editor_camera_key(evt);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

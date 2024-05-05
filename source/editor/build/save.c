@@ -57,6 +57,15 @@ static void check_level_directory(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void save_camera(buffer_t *buff)
+{
+    my_buffint(buff, Editor.camera[0], 2);
+    my_buffint(buff, Editor.camera[1], 2);
+    my_buffint(buff, Editor.camera[2], 2);
+    my_buffint(buff, Editor.camera[3], 2);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 bool_t level_save(cstring_t filepath)
 {
     buffer_t *buff = my_buffinit();
@@ -70,6 +79,7 @@ bool_t level_save(cstring_t filepath)
     my_buffint(buff, (int)Editor.bCount, 3);
     for (uint_t i = 0; i < Editor.bCount; i++)
         save_prop(Editor.bProps[i], buff);
+    save_camera(buff);
     check_level_directory();
     my_fbuff(buff, path);
     FREE(path);

@@ -205,6 +205,9 @@ typedef enum popup_type_e {
 /// \param copyScale    The copy holder for the scale
 /// \param copyCollide  The copy holder for collision
 /// \param copyData     The copy holder for data
+/// \param popupOpen    State of the popup container
+/// \param popupType    The current opened popup
+/// \param camera       The camera boundary
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct editor_s {
@@ -234,6 +237,7 @@ extern struct editor_s {
     int copyData[4];
     bool_t popupOpen;
     popup_type_t popupType;
+    int camera[4];
 } Editor;
 
 ///////////////////////////////////////////////////////////////////////////////

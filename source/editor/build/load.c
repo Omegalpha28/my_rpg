@@ -97,6 +97,15 @@ static void load_layer(prop_t ***array, uint_t *count, cstring_t buff,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void load_camera(cstring_t buff, ulong_t *idx)
+{
+    Editor.camera[0] = my_rbuffint(buff, 2, idx);
+    Editor.camera[1] = my_rbuffint(buff, 2, idx);
+    Editor.camera[2] = my_rbuffint(buff, 2, idx);
+    Editor.camera[3] = my_rbuffint(buff, 2, idx);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 bool_t level_load(cstring_t filepath)
 {
     ulong_t readed = 0;
@@ -110,5 +119,6 @@ bool_t level_load(cstring_t filepath)
     load_information(buff, &idx);
     load_layer(&(Editor.fProps), &(Editor.fCount), buff, &idx);
     load_layer(&(Editor.bProps), &(Editor.bCount), buff, &idx);
+    load_camera(buff, &idx);
     return (true);
 }

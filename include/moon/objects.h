@@ -53,8 +53,10 @@ typedef struct actor_s {
 typedef struct bullet_s {
     uint_t sender;
     uint_t bullet_asset;
+    uint_t weapon_asset;
     uint_t animation;
     uint_t radius;
+    uint_t scale;
     float speed;
     v2f_t origin;
     v2f_t destination;

@@ -135,8 +135,6 @@ static bool_t collision_bullet(bullet_t *bullet)
         return (true);
     if (bullet->sender == 1)
         player_impact(bullet);
-    /*if (bullet_impact_wall(bullet))
-        return true;*/
     return (false);
 }
 

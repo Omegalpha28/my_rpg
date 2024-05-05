@@ -14,13 +14,12 @@
 static bool_t init_zone(cstring_t path)
 {
     warray_t content = my_dircontent(path);
-    zone_t *zone;
+    zone_t *zone = (content == NULL) ? NULL : (zone_t *)malloc(sizeof(zone_t));
     bool_t success = true;
 
     if (content == NULL)
         return (false);
     sort_warray(content);
-    zone = (zone_t *)malloc(sizeof(zone_t));
     zone->categoryCount = 0;
     zone->loaded = false;
     zone->categories = NULL;

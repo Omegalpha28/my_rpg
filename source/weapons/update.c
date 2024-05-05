@@ -30,14 +30,14 @@ void bullet_render(bullet_t *bullet)
 
 void bullet_update(void)
 {
-    if (Pool.bullets == NULL )
+    if (Pool.bullets == NULL)
         return;
     bullet_collision();
     for (uint_t i = 0; i < Pool.bulletCount; i++) {
         if (WEAPON_STATS[Pool.bullets[i]->weapon_asset].type ==
             WEAPON_TYPE_MELEE || Pool.bullets[i]->destroyed == true) {
             continue;
-            }
+        }
         bullet_render(Pool.bullets[i]);
     }
     for (uint_t i = 0; i < Pool.bulletCount; i++) {

@@ -69,7 +69,6 @@ static void draw_weapon(void)
     sfSprite_setTexture(wp, Assets.weapons->self, false);
     sfSprite_setTextureRect(wp, (recti_t){42 * Player.weapon, 0, 42, 24});
     sfSprite_setOrigin(wp, (v2f_t){21.0f, 12.0f});
-    //sfSprite_setOrigin(wp, (v2f_t){15.0f, 12.0f});
     sfSprite_setPosition(wp, pos);
     sfSprite_setRotation(wp, angle);
     sfRenderWindow_drawSprite(Win.self, wp, NULL);

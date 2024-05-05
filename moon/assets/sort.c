@@ -40,12 +40,13 @@ void sort_creatures(void)
 void sort_warray(warray_t arr)
 {
     uint_t i = 0;
+    string_t tmp = NULL;
 
     if (arr == NULL || arr[0] == NULL)
         return;
     while (arr[i] && arr[i + 1]) {
         if (strcmp(my_basename(arr[i]), my_basename(arr[i + 1])) > 0) {
-            string_t tmp = arr[i];
+            tmp = arr[i];
             arr[i] = arr[i + 1];
             arr[i + 1] = tmp;
             i = 0;

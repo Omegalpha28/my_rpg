@@ -34,8 +34,8 @@
     #define DEFAULT_WIDTH 1920
     #define DEFAULT_HEIGHT 1080
     /** View settings                                                        */
-    #define DEFAULT_VIEW_WIDTH 456.0f
-    #define DEFAULT_VIEW_HEIGHT 288.0f
+    #define DEFAULT_VIEW_WIDTH 480.0f
+    #define DEFAULT_VIEW_HEIGHT 270.0f
     /** Window color bits                                                    */
     #define DEFAULT_BITS 32
     /** Framerate limit                                                      */

@@ -109,6 +109,8 @@ typedef struct prop_s {
 /// \param self         The vfx that the vfx linked to
 /// \param position     The position of the effect
 /// \param frame        The current frame of the effect
+/// \param isDecal      If the effect is a decal
+/// \param fixFrame     Fix the frame to be the last one
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct effect_s {
@@ -117,6 +119,8 @@ typedef struct effect_s {
     v2f_t position;
     uint_t frame;
     ulong_t time;
+    bool_t isDecal;
+    bool_t fixFrame;
 } effect_t;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -388,11 +392,12 @@ void effect_destroy(effect_t *eff);
 ///
 /// \param source       The vfx sheet to be drawed
 /// \param position     The position of the effect
+/// \param isDecal      If the effect is a decal
 ///
 /// \return The newly created effect or NULL if a failed occured
 ///
 ///////////////////////////////////////////////////////////////////////////////
-effect_t *effect_create(vfx_t *source, v2f_t position);
+effect_t *effect_create(vfx_t *source, v2f_t position, bool_t isDecal);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Draw an effect on the screen
@@ -415,11 +420,12 @@ void effect_draw(effect_t *eff);
 ///
 /// \param name         The name of the effect
 /// \param position     The position of the effect
+/// \param isDecal      If the effect is a decal
 ///
 /// \return The effect structure or NULL if not found
 ///
 ///////////////////////////////////////////////////////////////////////////////
-effect_t *effect(cstring_t name, v2f_t position);
+effect_t *effect(cstring_t name, v2f_t position, bool_t isDecal);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Draw all visible props (in view) of a list

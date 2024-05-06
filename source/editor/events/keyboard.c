@@ -118,6 +118,14 @@ void handle_editor_key_pressed(sfKeyEvent evt)
     if (Editor.inputFocused && evt.code == sfKeyEnter)
         handle_editor_input_enter();
     handle_editor_camera_key(evt);
+    if (!Editor.focus && evt.code == ALT_UP && PRESSED(sfKeyA))
+        editor_moveall_up();
+    if (!Editor.focus && evt.code == ALT_DOWN && PRESSED(sfKeyA))
+        editor_moveall_down();
+    if (!Editor.focus && evt.code == ALT_LEFT && PRESSED(sfKeyA))
+        editor_moveall_left();
+    if (!Editor.focus && evt.code == ALT_RIGHT && PRESSED(sfKeyA))
+        editor_moveall_right();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

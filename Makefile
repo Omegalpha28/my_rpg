@@ -215,6 +215,7 @@ P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)utils/window.c									\
 				$(P_D_EDITOR)utils/layer.c									\
 				$(P_D_EDITOR)utils/move.c									\
+				$(P_D_EDITOR)utils/moveall.c								\
 				$(P_D_EDITOR)utils/inputs.c									\
 				$(P_D_EDITOR)utils/canvas.c									\
 				$(P_D_EDITOR)interfaces/browser.c							\

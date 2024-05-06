@@ -11,26 +11,34 @@
 #include "moon.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-effect_t *effect_create(vfx_t *source, v2f_t position)
+static void add_default_effect(effect_t *eff)
+{
+    eff->frame = 0;
+    eff->fixFrame = false;
+    Pool.effectCount++;
+    Pool.effects = REALLOC(Pool.effects, sizeof(effect_t *), Pool.effectCount);
+    Pool.effects[Pool.effectCount - 1] = eff;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+effect_t *effect_create(vfx_t *source, v2f_t position, bool_t isDecal)
 {
     effect_t *eff = NULL;
 
     if (source == NULL)
         return (NULL);
     eff = (effect_t *)malloc(sizeof(effect_t));
-    eff->frame = 0;
     eff->self = source;
     eff->position = position;
     eff->time = Time.currentTime;
+    eff->isDecal = isDecal;
     eff->sprite = sfSprite_create();
     sfSprite_setPosition(eff->sprite, eff->position);
     sfSprite_setOrigin(eff->sprite, (v2f_t){
         eff->self->self->mask.width / 2.0f,
         eff->self->self->mask.height / 2.0f});
     sfSprite_setTexture(eff->sprite, eff->self->self->self, false);
-    Pool.effectCount++;
-    Pool.effects = REALLOC(Pool.effects, sizeof(effect_t *), Pool.effectCount);
-    Pool.effects[Pool.effectCount - 1] = eff;
+    add_default_effect(eff);
     return (eff);
 }
 
@@ -58,10 +66,10 @@ void effect_destroy(effect_t *eff)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-effect_t *effect(cstring_t name, v2f_t position)
+effect_t *effect(cstring_t name, v2f_t position, bool_t isDecal)
 {
     for (uint_t i = 0; i < Assets.vfxCount; i++)
         if (CMP(Assets.vfx[i]->name, name))
-            return (effect_create(Assets.vfx[i], position));
+            return (effect_create(Assets.vfx[i], position, isDecal));
     return (NULL);
 }

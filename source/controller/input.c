@@ -14,12 +14,10 @@
 void parse_mouse_input(sfMouseButtonEvent evt)
 {
     bool_t pressed = (evt.type == sfEvtMouseButtonPressed);
-    v2f_t origin = (v2f_t){Player.ref->position.x, Player.ref->position.y};
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
-    v2f_t destination = endpoint2f(origin, cr, 100.0f);
 
     if (evt.button == Setting.shoot && pressed && !DANCE && !DASH)
-        create_bullet(Player.ref, destination, Player.weapon);
+        create_bullet(Player.ref, cr, Player.weapon);
 }
 
 void get_last_input(void)

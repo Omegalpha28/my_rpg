@@ -11,6 +11,18 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+static void print_help(void)
+{
+    ulong_t n = 0;
+    string_t buff = readf("help.info", &n);
+
+    if (buff != NULL)
+        my_putstr(buff);
+    FREE(buff);
+    sfRenderWindow_close(Win.self);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void check_program_flags(int argc, warray_t argv)
 {
     if (argc == 1)
@@ -29,6 +41,8 @@ static void check_program_flags(int argc, warray_t argv)
         create_window(0, 0, WIN_FULLSCREEN);
     if (WCMP(argv, "--windowed") || WCMP(argv, "-w"))
         create_window(0, 0, WIN_WINDOWED);
+    if (WCMP(argv, "--help") || WCMP(argv, "-h"))
+        print_help();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

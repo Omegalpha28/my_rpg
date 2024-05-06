@@ -1,0 +1,71 @@
+▖  ▖  ▄▖▄▖▄▖      [38;5;125m▄▖▖▖  [0m▖▖▄▖▖ ▄▖▄▖▖
+▛▖▞▌▌▌▙▘▙▌▌   ▄▖  [38;5;125m▌▌▙▘▄▖[0m▚▘▌▌▌ ▌▌▐ ▌
+▌▝ ▌▙▌▌▌▌ ▙▌      [38;5;125m▛▌▌▌  [0m▌▌▙▌▙▖▙▌▐ ▙▖
+    ▄▌
+
+[48;5;125mUsage:[0m
+
+  [38;5;125mMisc:[0m
+    [38;5;105m--help[0m, [38;5;105m-h[0m              Show the helping text
+
+  [38;5;125mMode:[0m
+    [38;5;105m--editor[0m, [38;5;105m-e[0m            Launch the RPG in Editor mode
+    [38;5;105m--debug[0m, [38;5;105m-d[0m             Launch the RPG in Debug mode
+
+  [38;5;125mVideo mode:[0m
+    [38;5;105m--borderless[0m, [38;5;105m-b[0m        Open the window in borderless mode
+    [38;5;105m--windowed[0m, [38;5;105m-w[0m          Open the window in windowed mode
+    [38;5;105m--fullscreen[0m, [38;5;105m-f[0m        Open the window in fullscreen mode
+
+  [38;5;125mGame controls:[0m
+    [38;5;105mKey Up[0m, [38;5;105mKey Z[0m           Move the player Up
+    [38;5;105mKey Down[0m, [38;5;105mKey S[0m         Move the player Down
+    [38;5;105mKey Right[0m, [38;5;105mKey D[0m        Move the player Right
+    [38;5;105mKey Left[0m, [38;5;105mKey Q[0m         Move the player Left
+    [38;5;105mKey Space[0m               Dodge
+    [38;5;105mKey C[0m                   Dance
+    [38;5;105mKey F[0m                   Pickup item / Use
+    [38;5;105mKey Q[0m                   Use ability
+    [38;5;105mKey Escape[0m              Pause the game
+    [38;5;105mLeft mouse[0m              Shoot
+
+  [38;5;125mEditor controls:[0m
+    [38;5;105mALT[0m+[38;5;105mScroll[0m              Zoom into the canvas
+    [38;5;105mCTRL[0m+[38;5;105mS[0m                  Save level
+    [38;5;105mCTRL[0m+[38;5;105mO[0m                  Open level
+    [38;5;105mCTRL[0m+[38;5;105mX[0m                  Cut current focused prop
+    [38;5;105mCTRL[0m+[38;5;105mC[0m                  Copy current focused prop
+    [38;5;105mCTRL[0m+[38;5;105mV[0m                  Paste current focused prop
+    [38;5;105mCTRL[0m+[38;5;105mD[0m                  Duplicate current focused prop
+    [38;5;105mCTRL[0m+[38;5;105mArrowUp[0m            Move up prop index by one
+    [38;5;105mCTRL[0m+[38;5;105mArrowDown[0m          Move down prop index by one
+    [38;5;105mCTRL[0m+[38;5;105mSHIFT[0m+[38;5;105mArrowUp[0m      Move all the way up the prop index
+    [38;5;105mCTRL[0m+[38;5;105mSHIFT[0m+[38;5;105mArrowDown[0m    Move all the way down the prop index
+    [38;5;105mArrowUp[0m                 Move up the current prop vertically by one
+    [38;5;105mArrowDown[0m               Move down the current prop vertically by one
+    [38;5;105mArrowLeft[0m               Move left the current prop horizontally by one
+    [38;5;105mArrowRight[0m              Move right the current prop horizontally by one
+    [38;5;105mA[0m+[38;5;105mArrowUp[0m               Move up all props vertically by one
+    [38;5;105mA[0m+[38;5;105mArrowDown[0m             Move down all props vertically by one
+    [38;5;105mA[0m+[38;5;105mArrowLeft[0m             Move left all props horizontally by one
+    [38;5;105mA[0m+[38;5;105mArrowRight[0m            Move right all props horizontally by one
+    [38;5;105mKey O[0m                   Set the canvas view to the origin
+    [38;5;105mKey Space[0m               Preview the animation of a prop
+    [38;5;105mKey Suppr[0m               Delete the current focused prop
+    [38;5;105mMouse Right[0m             Flip the prop horizontally
+    [38;5;105mMouse left[0m              Focus a prop
+    [38;5;105mDrag[0m                    Move the focused prop on the cursor
+    [38;5;105mNumpad8[0m, [38;5;105mCTRL[0m+[38;5;105mNumpad8[0m   Add or remove one from the top camera boundary (CTRL)
+    [38;5;105mNumpad5[0m, [38;5;105mCTRL[0m+[38;5;105mNumpad5[0m   Add or remove one from the bottom camera boundary (CTRL)
+    [38;5;105mNumpad4[0m, [38;5;105mCTRL[0m+[38;5;105mNumpad4[0m   Add or remove one from the left camera boundary (CTRL)
+    [38;5;105mNumpad6[0m, [38;5;105mCTRL[0m+[38;5;105mNumpad6[0m   Add or remove one from the right camera boundary (CTRL)
+
+    ╭────────────────────────────────────╮
+    │                                    │
+    │  Made by:                          │
+    │      Mallow  ([38;5;105m@mallory-scotton[0m)    │
+    │      Hugo    ([38;5;105m@Hugo-Cathelain[0m)     │
+    │      Ossan   ([38;5;105m@Omegalpha28[0m)        │
+    │      Nathan  ([38;5;105m@natan-fievet[0m)       │
+    │                                    │
+    ╰────────────────────────────────────╯

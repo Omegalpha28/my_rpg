@@ -11,7 +11,7 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-static string_t readf(cstring_t filepath, ulong_t *readed)
+string_t readf(cstring_t filepath, ulong_t *readed)
 {
     FILE *f = fopen(filepath, "rb");
     char *string;

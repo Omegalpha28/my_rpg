@@ -51,6 +51,7 @@ extern struct engine_s {
     uint_t frameLoaded;
     sfMusic *music;
     int colum;
+    uint_t level;
 } Engine;
 
 #endif /* !ENGINE_H_ */

@@ -56,6 +56,8 @@ int main(int argc, warray_t argv)
     sfRenderWindow_setMouseCursorVisible(Win.self, false);
     check_program_flags(argc, argv);
     Player.ref = actor_create(Assets.creatures[CREATURE_PLAYER], V2F1(0.0f));
+    level_load("02");
+    entity_create(Assets.creatures[CREATURE_ELITE_RACOON], V2F1(20.0f));
     while (sfRenderWindow_isOpen(Win.self)) {
         update_time();
         sfRenderWindow_clear(Win.self, EDITOR_BACKGROUND);

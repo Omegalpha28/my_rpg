@@ -14,5 +14,5 @@
 struct player_s Player = {
     NULL, {0.0f, 0.0f}, {0.0f, 0.0f},
     {0.0f, 0.0f}, 0, 0.0f, 0, false, {0.0f, 0.0f},
-    WEAPON_RIFLE_AK
+    WEAPON_RIFLE_AK, 1.5f
 };

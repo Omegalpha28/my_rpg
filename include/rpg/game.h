@@ -29,6 +29,7 @@ extern struct player_s {
     bool_t shaking;
     v2f_t viewCenter;
     weapon_enum_t weapon;
+    float speed;
 } Player;
 
 ///////////////////////////////////////////////////////////////////////////////

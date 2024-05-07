@@ -88,7 +88,7 @@ void create_bullet(actor_t *sender, v2f_t destination, weapon_enum_t weapon)
     bullet->impactWall = create_asset_sprite(bullet_asset, 1, bullet);
     bullet->impactEnemy = create_asset_sprite(bullet_asset, 2, bullet);
     bullet->disappear = create_asset_sprite(bullet_asset, 3, bullet);
-    shake(2.5f, 0.15f);
+    shake(WEAPON_STATS[weapon].shakingIntensity, 0.15f);
     Pool.bulletCount++;
     Pool.bullets = REALLOC(Pool.bullets, sizeof(bullet_t *),
         Pool.bulletCount);

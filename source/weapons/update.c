@@ -10,8 +10,6 @@ void bullet_render(bullet_t *bullet)
 {
     v2f_t direction;
     float length;
-    sfVector2f position;
-    float vitesse = bullet->speed;
     sfSprite *sprite;
 
     if (bullet->base_visisble)
@@ -21,11 +19,13 @@ void bullet_render(bullet_t *bullet)
     direction = (v2f_t){bullet->destination.x - bullet->origin.x,
         bullet->destination.y - bullet->origin.y};
     length = sqrt(direction.x * direction.x + direction.y * direction.y);
-    position = sfSprite_getPosition(sprite);
-    direction = divide2f(direction, (v2f_t){length, length});
-    direction = multiply2f(direction, (v2f_t){vitesse, vitesse});
-    position = add2f(position, direction);
-    sfSprite_setPosition(sprite, position);
+    direction = divide2f(direction, V2F1(length));
+    direction = multiply2f(direction, V2F1(bullet->speed));
+    bullet->position = add2f(bullet->position, direction);
+    sfSprite_setPosition(sprite, bullet->position);
+    sfSprite_setPosition(bullet->disappear, bullet->position);
+    sfSprite_setPosition(bullet->impactEnemy, bullet->position);
+    sfSprite_setPosition(bullet->impactWall, bullet->position);
 }
 
 void bullet_update(void)

@@ -208,6 +208,7 @@ typedef enum popup_type_e {
 /// \param popupOpen    State of the popup container
 /// \param popupType    The current opened popup
 /// \param camera       The camera boundary
+/// \param trigger      The door trigger boundary
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct editor_s {
@@ -238,6 +239,7 @@ extern struct editor_s {
     bool_t popupOpen;
     popup_type_t popupType;
     int camera[4];
+    int trigger[4];
 } Editor;
 
 ///////////////////////////////////////////////////////////////////////////////

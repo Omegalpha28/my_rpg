@@ -51,8 +51,10 @@ void editor_reset(void)
     editor_to_origin();
     Editor.bDisplay = true;
     Editor.bDisplay = true;
-    for (uint_t i = 0; i < 4; i++)
+    for (uint_t i = 0; i < 4; i++) {
         Editor.camera[i] = 0;
+        Editor.trigger[i] = 0;
+    }
     Editor.copy = NULL;
     Editor.hover = false;
     for (uint_t i = 0; i < Editor.inputCount; i++)

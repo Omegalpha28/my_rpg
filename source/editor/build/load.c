@@ -97,12 +97,22 @@ static void load_layer(prop_t ***array, uint_t *count, cstring_t buff,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void load_camera(cstring_t buff, ulong_t *idx)
+static void load_bound(cstring_t buff, ulong_t *idx)
 {
+    int negative = 1;
+
     Editor.camera[0] = my_rbuffint(buff, 2, idx);
     Editor.camera[1] = my_rbuffint(buff, 2, idx);
     Editor.camera[2] = my_rbuffint(buff, 2, idx);
     Editor.camera[3] = my_rbuffint(buff, 2, idx);
+    Editor.trigger[0] = my_rbuffint(buff, 2, idx);
+    Editor.trigger[1] = my_rbuffint(buff, 2, idx);
+    negative = (buff[(*idx)] == 1) ? -1 : 1;
+    (*idx)++;
+    Editor.trigger[2] = my_rbuffint(buff, 2, idx) * negative;
+    negative = (buff[(*idx)] == 1) ? -1 : 1;
+    (*idx)++;
+    Editor.trigger[3] = my_rbuffint(buff, 2, idx) * negative;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -119,6 +129,6 @@ bool_t level_load(cstring_t filepath)
     load_information(buff, &idx);
     load_layer(&(Editor.fProps), &(Editor.fCount), buff, &idx);
     load_layer(&(Editor.bProps), &(Editor.bCount), buff, &idx);
-    load_camera(buff, &idx);
+    load_bound(buff, &idx);
     return (true);
 }

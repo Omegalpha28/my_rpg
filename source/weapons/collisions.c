@@ -31,7 +31,7 @@ static bool_t animation_bullet_destroyed(bullet_t *bullet, uint_t s)
         bullet->impact_player_visisble = false;
         bullet->impact_wall_visisble = false;
     }
-    img->mask.left = (img->size.x / img->grid.x) * bullet->animation;
+    img->mask.left = (img->mask.width) * bullet->animation;
     bullet->animation++;
     if ((uint_t)img->mask.left < img->size.x) {
         sfSprite_setTextureRect(bullet->disappear, img->mask);

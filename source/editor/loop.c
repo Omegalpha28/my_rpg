@@ -26,6 +26,23 @@ static void draw_camera_bound(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void draw_trigger_bound(void)
+{
+    sfRectangleShape *trigger = sfRectangleShape_create();
+    v2f_t size = V2F(Editor.trigger[0], Editor.trigger[1]);
+
+    sfRectangleShape_setSize(trigger, size);
+    sfRectangleShape_setOrigin(trigger, V2F(size.x / 2.0f, size.y / 2.0f));
+    sfRectangleShape_setPosition(trigger, V2F(Editor.trigger[2],
+        Editor.trigger[3]));
+    sfRectangleShape_setFillColor(trigger, sfTransparent);
+    sfRectangleShape_setOutlineColor(trigger, RGB(0, 0, 255));
+    sfRectangleShape_setOutlineThickness(trigger, 2.0f);
+    sfRenderWindow_drawRectangleShape(Win.self, trigger, NULL);
+    sfRectangleShape_destroy(trigger);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void editor_loop(void)
 {
     sfEvent evt;
@@ -42,6 +59,7 @@ void editor_loop(void)
         draw_visible_props(Editor.fProps, Editor.fCount);
     draw_editor_focus_hitbox();
     draw_camera_bound();
+    draw_trigger_bound();
     draw_editor_ui();
     Editor.oldMouse = Editor.crtMouse;
 }

@@ -89,24 +89,24 @@ static void handle_editor_input_enter(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void handle_editor_camera_key(sfKeyEvent evt)
+static void handle_editor_bound_key(sfKeyEvent evt)
 {
-    if (evt.code == sfKeyNumpad8 && !PRESSED(sfKeyLControl))
-        Editor.camera[2]++;
-    if (evt.code == sfKeyNumpad8 && PRESSED(sfKeyLControl))
-        Editor.camera[2]--;
-    if (evt.code == sfKeyNumpad5 && !PRESSED(sfKeyLControl))
-        Editor.camera[3]++;
-    if (evt.code == sfKeyNumpad5 && PRESSED(sfKeyLControl))
-        Editor.camera[3]--;
-    if (evt.code == sfKeyNumpad4 && !PRESSED(sfKeyLControl))
-        Editor.camera[0]++;
-    if (evt.code == sfKeyNumpad4 && PRESSED(sfKeyLControl))
-        Editor.camera[0]--;
-    if (evt.code == sfKeyNumpad6 && !PRESSED(sfKeyLControl))
-        Editor.camera[1]++;
-    if (evt.code == sfKeyNumpad6 && PRESSED(sfKeyLControl))
-        Editor.camera[1]--;
+    if (evt.code == sfKeyNumpad8 && PRESSED(sfKeyLShift))
+        Editor.camera[2] += PRESSED(sfKeyLControl) ? -1 : 1;
+    if (evt.code == sfKeyNumpad5 && PRESSED(sfKeyLShift))
+        Editor.camera[3] += PRESSED(sfKeyLControl) ? -1 : 1;
+    if (evt.code == sfKeyNumpad7 && PRESSED(sfKeyLShift))
+        Editor.camera[0] += PRESSED(sfKeyLControl) ? -1 : 1;
+    if (evt.code == sfKeyNumpad9 && PRESSED(sfKeyLShift))
+        Editor.camera[1] += PRESSED(sfKeyLControl) ? -1 : 1;
+    if (evt.code == sfKeyNumpad1 && PRESSED(sfKeyLShift))
+        Editor.trigger[2] += PRESSED(sfKeyLControl) ? -1 : 1;
+    if (evt.code == sfKeyNumpad3 && PRESSED(sfKeyLShift))
+        Editor.trigger[3] += PRESSED(sfKeyLControl) ? -1 : 1;
+    if (evt.code == sfKeyNumpad4 && PRESSED(sfKeyLShift))
+        Editor.trigger[0] += PRESSED(sfKeyLControl) ? -1 : 1;
+    if (evt.code == sfKeyNumpad6 && PRESSED(sfKeyLShift))
+        Editor.trigger[1] += PRESSED(sfKeyLControl) ? -1 : 1;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -117,7 +117,7 @@ void handle_editor_key_pressed(sfKeyEvent evt)
     handle_editor_single_key(evt);
     if (Editor.inputFocused && evt.code == sfKeyEnter)
         handle_editor_input_enter();
-    handle_editor_camera_key(evt);
+    handle_editor_bound_key(evt);
     if (!Editor.focus && evt.code == ALT_UP && PRESSED(sfKeyA))
         editor_moveall_up();
     if (!Editor.focus && evt.code == ALT_DOWN && PRESSED(sfKeyA))

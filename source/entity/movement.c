@@ -138,7 +138,6 @@ static void fleeing(entity_t *evil)
 ///////////////////////////////////////////////////////////////////////////////
 void enemy_movement(entity_t *evil)
 {
-    collision_check(evil);
     if (evil->attack_types == Dash && evil->can_attack)
         return;
     if (evil->invincible)

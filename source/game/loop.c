@@ -56,6 +56,7 @@ void game_loop(void)
 
     while (sfRenderWindow_pollEvent(Win.self, &evt))
         parse_events(evt);
+    update_collisions();
     player_movement();
     cursor_focus();
     update_entity();

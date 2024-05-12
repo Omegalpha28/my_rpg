@@ -16,15 +16,13 @@
 ///
 /// \param evil         Pointer to the enemy info structure.
 /// \param prop_pos     position of current prop in collision.
-/// \param prop_width
-/// \param prop_height
+/// \param prop         vector consisting of width(x) and height(y).
 ///
 ///////////////////////////////////////////////////////////////////////////////
-static void collision_blocker(entity_t *evil, v2f_t prop_pos, int prop_width,
-    int prop_height)
+static void old_collision_blocker(entity_t *evil, v2f_t prop_pos, v2i_t prop)
 {
-    float overlapX = prop_width - fabs(evil->actor->position.x - prop_pos.x);
-    float overlapY = prop_height - fabs(evil->actor->position.y +
+    float overlapX = prop.x - fabs(evil->actor->position.x - prop_pos.x);
+    float overlapY = prop.y - fabs(evil->actor->position.y +
         evil->collision - prop_pos.y);
 
     if (overlapX < overlapY)
@@ -39,7 +37,7 @@ static void collision_blocker(entity_t *evil, v2f_t prop_pos, int prop_width,
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void collision_check(entity_t *evil)
+void old_collision_check(entity_t *evil)
 {
     v2f_t evil_pos = evil->actor->position;
     v2f_t prop_pos;
@@ -56,7 +54,8 @@ void collision_check(entity_t *evil)
             evil_pos.x >= (prop_pos.x - prop_width) &&
             evil_pos.y <= (prop_pos.y + prop_height) &&
             evil_pos.y + evil->collision >= (prop_pos.y - prop_height)) {
-                collision_blocker(evil, prop_pos, prop_width, prop_height);
+                old_collision_blocker(evil, prop_pos,
+                    (v2i_t){prop_width, prop_height});
         }
     }
 }

@@ -59,6 +59,8 @@ static void switch_scene_loop(void)
         editor_loop();
     if (Engine.scene == SCENE_VIDEO)
         video_loop();
+    if (Engine.scene == SCENE_SAVES)
+        saves_loop();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

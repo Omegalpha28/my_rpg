@@ -41,7 +41,7 @@ static void draw_debug_line(actor_t *act, v2f_t cr)
     v.color = sfRed;
     v.position = subtract2f(act->position, (v2f_t){0.0f, -5.0f});
     sfVertexArray_append(va, v);
-    v.position = endpoint2f(act->position, cr, 50.0f);
+    v.position = endpoint2f(act->position, cr, dist2f(act->position, cr));
     sfVertexArray_append(va, v);
     sfVertexArray_setPrimitiveType(va, sfLines);
     sfRenderWindow_drawVertexArray(Win.self, va, NULL);

@@ -247,6 +247,7 @@ P_C_WEAPONS =	$(P_D_WEAPONS)create.c										\
 P_C_UI		=	$(P_D_UI)video/load.c										\
 				$(P_D_UI)video/loop.c										\
 				$(P_D_UI)menu/loop.c										\
+				$(P_D_UI)saves/loop.c										\
 				$(P_D_UI)settings/loop.c									\
 				$(P_D_UI)settings/colums_settings.c							\
 				$(P_D_UI)settings/audio_settings.c							\

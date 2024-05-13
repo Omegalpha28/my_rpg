@@ -20,7 +20,7 @@ static bool_t check_end(bool_t force)
             continue;
         sfTexture_destroy(Engine.frames[i]);
     }
-    Engine.scene = SCENE_MAIN_MENU;
+    Engine.scene = SCENE_GAME;
     FREE(Engine.frames);
     Engine.frames = NULL;
     Engine.frameLoaded = 0;
@@ -43,7 +43,7 @@ static bool_t handle_video_events(void)
     while (sfRenderWindow_pollEvent(Win.self, &evt)) {
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);
-        if (evt.type == sfEvtKeyReleased && evt.key.code >= sfKeySpace)
+        if (evt.type == sfEvtKeyReleased && evt.key.code == sfKeySpace)
             return (check_end(true));
     }
     return (false);

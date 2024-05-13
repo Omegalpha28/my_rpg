@@ -55,8 +55,10 @@ static void draw_profile_delete(v2f_t position, v2f_t ratio)
 ///////////////////////////////////////////////////////////////////////////////
 static void handle_profile_click(uint_t id)
 {
+    id = id;
     load_video(DIR_INTRO, "intro");
     Engine.level = 1;
+    switch_level();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

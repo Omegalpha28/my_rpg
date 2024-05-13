@@ -181,6 +181,7 @@ extern struct keybind_s {
     bool_t invert;
     float sensibilit;
     bool_t release;
+    int last_scene;
 } Setting;
 
 ///////////////////////////////////////////////////////////////////////////////

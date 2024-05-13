@@ -124,7 +124,8 @@ static void draw_hud(void)
 
     if (Engine.debugMode)
         draw_debug_line(Player.ref, cr);
-    draw_visor();
+    if (Engine.scene == SCENE_GAME)
+        draw_visor();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

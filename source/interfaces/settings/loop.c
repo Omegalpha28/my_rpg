@@ -65,12 +65,12 @@ static void draw_colums(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_shadow(void)
+void draw_shadow(void)
 {
-    v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
+    v2f_t pos = {0.0f, 0.0f};
     sfRectangleShape *shadow = sfRectangleShape_create();
 
-    sfRectangleShape_setPosition(shadow, pos);
+    sfRectangleShape_setPosition(shadow, PX_TO_MAPF(pos));
     sfRectangleShape_setSize(shadow, V2F(Win.width, Win.height));
     sfRectangleShape_setFillColor(shadow, RGBA(35, 21, 39, 200));
     sfRenderWindow_drawRectangleShape(Win.self, shadow, false);
@@ -92,7 +92,7 @@ static sfColor get_color(v2f_t pos)
     sfRenderWindow_drawSprite(Win.self, select, NULL);
     sfSprite_destroy(select);
     if (CLICK_REL)
-        Engine.scene = SCENE_MAIN_MENU;
+        Engine.scene = Setting.last_scene;
     Setting.hover = true;
     return (sfColor_fromRGB(243, 199, 77));
 }
@@ -111,7 +111,7 @@ void settings_loop(void)
         evt.mouseButton.button == Setting.shoot);
     Setting.hover = false;
     if (evt.key.code == Setting.pause.code)
-        Engine.scene = SCENE_MAIN_MENU;
+        Engine.scene = Setting.last_scene;
     Engine.colum += (evt.key.code == Setting.left.code && Engine.colum != 3);
     Engine.colum -= (evt.key.code == Setting.right.code && Engine.colum != 1);
     draw_menu_background();

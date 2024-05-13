@@ -31,6 +31,7 @@ typedef enum scene_e {
     SCENE_SETTINGS,
     SCENE_VIDEO,
     SCENE_SAVES,
+    SCENE_PAUSE,
     SCENE_COUNT
 } scene_t;
 

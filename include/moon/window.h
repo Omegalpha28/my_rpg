@@ -171,7 +171,7 @@ extern struct keybind_s {
     float master;
     float music;
     float sound;
-    sfVideoMode *modes;
+    const sfVideoMode *modes;
     ulong_t modesCunt;
     uint_t winMode;
     uint_t framerate;

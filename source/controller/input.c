@@ -45,11 +45,11 @@ static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed,
         RIGHT = pressed;
     if (evt.code == Setting.left.code || evt.code == ALT_LEFT)
         LEFT = pressed;
-    if (evt.code == Setting.dash.code && pressed)
+    if (evt.code == Setting.dash.code && pressed && !DANCE)
         DASH = pressed;
     if (evt.code == Setting.heal.code)
         use_competence();
-    if (evt.code == Setting.dance.code && !pressed) {
+    if (evt.code == Setting.dance.code && !pressed && !DASH) {
         DANCE = released && !DANCE ? true : false;
         if (DANCE) {
             sfMusic_play(find_music("blingblangblang"));

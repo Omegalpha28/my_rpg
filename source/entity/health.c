@@ -23,8 +23,15 @@ static void termination(entity_t *evil)
     if (evil->is_dammaged){
         evil->is_dammaged = !evil->is_dammaged;
         evil->invincible = !evil->invincible;
-    } else
-        evil->actor->draw = !evil->actor->draw;
+        return;
+    }
+    evil->actor->draw = !evil->actor->draw;
+    for (uint_t i = 0; i < ENTITY_REMOVE; i++) {
+        if (Entities.toRemove[i] != NULL)
+            continue;
+        Entities.toRemove[i] = evil;
+        break;
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

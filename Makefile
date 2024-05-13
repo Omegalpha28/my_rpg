@@ -75,6 +75,7 @@ E_C_OBJECTS	=	$(E_D_OBJECTS)pool.c										\
 				$(E_D_OBJECTS)actors/create.c								\
 				$(E_D_OBJECTS)actors/set.c									\
 				$(E_D_OBJECTS)actors/transform.c							\
+				$(E_D_OBJECTS)actors/collisions.c							\
 				$(E_D_OBJECTS)props/create.c								\
 				$(E_D_OBJECTS)props/draw.c									\
 				$(E_D_OBJECTS)props/transform.c								\
@@ -247,6 +248,7 @@ P_C_WEAPONS =	$(P_D_WEAPONS)create.c										\
 P_C_UI		=	$(P_D_UI)video/load.c										\
 				$(P_D_UI)video/loop.c										\
 				$(P_D_UI)menu/loop.c										\
+				$(P_D_UI)saves/loop.c										\
 				$(P_D_UI)settings/loop.c									\
 				$(P_D_UI)settings/colums_settings.c							\
 				$(P_D_UI)settings/audio_settings.c							\

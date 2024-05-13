@@ -33,5 +33,6 @@ void draw_keybinds(void)
         0.35F, on_off(V2F(Win.width / 4, Win.height / 2 - scal * 3), &INVERT));
     draw_text("Change keybinds",
         PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 - scal * 2)), 0.35F,
-        draw_keys(V2F(Win.width / 4, Win.height / 2 - scal * 2)));
+        sfColor_fromRGB(53, 49, 46));
 }
+//draw_keys(V2F(Win.width / 4, Win.height / 2 - scal * 2))

@@ -137,6 +137,7 @@ void menu_loop(void)
             sfRenderWindow_close(Win.self);
     CLICK_REL = (evt.type == sfEvtMouseButtonReleased &&
         evt.mouseButton.button == Setting.shoot);
+    Setting.last_scene = SCENE_MAIN_MENU;
     draw_menu_background();
     Setting.hover = false;
     draw_text("Play", V2F(pos.x + 110, pos.y + 125),

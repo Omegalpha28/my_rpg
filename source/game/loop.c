@@ -32,4 +32,6 @@ void game_loop(void)
     update();
     draw();
     clear_entity_remove_queue();
+    if (evt.key.code == Setting.pause.code)
+        Engine.scene = SCENE_PAUSE;
 }

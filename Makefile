@@ -195,6 +195,7 @@ P_D_ENTITY	=	$(P_D_ROOT)entity/
 P_D_EDITOR	=	$(P_D_ROOT)editor/
 P_D_WEAPONS =   $(P_D_ROOT)weapons/
 P_D_UI		=	$(P_D_ROOT)interfaces/
+P_D_LVL		=	$(P_D_ROOT)levels/
 
 P_C_ROOT	=	$(P_D_ROOT)main.c
 P_C_CTRL	=	$(P_D_CTRL)animation.c										\
@@ -254,6 +255,8 @@ P_C_UI		=	$(P_D_UI)video/load.c										\
 				$(P_D_UI)settings/video_settings.c							\
 				$(P_D_UI)settings/key_settings.c							\
 				$(P_D_UI)text.c
+P_C_LVL		=	$(P_D_LVL)switch.c											\
+				$(P_D_LVL)tutorial.c
 
 P_SOURCES	=	$(P_C_ROOT)													\
 				$(P_C_EDITOR)												\
@@ -261,7 +264,8 @@ P_SOURCES	=	$(P_C_ROOT)													\
 				$(P_C_GAME)													\
 				$(P_C_ENTITY)												\
 				$(P_C_WEAPONS)												\
-				$(P_C_UI)
+				$(P_C_UI)													\
+				$(P_C_LVL)
 
 P_OBJECTS	=	$(P_SOURCES:.c=.o)
 

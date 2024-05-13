@@ -52,7 +52,8 @@ float ease_in_out_circle(float t)
 v2f_t cursor_cap(void)
 {
     v2f_t max_cam = {0.0f, 0.0f};
-    v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
+    //v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
+    v2f_t mouse = Player.ref->position;
     v2f_t pos = Player.ref->position;
     v2f_t dist = {mouse.x - pos.x, mouse.y - pos.y};
 
@@ -66,7 +67,8 @@ void cursor_focus(void)
 {
     v2f_t cap = cursor_cap();
     v2f_t pos = Player.ref->position;
-    v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
+    //v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
+    v2f_t mouse = Player.ref->position;
     v2f_t offset = {0.0f, 0.0f};
     v2f_t dist = {mouse.x - pos.x, mouse.y - pos.y};
 
@@ -78,5 +80,7 @@ void cursor_focus(void)
         offset.x = cap.x;
     if (dist.y < cap.y * 20 && dist.y > cap.y * 30)
         offset.y = cap.y;
+    if (Editor.camera[0] + Editor.camera[1] < DEFAULT_VIEW_WIDTH)
+        offset.x = 0.0f;
     view_move(offset);
 }

@@ -54,7 +54,7 @@ static void draw_autors(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_logo(void)
+void draw_levitating_logo(void)
 {
     sfSprite *logo = sfSprite_create();
     float offsetY = 5.0f * sin((float)(Time.currentTime) / 1000.0f);
@@ -83,7 +83,7 @@ void draw_menu_background(void)
     sfRenderWindow_drawSprite(Win.self, back, NULL);
     sfSprite_destroy(back);
     if (Engine.scene == SCENE_MAIN_MENU) {
-        draw_logo();
+        draw_levitating_logo();
         draw_autors();
     }
 }
@@ -94,7 +94,7 @@ static void button_functions(float y)
     v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
 
     if (CLICK_REL && y == pos.y + 125)
-        Engine.scene = SCENE_GAME;
+        Engine.scene = SCENE_SAVES;
     if (CLICK_REL && y == pos.y + 150)
         Engine.scene = SCENE_SETTINGS;
     if (CLICK_REL && y == pos.y + 175) {

@@ -256,7 +256,9 @@ P_C_UI		=	$(P_D_UI)video/load.c										\
 				$(P_D_UI)settings/key_settings.c							\
 				$(P_D_UI)text.c
 P_C_LVL		=	$(P_D_LVL)switch.c											\
-				$(P_D_LVL)tutorial.c
+				$(P_D_LVL)end.c												\
+				$(P_D_LVL)tutorial.c										\
+				$(P_D_LVL)hub.c
 
 P_SOURCES	=	$(P_C_ROOT)													\
 				$(P_C_EDITOR)												\

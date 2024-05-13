@@ -19,6 +19,7 @@
     #include "rpg/weapons.h"
     #include "rpg/editor.h"
     #include "rpg/interfaces.h"
+    #include "rpg/levels.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 ///

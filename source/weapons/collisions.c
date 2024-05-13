@@ -10,6 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+///////////////////////////////////////////////////////////////////////////////
 static void entity_hit(entity_t *evil)
 {
     if (!evil || evil->dead || evil->invincible)
@@ -19,6 +20,7 @@ static void entity_hit(entity_t *evil)
     evil->invincible = true;
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static bool_t animation_bullet_destroyed(bullet_t *bullet, uint_t s)
 {
     image_t *img = Assets.bullets[BULLET_STATS[bullet->bullet_asset].base + s];
@@ -42,6 +44,7 @@ static bool_t animation_bullet_destroyed(bullet_t *bullet, uint_t s)
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static bool_t animation_bullet_impact_actor(bullet_t *bullet, uint_t s)
 {
     image_t *img = Assets.bullets[BULLET_STATS[bullet->bullet_asset].base + s];
@@ -65,6 +68,7 @@ static bool_t animation_bullet_impact_actor(bullet_t *bullet, uint_t s)
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static bool_t player_impact(bullet_t *bullet)
 {
     float_t distance_enemy;
@@ -79,6 +83,7 @@ static bool_t player_impact(bullet_t *bullet)
     return (false);
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static bool_t bullet_impact_actor(bullet_t *bullet)
 {
     float_t distance_enemy;
@@ -86,7 +91,7 @@ static bool_t bullet_impact_actor(bullet_t *bullet)
     float_t radius;
     v2f_t pos = bullet->position;
 
-    for (uint_t i = 0; i < Entities.count; i++) {
+    for (int i = 0; i < Entities.count; i++) {
         radius = Entities.array[i]->collision;
         pos_enemy = Entities.array[i]->actor->position;
         distance_enemy = sqrt(pow(pos_enemy.x - pos.x, 2) +
@@ -99,6 +104,7 @@ static bool_t bullet_impact_actor(bullet_t *bullet)
     return (false);
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static bool_t bullet_impact_bullet(bullet_t *bullet)
 {
     float_t distance_bullet_enemy;
@@ -118,6 +124,7 @@ static bool_t bullet_impact_bullet(bullet_t *bullet)
     return (false);
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static bool_t collision_bullet(bullet_t *bullet)
 {
     v2f_t pos = sfSprite_getPosition(bullet->base);
@@ -138,6 +145,7 @@ static bool_t collision_bullet(bullet_t *bullet)
     return (false);
 }
 
+///////////////////////////////////////////////////////////////////////////////
 void bullet_collision(void)
 {
     if (Pool.bulletCount == 0)

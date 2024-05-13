@@ -22,7 +22,7 @@ static void enemy_update(entity_t *evil)
 ///////////////////////////////////////////////////////////////////////////////
 void update_entity(void)
 {
-    for (uint_t i = 0; i < Entities.count; i++){
+    for (int i = 0; i < Entities.count; i++){
         health_examination(Entities.array[i]);
         if (Entities.array[i]->dead)
             continue;

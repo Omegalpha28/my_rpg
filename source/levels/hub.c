@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2024
-** my_rpg
+** B-MUL-200-LYN-2-1-myrpg-mallory.scotton
 ** File description:
-** entity
+** hub
 */
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -11,8 +11,9 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-struct entity_list_s Entities = {NULL, 0,
-    {
-        NULL, NULL, NULL, NULL, NULL,
-        NULL, NULL, NULL, NULL, NULL
-}};
+bool_t level_hub(void)
+{
+    if (Engine.level != 0 || !level_load("shared/hub"))
+        return (false);
+    return (true);
+}

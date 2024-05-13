@@ -14,6 +14,8 @@ static void functions(int butt)
 {
     if (CLICK_REL && butt == 1)
         Engine.scene = SCENE_GAME;
+    if (CLICK_REL && butt == 2)
+        Engine.scene = SCENE_INVENTORY;
     if (CLICK_REL && butt == 3)
         Engine.scene = SCENE_SETTINGS;
     if (CLICK_REL && butt == 4)
@@ -74,14 +76,14 @@ void pause_loop(void)
     float scal = 3.0f * 16.0f * Win.width / Win.viewWidth * 0.45f;
     v2f_t pos = {Win.width / 2.0f, Win.height / 2};
 
-    while (sfRenderWindow_pollEvent(Win.self, &evt))
+    while (sfRenderWindow_pollEvent(Win.self, &evt)) {
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);
-    CLICK_REL = (evt.type == sfEvtMouseButtonReleased &&
-        evt.mouseButton.button == Setting.shoot);
-    if (evt.key.code == Setting.pause.code)
-        Engine.scene = SCENE_GAME;
-    Setting.hover = false;
+        CLICK_REL = click_rel(evt);
+        if (evt.type == sfEvtKeyReleased &&
+            evt.key.code == Setting.pause.code)
+            Engine.scene = SCENE_GAME;
+    }
     Setting.last_scene = SCENE_PAUSE;
     draw();
     draw_shadow();

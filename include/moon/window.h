@@ -57,6 +57,7 @@
     #define DEFAULT_KEY_PAUSE sfKeyEscape
     #define DEFAULT_KEY_SHOOT sfMouseLeft
     #define DEFAULT_KEY_DANCE sfKeyC
+    #define DEFAULT_KEY_INVENTORY sfKeyI
     /** Alternative keybinds                                                 */
     #define ALT_UP sfKeyUp
     #define ALT_DOWN sfKeyDown
@@ -182,6 +183,7 @@ extern struct keybind_s {
     float sensibilit;
     bool_t release;
     int last_scene;
+    key_track_t inventory;
 } Setting;
 
 ///////////////////////////////////////////////////////////////////////////////

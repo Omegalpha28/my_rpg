@@ -30,6 +30,8 @@ void editor_clear(void)
     Editor.fCount = 0;
     Editor.focus = NULL;
     Editor.dragging = false;
+    FREE(Pool.props);
+    Pool.propCount = 0U;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

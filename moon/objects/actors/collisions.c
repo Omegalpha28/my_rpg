@@ -11,62 +11,53 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-///////////////////////////////////////////////////////////////////////////////
-/// \brief in case of collisions, blocks the enemy in its position, not
-/// allowing it to go through it.
-///
-/// \param act_hitbox       Hitbox of current actor.
-/// \param act_pos          Position f current actor.
-/// \param prop_pos         Position of current prop in collision.
-/// \param prop_dimension   Vector consisting of x and y dimensions of prop.
-///
-///////////////////////////////////////////////////////////////////////////////
-static v2f_t collision_blocker(float act_hitbox, v2f_t act_pos, v2f_t prop_pos,
-    v2i_t prop_dimension)
-{
-    float overlapX = prop_dimension.x - fabs(act_pos.x - prop_pos.x);
-    float overlapY = prop_dimension.y - fabs(act_pos.y +
-        act_hitbox - prop_pos.y);
 
-    if (overlapX < overlapY)
-        act_pos.x += (overlapX * ((act_pos.x - prop_pos.x > 0) ? 1 : -1));
-    else {
-        if (act_pos.y - prop_pos.y > 0)
-            act_pos.y += (overlapY + act_hitbox);
-        else
-            act_pos.y -= (overlapY);
-    }
-    return act_pos;
+///////////////////////////////////////////////////////////////////////////////
+static sfBool intersect(sfIntRect actor, sfIntRect prop)
+{
+    prop.top -= (prop.height / 2.0f);
+    actor.top -= (actor.height / 2.0f);
+    prop.height -= (actor.height / 2.0f);
+    prop.left -= (prop.width / 2.0f);
+    actor.left -= (actor.width / 2.0f);
+    return (sfIntRect_intersects(&actor, &prop, NULL));
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void collision_check(int index)
+static void collision_blocker(recti_t actor, recti_t prop, int index)
 {
-    v2f_t act_pos = Pool.actors[index]->position;
-    v2f_t prop_pos;
-    v2i_t prop_dimension;
-    float act_hitbox = (float)(Pool.actors[index]->self->sheets[Pool.actors
-        [index]->sheetId]->image->mask.height) / 2;
+    if (intersect((recti_t){actor.left, Pool.actors[index]->old_pos.y,
+        actor.width, actor.height}, prop))
+        Pool.actors[index]->position.x = Pool.actors[index]->old_pos.x;
+    if (intersect((recti_t){Pool.actors[index]->old_pos.x, actor.top,
+        actor.width, actor.height}, prop))
+        Pool.actors[index]->position.y = Pool.actors[index]->old_pos.y;
+}
 
+///////////////////////////////////////////////////////////////////////////////
+static void collisions_check(int index)
+{
+    recti_t actor = (Pool.actors[index]->self->
+        sheets[Pool.actors[index]->sheetId]->image->mask);
+    recti_t prop;
+
+    actor.left = (int)Pool.actors[index]->position.x;
+    actor.top = (int)Pool.actors[index]->position.y;
     for (size_t i = 0; i < Pool.propCount; i++) {
-        if (!Pool.props[i]->collision)
+        if (!Pool.props[i]->collision || (DASH && Pool.actors[index] ==
+            Player.ref && CMP(Pool.props[i]->self->name, "water")))
             continue;
-        prop_pos = Pool.props[i]->position;
-        prop_dimension.x = Pool.props[i]->self->image->mask.width / 2;
-        prop_dimension.y = Pool.props[i]->self->image->mask.height / 2;
-        if (act_pos.x <= (prop_pos.x + prop_dimension.x) &&
-            act_pos.x >= (prop_pos.x - prop_dimension.x) &&
-            act_pos.y <= (prop_pos.y + prop_dimension.y) &&
-            act_pos.y + act_hitbox >= (prop_pos.y - prop_dimension.y))
-                Pool.actors[index]->position = collision_blocker(act_hitbox,
-                    act_pos, prop_pos, prop_dimension);
+        prop = Pool.props[i]->self->image->mask;
+        prop.left = (int)Pool.props[i]->position.x;
+        prop.top = (int)Pool.props[i]->position.y;
+        collision_blocker(actor, prop, index);
     }
+    Pool.actors[index]->old_pos = Pool.actors[index]->position;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void update_collisions(void)
 {
-    for (size_t i = 0; i < Pool.actorCount; i++){
-        collision_check(i);
-    }
+    for (size_t i = 0; i < Pool.actorCount; i++)
+        collisions_check(i);
 }

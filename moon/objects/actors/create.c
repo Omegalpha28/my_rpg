@@ -27,6 +27,7 @@ static void actor_init(actor_t *act, creature_t *creature, v2f_t position)
     sfSprite_setPosition(act->sprite, MAP_TO_PXF(position));
     act->draw = true;
     act->done = false;
+    act->old_pos = position;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

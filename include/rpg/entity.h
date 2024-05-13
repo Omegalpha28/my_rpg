@@ -201,6 +201,4 @@ void enemy_action(entity_t *evil);
 ///////////////////////////////////////////////////////////////////////////////
 void update_collisions(void);
 
-void old_collision_check(entity_t *evil);
-
 #endif /* !ENTITY_H_ */

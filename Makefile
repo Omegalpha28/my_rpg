@@ -75,6 +75,7 @@ E_C_OBJECTS	=	$(E_D_OBJECTS)pool.c										\
 				$(E_D_OBJECTS)actors/create.c								\
 				$(E_D_OBJECTS)actors/set.c									\
 				$(E_D_OBJECTS)actors/transform.c							\
+				$(E_D_OBJECTS)actors/collisions.c							\
 				$(E_D_OBJECTS)props/create.c								\
 				$(E_D_OBJECTS)props/draw.c									\
 				$(E_D_OBJECTS)props/transform.c								\
@@ -237,8 +238,7 @@ P_C_ENTITY =	$(P_D_ENTITY)entity.c										\
 				$(P_D_ENTITY)update.c										\
 				$(P_D_ENTITY)random_pos.c									\
 				$(P_D_ENTITY)health.c										\
-				$(P_D_ENTITY)action.c										\
-				$(P_D_ENTITY)collisions.c
+				$(P_D_ENTITY)action.c
 P_C_WEAPONS =	$(P_D_WEAPONS)create.c										\
 				$(P_D_WEAPONS)update.c										\
 				$(P_D_WEAPONS)destroy.c										\

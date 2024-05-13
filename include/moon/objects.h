@@ -40,6 +40,7 @@ typedef struct actor_s {
     bool_t draw;
     ulong_t time;
     bool_t done;
+    v2f_t old_pos;
 } actor_t;
 
 ///////////////////////////////////////////////////////////////////////////////

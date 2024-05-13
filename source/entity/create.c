@@ -72,7 +72,7 @@ void remove_entity(entity_t *ent)
     if (ent->actor != NULL)
         actor_destroy(ent->actor);
     tmp = malloc(sizeof(entity_t *) * (Entities.count - 1));
-    for (uint_t i = 0; i < Entities.count; i++) {
+    for (int i = 0; i < Entities.count; i++) {
         if (Entities.array[i] == ent)
             continue;
         tmp[j] = Entities.array[i];

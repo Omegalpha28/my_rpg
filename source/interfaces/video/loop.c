@@ -43,8 +43,10 @@ static bool_t handle_video_events(void)
     while (sfRenderWindow_pollEvent(Win.self, &evt)) {
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);
-        if (evt.type == sfEvtKeyReleased && evt.key.code == sfKeySpace)
+        if (evt.type == sfEvtKeyReleased && evt.key.code == sfKeySpace) {
+            switch_level();
             return (check_end(true));
+        }
     }
     return (false);
 }
@@ -89,7 +91,7 @@ void video_loop(void)
     }
     Engine.videoFrame = frame;
     if (check_end(false))
-        return;
+        return (switch_level());
     sfSprite_setTexture(Engine.sprite, Engine.frames[Engine.videoFrame],
         false);
     sfSprite_setScale(Engine.sprite, (v2f_t){Win.viewWidth / 1280.0f,

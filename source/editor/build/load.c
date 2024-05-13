@@ -126,6 +126,7 @@ bool_t level_load(cstring_t filepath)
     FREE(path);
     if (buff == NULL)
         return (false);
+    editor_reset();
     load_information(buff, &idx);
     load_layer(&(Editor.fProps), &(Editor.fCount), buff, &idx);
     load_layer(&(Editor.bProps), &(Editor.bCount), buff, &idx);

@@ -28,4 +28,5 @@ bool_t level_tutorial(void)
 
     if ((level < 1 && level > 7) || !level_load(LEVELS[level - 1]))
         return (false);
+    return (true);
 }

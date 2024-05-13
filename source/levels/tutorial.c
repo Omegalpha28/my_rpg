@@ -22,11 +22,26 @@ static const cstring_t LEVELS[7] = {
 };
 
 ///////////////////////////////////////////////////////////////////////////////
+void level_tutorial_actors(uint_t level)
+{
+    if (level == 2)
+        entity_create(Assets.creatures[CREATURE_CINNAMON_RAT],
+            V2F(0.0f, -225.0f));
+}
+
+///////////////////////////////////////////////////////////////////////////////
 bool_t level_tutorial(void)
 {
     uint_t level = Engine.level;
+    sfMusic *music = find_music("i-m-hungry");
 
+    if (level == 8)
+        Engine.level = 0;
     if ((level < 1 && level > 7) || !level_load(LEVELS[level - 1]))
         return (false);
+    sfMusic_setVolume(music, clampf(Setting.master * (Setting.music / 100.0f),
+        0.0f, 100.0f));
+    if (level != 1)
+        level_tutorial_actors(level);
     return (true);
 }

@@ -51,8 +51,21 @@ static sfColor get_color(v2f_t pos, int butt)
     return (sfColor_fromRGB(243, 199, 77));
 }
 
+static void draw_back(v2f_t pos, float scal)
+{
+    sfSprite *bac = sfSprite_create();
+
+    sfSprite_setTexture(bac, Assets.ui[UI_BOX]->self, false);
+    sfSprite_setOrigin(bac, V2F(53.0f, 63.0f));
+    sfSprite_setScale(bac, V2F(1.5f, 1.0f));
+    sfSprite_setPosition(bac, PX_TO_MAPF(V2F(pos.x, pos.y + scal * 2.25)));
+    sfRenderWindow_drawSprite(Win.self, bac, false);
+    sfSprite_destroy(bac);
+}
+
 static void draw_butt(v2f_t pos, float scal)
 {
+    draw_back(pos, scal);
     draw_text_center("Resume", pos, 0.45f, get_color(PX_TO_MAPF(pos), 1));
     draw_text_center("Axopedia", V2F(pos.x, pos.y + scal), 0.45f,
         get_color(PX_TO_MAPF(V2F(pos.x, pos.y + scal)), 2));

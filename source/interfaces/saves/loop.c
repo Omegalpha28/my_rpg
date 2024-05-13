@@ -58,7 +58,6 @@ static void handle_profile_click(uint_t id)
     id = id;
     load_video(DIR_INTRO, "intro");
     Engine.level = 1;
-    switch_level();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

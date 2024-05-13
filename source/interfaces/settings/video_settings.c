@@ -182,7 +182,7 @@ void draw_video(void)
 
     draw_text("Resolution",
         PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 - scal * 3)),
-        0.35F, sfWhite);
+        0.35F, resolu(V2F(Win.width / 4, Win.height / 2 - scal * 3)));
     draw_text("Windo mode",
         PX_TO_MAPF(V2F(Win.width / 4, Win.height / 2 - scal * 2)),
         0.35F, choices(V2F(Win.width / 4, Win.height / 2 - scal * 2),

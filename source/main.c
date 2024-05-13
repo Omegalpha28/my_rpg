@@ -61,6 +61,8 @@ static void switch_scene_loop(void)
         video_loop();
     if (Engine.scene == SCENE_SAVES)
         saves_loop();
+    if (Engine.scene == SCENE_INVENTORY)
+        inventory_loop();
     if (Engine.scene == SCENE_PAUSE)
         pause_loop();
 }

@@ -132,11 +132,11 @@ void menu_loop(void)
     sfEvent evt;
     v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
 
-    while (sfRenderWindow_pollEvent(Win.self, &evt))
+    while (sfRenderWindow_pollEvent(Win.self, &evt)) {
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);
-    CLICK_REL = (evt.type == sfEvtMouseButtonReleased &&
-        evt.mouseButton.button == Setting.shoot);
+        CLICK_REL = click_rel(evt);
+    }
     Setting.last_scene = SCENE_MAIN_MENU;
     draw_menu_background();
     Setting.hover = false;

@@ -14,9 +14,13 @@
 static void swap_actors(uint_t j, bool_t *swapped)
 {
     actor_t *tmp = Pool.actors[j];
+    actor_t *prev = Pool.actors[j];
+    actor_t *next = Pool.actors[j + 1];
 
-    if (floorf(Pool.actors[j]->position.y) <=
-        floorf(Pool.actors[j + 1]->position.y))
+    if (floorf(prev->position.y +
+        prev->self->sheets[prev->sheetId]->image->mask.height / 2.0f) <=
+        floorf(next->position.y +
+        next->self->sheets[next->sheetId]->image->mask.height / 2.0f))
         return;
     Pool.actors[j] = Pool.actors[j + 1];
     Pool.actors[j + 1] = tmp;

@@ -39,8 +39,11 @@ bool_t level_tutorial(void)
         Engine.level = 0;
     if ((level < 1 && level > 7) || !level_load(LEVELS[level - 1]))
         return (false);
-    sfMusic_setVolume(music, clampf(Setting.master * (Setting.music / 100.0f),
-        0.0f, 100.0f));
+    if (level == 1) {
+        sfMusic_setVolume(music, clampf(Setting.master *
+            (Setting.music / 100.0f) * 0.1f, 0.0f, 100.0f));
+        sfMusic_play(music);
+    }
     if (level != 1)
         level_tutorial_actors(level);
     return (true);

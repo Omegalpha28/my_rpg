@@ -197,7 +197,8 @@ P_D_WEAPONS =   $(P_D_ROOT)weapons/
 P_D_UI		=	$(P_D_ROOT)interfaces/
 P_D_LVL		=	$(P_D_ROOT)levels/
 
-P_C_ROOT	=	$(P_D_ROOT)main.c
+P_C_ROOT	=	$(P_D_ROOT)main.c											\
+				$(P_D_ROOT)arguments.c
 P_C_CTRL	=	$(P_D_CTRL)animation.c										\
 				$(P_D_CTRL)camera.c											\
 				$(P_D_CTRL)shake.c											\
@@ -242,9 +243,7 @@ P_C_ENTITY =	$(P_D_ENTITY)entity.c										\
 				$(P_D_ENTITY)action.c
 P_C_WEAPONS =	$(P_D_WEAPONS)create.c										\
 				$(P_D_WEAPONS)update.c										\
-				$(P_D_WEAPONS)destroy.c										\
-				$(P_D_WEAPONS)draw.c										\
-				$(P_D_WEAPONS)collisions.c
+				$(P_D_WEAPONS)draw.c
 P_C_UI		=	$(P_D_UI)video/load.c										\
 				$(P_D_UI)video/loop.c										\
 				$(P_D_UI)menu/loop.c										\

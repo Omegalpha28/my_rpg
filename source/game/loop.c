@@ -16,9 +16,8 @@ static void update(void)
     player_movement();
     update_entity();
     update_collisions();
-    cursor_focus();
-    bullet_update();
     update_shaking();
+    cursor_focus();
     check_level_end();
 }
 
@@ -31,5 +30,6 @@ void game_loop(void)
         parse_events(evt);
     update();
     draw();
+    update_all_bullets();
     clear_entity_remove_queue();
 }

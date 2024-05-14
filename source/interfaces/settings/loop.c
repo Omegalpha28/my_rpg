@@ -48,6 +48,7 @@ static void draw_colums(void)
     float up = 3.0f * 16.0f * Win.width / Win.viewWidth * 0.45f;
     sfSprite *bac = sfSprite_create();
 
+    draw_shadow();
     sfSprite_setTexture(bac, Assets.ui[UI_BAR]->self, false);
     sfSprite_setOrigin(bac, V2F(230.0f, 13.0f));
     sfSprite_setPosition(bac, PX_TO_MAPF(V2F(Win.width / 2, up + up / 5)));
@@ -65,12 +66,12 @@ static void draw_colums(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_shadow(void)
+void draw_shadow(void)
 {
-    v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
+    v2f_t pos = {0.0f, 0.0f};
     sfRectangleShape *shadow = sfRectangleShape_create();
 
-    sfRectangleShape_setPosition(shadow, pos);
+    sfRectangleShape_setPosition(shadow, PX_TO_MAPF(pos));
     sfRectangleShape_setSize(shadow, V2F(Win.width, Win.height));
     sfRectangleShape_setFillColor(shadow, RGBA(35, 21, 39, 200));
     sfRenderWindow_drawRectangleShape(Win.self, shadow, false);
@@ -92,7 +93,7 @@ static sfColor get_color(v2f_t pos)
     sfRenderWindow_drawSprite(Win.self, select, NULL);
     sfSprite_destroy(select);
     if (CLICK_REL)
-        Engine.scene = SCENE_MAIN_MENU;
+        Engine.scene = Setting.last_scene;
     Setting.hover = true;
     return (sfColor_fromRGB(243, 199, 77));
 }
@@ -104,18 +105,19 @@ void settings_loop(void)
     float scal = 4.0f * 16.0f * Win.width / Win.viewWidth * 0.45f;
     v2f_t pos = {Win.width / 2.0f, Win.height - scal};
 
-    while (sfRenderWindow_pollEvent(Win.self, &evt))
+    while (sfRenderWindow_pollEvent(Win.self, &evt)) {
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);
-    CLICK_REL = (evt.type == sfEvtMouseButtonReleased &&
-        evt.mouseButton.button == Setting.shoot);
+        CLICK_REL = click_rel(evt);
+        if (evt.key.code == Setting.pause.code)
+            Engine.scene = Setting.last_scene;
+        Engine.colum += (evt.key.code == Setting.left.code &&
+            Engine.colum != 3);
+        Engine.colum -= (evt.key.code == Setting.right.code &&
+            Engine.colum != 1);
+    }
     Setting.hover = false;
-    if (evt.key.code == Setting.pause.code)
-        Engine.scene = SCENE_MAIN_MENU;
-    Engine.colum += (evt.key.code == Setting.left.code && Engine.colum != 3);
-    Engine.colum -= (evt.key.code == Setting.right.code && Engine.colum != 1);
     draw_menu_background();
-    draw_shadow();
     draw_colums();
     draw_text_center("Back", pos, 0.45f, get_color(PX_TO_MAPF(pos)));
     draw_cursor();

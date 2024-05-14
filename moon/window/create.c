@@ -35,7 +35,8 @@ struct keybind_s Setting = {
     (key_track_t){DEFAULT_KEY_DANCE, false},
     DEFAULT_KEY_SHOOT,
     false, 100.0f, 100.0f, 100.0f, NULL, 0, 2, 60, true, true, 0, false, 1.0f,
-    false
+    false, SCENE_MAIN_MENU,
+    (key_track_t){DEFAULT_KEY_INVENTORY, false}
 };
 
 ///////////////////////////////////////////////////////////////////////////////

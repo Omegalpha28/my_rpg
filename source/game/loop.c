@@ -26,8 +26,16 @@ void game_loop(void)
 {
     sfEvent evt;
 
-    while (sfRenderWindow_pollEvent(Win.self, &evt))
+    while (sfRenderWindow_pollEvent(Win.self, &evt)) {
         parse_events(evt);
+        if (evt.type == sfEvtKeyReleased &&
+            evt.key.code == Setting.inventory.code)
+            Engine.scene = SCENE_INVENTORY;
+        if (evt.type == sfEvtKeyReleased &&
+            evt.key.code == Setting.pause.code)
+            Engine.scene = SCENE_PAUSE;
+        CLICK_REL = click_rel(evt);
+    }
     update();
     draw();
     update_all_bullets();

@@ -253,6 +253,9 @@ P_C_UI		=	$(P_D_UI)video/load.c										\
 				$(P_D_UI)settings/audio_settings.c							\
 				$(P_D_UI)settings/video_settings.c							\
 				$(P_D_UI)settings/key_settings.c							\
+				$(P_D_UI)settings/resolution.c								\
+				$(P_D_UI)pause/loop.c										\
+				$(P_D_UI)inventory/loop.c									\
 				$(P_D_UI)text.c
 P_C_LVL		=	$(P_D_LVL)switch.c											\
 				$(P_D_LVL)end.c												\

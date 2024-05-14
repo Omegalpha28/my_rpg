@@ -44,6 +44,14 @@ typedef struct actor_s {
 } actor_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+typedef enum bullet_state_e {
+    BULLET_STATE_FLYING,
+    BULLET_STATE_IMPACT,
+    BULLET_STATE_DESTROYED,
+    BULLET_STATE_COUNT
+} bullet_state_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief TODO:
 ///
 /// \param sender       TODO:
@@ -52,26 +60,15 @@ typedef struct actor_s {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct bullet_s {
-    uint_t sender;
-    uint_t bullet_asset;
-    uint_t weapon_asset;
-    uint_t animation;
-    uint_t radius;
-    uint_t scale;
-    float speed;
+    uint_t weapon;
+    image_t *img;
+    ulong_t startAt;
+    actor_t *sender;
     v2f_t origin;
-    v2f_t destination;
     v2f_t position;
-    bool_t destroyed;
-    bool_t base_visisble;
-    bool_t destroyed_visisble;
-    bool_t impact_wall_visisble;
-    bool_t impact_player_visisble;
-    sfSprite *base;
-    sfSprite *impactWall;
-    sfSprite *impactEnemy;
-    sfSprite *disappear;
-    sfCircleShape *area;
+    v2f_t destination;
+    sfSprite *sprite;
+    bullet_state_t state;
 } bullet_t;
 
 ///////////////////////////////////////////////////////////////////////////////

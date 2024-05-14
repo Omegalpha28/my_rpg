@@ -77,6 +77,7 @@ typedef enum weapons_enum_e {
     WEAPON_COUNT
 } weapon_enum_t;
 
+///////////////////////////////////////////////////////////////////////////////
 typedef enum fire_type_e {
     FIRE_SINGLE,
     FIRE_BURST,
@@ -109,6 +110,7 @@ typedef struct bullet_stat_s {
     text_bullet_t disappear;
     float range;
     float speed;
+    bool_t invert;
 } bullet_stat_t;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -125,28 +127,30 @@ typedef enum bullet_list_e {
     BULLET_MELEE,
     BULLET_KATANA,
     BULLET_MOTORBLADE,
+    BULLET_ROCKET,
     BULLET_COUNT
 } bullet_list_t;
 
 ///////////////////////////////////////////////////////////////////////////////
 static const bullet_stat_t BULLET_STATS[BULLET_COUNT] = {
     {T_AK_BASE, T_AK_IMPACT_WALL, T_AK_IMPACT_ENEMY, T_AK_DISAPPEAR,
-        400.0f, 10.0f},
+        150.0f, 10.0f, false},
     {T_SHOTGUN_BASE, T_SHOTGUN_IMPACT_WALL, T_SHOTGUN_IMPACT_ENEMY,
-        T_SHOTGUN_DISAPPEAR, 100.0f, 10.0f},
+        T_SHOTGUN_DISAPPEAR, 100.0f, 10.0f, true},
     {T_SNIPER_BASE, T_SNIPER_IMPACT_WALL, T_SNIPER_IMPACT_ENEMY,
-        T_SHOTGUN_DISAPPEAR, 500.0f, 10.0f},
+        T_SHOTGUN_DISAPPEAR, 500.0f, 10.0f, true},
     {T_SMG_BASE, T_SMG_IMPACT_WALL, T_SMG_IMPACT_ENEMY,
-        T_SMG_DISAPPEAR, 500.0f, 10.0f},
+        T_SMG_DISAPPEAR, 500.0f, 10.0f, true},
     {T_PISTOL_BASE, T_PISTOL_IMPACT_WALL, T_PISTOL_IMPACT_ENEMY,
-        T_PISTOL_DISAPPEAR, 200.0f, 10.0f},
+        T_PISTOL_DISAPPEAR, 200.0f, 10.0f, false},
     {T_ARROW_BASE, T_ARROW_STUCK_WALL, T_ARROW_IMPACT_ENEMY, T_ARROW_CHARGED,
-        300.0f, 10.0f},
-    {T_SWORD, T_SWORD, T_SWORD, T_SWORD, 50.0f, 0.0f},
+        300.0f, 10.0f, false},
+    {T_SWORD, T_SWORD, T_SWORD, T_SWORD, 50.0f, 0.0f, false},
     {T_KATANA_PARTICLE, T_KATANA_PARTICLE, T_KATANA_PARTICLE,
-        T_KATANA_PARTICLE, 50.0f, 0.0f},
+        T_KATANA_PARTICLE, 50.0f, 0.0f, false},
     {T_MOTORBLADE_PARTICLE, T_MOTORBLADE_PARTICLE, T_MOTORBLADE_PARTICLE,
-        T_MOTORBLADE_PARTICLE, 50.0f, 0.0f},
+        T_MOTORBLADE_PARTICLE, 50.0f, 0.0f, false},
+    {T_ROCKET, T_ROCKET, T_ROCKET, T_ROCKET, 50.0f, 5.0f, false}
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -156,73 +160,81 @@ typedef struct weapon_s {
     uint_t ammoPerMag;
     uint_t damage;
     float firerate;
-    uint_t bulletType;
+    bullet_list_t bulletType;
     float shakingIntensity;
+    float shakingDuration;
 } weapon_t;
 
 ///////////////////////////////////////////////////////////////////////////////
 static const weapon_t WEAPON_STATS[WEAPON_COUNT] = {
-    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_SMG, 2.5f},
-    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_SMG, 2.5f},
-    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_SMG, 2.5f},
-    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_SMG, 2.5f},
-    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_SMG, 2.5f},
-    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f},
-    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f},
-    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f},
-    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f},
-    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f},
-    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 2.5f},
-    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_KATANA, 2.5f},
-    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 2.5f},
-    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 2.5f},
-    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MOTORBLADE, 2.5f},
-    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f},
-    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f},
-    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f},
-    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f},
-    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f},
-    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f},
-    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f},
-    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f},
-    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f},
-    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f},
-    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f},
-    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f},
-    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f},
-    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f},
-    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f},
-    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f},
-    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f},
-    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f},
-    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f},
-    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f},
-    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f},
-    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f},
-    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f},
-    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f},
-    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f},
+    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_ROCKET, 7.5f,
+        0.15f},
+    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_ROCKET, 7.5f,
+        0.15f},
+    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_ROCKET, 7.5f,
+        0.15f},
+    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_ROCKET, 7.5f,
+        0.15f},
+    {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_ROCKET, 7.5f,
+        0.15f},
+    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f},
+    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f},
+    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f},
+    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f},
+    {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f},
+    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 2.5f, 0.15f},
+    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_KATANA, 2.5f, 0.15f},
+    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 2.5f, 0.15f},
+    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 2.5f, 0.15f},
+    {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MOTORBLADE, 2.5f,
+        0.15f},
+    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f},
+    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f},
+    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f},
+    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f},
+    {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f},
+    {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 20, 10, 20, BULLET_AK, 2.5f,
+        0.15f},
+    {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 20, 10, 20, BULLET_AK, 2.5f,
+        0.15f},
+    {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 20, 10, 20, BULLET_AK, 2.5f,
+        0.15f},
+    {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 20, 10, 20, BULLET_AK, 2.5f,
+        0.15f},
+    {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 20, 10, 20, BULLET_AK, 2.5f,
+        0.15f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f,
+        0.15f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f,
+        0.15f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f,
+        0.15f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f,
+        0.15f},
+    {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f,
+        0.15f},
+    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f, 0.15f},
+    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f, 0.15f},
+    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f, 0.15f},
+    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f, 0.15f},
+    {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f, 0.15f},
+    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f, 0.15f},
+    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f, 0.15f},
+    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f, 0.15f},
+    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f, 0.15f},
+    {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f, 0.15f},
 };
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief verifying if every bullet hit their target or has an impact with
-/// someone or something else.
-///
-/// \return TODO:
-///
-///////////////////////////////////////////////////////////////////////////////
-void bullet_collision(void);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief destroy bullets when they hit their targets or get out of the
 /// circle.
 ///
 /// \param sender       The shooter.
-/// \param destination  The vector to design the target.
+/// \param direction    The vector to design the target.
 /// \param weapon       The weapon used by the shooter.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void create_bullet(actor_t *sender, v2f_t destination, weapon_enum_t weapon);
+void create_bullet(actor_t *sender, v2f_t direction, weapon_enum_t weapon);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief destroy bullets when they hit their targets or get out of the
@@ -231,26 +243,19 @@ void create_bullet(actor_t *sender, v2f_t destination, weapon_enum_t weapon);
 /// \param bullet       the sprite_sheet of the bullet.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void remove_bullet(bullet_t *bullet);
+void destroy_bullet(bullet_t *bullet);
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief Renders a bullet, updating its position based on its origin,
-/// destination, and velocity.
-///
-/// \param              bullet pointer to bullet structure.
-///
-///////////////////////////////////////////////////////////////////////////////
-void bullet_render(bullet_t *bullet);
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Drawing bullets.
+/// \brief Drawing all the bullets.
 ///
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void draw_bullet(void);
+void draw_all_bullets(void);
 
-void bullet_render(bullet_t *bullet);
-
-void bullet_update(void);
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Update the state and position of every bullet in the Pool.
+///
+///////////////////////////////////////////////////////////////////////////////
+void update_all_bullets(void);
 
 #endif /* !WEAPONS_H_ */

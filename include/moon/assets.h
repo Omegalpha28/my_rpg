@@ -231,6 +231,7 @@ typedef enum text_bullet_e {
     T_MOTORBLADE_PARTICLE,
     T_SWORD,
     T_BOOMERANG_MOVE,
+    T_ROCKET,
     T_BULLET_COUNT
 } text_bullet_t;
 
@@ -280,7 +281,8 @@ static const cstring_t TEXT_BULLETS[T_BULLET_COUNT] = {
     DIR_BULLET"/katana_particle-5x1.png",
     DIR_BULLET"/motorblade_paricle-5x1.png",
     DIR_BULLET"/sword-5x1.png",
-    DIR_BULLET"/boomerang_move-9x1.png"
+    DIR_BULLET"/boomerang_move-9x1.png",
+    DIR_BULLET"/rocket-2x1.png"
 };
 
 ///////////////////////////////////////////////////////////////////////////////

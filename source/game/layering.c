@@ -102,15 +102,18 @@ static void draw_visor(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_debug_line(actor_t *act, v2f_t cr)
+static void draw_debug_line(v2f_t cr)
 {
     sfVertexArray *va = sfVertexArray_create();
+    v2f_t origin = endpoint2f(add2f(Player.ref->position, V2F(0.0f, 8.0f)),
+        cr, 25.0f);
     sfVertex v;
 
     v.color = sfRed;
-    v.position = subtract2f(act->position, (v2f_t){0.0f, -5.0f});
+    v.position = origin;
     sfVertexArray_append(va, v);
-    v.position = endpoint2f(act->position, cr, dist2f(act->position, cr));
+    v.position = endpoint2f(origin, cr,
+        BULLET_STATS[WEAPON_STATS[Player.weapon].bulletType].range);
     sfVertexArray_append(va, v);
     sfVertexArray_setPrimitiveType(va, sfLines);
     sfRenderWindow_drawVertexArray(Win.self, va, NULL);
@@ -123,9 +126,8 @@ static void draw_hud(void)
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
 
     if (Engine.debugMode)
-        draw_debug_line(Player.ref, cr);
-    if (Engine.scene == SCENE_GAME)
-        draw_visor();
+        draw_debug_line(cr);
+    draw_visor();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -145,10 +147,10 @@ void draw(void)
         if (Player.ref == Pool.actors[i] && !under && !(DANCE || DASH))
             draw_weapon();
     }
+    draw_all_bullets();
     draw_visible_props(Editor.fProps, Editor.fCount);
     for (uint_t i = 0; i < Pool.effectCount; i++)
         if (!Pool.effects[i]->self->background)
             effect_draw(Pool.effects[i]);
-    draw_bullet();
     draw_hud();
 }

@@ -55,6 +55,7 @@ static void change_framerate(v2f_t pos, uint_t *val, bool_t y)
 {
     float marge = 1.0f * 16.0f * Win.width / Win.viewWidth * 0.35f;
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
+    uint_t oldVal = (*val);
 
     if (mouse.x > PX_TO_MAPF(V2F1(pos.x - marge * 13.5)).x && y && CLICK_REL &&
         mouse.x < PX_TO_MAPF(V2F1(pos.x - marge * 6.5)).x && *val != 30)
@@ -68,6 +69,8 @@ static void change_framerate(v2f_t pos, uint_t *val, bool_t y)
     if (mouse.x > PX_TO_MAPF(V2F1(pos.x + marge * 17)).x && y && CLICK_REL &&
         mouse.x < PX_TO_MAPF(V2F1(pos.x + marge * 22)).x && *val <= 120)
         *val = 9999;
+    if (oldVal != (*val))
+        sfRenderWindow_setFramerateLimit(Win.self, (*val));
 }
 
 static void change_aim(v2f_t pos, uint_t *val, bool_t y)

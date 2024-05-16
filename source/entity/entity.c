@@ -15,4 +15,5 @@ struct entity_list_s Entities = {NULL, 0,
     {
         NULL, NULL, NULL, NULL, NULL,
         NULL, NULL, NULL, NULL, NULL
-}};
+    }
+};

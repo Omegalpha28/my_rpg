@@ -13,7 +13,7 @@
 static void init_entity_stat_block(entity_t *new, creature_t *creature,
     v2f_t position)
 {
-    new->health = CREATURE_COUNT < creature->id ? 100 :
+    new->actor->health = CREATURE_COUNT < creature->id ? 100 :
         Stats[creature->id].health;
     new->speed = CREATURE_COUNT < creature->id ? 0.6 :
         Stats[creature->id].speed;
@@ -38,10 +38,7 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->last_action = 0;
     new->has_spawn = 0;
     new->is_attack = 0;
-    new->dead = false;
-    new->is_dammaged = false;
     new->status = Patrol;
-    new->invincible = false;
     new->can_attack = true;
     new->cooldown = 5000;
     new->attack_started = false;

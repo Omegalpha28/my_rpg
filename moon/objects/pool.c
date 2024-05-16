@@ -15,5 +15,6 @@ struct pool_s Pool = {
     NULL, 0,
     NULL, 0,
     NULL, 0,
+    NULL, 0,
     NULL, 0
 };

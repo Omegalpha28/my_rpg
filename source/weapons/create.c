@@ -28,8 +28,9 @@ static void init_new_bullet(bullet_t *new, actor_t *sender, v2f_t direction,
         new->state = BULLET_STATE_IMPACT;
     new->sprite = sfSprite_create();
     new->img = Assets.bullets[BULLET_STATS[wp.bulletType].base];
-    sfSprite_setRotation(new->sprite, atan2(new->destination.y - new->origin.y,
-        new->destination.x - new->origin.x) * (180.0f / M_PI));
+    new->rotation = atan2(new->destination.y - new->origin.y,
+        new->destination.x - new->origin.x) * (180.0f / M_PI);
+    sfSprite_setRotation(new->sprite, new->rotation);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

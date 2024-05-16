@@ -37,7 +37,7 @@ bool_t level_tutorial(void)
 
     if (level == 8)
         Engine.level = 0;
-    if ((level < 1 && level > 7) || !level_load(LEVELS[level - 1]))
+    if (level < 1 || level > 7 || !level_load(LEVELS[level - 1]))
         return (false);
     if (level == 1) {
         sfMusic_setVolume(music, clampf(Setting.master *

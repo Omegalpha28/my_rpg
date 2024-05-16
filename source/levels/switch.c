@@ -24,6 +24,7 @@ static void clear_entities(void)
     Entities.array = NULL;
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static void reset_player_behavior(void)
 {
     Player.ref->position = V2F1(0.0f);

@@ -140,8 +140,8 @@ void enemy_movement(entity_t *evil)
 {
     if (evil->attack_types == Dash && evil->can_attack)
         return;
-    if (evil->invincible)
-        evil->invincible = !evil->invincible;
+    if (evil->actor->invincible)
+        evil->actor->invincible = false;
     if (evil->status == Patrol)
         patrolling(evil);
     if (evil->status == Agressive || evil->status == ranger)

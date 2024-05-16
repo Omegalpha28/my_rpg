@@ -117,6 +117,8 @@ void print_debug_information(void)
     float scale = FACTORS(V2F1(20.0f)).x;
     sfColor clr = RGB(243, 199, 77);
 
+    if (!Engine.debugMode)
+        return;
     print_debug_window(scale, clr);
     print_debug_pools(scale, clr);
     print_debug_level(scale, clr);

@@ -36,6 +36,8 @@ static void check_full_flag(int argc, warray_t argv, uint_t *i)
         Engine.debugMode = true;
     if (CMP(argv[*(i)], "--help"))
         print_help();
+    if (CMP(argv[*(i)], "--mute"))
+        Setting.master = 0.0f;
     if (CMP(argv[*(i)], "--editor")) {
         load_zone("biome1");
         Editor.zone = Assets.zones[0];

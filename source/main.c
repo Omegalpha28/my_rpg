@@ -45,6 +45,7 @@ int main(int argc, warray_t argv)
     Setting.modes = sfVideoMode_getFullscreenModes(&Setting.modesCunt);
     while (sfRenderWindow_isOpen(Win.self)) {
         update_time();
+        remove_completed_sound();
         sfRenderWindow_clear(Win.self, EDITOR_BACKGROUND);
         switch_scene_loop();
         sfRenderWindow_display(Win.self);

@@ -66,12 +66,14 @@ E_C_ASSETS	=	$(E_D_ASSETS)assets.c										\
 				$(E_D_ASSETS)musics.c										\
 				$(E_D_ASSETS)sort.c											\
 				$(E_D_ASSETS)vfx.c											\
+				$(E_D_ASSETS)sfx.c											\
 				$(E_D_ASSETS)zones.c										\
 				$(E_D_ASSETS)weapons.c										\
 				$(E_D_ASSETS)bullets.c										\
 				$(E_D_ASSETS)ui.c
 E_C_OBJECTS	=	$(E_D_OBJECTS)pool.c										\
 				$(E_D_OBJECTS)actors/animate.c								\
+				$(E_D_OBJECTS)sfx.c											\
 				$(E_D_OBJECTS)actors/create.c								\
 				$(E_D_OBJECTS)actors/set.c									\
 				$(E_D_OBJECTS)actors/transform.c							\

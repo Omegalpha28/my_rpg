@@ -285,6 +285,54 @@ static const cstring_t TEXT_BULLETS[T_BULLET_COUNT] = {
     DIR_BULLET"/rocket-2x1.png"
 };
 
+    #define MAX_SFX_VARIANTS 8
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief List of all SFX you can play
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef enum sfx_list_e {
+    SFX_PLAYER_DASH,
+    SFX_PLAYER_HURT,
+    SFX_UI_BACK,
+    SFX_UI_MOVE,
+    SFX_ENEMY_HURT,
+    SFX_ENEMY_ELITE_HURT,
+    SFX_ENEMY_DEATH,
+    SFX_ENEMY_SPAW,
+    SFX_ENEMY_ELITE_SPAWN,
+    SFX_COUNT
+} sfx_list_t;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Constants holding every SFX assets
+///
+///////////////////////////////////////////////////////////////////////////////
+static const cstring_t SFX_ASSETS[SFX_COUNT][MAX_SFX_VARIANTS] = {
+    {"player/dash.ogg", NULL},
+    {
+        "player/hurt1.ogg", "player/hurt2.ogg", "player/hurt3.ogg",
+        "player/hurt4.ogg", "player/hurt5.ogg", "player/hurt6.ogg",
+        "player/hurt7.ogg", NULL
+    },
+    {"ui/back.ogg", NULL},
+    {"ui/move1.ogg", "ui/move2.ogg", "ui/move3.ogg", "ui/move4.ogg", NULL},
+    {"enemies/hurt.ogg", NULL},
+    {"enemies/elite_hurt.ogg", NULL},
+    {"enemies/death1.ogg", "enemies/death2.ogg", "enemies/death3.ogg", NULL},
+    {"enemies/spawn.ogg", NULL},
+    {"enemies/elite_spawn.ogg", NULL}
+};
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Structure to hold every loaded SFX
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct sfx_s {
+    sfSoundBuffer *sounds[MAX_SFX_VARIANTS];
+    uint_t soundCount;
+} sfx_t;
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Animation structure, containing information about differents
 /// variants
@@ -461,7 +509,25 @@ extern struct assets_s {
     uint_t uiCount;
     image_t **bullets;
     uint_t bulletCount;
+    sfx_t **sfx;
+    uint_t sfxCount;
 } Assets;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Init every Sfx assets
+///
+/// \return True if every assets are loaded, false otherwise
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t init_assets_sfx(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Destroy every sfx assets
+///
+/// \return True if everything is succesfully destroyed
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t destroy_assets_sfx(void);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Initialize every assets used in the game dynamically

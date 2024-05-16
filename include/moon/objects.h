@@ -133,6 +133,12 @@ typedef struct effect_s {
 /// \param actorCount   The number of actors
 /// \param props        The list of props
 /// \param propCount    The number of props
+/// \param effects      The list of effects
+/// \param effectCount  The number of effects
+/// \param bullets      The list of bullets
+/// \param bulletCount  The number of bullet
+/// \param sounds       The list of sounds
+/// \param soundCount   The number of sound
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct pool_s {
@@ -144,6 +150,8 @@ extern struct pool_s {
     uint_t effectCount;
     bullet_t **bullets;
     uint_t bulletCount;
+    sfSound **sounds;
+    uint_t soundCount;
 } Pool;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -438,5 +446,29 @@ effect_t *effect(cstring_t name, v2f_t position, bool_t isDecal);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void draw_visible_props(prop_t **list, uint_t n);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Play a sfx from the list
+///
+/// \param n            The sfx index from sfx_list
+///
+/// \return The newly created sound
+///
+///////////////////////////////////////////////////////////////////////////////
+sfSound *sfx(sfx_list_t n);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Remove all not currently playing sound
+///
+///////////////////////////////////////////////////////////////////////////////
+void remove_completed_sound(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Remove one sound from the pool
+///
+/// \param sd           The sound to remove
+///
+///////////////////////////////////////////////////////////////////////////////
+void remove_sfx(sfSound *sd);
 
 #endif /* !OBJECTS_H_ */

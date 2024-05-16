@@ -41,6 +41,10 @@ typedef struct actor_s {
     ulong_t time;
     bool_t done;
     v2f_t old_pos;
+    int health;
+    bool_t invincible;
+    bool_t damaged;
+    bool_t dead;
 } actor_t;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -69,6 +73,7 @@ typedef struct bullet_s {
     v2f_t destination;
     sfSprite *sprite;
     bullet_state_t state;
+    float rotation;
 } bullet_t;
 
 ///////////////////////////////////////////////////////////////////////////////

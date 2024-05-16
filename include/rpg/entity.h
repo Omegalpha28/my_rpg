@@ -49,7 +49,6 @@ typedef enum attack_types_e {
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct entity_s {
     actor_t *actor;
-    int health;
     ulong_t last_action;
     bool_t has_spawn;
     float speed;
@@ -60,10 +59,7 @@ typedef struct entity_s {
     attack_types_t attack_types;
     float insight;
     uint_t dizzy;
-    bool_t dead;
-    bool_t is_dammaged;
     float collision;
-    bool_t invincible;
     bool_t can_attack;
     uint_t cooldown;
     bool_t attack_started;
@@ -103,14 +99,14 @@ static const creature_stats_t Stats[CREATURE_COUNT] = {
     {100, 0, 0, 0, 0, 0},                       //player
     {100, 0.7, 0, 0, Bomber, 1000},             //duck
     {100, 0.5, 0, 100, Dash, 3000},             //crab boss
-    {100, 0.4f, 65.0f, 100.0f, sniper, 0},     //bald rat
+    {100, 0.4f, 65.0f, 100.0f, sniper, 0},      //bald rat
     {100, 0, 0, 0, 0, 0},                       //dummy
     {100, 0, 0, 0, Dash, 3000},                 //baby crab (elite)
-    {30, 0.5f, 0.0f, 100.0f, Dash, 0},        //caterkillah
+    {30, 0.5f, 0.0f, 100.0f, Dash, 0},          //caterkillah
     {100, 0.4f, 50.0f, 100.0f, Shooter, 0},     //cinnamon rat
-    {100, 0.5f, 50.0f, 100.0f, Jumper, 0},     //baby caiman
-    {100, 0.4f, 125.0f, 175.0f, Shooter, 0},     //elite racoon
-    {100, 0.4f, 100.0f, 150.0f, Shooter, 0},     //elite fox
+    {100, 0.5f, 50.0f, 100.0f, Jumper, 0},      //baby caiman
+    {100, 0.4f, 125.0f, 175.0f, Shooter, 0},    //elite racoon
+    {100, 0.4f, 100.0f, 150.0f, Shooter, 0},    //elite fox
     {100, 0.4f, 60.0f, 100.0f, Shooter, 0},     //Brat
 };
 

@@ -183,6 +183,7 @@ extern struct keybind_s {
     float sensibilit;
     bool_t release;
     int last_scene;
+    int wasHover;
     key_track_t inventory;
 } Setting;
 

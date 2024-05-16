@@ -55,7 +55,8 @@ static void dash_animation(void)
         if ((RIGHT && velocity.x > 0.0f) || velocity.x > 0.0f)
             Player.velocity.x += SPEED;
         Player.velocity = multiply2f(normalize2f(Player.velocity),
-            V2F1(Time.deltaTime / 15));
+            V2F1(Time.deltaTime / (10 + (8 * (clamp(Player.ref->frame - 26, 0,
+                99))))));
         actor_move(Player.ref, Player.velocity);
         Player.ref->scale.x = Player.velocity.x < 0.0f ? -1.0f : 1.0f;
         camera_move();

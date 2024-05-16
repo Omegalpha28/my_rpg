@@ -69,8 +69,12 @@ void dash_movement(void)
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
 
     Player.ref->scale.x = Player.ref->position.x > cr.x ? -1.0f : 1.0f;
-    if (DASH && !DANCE)
+    if (DASH && !DANCE) {
+        if (!CMP(Player.ref->self->sheets[Player.ref->sheetId]->
+            anims[Player.ref->animId]->name, "dash"))
+            sfx(SFX_PLAYER_DASH);
         dash_animation();
+    }
     if (Player.ref->done && !DANCE && DASH) {
         actor_set_anim(Player.ref, (Player.velocity.x != 0.0f ||
             Player.velocity.y != 0.0f) ? "walk" : "idle");

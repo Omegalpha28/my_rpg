@@ -41,6 +41,7 @@ int main(int argc, warray_t argv)
     sfRenderWindow_setMouseCursorVisible(Win.self, false);
     check_program_flags(argc, argv);
     Player.ref = actor_create(Assets.creatures[CREATURE_PLAYER], V2F1(0.0f));
+    Player.ref->health = 6;
     Setting.modes = sfVideoMode_getFullscreenModes(&Setting.modesCunt);
     while (sfRenderWindow_isOpen(Win.self)) {
         update_time();

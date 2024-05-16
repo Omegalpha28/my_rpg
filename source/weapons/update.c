@@ -74,7 +74,7 @@ static void check_bullet_collision_prop(bullet_t *bullet, prop_t *prop)
         return;
     sfSprite_setRotation(bullet->sprite, get_bullet_angle_from_prop(prect,
         bullet, bullet->img->mask) - (stat.invert ? 180.0f : 0.0f));
-    bullet->img = Assets.bullets[stat.impactEnemy];
+    bullet->img = Assets.bullets[stat.impactWall];
     bullet->state = BULLET_STATE_IMPACT;
 }
 
@@ -110,6 +110,8 @@ static void check_bullet_collision_actor(bullet_t *bullet, actor_t *actor)
     actor->health -= WEAPON_STATS[bullet->weapon].damage;
     actor->damaged = true;
     actor->invincible = true;
+    if (rand() % 3 == 0)
+        sfx(SFX_ENEMY_HURT);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

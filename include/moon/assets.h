@@ -285,7 +285,7 @@ static const cstring_t TEXT_BULLETS[T_BULLET_COUNT] = {
     DIR_BULLET"/rocket-2x1.png"
 };
 
-    #define MAX_SFX_VARIANTS 8
+    #define MAX_SFX_VARIANTS 12
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief List of all SFX you can play
@@ -301,6 +301,40 @@ typedef enum sfx_list_e {
     SFX_ENEMY_DEATH,
     SFX_ENEMY_SPAW,
     SFX_ENEMY_ELITE_SPAWN,
+    SFX_WP_AK,
+    SFX_WP_BASTARD,
+    SFX_WP_BERETTA,
+    SFX_BOMB_ANTICIPATION,
+    SFX_BOMB,
+    SFX_WP_BOOMERANG,
+    SFX_WP_CARBINE,
+    SFX_WP_CROSSBOW,
+    SFX_WP_DOOM,
+    SFX_WP_DRACO,
+    SFX_WP_FLAMETHROWER,
+    SFX_WP_GATLING,
+    SFX_WP_KALAS,
+    SFX_WP_KATANA,
+    SFX_KICK,
+    SFX_WP_KNIFE,
+    SFX_WP_LASER_REGULATOR,
+    SFX_WP_LASER_ZAPCANNON,
+    SFX_WP_LASER_BLASTER,
+    SFX_WP_MELEE_AXELOTL,
+    SFX_WP_MELEE_BEHEADER,
+    SFX_WP_MOUSER,
+    SFX_WP_MP5,
+    SFX_WP_OLDGUN,
+    SFX_WP_P90,
+    SFX_WP_RATVOLVER,
+    SFX_WP_REVOLVER,
+    SFX_WP_RIFLE,
+    SFX_WP_RIFLE_SUPER,
+    SFX_WP_RPG,
+    SFX_WP_SHOTGUN,
+    SFX_WP_SPAS,
+    SFX_WP_TADPOLES,
+    SFX_WP_UZI,
     SFX_COUNT
 } sfx_list_t;
 
@@ -321,7 +355,149 @@ static const cstring_t SFX_ASSETS[SFX_COUNT][MAX_SFX_VARIANTS] = {
     {"enemies/elite_hurt.ogg", NULL},
     {"enemies/death1.ogg", "enemies/death2.ogg", "enemies/death3.ogg", NULL},
     {"enemies/spawn.ogg", NULL},
-    {"enemies/elite_spawn.ogg", NULL}
+    {"enemies/elite_spawn.ogg", NULL},
+    {
+        "weapons/ak1.ogg", "weapons/ak2.ogg",
+        "weapons/ak3.ogg", "weapons/ak4.ogg", NULL
+    },
+    {
+        "weapons/bastard1.ogg", "weapons/bastard2.ogg", "weapons/bastard3.ogg",
+        "weapons/bastard4.ogg", "weapons/bastard5.ogg", "weapons/bastard6.ogg",
+        NULL
+    },
+    {
+        "weapons/beretta01.ogg", "weapons/beretta02.ogg",
+        "weapons/beretta03.ogg", "weapons/beretta04.ogg",
+        "weapons/beretta05.ogg", "weapons/beretta06.ogg",
+        "weapons/beretta07.ogg", "weapons/beretta08.ogg",
+        "weapons/beretta09.ogg", "weapons/beretta10.ogg", NULL
+    },
+    {"weapons/bomb_anticipation.ogg", NULL},
+    {"weapons/bomb.ogg", NULL},
+    {
+        "weapons/boomerang1.ogg", "weapons/boomerang2.ogg",
+        "weapons/boomerang3.ogg", "weapons/boomerang4.ogg", NULL
+    },
+    {
+        "weapons/carbine1.ogg", "weapons/carbine2.ogg",
+        "weapons/carbine3.ogg", "weapons/carbine4.ogg", NULL
+    },
+    {
+        "weapons/crossbow1.ogg", "weapons/crossbow2.ogg",
+        "weapons/crossbow3.ogg", "weapons/crossbow4.ogg", NULL
+    },
+    {"weapons/doom.ogg", NULL},
+    {
+        "weapons/draco1.ogg", "weapons/draco2.ogg",
+        "weapons/draco3.ogg", "weapons/draco4.ogg", NULL
+    },
+    {
+        "weapons/flamethrower1.ogg", "weapons/flamethrower2.ogg",
+        "weapons/flamethrower3.ogg", "weapons/flamethrower4.ogg", NULL
+    },
+    {
+        "weapons/gatling1.ogg", "weapons/gatling2.ogg",
+        "weapons/gatling3.ogg", "weapons/gatling4.ogg", NULL
+    },
+    {
+        "weapons/kalas1.ogg", "weapons/kalas2.ogg",
+        "weapons/kalas3.ogg", "weapons/kalas4.ogg", NULL
+    },
+    {
+        "weapons/katana1.ogg", "weapons/katana2.ogg",
+        "weapons/katana3.ogg", "weapons/katana4.ogg", NULL
+    },
+    {"weapons/kick.ogg", NULL},
+    {
+        "weapons/knife1.ogg", "weapons/knife2.ogg",
+        "weapons/knife3.ogg", "weapons/knife4.ogg", NULL
+    },
+    {
+        "weapons/laser_regulator1.ogg", "weapons/laser_regulator2.ogg",
+        "weapons/laser_regulator3.ogg", "weapons/laser_regulator4.ogg", NULL
+    },
+    {
+        "weapons/laser_zapcannon1.ogg", "weapons/laser_zapcannon2.ogg",
+        "weapons/laser_zapcannon3.ogg", "weapons/laser_zapcannon4.ogg",
+        "weapons/laser_zapcannon5.ogg", "weapons/laser_zapcannon6.ogg",
+        "weapons/laser_zapcannon7.ogg", "weapons/laser_zapcannon8.ogg", NULL
+    },
+    {
+        "weapons/laster_blaster1.ogg", "weapons/laster_blaster2.ogg",
+        "weapons/laster_blaster3.ogg", "weapons/laster_blaster4.ogg", NULL
+    },
+    {
+        "weapons/melee_axelotl1.ogg", "weapons/melee_axelotl2.ogg",
+        "weapons/melee_axelotl3.ogg", NULL
+    },
+    {
+        "weapons/melee_beheader1.ogg", "weapons/melee_beheader2.ogg",
+        "weapons/melee_beheader3.ogg", "weapons/melee_beheader4.ogg", NULL
+    },
+    {
+        "weapons/mouser01.ogg", "weapons/mouser02.ogg", "weapons/mouser03.ogg",
+        "weapons/mouser04.ogg", "weapons/mouser05.ogg", "weapons/mouser06.ogg",
+        "weapons/mouser07.ogg", "weapons/mouser08.ogg", "weapons/mouser09.ogg",
+        "weapons/mouser10.ogg", NULL
+    },
+    {
+        "weapons/mp51.ogg", "weapons/mp52.ogg",
+        "weapons/mp53.ogg", "weapons/mp54.ogg", NULL
+    },
+    {
+        "weapons/oldgun1.ogg", "weapons/oldgun2.ogg",
+        "weapons/oldgun3.ogg", "weapons/oldgun4.ogg", NULL
+    },
+    {
+        "weapons/p901.ogg", "weapons/p902.ogg",
+        "weapons/p903.ogg", "weapons/p904.ogg", NULL
+    },
+    {
+        "weapons/ratvolver1.ogg", "weapons/ratvolver2.ogg",
+        "weapons/ratvolver3.ogg", "weapons/ratvolver4.ogg",
+        "weapons/ratvolver5.ogg", "weapons/ratvolver6.ogg",
+        "weapons/ratvolver7.ogg", "weapons/ratvolver8.ogg", NULL
+    },
+    {
+        "weapons/revolver1.ogg", "weapons/revolver2.ogg",
+        "weapons/revolver3.ogg", "weapons/revolver4.ogg",
+        "weapons/revolver5.ogg", "weapons/revolver6.ogg",
+        "weapons/revolver7.ogg", "weapons/revolver8.ogg", NULL
+    },
+    {"weapons/rifle.ogg", NULL},
+    {
+        "weapons/rifle_super_shooter1.ogg", "weapons/rifle_super_shooter2.ogg",
+        "weapons/rifle_super_shooter3.ogg", "weapons/rifle_super_shooter4.ogg",
+        "weapons/rifle_super_shooter5.ogg", "weapons/rifle_super_shooter6.ogg",
+        NULL
+    },
+    {
+        "weapons/rpg1.ogg", "weapons/rpg2.ogg",
+        "weapons/rpg3.ogg", "weapons/rpg4.ogg", NULL
+    },
+    {
+        "weapons/shotgun1.ogg", "weapons/shotgun2.ogg",
+        "weapons/shotgun3.ogg", "weapons/shotgun4.ogg",
+        "weapons/shotgun5.ogg", "weapons/shotgun6.ogg",
+        "weapons/shotgun7.ogg", NULL
+    },
+    {
+        "weapons/spas1.ogg", "weapons/spas2.ogg",
+        "weapons/spas3.ogg", "weapons/spas4.ogg",
+        "weapons/spas5.ogg", "weapons/spas6.ogg",
+        "weapons/spas7.ogg", NULL
+    },
+    {
+        "weapons/tadpoles01.ogg", "weapons/tadpoles02.ogg",
+        "weapons/tadpoles03.ogg", "weapons/tadpoles04.ogg",
+        "weapons/tadpoles05.ogg", "weapons/tadpoles06.ogg",
+        "weapons/tadpoles07.ogg", "weapons/tadpoles08.ogg",
+        "weapons/tadpoles09.ogg", "weapons/tadpoles10.ogg", NULL
+    },
+    {
+        "weapons/uzi1.ogg", "weapons/uzi2.ogg",
+        "weapons/uzi3.ogg", "weapons/uzi4.ogg", NULL
+    },
 };
 
 ///////////////////////////////////////////////////////////////////////////////

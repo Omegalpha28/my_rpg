@@ -41,7 +41,8 @@ void health_examination(entity_t *evil)
 
     if (act->damaged)
         actor_set_anim(act, "damage");
-    if (act->health <= 0 && !act->dead && !act->damaged){
+    if (act->health <= 0 && !act->dead && !act->damaged) {
+        sfx(SFX_ENEMY_DEATH);
         act->dead = true;
         if (actor_set_sheet(act, "death"))
             act->position.x +=

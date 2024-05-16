@@ -26,6 +26,7 @@ void game_loop(void)
 {
     sfEvent evt;
 
+    Engine.debug.propDrawn = 0;
     while (sfRenderWindow_pollEvent(Win.self, &evt)) {
         parse_events(evt);
         if (evt.type == sfEvtKeyReleased &&

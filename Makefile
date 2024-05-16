@@ -208,6 +208,7 @@ P_C_CTRL	=	$(P_D_CTRL)animation.c										\
 				$(P_D_CTRL)input.c
 P_C_GAME	=	$(P_D_GAME)loop.c											\
 				$(P_D_GAME)layering.c										\
+				$(P_D_GAME)debug.c											\
 				$(P_D_GAME)player.c
 P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)events.c										\

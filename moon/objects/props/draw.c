@@ -71,6 +71,7 @@ void prop_draw(prop_t *prop)
         prop->self == NULL || prop->self->image == NULL ||
         prop->self->image->self == NULL)
         return;
+    Engine.debug.propDrawn++;
     sfSprite_setTexture(prop->sprite, prop->self->image->self, false);
     mask = (prop->data[0] == 1) ? prop_generate_fixed_mask(prop) :
         prop_generate_mask(prop);

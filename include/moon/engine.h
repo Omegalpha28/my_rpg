@@ -64,6 +64,7 @@ extern struct engine_s {
     sfMusic *music;
     int colum;
     uint_t level;
+    engine_debug_t debug;
 } Engine;
 
 #endif /* !ENGINE_H_ */

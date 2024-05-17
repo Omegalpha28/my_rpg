@@ -102,6 +102,26 @@ static void draw_visor(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void draw_fade(void)
+{
+    sfRectangleShape *fade = NULL;
+    float elapsed = (Time.currentTime - Engine.fadeStart) / 1e3f;
+    float alpha = 0.0f;
+    float duration = 0.75f;
+
+    if (elapsed > duration)
+        return;
+    alpha = 1.0f - ((elapsed - (duration / 2.0f)) / (duration / 2.0f));
+    alpha = clampf(alpha, 0.0f, 1.0f);
+    fade = sfRectangleShape_create();
+    sfRectangleShape_setSize(fade, V2F(Win.viewWidth, Win.viewHeight));
+    sfRectangleShape_setPosition(fade, PX_TO_MAPF(V2F1(0.0f)));
+    sfRectangleShape_setFillColor(fade, RGBA(0, 0, 0, (255 * alpha)));
+    sfRenderWindow_drawRectangleShape(Win.self, fade, NULL);
+    sfRectangleShape_destroy(fade);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void draw_debug_line(v2f_t cr)
 {
     sfVertexArray *va = sfVertexArray_create();
@@ -129,6 +149,7 @@ static void draw_hud(void)
         draw_debug_line(cr);
     print_debug_information();
     draw_visor();
+    draw_fade();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

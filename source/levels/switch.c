@@ -39,6 +39,7 @@ static void reset_player_behavior(void)
 ///////////////////////////////////////////////////////////////////////////////
 void switch_level(void)
 {
+    Engine.fadeStart = Time.currentTime;
     reset_player_behavior();
     clear_entities();
     level_tutorial();

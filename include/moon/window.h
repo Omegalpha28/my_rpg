@@ -84,6 +84,7 @@
     #define BLOOD Setting.blood
     #define INVERT Setting.invert
     #define CLICK_REL Setting.release
+    #define KEY_REL Setting.keylease
     #define WIN_MODES Setting.winMode
     #define FRAMERATE Setting.framerate
     #define AIMING Setting.aiming
@@ -184,6 +185,7 @@ extern struct keybind_s {
     bool_t release;
     int last_scene;
     key_track_t inventory;
+    bool_t keylease;
 } Setting;
 
 ///////////////////////////////////////////////////////////////////////////////

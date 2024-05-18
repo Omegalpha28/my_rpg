@@ -12,9 +12,9 @@
 
 static void draw_in(void)
 {
-    if (Engine.colum != 1 && Setting.right.pressed)
+    if (Engine.colum != 1 && Setting.right.pressed && KEY_REL)
         Engine.colum--;
-    if (Engine.colum != 3 && Setting.left.pressed)
+    if (Engine.colum != 3 && Setting.left.pressed && KEY_REL)
         Engine.colum++;
     if (Engine.colum == 1)
         draw_keybinds();

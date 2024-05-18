@@ -48,6 +48,7 @@ static void draw_colums(void)
     float up = 3.0f * 16.0f * Win.width / Win.viewWidth * 0.45f;
     sfSprite *bac = sfSprite_create();
 
+    Setting.hover = false;
     draw_shadow();
     sfSprite_setTexture(bac, Assets.ui[UI_BAR]->self, false);
     sfSprite_setOrigin(bac, V2F(230.0f, 13.0f));
@@ -105,10 +106,13 @@ void settings_loop(void)
     float scal = 4.0f * 16.0f * Win.width / Win.viewWidth * 0.45f;
     v2f_t pos = {Win.width / 2.0f, Win.height - scal};
 
+    CLICK_REL = false;
+    KEY_REL = false;
     while (sfRenderWindow_pollEvent(Win.self, &evt)) {
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);
         CLICK_REL = click_rel(evt);
+        KEY_REL = key_rel(evt);
         if (evt.key.code == Setting.pause.code)
             Engine.scene = Setting.last_scene;
         Engine.colum += (evt.key.code == Setting.left.code &&
@@ -116,7 +120,6 @@ void settings_loop(void)
         Engine.colum -= (evt.key.code == Setting.right.code &&
             Engine.colum != 1);
     }
-    Setting.hover = false;
     draw_menu_background();
     draw_colums();
     draw_text_center("Back", pos, 0.45f, get_color(PX_TO_MAPF(pos)));

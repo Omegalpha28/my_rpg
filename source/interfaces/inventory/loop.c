@@ -24,16 +24,14 @@ bool_t click_rel(sfEvent evt)
 static void draw_slots(void)
 {
     sfSprite *slot = sfSprite_create();
-    v2f_t size = {24.5f, 28.0f};
-    float change = size.x * 2 * Win.width / Win.viewWidth;
-    float move = size.y * 0.55f * Win.height / Win.viewHeight;
+    v2f_t size = {16.0f, 16.0f};
+    float change = size.x * Win.width / Win.viewWidth * 1.5f;
+    float move = size.y * Win.height / Win.viewHeight / 10 * 1.5f * 1.5f;
 
-    sfSprite_setTexture(slot, Assets.ui[UI_INV_SLOT]->self, false);
-    sfSprite_setScale(slot, V2F1(0.75f));
-    sfSprite_setOrigin(slot, size);
-    for (int i = 0; i < 15; i++) {
-        sfSprite_setPosition(slot, PX_TO_MAPF(V2F(Win.width / 8 * 5 + change +
-            change * (i % 3), Win.height / 2 - move * (6 - (i - i % 3)))));
+    sfSprite_setTexture(slot, Assets.ui[UI_LOCKED_AXO]->self, false);
+    for (int i = 0; i < 43; i++) {
+        sfSprite_setPosition(slot, PX_TO_MAPF(V2F(change * 2 + change * (i % 9)
+            , Win.height / 2 - move * 18 + move * (i - i % 9))));
         sfRenderWindow_drawSprite(Win.self, slot, false);
     }
     sfSprite_destroy(slot);
@@ -56,6 +54,5 @@ void inventory_loop(void)
     draw();
     draw_shadow();
     draw_slots();
-    draw_text_center("inventaire", (V2F1(300.0f)), 0.45f, sfWhite);
     draw_cursor();
 }

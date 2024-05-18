@@ -61,6 +61,7 @@ void saves_loop(void);
 void inventory_loop(void);
 void pause_loop(void);
 void draw_shadow(void);
+bool_t key_rel(sfEvent evt);
 bool_t click_rel(sfEvent evt);
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -24,7 +24,7 @@ sfColor on_off(v2f_t pos, bool_t *on)
     draw_text_center(*on ? "on" : "off", pos, 0.35f,
         (mouse_in ? sfColor_fromRGB(243, 199, 77) : color));
     RETURN(!mouse_in, sfWhite);
-    if (CLICK_REL)
+    if (CLICK_REL && mouse_in)
         *on = !(*on);
     Setting.hover = true;
     return (sfColor_fromRGB(243, 199, 77));

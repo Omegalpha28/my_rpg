@@ -10,6 +10,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+bool_t key_rel(sfEvent evt)
+{
+    return (evt.type == sfEvtKeyReleased);
+}
+
 bool_t click_rel(sfEvent evt)
 {
     return (evt.type == sfEvtMouseButtonReleased &&

@@ -108,14 +108,18 @@ static void button_functions(float y)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static sfColor get_color(float y)
+static sfColor get_color(float y, int id)
 {
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
     v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
     sfSprite *select;
 
-    RETURN(mouse.x > pos.x + 200 || mouse.x < pos.x + 35, sfWhite);
-    RETURN(!(mouse.y >= (y - 10) && mouse.y <= (y + 15)), sfWhite);
+    if ((mouse.x > pos.x + 200 || mouse.x < pos.x + 35) ||
+        (!(mouse.y >= (y - 10) && mouse.y <= (y + 15))))
+        return (sfWhite);
+    if (Setting.wasHover == -1 || Setting.wasHover != id)
+        sfx(SFX_UI_MOVE);
+    Setting.wasHover = id;
     Setting.hover = true;
     select = sfSprite_create();
     sfSprite_setTexture(select, Assets.ui[UI_DUAL_MARK]->self, false);
@@ -127,26 +131,35 @@ static sfColor get_color(float y)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void menu_loop(void)
+static void parse_menu_events(void)
 {
     sfEvent evt;
-    v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
 
     while (sfRenderWindow_pollEvent(Win.self, &evt)) {
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);
         CLICK_REL = click_rel(evt);
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void menu_loop(void)
+{
+    v2f_t pos = {-Win.viewWidth / 2, -Win.viewHeight / 2};
+
+    parse_menu_events();
     Setting.last_scene = SCENE_MAIN_MENU;
     draw_menu_background();
     Setting.hover = false;
     draw_text("Play", V2F(pos.x + 110, pos.y + 125),
-        0.45F, get_color(pos.y + 125));
+        0.45F, get_color(pos.y + 125, 0));
     draw_text("Settings", V2F(pos.x + 97, pos.y + 150),
-        0.45F, get_color(pos.y + 150));
+        0.45F, get_color(pos.y + 150, 1));
     draw_text("Level editor", V2F(pos.x + 87, pos.y + 175),
-        0.45F, get_color(pos.y + 175));
+        0.45F, get_color(pos.y + 175, 2));
     draw_text("Quit", V2F(pos.x + 110, pos.y + 200),
-        0.45F, get_color(pos.y + 200));
+        0.45F, get_color(pos.y + 200, 3));
     draw_cursor();
+    if (Setting.hover == false)
+        Setting.wasHover = -1;
 }

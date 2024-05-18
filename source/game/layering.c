@@ -125,8 +125,9 @@ static void draw_hud(void)
 {
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
 
-    if (Engine.debugMode)
+    if (Engine.debugMode && !DASH && !DANCE)
         draw_debug_line(cr);
+    print_debug_information();
     draw_visor();
 }
 

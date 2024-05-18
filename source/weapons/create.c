@@ -28,8 +28,9 @@ static void init_new_bullet(bullet_t *new, actor_t *sender, v2f_t direction,
         new->state = BULLET_STATE_IMPACT;
     new->sprite = sfSprite_create();
     new->img = Assets.bullets[BULLET_STATS[wp.bulletType].base];
-    sfSprite_setRotation(new->sprite, atan2(new->destination.y - new->origin.y,
-        new->destination.x - new->origin.x) * (180.0f / M_PI));
+    new->rotation = atan2(new->destination.y - new->origin.y,
+        new->destination.x - new->origin.x) * (180.0f / M_PI);
+    sfSprite_setRotation(new->sprite, new->rotation);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -43,6 +44,8 @@ void create_bullet(actor_t *sender, v2f_t direction, weapon_enum_t weapon)
     Pool.bullets = REALLOC(Pool.bullets, sizeof(bullet_t *),
         Pool.bulletCount);
     Pool.bullets[Pool.bulletCount - 1] = new;
+    sfx(WEAPON_STATS[weapon].sound);
+    sfSound_setAttenuation(sfx(SFX_KICK), 50);
     if (sender != Player.ref)
         return;
     shake(WEAPON_STATS[weapon].shakingIntensity,

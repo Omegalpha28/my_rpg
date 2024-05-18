@@ -20,6 +20,7 @@ void parse_mouse_input(sfMouseButtonEvent evt)
         create_bullet(Player.ref, cr, Player.weapon);
 }
 
+///////////////////////////////////////////////////////////////////////////////
 void get_last_input(void)
 {
     v2f_t vel = Player.last_velocity;

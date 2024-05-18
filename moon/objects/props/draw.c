@@ -46,6 +46,23 @@ recti_t prop_generate_fixed_mask(prop_t *prop)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void prop_debug_draw(prop_t *prop)
+{
+    sfRectangleShape *bound = sfRectangleShape_create();
+    recti_t mask = prop->self->image->mask;
+    v2f_t size = V2F(mask.width, mask.height);
+
+    sfRectangleShape_setFillColor(bound, sfTransparent);
+    sfRectangleShape_setOutlineColor(bound, RGB(200, 0, 200));
+    sfRectangleShape_setOutlineThickness(bound, 1.0f);
+    sfRectangleShape_setPosition(bound, prop->position);
+    sfRectangleShape_setSize(bound, size);
+    sfRectangleShape_setOrigin(bound, divide2f(size, V2F1(2.0f)));
+    sfRenderWindow_drawRectangleShape(Win.self, bound, NULL);
+    sfRectangleShape_destroy(bound);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void prop_draw(prop_t *prop)
 {
     recti_t mask = {0, 0, 0, 0};
@@ -54,6 +71,7 @@ void prop_draw(prop_t *prop)
         prop->self == NULL || prop->self->image == NULL ||
         prop->self->image->self == NULL)
         return;
+    Engine.debug.propDrawn++;
     sfSprite_setTexture(prop->sprite, prop->self->image->self, false);
     mask = (prop->data[0] == 1) ? prop_generate_fixed_mask(prop) :
         prop_generate_mask(prop);
@@ -61,6 +79,8 @@ void prop_draw(prop_t *prop)
     sfSprite_setOrigin(prop->sprite, (v2f_t){mask.width / 2.0f,
         mask.height / 2.0f});
     sfRenderWindow_drawSprite(Win.self, prop->sprite, NULL);
+    if (Engine.debugMode && prop->collision)
+        prop_debug_draw(prop);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -38,7 +38,7 @@ static void dashing(entity_t *evil)
         (evil->speed * 5 * Time.deltaTime) / 25);
     evil->actor->scale.x = move.x - evil->actor->position.x > 0 ? 1.0f : -1.0f;
     evil->actor->position = move;
-    evil->invincible = true;
+    evil->actor->invincible = true;
     actor_set_anim(evil->actor, "angrywalk");
 }
 

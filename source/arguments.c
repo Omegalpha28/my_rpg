@@ -25,6 +25,7 @@ static void print_help(void)
 ///////////////////////////////////////////////////////////////////////////////
 static void check_full_flag(int argc, warray_t argv, uint_t *i)
 {
+    (argc) = (argc);
     if (CMP(argv[*(i)], "--borderless"))
         create_window(0, 0, WIN_BORDERLESS);
     if (CMP(argv[*(i)], "--fullscreen"))
@@ -35,6 +36,8 @@ static void check_full_flag(int argc, warray_t argv, uint_t *i)
         Engine.debugMode = true;
     if (CMP(argv[*(i)], "--help"))
         print_help();
+    if (CMP(argv[*(i)], "--mute"))
+        Setting.master = 0.0f;
     if (CMP(argv[*(i)], "--editor")) {
         load_zone("biome1");
         Editor.zone = Assets.zones[0];
@@ -48,7 +51,7 @@ static void check_min_flag(int argc, warray_t argv, uint_t *i)
 {
     ulong_t len = strlen(argv[*(i)]);
 
-    for (ulong_t k = 1; k < len; k++) {
+    for (ulong_t k = 1; k < len && argc > 1; k++) {
         if (argv[*(i)][k] == 'b')
             create_window(0, 0, WIN_BORDERLESS);
         if (argv[*(i)][k] == 'f')

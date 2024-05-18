@@ -37,6 +37,15 @@ typedef enum scene_e {
 } scene_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Structure to hold all the debug information
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct engine_debug_s {
+    uint_t propDrawn;
+    uint_t frameRate;
+} engine_debug_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Engine main structures, store engine related parameters
 ///
 /// \param debugMode    Should the game be debugging everything
@@ -55,6 +64,7 @@ extern struct engine_s {
     sfMusic *music;
     int colum;
     uint_t level;
+    engine_debug_t debug;
 } Engine;
 
 #endif /* !ENGINE_H_ */

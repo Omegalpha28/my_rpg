@@ -99,7 +99,7 @@ static void check_bullet_collision_actor(bullet_t *bullet, actor_t *actor)
 
     arect = reduce_actor_collision_box(arect);
     if (!sfIntRect_intersects(&brect, &arect, NULL) || bullet->state !=
-        BULLET_STATE_FLYING)
+        BULLET_STATE_FLYING || (DASH && Player.ref == actor))
         return;
     bullet->img = Assets.bullets[stat.impactEnemy];
     bullet->state = BULLET_STATE_IMPACT;

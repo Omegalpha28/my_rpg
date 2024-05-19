@@ -33,6 +33,7 @@
     #define DIR_INTRO DIR_VIDEO "/intro"
     #define DIR_OUTRO DIR_VIDEO "/outro"
     #define DIR_BULLET DIR_ASSETS "/bullet"
+    #define DIR_AXOLTL DIR_CREATURES "/player"
 
     /** Zones restricted name                                                */
     #define CAT_TRAP "traps"
@@ -96,6 +97,281 @@ typedef struct image_s {
     v2u_t grid;
     recti_t mask;
 } image_t;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief List of all the different axolotles
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef enum axolopedia_e {
+    AXO_ORIGINAL,
+    AXO_ALBINO,
+    AXO_ALGAE,
+    AXO_ALIEN,
+    AXO_ANIME,
+    AXO_ANOMALY,
+    AXO_ASTRO,
+    AXO_BANANA,
+    AXO_BEE,
+    AXO_CARTOON,
+    AXO_CATERKILLAH,
+    AXO_CHADGEEPT,
+    AXO_CORGI,
+    AXO_COWROLINA,
+    AXO_CTHULOTL,
+    AXO_CYCLOP,
+    AXO_DALMATIAN,
+    AXO_DOUGH,
+    AXO_DRACO,
+    AXO_DRUID,
+    AXO_EMBER,
+    AXO_ENIGMA,
+    AXO_FIREFLY,
+    AXO_FROGGO,
+    AXO_GOLDY,
+    AXO_IMP,
+    AXO_INSOMNIA,
+    AXO_JUNKCAT,
+    AXO_KNIGHT,
+    AXO_KOI,
+    AXO_LAVENDER,
+    AXO_MELANOID,
+    AXO_METAL,
+    AXO_MIDAS,
+    AXO_MUDWHOOPER,
+    AXO_NEON,
+    AXO_PASTEl,
+    AXO_PENGU,
+    AXO_PIGGY,
+    AXO_POISON,
+    AXO_SALAMANDER,
+    AXO_SKULL,
+    AXO_SLIME,
+    AXO_SPIRIT,
+    AXO_TEDDY,
+    AXO_TIGER,
+    AXO_TRANS,
+    AXO_WILD,
+    AXO_WOOPER,
+    AXO_X,
+    AXO_ZOMBIE,
+    AXO_COUNT
+} axolopedia_t;
+
+static const cstring_t AXOLOPEDIA_ADULTS[AXO_COUNT] = {
+    DIR_AXOLTL"/adults/original.png",
+    DIR_AXOLTL"/adults/albino.png",
+    DIR_AXOLTL"/adults/algae.png",
+    DIR_AXOLTL"/adults/alian.png",
+    DIR_AXOLTL"/adults/anime.png",
+    DIR_AXOLTL"/adults/anomaly.png",
+    DIR_AXOLTL"/adults/astronaut.png",
+    DIR_AXOLTL"/adults/bananalotl.png",
+    DIR_AXOLTL"/adults/bee.png",
+    DIR_AXOLTL"/adults/cartoon.png",
+    DIR_AXOLTL"/adults/caterkillah.png",
+    DIR_AXOLTL"/adults/chadgeept.png",
+    DIR_AXOLTL"/adults/corgi.png",
+    DIR_AXOLTL"/adults/cowrolina.png",
+    DIR_AXOLTL"/adults/cthulotl.png",
+    DIR_AXOLTL"/adults/cyclops.png",
+    DIR_AXOLTL"/adults/dalmatian.png",
+    DIR_AXOLTL"/adults/dough.png",
+    DIR_AXOLTL"/adults/draco.png",
+    DIR_AXOLTL"/adults/druid.png",
+    DIR_AXOLTL"/adults/ember.png",
+    DIR_AXOLTL"/adults/enigma.png",
+    DIR_AXOLTL"/adults/firefly.png",
+    DIR_AXOLTL"/adults/froggo.png",
+    DIR_AXOLTL"/adults/goldly.png",
+    DIR_AXOLTL"/adults/imp.png",
+    DIR_AXOLTL"/adults/insomnia.png",
+    DIR_AXOLTL"/adults/junkcat.png",
+    DIR_AXOLTL"/adults/knight.png",
+    DIR_AXOLTL"/adults/koi.png",
+    DIR_AXOLTL"/adults/lavender.png",
+    DIR_AXOLTL"/adults/melanoid.png",
+    DIR_AXOLTL"/adults/metal.png",
+    DIR_AXOLTL"/adults/midas.png",
+    DIR_AXOLTL"/adults/mud_whooper.png",
+    DIR_AXOLTL"/adults/neon.png",
+    DIR_AXOLTL"/adults/pastel.png",
+    DIR_AXOLTL"/adults/pengu.png",
+    DIR_AXOLTL"/adults/piggy.png",
+    DIR_AXOLTL"/adults/poison.png",
+    DIR_AXOLTL"/adults/salamender.png",
+    DIR_AXOLTL"/adults/skull.png",
+    DIR_AXOLTL"/adults/slime.png",
+    DIR_AXOLTL"/adults/spirit.png",
+    DIR_AXOLTL"/adults/teddy_bear.png",
+    DIR_AXOLTL"/adults/tiger.png",
+    DIR_AXOLTL"/adults/trans.png",
+    DIR_AXOLTL"/adults/wild.png",
+    DIR_AXOLTL"/adults/wooper.png",
+    DIR_AXOLTL"/adults/x.png",
+    DIR_AXOLTL"/adults/zombie.png",
+};
+
+static const cstring_t AXOLOPEDIA_EGG[AXO_COUNT] = {
+    DIR_AXOLTL"/eggs/original.png",
+    DIR_AXOLTL"/eggs/albino.png",
+    DIR_AXOLTL"/eggs/algae.png",
+    DIR_AXOLTL"/eggs/alian.png",
+    DIR_AXOLTL"/eggs/anime.png",
+    DIR_AXOLTL"/eggs/anomaly.png",
+    DIR_AXOLTL"/eggs/astronaut.png",
+    DIR_AXOLTL"/eggs/bananalotl.png",
+    DIR_AXOLTL"/eggs/bee.png",
+    DIR_AXOLTL"/eggs/cartoon.png",
+    DIR_AXOLTL"/eggs/caterkillah.png",
+    DIR_AXOLTL"/eggs/chadgeept.png",
+    DIR_AXOLTL"/eggs/corgi.png",
+    DIR_AXOLTL"/eggs/cowrolina.png",
+    DIR_AXOLTL"/eggs/cthulotl.png",
+    DIR_AXOLTL"/eggs/cyclops.png",
+    DIR_AXOLTL"/eggs/dalmatian.png",
+    DIR_AXOLTL"/eggs/dough.png",
+    DIR_AXOLTL"/eggs/draco.png",
+    DIR_AXOLTL"/eggs/druid.png",
+    DIR_AXOLTL"/eggs/ember.png",
+    DIR_AXOLTL"/eggs/enigma.png",
+    DIR_AXOLTL"/eggs/firefly.png",
+    DIR_AXOLTL"/eggs/froggo.png",
+    DIR_AXOLTL"/eggs/goldly.png",
+    DIR_AXOLTL"/eggs/imp.png",
+    DIR_AXOLTL"/eggs/insomnia.png",
+    DIR_AXOLTL"/eggs/junkcat.png",
+    DIR_AXOLTL"/eggs/knight.png",
+    DIR_AXOLTL"/eggs/koi.png",
+    DIR_AXOLTL"/eggs/lavender.png",
+    DIR_AXOLTL"/eggs/melanoid.png",
+    DIR_AXOLTL"/eggs/metal.png",
+    DIR_AXOLTL"/eggs/midas.png",
+    DIR_AXOLTL"/eggs/mud_whooper.png",
+    DIR_AXOLTL"/eggs/neon.png",
+    DIR_AXOLTL"/eggs/pastel.png",
+    DIR_AXOLTL"/eggs/pengu.png",
+    DIR_AXOLTL"/eggs/piggy.png",
+    DIR_AXOLTL"/eggs/poison.png",
+    DIR_AXOLTL"/eggs/salamender.png",
+    DIR_AXOLTL"/eggs/skull.png",
+    DIR_AXOLTL"/eggs/slime.png",
+    DIR_AXOLTL"/eggs/spirit.png",
+    DIR_AXOLTL"/eggs/teddy_bear.png",
+    DIR_AXOLTL"/eggs/tiger.png",
+    DIR_AXOLTL"/eggs/trans.png",
+    DIR_AXOLTL"/eggs/wild.png",
+    DIR_AXOLTL"/eggs/wooper.png",
+    DIR_AXOLTL"/eggs/x.png",
+    DIR_AXOLTL"/eggs/zombie.png",
+};
+
+static const cstring_t AXOLOPEDIA_BABIES[AXO_COUNT] = {
+    DIR_AXOLTL"/babies/original.png",
+    DIR_AXOLTL"/babies/albino.png",
+    DIR_AXOLTL"/babies/algae.png",
+    DIR_AXOLTL"/babies/alian.png",
+    DIR_AXOLTL"/babies/anime.png",
+    DIR_AXOLTL"/babies/anomaly.png",
+    DIR_AXOLTL"/babies/astronaut.png",
+    DIR_AXOLTL"/babies/bananalotl.png",
+    DIR_AXOLTL"/babies/bee.png",
+    DIR_AXOLTL"/babies/cartoon.png",
+    DIR_AXOLTL"/babies/caterkillah.png",
+    DIR_AXOLTL"/babies/chadgeept.png",
+    DIR_AXOLTL"/babies/corgi.png",
+    DIR_AXOLTL"/babies/cowrolina.png",
+    DIR_AXOLTL"/babies/cthulotl.png",
+    DIR_AXOLTL"/babies/cyclops.png",
+    DIR_AXOLTL"/babies/dalmatian.png",
+    DIR_AXOLTL"/babies/dough.png",
+    DIR_AXOLTL"/babies/draco.png",
+    DIR_AXOLTL"/babies/druid.png",
+    DIR_AXOLTL"/babies/ember.png",
+    DIR_AXOLTL"/babies/enigma.png",
+    DIR_AXOLTL"/babies/firefly.png",
+    DIR_AXOLTL"/babies/froggo.png",
+    DIR_AXOLTL"/babies/goldly.png",
+    DIR_AXOLTL"/babies/imp.png",
+    DIR_AXOLTL"/babies/insomnia.png",
+    DIR_AXOLTL"/babies/junkcat.png",
+    DIR_AXOLTL"/babies/knight.png",
+    DIR_AXOLTL"/babies/koi.png",
+    DIR_AXOLTL"/babies/lavender.png",
+    DIR_AXOLTL"/babies/melanoid.png",
+    DIR_AXOLTL"/babies/metal.png",
+    DIR_AXOLTL"/babies/midas.png",
+    DIR_AXOLTL"/babies/mud_whooper.png",
+    DIR_AXOLTL"/babies/neon.png",
+    DIR_AXOLTL"/babies/pastel.png",
+    DIR_AXOLTL"/babies/pengu.png",
+    DIR_AXOLTL"/babies/piggy.png",
+    DIR_AXOLTL"/babies/poison.png",
+    DIR_AXOLTL"/babies/salamender.png",
+    DIR_AXOLTL"/babies/skull.png",
+    DIR_AXOLTL"/babies/slime.png",
+    DIR_AXOLTL"/babies/spirit.png",
+    DIR_AXOLTL"/babies/teddy_bear.png",
+    DIR_AXOLTL"/babies/tiger.png",
+    DIR_AXOLTL"/babies/trans.png",
+    DIR_AXOLTL"/babies/wild.png",
+    DIR_AXOLTL"/babies/wooper.png",
+    DIR_AXOLTL"/babies/x.png",
+    DIR_AXOLTL"/babies/zombie.png",
+};
+
+static const cstring_t AXOLOPEDIA_TEENS[AXO_COUNT] = {
+    DIR_AXOLTL"/teenagers/original.png",
+    DIR_AXOLTL"/teenagers/albino.png",
+    DIR_AXOLTL"/teenagers/algae.png",
+    DIR_AXOLTL"/teenagers/alian.png",
+    DIR_AXOLTL"/teenagers/anime.png",
+    DIR_AXOLTL"/teenagers/anomaly.png",
+    DIR_AXOLTL"/teenagers/astronaut.png",
+    DIR_AXOLTL"/teenagers/bananalotl.png",
+    DIR_AXOLTL"/teenagers/bee.png",
+    DIR_AXOLTL"/teenagers/cartoon.png",
+    DIR_AXOLTL"/teenagers/caterkillah.png",
+    DIR_AXOLTL"/teenagers/chadgeept.png",
+    DIR_AXOLTL"/teenagers/corgi.png",
+    DIR_AXOLTL"/teenagers/cowrolina.png",
+    DIR_AXOLTL"/teenagers/cthulotl.png",
+    DIR_AXOLTL"/teenagers/cyclops.png",
+    DIR_AXOLTL"/teenagers/dalmatian.png",
+    DIR_AXOLTL"/teenagers/dough.png",
+    DIR_AXOLTL"/teenagers/draco.png",
+    DIR_AXOLTL"/teenagers/druid.png",
+    DIR_AXOLTL"/teenagers/ember.png",
+    DIR_AXOLTL"/teenagers/enigma.png",
+    DIR_AXOLTL"/teenagers/firefly.png",
+    DIR_AXOLTL"/teenagers/froggo.png",
+    DIR_AXOLTL"/teenagers/goldly.png",
+    DIR_AXOLTL"/teenagers/imp.png",
+    DIR_AXOLTL"/teenagers/insomnia.png",
+    DIR_AXOLTL"/teenagers/junkcat.png",
+    DIR_AXOLTL"/teenagers/knight.png",
+    DIR_AXOLTL"/teenagers/koi.png",
+    DIR_AXOLTL"/teenagers/lavender.png",
+    DIR_AXOLTL"/teenagers/melanoid.png",
+    DIR_AXOLTL"/teenagers/metal.png",
+    DIR_AXOLTL"/teenagers/midas.png",
+    DIR_AXOLTL"/teenagers/mud_whooper.png",
+    DIR_AXOLTL"/teenagers/neon.png",
+    DIR_AXOLTL"/teenagers/pastel.png",
+    DIR_AXOLTL"/teenagers/pengu.png",
+    DIR_AXOLTL"/teenagers/piggy.png",
+    DIR_AXOLTL"/teenagers/poison.png",
+    DIR_AXOLTL"/teenagers/salamender.png",
+    DIR_AXOLTL"/teenagers/skull.png",
+    DIR_AXOLTL"/teenagers/slime.png",
+    DIR_AXOLTL"/teenagers/spirit.png",
+    DIR_AXOLTL"/teenagers/teddy_bear.png",
+    DIR_AXOLTL"/teenagers/tiger.png",
+    DIR_AXOLTL"/teenagers/trans.png",
+    DIR_AXOLTL"/teenagers/wild.png",
+    DIR_AXOLTL"/teenagers/wooper.png",
+    DIR_AXOLTL"/teenagers/x.png",
+    DIR_AXOLTL"/teenagers/zombie.png",
+};
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief List of all UI's elements in the assets
@@ -661,6 +937,27 @@ typedef struct vfx_s {
     uint_t endingFrame;
 } vfx_t;
 
+typedef struct axolotles_s {
+    cstring_t name;
+    bool_t is_egg;
+    creature_t axolotl_egg;
+    bool_t is_baby;
+    creature_t axolotl_baby;
+    bool_t is_teen;
+    creature_t axolotl_teen;
+    bool_t is_adult;
+    creature_t axolotl;
+    uint_t maxHealth;
+    uint_t shields;
+    uint_t speed;
+    bool_t is_comp1;
+    // comp 1;
+    bool_t is_comp2;
+    // comp 2;
+    bool_t is_comp3;
+    // comp 3;
+} axolotles_t;
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Main assets structure for management
 ///
@@ -689,6 +986,8 @@ extern struct assets_s {
     uint_t bulletCount;
     sfx_t **sfx;
     uint_t sfxCount;
+    axolotles_t **axolotl;
+    uint_t axolotlCount;
 } Assets;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -868,5 +1167,9 @@ void destroy_assets_bullets(void);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void sort_warray(warray_t arr);
+
+
+bool_t init_assets_axolotl(void);
+void destroy_all_axolotl(void);
 
 #endif /* !ASSETS_H_ */

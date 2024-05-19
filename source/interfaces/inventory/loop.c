@@ -21,6 +21,11 @@ bool_t click_rel(sfEvent evt)
         evt.mouseButton.button == Setting.shoot);
 }
 
+static void draw_discovered(uint_t index)
+{
+    index = index;
+}
+
 static void draw_slots(void)
 {
     sfSprite *slot = sfSprite_create();
@@ -29,10 +34,14 @@ static void draw_slots(void)
     float move = size.y * Win.height / Win.viewHeight / 10 * 1.5f * 1.5f;
 
     sfSprite_setTexture(slot, Assets.ui[UI_LOCKED_AXO]->self, false);
-    for (int i = 0; i < 43; i++) {
-        sfSprite_setPosition(slot, PX_TO_MAPF(V2F(change * 2 + change * (i % 9)
-            , Win.height / 2 - move * 18 + move * (i - i % 9))));
-        sfRenderWindow_drawSprite(Win.self, slot, false);
+    for (int i = 0; i < AXO_COUNT; i++) {
+        sfSprite_setPosition(slot, PX_TO_MAPF(V2F(change * 1.5 + change *
+            (i % 9), Win.height / 2 - move * 24 + move * (i - i % 9))));
+        if (Assets.axolotl[i]->is_egg || Assets.axolotl[i]->is_baby ||
+            Assets.axolotl[i]->is_teen || Assets.axolotl[i]->is_adult)
+            draw_discovered(i);
+        else
+            sfRenderWindow_drawSprite(Win.self, slot, false);
     }
     sfSprite_destroy(slot);
 }

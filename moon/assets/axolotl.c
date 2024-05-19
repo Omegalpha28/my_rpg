@@ -18,7 +18,10 @@ bool_t init_assets_axolotl(void)
         return (false);
     for (uint_t i = 0; i < AXO_COUNT; i++) {
         Assets.axolotl[i] = (axolotles_t *)malloc(sizeof(axolotles_t));
-        Assets.axolotl[i]->is_egg = false;
+        Assets.axolotl[i]->name = AXOLOPEDIA_NAMES[i];
+        Assets.axolotl[i]->axolotl_egg = add_image(AXOLOPEDIA_EGG[i],
+            true, V2U1(1U), AXOLOPEDIA_NAMES[i]);
+        Assets.axolotl[i]->is_egg = true;
         Assets.axolotl[i]->is_baby = false;
         Assets.axolotl[i]->is_teen = false;
         Assets.axolotl[i]->is_adult = false;

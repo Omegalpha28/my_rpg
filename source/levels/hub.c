@@ -13,7 +13,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 bool_t level_hub(void)
 {
-    if (Engine.level != 0 || !level_load("shared/hub"))
+    if (Engine.level != 0 || !level_load("shared/ub"))
         return (false);
+    effect("firethrower", V2F(-91.0f, -439.0f), false);
+    effect("firethrower", V2F(91.0f, -439.0f), false);
     return (true);
 }

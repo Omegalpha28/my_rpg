@@ -17,8 +17,8 @@ static void init_new_bullet(bullet_t *new, actor_t *sender, v2f_t direction,
     v2f_t origin = add2f(sender->position, V2F(0.0f, 8.0f));
 
     new->origin = endpoint2f(origin, direction, 25.0f);
-    new->destination = endpoint2f(new->origin, direction,
-        BULLET_STATS[wp.bulletType].range);
+    new->destination = endpoint2f(origin, direction,
+        BULLET_STATS[wp.bulletType].range + 25.0f);
     new->position = new->origin;
     new->sender = sender;
     new->startAt = Time.currentTime;

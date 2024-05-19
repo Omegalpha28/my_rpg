@@ -38,26 +38,24 @@ static recti_t get_bullet_box(bullet_t *bullet)
 static float get_bullet_angle_from_prop(recti_t pr, bullet_t *blt,
     recti_t bm)
 {
-    float distL = fabsf(blt->position.x - pr.left);
-    float distR = fabsf((pr.left + pr.width) - blt->position.x);
-    float distT = fabsf(blt->position.y - pr.top);
-    float distB = fabsf((pr.top + pr.height) - blt->position.y);
-    float minDist = fminf(fminf(distL, distR), fminf(distT, distB));
+    float dx = blt->position.x - (pr.left + pr.width / 2.0f);
+    float dy = blt->position.y - (pr.top + pr.height / 2.0f);
 
-    if (minDist == distL) {
+    if (fabs(dx) > fabs(dy)) {
+        if (dx > 0) {
+            blt->position.x = (pr.left + pr.width) + bm.width / 2.0f + 5.0f;
+            return (180.0f);
+        }
         blt->position.x = pr.left - bm.width / 2.0f - 5.0f;
         return (0.0f);
-    }
-    if (minDist == distR) {
-        blt->position.x = (pr.left + pr.width) + bm.width / 2.0f + 5.0f;
-        return (-180.0f);
-    }
-    if (minDist == distT) {
+    } else {
+        if (dy > 0) {
+            blt->position.y = (pr.top + pr.height) + bm.height / 2.0f + 5.0f;
+            return (-90.0f);
+        }
         blt->position.y = pr.top - bm.height / 2.0f - 5.0f;
         return (90.0f);
     }
-    blt->position.y = (pr.top + pr.height) + bm.height / 2.0f + 5.0f;
-    return (-90.0f);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -101,7 +99,7 @@ static void check_bullet_collision_actor(bullet_t *bullet, actor_t *actor)
 
     arect = reduce_actor_collision_box(arect);
     if (!sfIntRect_intersects(&brect, &arect, NULL) || bullet->state !=
-        BULLET_STATE_FLYING)
+        BULLET_STATE_FLYING || (DASH && Player.ref == actor))
         return;
     bullet->img = Assets.bullets[stat.impactEnemy];
     bullet->state = BULLET_STATE_IMPACT;

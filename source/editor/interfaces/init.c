@@ -135,6 +135,7 @@ static void handle_popup_click(input_t *input)
         if (Editor.popupType == POPUP_SAVE)
             level_save(Editor.inputs[EDITOR_INPUT_PATH]->content);
     }
+    Editor.inputFocused = NULL;
     Editor.popupOpen = false;
     input_clear(Editor.inputs[EDITOR_INPUT_PATH]);
 }

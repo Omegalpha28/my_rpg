@@ -25,7 +25,7 @@ static recti_t effect_generate_mask(effect_t *eff, bool_t *destroy)
     if (!eff->self->looped && eff->frame == eff->self->endingFrame &&
         !eff->isDecal)
         (*destroy) = true;
-    if (eff->frame == eff->self->endingFrame)
+    if (eff->frame == eff->self->endingFrame && eff->isDecal)
         eff->fixFrame = true;
     return (mask);
 }

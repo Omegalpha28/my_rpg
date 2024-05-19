@@ -65,6 +65,7 @@ extern struct engine_s {
     int colum;
     uint_t level;
     engine_debug_t debug;
+    ulong_t fadeStart;
 } Engine;
 
 #endif /* !ENGINE_H_ */

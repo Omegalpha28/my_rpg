@@ -46,8 +46,8 @@ void health_examination(entity_t *evil)
         act->dead = true;
         if (actor_set_sheet(act, "death"))
             act->position.x +=
-            (act->self->sheets[act->sheetId]->image->mask.width
-            / 4) * ((act->scale.x) < 0 ? 1 : -1);
+            (act->self->sheets[act->sheetId]->image->mask.width / 4) *
+            ((act->scale.x) < 0 ? 1 : -1);
         actor_set_anim(act, "death");
     }
     if (act->dead || act->damaged)

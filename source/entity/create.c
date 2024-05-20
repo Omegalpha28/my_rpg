@@ -43,6 +43,7 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->cooldown = 5000;
     new->attack_started = false;
     new->movement = 0;
+    new->weapon = Stats[creature->id].weapon;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

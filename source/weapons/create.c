@@ -53,6 +53,17 @@ void create_bullet(actor_t *sender, v2f_t direction, weapon_enum_t weapon)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+weapon_enum_t search_weapon(actor_t *act)
+{
+    for (int i = 0; i < Entities.count; i++) {
+        if (act == Entities.array[i]->actor && act != Player.ref) {
+            return (Entities.array[i]->weapon);
+        }
+    }
+    return (0);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void destroy_bullet(bullet_t *bullet)
 {
     bullet_t **tmp = NULL;

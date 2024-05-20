@@ -21,27 +21,27 @@ bool_t click_rel(sfEvent evt)
         evt.mouseButton.button == Setting.shoot);
 }
 
-static void display_info(axolotles_t *disp)
+static void display_info(axolotles_t *disp, uint_t id)
 {
-    char maxhealth[10];
-    char shield[11];
-    char speed[9];
+    char buff[11];
     float move = 16.0f * Win.height / Win.viewHeight / 10 * 1.5f * 1.5f;
 
     for (uint_t i = 0; i < AXO_COUNT; i++)
         Assets.axolotl[i]->disp = false;
     disp->disp = true;
-    snprintf(shield, 11, "Shields %d", disp->shields);
-    snprintf(speed, 9, "Speed %d", disp->speed);
-    snprintf(maxhealth, 10, "Health %d", disp->maxHealth);
     draw_text_center(disp->name, V2F(Win.width / 4 * 3,
         Win.height / 2 - move * 15), 0.45f, sfWhite);
-    draw_text_center(maxhealth, V2F(Win.width / 4 * 3 - move * 14,
+    snprintf(buff, 10, "Health %d", disp->maxHealth);
+    draw_text_center(buff, V2F(Win.width / 4 * 3 - move * 14,
         Win.height / 2 - move * 8), 0.35f, sfWhite);
-    draw_text_center(speed, V2F(Win.width / 4 * 3 + move * 14,
+    snprintf(buff, 9, "Speed %d", disp->speed);
+    draw_text_center(buff, V2F(Win.width / 4 * 3 + move * 14,
         Win.height / 2 - move * 8), 0.35f, sfWhite);
-    draw_text_center(shield, V2F(Win.width / 4 * 3,
+    snprintf(buff, 11, "Shields %d", disp->shields);
+    draw_text_center(buff, V2F(Win.width / 4 * 3,
         Win.height / 2 - move * 8), 0.35f, sfWhite);
+    if (Engine.level == 1 && disp->grown == AXO_ADULT)
+        change_player(disp->name, id);
 }
 
 static void change_sprite(axolotles_t *axo, sfSprite *slot)
@@ -82,7 +82,7 @@ static void draw_discovered(uint_t index, axolotles_t *axo)
     if (mouse_in)
         Setting.hover = true;
     if ((mouse_in && CLICK_REL) || axo->disp)
-        display_info(axo);
+        display_info(axo, index);
     sfSprite_destroy(slot);
 }
 

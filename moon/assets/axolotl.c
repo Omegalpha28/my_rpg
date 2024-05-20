@@ -39,6 +39,7 @@ bool_t init_assets_axolotl(void)
         init_axolotl(i, Assets.axolotl[i]);
     }
     Assets.axolotl[AXO_ORIGINAL]->grown = AXO_ADULT;
+    Assets.axolotl[AXO_ORIGINAL]->disp = true;
     Assets.axolotlCount = AXO_COUNT;
     return (true);
 }

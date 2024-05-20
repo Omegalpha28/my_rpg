@@ -469,6 +469,8 @@ typedef enum ui_element_e {
     UI_BOX,
     UI_INV_SLOT,
     UI_LOCKED_AXO,
+    UI_UNLOCK_AXO,
+    UI_SELECT_AXO,
     UI_ELEMENT_COUNT
 } ui_element_t;
 
@@ -513,7 +515,9 @@ static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
     DIR_UI"/HUD/enemy_arrow_indicator.png",
     DIR_UI"/common/bases/metal/box01.png",
     DIR_UI"/common/bases/paper/item01.png",
-    DIR_UI"/common/socket_locked.png"
+    DIR_UI"/common/socket_locked.png",
+    DIR_UI"/common/socket.png",
+    DIR_UI"/common/socket_highlighted.png"
 };
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -63,8 +63,9 @@ static void change_sprite(axolotles_t *axo, sfSprite *slot)
     sfRenderWindow_drawSprite(Win.self, slot, false);
 }
 
-static void draw_discovered(uint_t index, sfSprite *slot, axolotles_t *axo)
+static void draw_discovered(uint_t index, axolotles_t *axo)
 {
+    sfSprite *slot = sfSprite_create();
     float change = 16.0f * Win.width / Win.viewWidth * 1.5f;
     float move = 16.0f * Win.height / Win.viewHeight / 10 * 1.5f * 1.5f;
     v2f_t mouse = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
@@ -74,32 +75,35 @@ static void draw_discovered(uint_t index, sfSprite *slot, axolotles_t *axo)
         24 + move * (index - index % 9))).y && mouse.y < PX_TO_MAPF(
         V2F1(Win.height / 2 - move * 18 + move * (index - index % 9))).y;
 
+    sfSprite_setPosition(slot, PX_TO_MAPF(V2F(change * 1.5 + change *
+        (index % 9) + change / 2.75f, Win.height / 2 - move * 24 + move *
+        (index - index % 9) + move / 2)));
     change_sprite(axo, slot);
     if (mouse_in)
         Setting.hover = true;
     if ((mouse_in && CLICK_REL) || axo->disp)
         display_info(axo);
+    sfSprite_destroy(slot);
 }
 
 static void draw_slots(void)
 {
     sfSprite *slot = sfSprite_create();
-    sfSprite *axo = sfSprite_create();
     float change = 16.0f * Win.width / Win.viewWidth * 1.5f;
     float move = 16.0f * Win.height / Win.viewHeight / 10 * 1.5f * 1.5f;
 
-    sfSprite_setTexture(slot, Assets.ui[UI_LOCKED_AXO]->self, false);
     for (int i = 0; i < AXO_COUNT; i++) {
+        sfSprite_setTexture(slot, Assets.ui[UI_LOCKED_AXO]->self, false);
         sfSprite_setPosition(slot, PX_TO_MAPF(V2F(change * 1.5 + change *
             (i % 9), Win.height / 2 - move * 24 + move * (i - i % 9))));
-        sfRenderWindow_drawSprite(Win.self, slot, false);
-        sfSprite_setPosition(axo, PX_TO_MAPF(V2F(change * 1.5 + change *
-            (i % 9) + change / 2.75f, Win.height / 2 - move * 24 + move *
-            (i - i % 9) + move / 2)));
         if (Assets.axolotl[i]->grown)
-            draw_discovered(i, axo, Assets.axolotl[i]);
+            sfSprite_setTexture(slot, Assets.ui[UI_UNLOCK_AXO]->self, false);
+        if (Assets.axolotl[i]->disp)
+            sfSprite_setTexture(slot, Assets.ui[UI_SELECT_AXO]->self, false);
+        sfRenderWindow_drawSprite(Win.self, slot, false);
+        if (Assets.axolotl[i]->grown)
+            draw_discovered(i, Assets.axolotl[i]);
     }
-    sfSprite_destroy(axo);
     sfSprite_destroy(slot);
 }
 

@@ -157,11 +157,65 @@ typedef enum axolopedia_e {
     AXO_COUNT
 } axolopedia_t;
 
+static const cstring_t AXOLOPEDIA_NAMES[AXO_COUNT] = {
+    "Original",
+    "Albino",
+    "Algae",
+    "Alien",
+    "Anime",
+    "Anomaly",
+    "Astronaut",
+    "Bananalotl",
+    "Bee",
+    "Cartoon",
+    "Caterkillah",
+    "Chadgeept",
+    "Corgi",
+    "Cowrolina",
+    "Cthulotl",
+    "Cyclops",
+    "Dalmatian",
+    "Dough",
+    "Draco",
+    "Druid",
+    "Ember",
+    "Enigma",
+    "Firefly",
+    "Froggo",
+    "Goldy",
+    "Imp",
+    "Imsomnia",
+    "Junkcat",
+    "Knight",
+    "Koi",
+    "Lavender",
+    "Melanoid",
+    "Metal",
+    "Midas",
+    "Mud_whooper",
+    "Neon",
+    "Pastel",
+    "Pengu",
+    "Piggy",
+    "Poison",
+    "Salamander",
+    "Skull",
+    "Slime",
+    "Spirit",
+    "Teddy_bear",
+    "Tiger",
+    "Trans",
+    "Wild",
+    "Wooper",
+    "X",
+    "Zombie",
+};
+
 static const cstring_t AXOLOPEDIA_ADULTS[AXO_COUNT] = {
     DIR_AXOLTL"/adults/original.png",
     DIR_AXOLTL"/adults/albino.png",
     DIR_AXOLTL"/adults/algae.png",
-    DIR_AXOLTL"/adults/alian.png",
+    DIR_AXOLTL"/adults/alien.png",
     DIR_AXOLTL"/adults/anime.png",
     DIR_AXOLTL"/adults/anomaly.png",
     DIR_AXOLTL"/adults/astronaut.png",
@@ -182,9 +236,9 @@ static const cstring_t AXOLOPEDIA_ADULTS[AXO_COUNT] = {
     DIR_AXOLTL"/adults/enigma.png",
     DIR_AXOLTL"/adults/firefly.png",
     DIR_AXOLTL"/adults/froggo.png",
-    DIR_AXOLTL"/adults/goldly.png",
+    DIR_AXOLTL"/adults/goldy.png",
     DIR_AXOLTL"/adults/imp.png",
-    DIR_AXOLTL"/adults/insomnia.png",
+    DIR_AXOLTL"/adults/imsomnia.png",
     DIR_AXOLTL"/adults/junkcat.png",
     DIR_AXOLTL"/adults/knight.png",
     DIR_AXOLTL"/adults/koi.png",
@@ -198,7 +252,7 @@ static const cstring_t AXOLOPEDIA_ADULTS[AXO_COUNT] = {
     DIR_AXOLTL"/adults/pengu.png",
     DIR_AXOLTL"/adults/piggy.png",
     DIR_AXOLTL"/adults/poison.png",
-    DIR_AXOLTL"/adults/salamender.png",
+    DIR_AXOLTL"/adults/salamander.png",
     DIR_AXOLTL"/adults/skull.png",
     DIR_AXOLTL"/adults/slime.png",
     DIR_AXOLTL"/adults/spirit.png",
@@ -215,7 +269,7 @@ static const cstring_t AXOLOPEDIA_EGG[AXO_COUNT] = {
     DIR_AXOLTL"/eggs/original.png",
     DIR_AXOLTL"/eggs/albino.png",
     DIR_AXOLTL"/eggs/algae.png",
-    DIR_AXOLTL"/eggs/alian.png",
+    DIR_AXOLTL"/eggs/alien.png",
     DIR_AXOLTL"/eggs/anime.png",
     DIR_AXOLTL"/eggs/anomaly.png",
     DIR_AXOLTL"/eggs/astronaut.png",
@@ -236,9 +290,9 @@ static const cstring_t AXOLOPEDIA_EGG[AXO_COUNT] = {
     DIR_AXOLTL"/eggs/enigma.png",
     DIR_AXOLTL"/eggs/firefly.png",
     DIR_AXOLTL"/eggs/froggo.png",
-    DIR_AXOLTL"/eggs/goldly.png",
+    DIR_AXOLTL"/eggs/goldy.png",
     DIR_AXOLTL"/eggs/imp.png",
-    DIR_AXOLTL"/eggs/insomnia.png",
+    DIR_AXOLTL"/eggs/imsomnia.png",
     DIR_AXOLTL"/eggs/junkcat.png",
     DIR_AXOLTL"/eggs/knight.png",
     DIR_AXOLTL"/eggs/koi.png",
@@ -252,7 +306,7 @@ static const cstring_t AXOLOPEDIA_EGG[AXO_COUNT] = {
     DIR_AXOLTL"/eggs/pengu.png",
     DIR_AXOLTL"/eggs/piggy.png",
     DIR_AXOLTL"/eggs/poison.png",
-    DIR_AXOLTL"/eggs/salamender.png",
+    DIR_AXOLTL"/eggs/salamander.png",
     DIR_AXOLTL"/eggs/skull.png",
     DIR_AXOLTL"/eggs/slime.png",
     DIR_AXOLTL"/eggs/spirit.png",
@@ -269,7 +323,7 @@ static const cstring_t AXOLOPEDIA_BABIES[AXO_COUNT] = {
     DIR_AXOLTL"/babies/original.png",
     DIR_AXOLTL"/babies/albino.png",
     DIR_AXOLTL"/babies/algae.png",
-    DIR_AXOLTL"/babies/alian.png",
+    DIR_AXOLTL"/babies/alien.png",
     DIR_AXOLTL"/babies/anime.png",
     DIR_AXOLTL"/babies/anomaly.png",
     DIR_AXOLTL"/babies/astronaut.png",
@@ -290,9 +344,9 @@ static const cstring_t AXOLOPEDIA_BABIES[AXO_COUNT] = {
     DIR_AXOLTL"/babies/enigma.png",
     DIR_AXOLTL"/babies/firefly.png",
     DIR_AXOLTL"/babies/froggo.png",
-    DIR_AXOLTL"/babies/goldly.png",
+    DIR_AXOLTL"/babies/goldy.png",
     DIR_AXOLTL"/babies/imp.png",
-    DIR_AXOLTL"/babies/insomnia.png",
+    DIR_AXOLTL"/babies/imsomnia.png",
     DIR_AXOLTL"/babies/junkcat.png",
     DIR_AXOLTL"/babies/knight.png",
     DIR_AXOLTL"/babies/koi.png",
@@ -306,7 +360,7 @@ static const cstring_t AXOLOPEDIA_BABIES[AXO_COUNT] = {
     DIR_AXOLTL"/babies/pengu.png",
     DIR_AXOLTL"/babies/piggy.png",
     DIR_AXOLTL"/babies/poison.png",
-    DIR_AXOLTL"/babies/salamender.png",
+    DIR_AXOLTL"/babies/salamander.png",
     DIR_AXOLTL"/babies/skull.png",
     DIR_AXOLTL"/babies/slime.png",
     DIR_AXOLTL"/babies/spirit.png",
@@ -323,7 +377,7 @@ static const cstring_t AXOLOPEDIA_TEENS[AXO_COUNT] = {
     DIR_AXOLTL"/teenagers/original.png",
     DIR_AXOLTL"/teenagers/albino.png",
     DIR_AXOLTL"/teenagers/algae.png",
-    DIR_AXOLTL"/teenagers/alian.png",
+    DIR_AXOLTL"/teenagers/alien.png",
     DIR_AXOLTL"/teenagers/anime.png",
     DIR_AXOLTL"/teenagers/anomaly.png",
     DIR_AXOLTL"/teenagers/astronaut.png",
@@ -344,9 +398,9 @@ static const cstring_t AXOLOPEDIA_TEENS[AXO_COUNT] = {
     DIR_AXOLTL"/teenagers/enigma.png",
     DIR_AXOLTL"/teenagers/firefly.png",
     DIR_AXOLTL"/teenagers/froggo.png",
-    DIR_AXOLTL"/teenagers/goldly.png",
+    DIR_AXOLTL"/teenagers/goldy.png",
     DIR_AXOLTL"/teenagers/imp.png",
-    DIR_AXOLTL"/teenagers/insomnia.png",
+    DIR_AXOLTL"/teenagers/imsomnia.png",
     DIR_AXOLTL"/teenagers/junkcat.png",
     DIR_AXOLTL"/teenagers/knight.png",
     DIR_AXOLTL"/teenagers/koi.png",
@@ -360,7 +414,7 @@ static const cstring_t AXOLOPEDIA_TEENS[AXO_COUNT] = {
     DIR_AXOLTL"/teenagers/pengu.png",
     DIR_AXOLTL"/teenagers/piggy.png",
     DIR_AXOLTL"/teenagers/poison.png",
-    DIR_AXOLTL"/teenagers/salamender.png",
+    DIR_AXOLTL"/teenagers/salamander.png",
     DIR_AXOLTL"/teenagers/skull.png",
     DIR_AXOLTL"/teenagers/slime.png",
     DIR_AXOLTL"/teenagers/spirit.png",
@@ -937,16 +991,21 @@ typedef struct vfx_s {
     uint_t endingFrame;
 } vfx_t;
 
+typedef enum growth_s {
+    AXO_NO,
+    AXO_EGG,
+    AXO_BABY,
+    AXO_TEEN,
+    AXO_ADULT,
+} growth_t;
+
 typedef struct axolotles_s {
     cstring_t name;
-    bool_t is_egg;
-    creature_t axolotl_egg;
-    bool_t is_baby;
-    creature_t axolotl_baby;
-    bool_t is_teen;
-    creature_t axolotl_teen;
-    bool_t is_adult;
-    creature_t axolotl;
+    growth_t grown;
+    image_t *axolotl_egg;
+    image_t *axolotl_baby;
+    image_t *axolotl_teen;
+    image_t *axolotl;
     uint_t maxHealth;
     uint_t shields;
     uint_t speed;
@@ -956,6 +1015,7 @@ typedef struct axolotles_s {
     // comp 2;
     bool_t is_comp3;
     // comp 3;
+    bool_t disp;
 } axolotles_t;
 
 ///////////////////////////////////////////////////////////////////////////////

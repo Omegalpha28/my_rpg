@@ -12,7 +12,7 @@
 
 static void init_axolotl(uint_t i, axolotles_t *axo)
 {
-    axo->grown = AXO_NO;
+    axo->grown = AXO_ADULT;
     axo->maxHealth = 7 + i % 8;
     axo->shields = (i - i % 8) % 5;
     axo->speed = 6 + i % 3;
@@ -39,6 +39,7 @@ bool_t init_assets_axolotl(void)
         init_axolotl(i, Assets.axolotl[i]);
     }
     Assets.axolotl[AXO_ORIGINAL]->grown = AXO_ADULT;
+    Assets.axolotl[AXO_ORIGINAL]->disp = true;
     Assets.axolotlCount = AXO_COUNT;
     return (true);
 }

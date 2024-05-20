@@ -80,3 +80,70 @@ void remove_entity(entity_t *ent)
     Entities.array = tmp;
     FREE(ent);
 }
+
+///////////////////////////////////////////////////////////////////////////////
+static void init_boss_stat_block(boss_t *new, creature_t *creature)
+{
+    new->actor->health = CREATURE_COUNT < creature->id ? 100 :
+        B_Stats[new->bstat_position].health;
+    new->speed = CREATURE_COUNT < creature->id ? 5 :
+        B_Stats[new->bstat_position].speed;
+    new->attack_amount = CREATURE_COUNT < creature->id ? 3 :
+        B_Stats[new->bstat_position].attack_amount;
+    new->dizzy = CREATURE_COUNT < creature->id ? 0 :
+        B_Stats[new->bstat_position].dizzy;
+    for (int i = 0; i < new->attack_amount; i++)
+        new->attack_list[i] = CREATURE_COUNT < creature->id ? 1 :
+            B_Stats[new->bstat_position].attack_list[i];
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void init_boss(boss_t *new, creature_t *creature, v2f_t position)
+{
+    new->actor = actor_create(creature, position);
+    if (new->actor->self->id == CREATURE_CRAB_BOSS)
+        new->bstat_position = 0;
+    init_boss_stat_block(new, creature);
+    new->can_attack = 0;
+    new->cooldown = 0;
+    new->is_attack = 0;
+    new->movement = 0;
+    new->last_action = 0;
+    new->curr_phase = 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+boss_t *boss_create(creature_t *creature, v2f_t position)
+{
+    boss_t *new = (boss_t *)malloc(sizeof(boss_t));
+
+    Entities.bcount++;
+    Entities.boss_array = REALLOC(Entities.boss_array, sizeof(boss_t *),
+        Entities.bcount);
+    Entities.boss_array[Entities.bcount - 1] = new;
+    init_boss(new, creature, position);
+    return (new);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void remove_boss(boss_t *ent)
+{
+    boss_t **tmp = NULL;
+    uint_t j = 0;
+
+    if (ent == NULL)
+        return;
+    if (ent->actor != NULL)
+        actor_destroy(ent->actor);
+    tmp = malloc(sizeof(boss_t *) * (Entities.bcount - 1));
+    for (int i = 0; i < Entities.count; i++) {
+        if (Entities.boss_array[i] == ent)
+            continue;
+        tmp[j] = Entities.boss_array[i];
+        j++;
+    }
+    Entities.bcount--;
+    FREE(Entities.boss_array);
+    Entities.boss_array = tmp;
+    FREE(ent);
+}

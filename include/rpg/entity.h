@@ -14,6 +14,11 @@
     #include "rpg.h"
 
     #define ENTITY_REMOVE 10
+    #define MAX_ATTACK 10
+    #define CTHULU_TODO 3
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief All possible status' for entities
@@ -67,13 +72,60 @@ typedef struct entity_s {
 } entity_t;
 
 
+typedef enum boss_index_e {
+    BOSS_Crabington,
+    BOSS_Cthulu,
+    BOSS_COUNT,
+} boss_index_t;
+
+typedef enum Boss_attack_types_e {
+    DASH_ATTACK,
+    MOUTH_BLASTER,
+    BUBBLE_DOME,
+    BULLET_HELL,
+    SPIKE_TRAP,
+    BOSS_ATTACK_COUNT,
+} Boss_attack_types_t;
+
+typedef struct Boss_list_s {
+    actor_t *actor;
+    ulong_t last_action;
+    float speed;
+    bool_t is_attack;
+    bool_t can_attack;
+    uint_t cooldown;
+    uint_t movement;
+    int attack_amount;
+    uint_t dizzy;
+    int bstat_position;
+    Boss_attack_types_t attack_list[MAX_ATTACK];
+    int curr_phase;
+} boss_t;
+
+typedef struct Boss_stat_s {
+    int attack_amount;
+    float speed;
+    int health;
+    int creature_id;
+    uint_t dizzy;
+    Boss_attack_types_t attack_list[MAX_ATTACK];
+} Boss_stats_t;
+
+static const Boss_stats_t B_Stats[BOSS_COUNT] = {
+    {3, 5, 100, 2, 3000, {0, 1, 2}},    //Crabington
+    {5, 0, 100, 0, 0, {0, 1, 2, 3, 4}}, //Cthulu
+};
+
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Global structure containing all information on enemy entities.
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct entity_list_s {
     entity_t **array;
+    boss_t **boss_array;
     int count;
+    int bcount;
     entity_t *toRemove[ENTITY_REMOVE];
 } Entities;
 
@@ -109,6 +161,7 @@ static const creature_stats_t Stats[CREATURE_COUNT] = {
     {100, 0.4f, 100.0f, 150.0f, Shooter, 0},    //elite fox
     {100, 0.4f, 60.0f, 100.0f, Shooter, 0},     //Brat
 };
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Create a new entitty base on a creature and a position
@@ -206,5 +259,40 @@ void enemy_action(entity_t *evil);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void update_collisions(void);
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Create a new boss based on a creature and a position
+///
+/// \param creature     The reference creature for the actor
+/// \param position     The default position of the actor
+///
+/// \return The newly created boss.
+///
+///////////////////////////////////////////////////////////////////////////////
+boss_t *boss_create(creature_t *creature, v2f_t position);
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Remove a boss from the list
+///
+/// \param ent          The entity to remove
+///
+///////////////////////////////////////////////////////////////////////////////
+void remove_boss(boss_t *ent);
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Does all movement checks for the bosses.
+///
+///////////////////////////////////////////////////////////////////////////////
+void boss_movement(boss_t *boss);
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Does all action checks for the bosses.
+///
+///////////////////////////////////////////////////////////////////////////////
+void boss_action(boss_t *boss);
 
 #endif /* !ENTITY_H_ */

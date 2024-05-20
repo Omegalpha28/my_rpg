@@ -10,6 +10,15 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "moon.h"
 
+static void init_axolotl(uint_t i, axolotles_t *axo)
+{
+    axo->grown = AXO_NO;
+    axo->maxHealth = 7 + i % 8;
+    axo->shields = (i - i % 8) % 5;
+    axo->speed = 6 + i % 3;
+    axo->disp = false;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 bool_t init_assets_axolotl(void)
 {
@@ -21,11 +30,16 @@ bool_t init_assets_axolotl(void)
         Assets.axolotl[i]->name = AXOLOPEDIA_NAMES[i];
         Assets.axolotl[i]->axolotl_egg = add_image(AXOLOPEDIA_EGG[i],
             true, V2U1(1U), AXOLOPEDIA_NAMES[i]);
-        Assets.axolotl[i]->is_egg = true;
-        Assets.axolotl[i]->is_baby = false;
-        Assets.axolotl[i]->is_teen = false;
-        Assets.axolotl[i]->is_adult = false;
+        Assets.axolotl[i]->axolotl_baby = add_image(AXOLOPEDIA_BABIES[i],
+            true, V2U1(1U), AXOLOPEDIA_NAMES[i]);
+        Assets.axolotl[i]->axolotl_teen = add_image(AXOLOPEDIA_TEENS[i],
+            true, V2U1(1U), AXOLOPEDIA_NAMES[i]);
+        Assets.axolotl[i]->axolotl = add_image(AXOLOPEDIA_ADULTS[i],
+            true, V2U1(1U), AXOLOPEDIA_NAMES[i]);
+        init_axolotl(i, Assets.axolotl[i]);
     }
+    Assets.axolotl[AXO_ORIGINAL]->grown = AXO_ADULT;
+    Assets.axolotlCount = AXO_COUNT;
     return (true);
 }
 
@@ -33,6 +47,4 @@ bool_t init_assets_axolotl(void)
 void destroy_all_axolotl(void)
 {
     FREE(Assets.axolotl);
-    Assets.axolotl = NULL;
-    Assets.axolotlCount = 0;
 }

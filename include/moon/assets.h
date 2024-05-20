@@ -158,57 +158,57 @@ typedef enum axolopedia_e {
 } axolopedia_t;
 
 static const cstring_t AXOLOPEDIA_NAMES[AXO_COUNT] = {
-    "original",
-    "albino",
-    "algae",
-    "alien",
-    "anime",
-    "anomaly",
-    "astronaut",
-    "bananalotl",
-    "bee",
-    "cartoon",
-    "caterkillah",
-    "chadgeept",
-    "corgi",
-    "cowrolina",
-    "cthulotl",
-    "cyclops",
-    "dalmatian",
-    "dough",
-    "draco",
-    "druid",
-    "ember",
-    "enigma",
-    "firefly",
-    "froggo",
-    "goldy",
-    "imp",
-    "imsomnia",
-    "junkcat",
-    "knight",
-    "koi",
-    "lavender",
-    "melanoid",
-    "metal",
-    "midas",
-    "mud_whooper",
-    "neon",
-    "pastel",
-    "pengu",
-    "piggy",
-    "poison",
-    "salamander",
-    "skull",
-    "slime",
-    "spirit",
-    "teddy_bear",
-    "tiger",
-    "trans",
-    "wild",
-    "wooper",
-    "x",
-    "zombie",
+    "Original",
+    "Albino",
+    "Algae",
+    "Alien",
+    "Anime",
+    "Anomaly",
+    "Astronaut",
+    "Bananalotl",
+    "Bee",
+    "Cartoon",
+    "Caterkillah",
+    "Chadgeept",
+    "Corgi",
+    "Cowrolina",
+    "Cthulotl",
+    "Cyclops",
+    "Dalmatian",
+    "Dough",
+    "Draco",
+    "Druid",
+    "Ember",
+    "Enigma",
+    "Firefly",
+    "Froggo",
+    "Goldy",
+    "Imp",
+    "Imsomnia",
+    "Junkcat",
+    "Knight",
+    "Koi",
+    "Lavender",
+    "Melanoid",
+    "Metal",
+    "Midas",
+    "Mud_whooper",
+    "Neon",
+    "Pastel",
+    "Pengu",
+    "Piggy",
+    "Poison",
+    "Salamander",
+    "Skull",
+    "Slime",
+    "Spirit",
+    "Teddy_bear",
+    "Tiger",
+    "Trans",
+    "Wild",
+    "Wooper",
+    "X",
+    "Zombie",
 };
 
 static const cstring_t AXOLOPEDIA_ADULTS[AXO_COUNT] = {
@@ -991,16 +991,21 @@ typedef struct vfx_s {
     uint_t endingFrame;
 } vfx_t;
 
+typedef enum growth_s {
+    AXO_NO,
+    AXO_EGG,
+    AXO_BABY,
+    AXO_TEEN,
+    AXO_ADULT,
+} growth_t;
+
 typedef struct axolotles_s {
     cstring_t name;
-    bool_t is_egg;
+    growth_t grown;
     image_t *axolotl_egg;
-    bool_t is_baby;
-    creature_t axolotl_baby;
-    bool_t is_teen;
-    creature_t axolotl_teen;
-    bool_t is_adult;
-    creature_t axolotl;
+    image_t *axolotl_baby;
+    image_t *axolotl_teen;
+    image_t *axolotl;
     uint_t maxHealth;
     uint_t shields;
     uint_t speed;
@@ -1010,6 +1015,7 @@ typedef struct axolotles_s {
     // comp 2;
     bool_t is_comp3;
     // comp 3;
+    bool_t disp;
 } axolotles_t;
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -13,7 +13,8 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-void boss_action(boss_t *boss)
+void boss_action(entity_t *boss)
 {
+    boss = boss;
     return;
 }

@@ -11,7 +11,7 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-struct entity_list_s Entities = {NULL, NULL, 0, 0,
+struct entity_list_s Entities = {NULL, 0,
     {
         NULL, NULL, NULL, NULL, NULL,
         NULL, NULL, NULL, NULL, NULL

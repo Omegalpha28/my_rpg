@@ -45,6 +45,7 @@ typedef struct actor_s {
     bool_t invincible;
     bool_t damaged;
     bool_t dead;
+    uint_t shield;
 } actor_t;
 
 ///////////////////////////////////////////////////////////////////////////////

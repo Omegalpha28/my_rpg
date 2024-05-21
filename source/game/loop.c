@@ -39,6 +39,7 @@ void game_loop(void)
     }
     update();
     draw();
+    update_hud();
     update_all_bullets();
     clear_entity_remove_queue();
 }

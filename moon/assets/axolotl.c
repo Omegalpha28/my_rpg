@@ -13,7 +13,7 @@
 static void init_axolotl(uint_t i, axolotles_t *axo)
 {
     axo->grown = AXO_ADULT;
-    axo->maxHealth = 7 + i % 8;
+    axo->maxHealth = 6 + i % 8;
     axo->shields = (i - i % 8) % 5;
     axo->speed = 6 + i % 3;
     axo->disp = false;

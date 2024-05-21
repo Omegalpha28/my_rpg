@@ -10,6 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+///////////////////////////////////////////////////////////////////////////////
 static void draw_health_relay(uint_t i, sfSprite *health)
 {
     float scale_x = Win.width / Win.viewWidth;
@@ -19,6 +20,7 @@ static void draw_health_relay(uint_t i, sfSprite *health)
     sfRenderWindow_drawSprite(Win.self, health, false);
 }
 
+///////////////////////////////////////////////////////////////////////////////
 void draw_health(void)
 {
     axolotles_t *axo = Assets.axolotl[Player.ref->variantId];
@@ -38,9 +40,4 @@ void draw_health(void)
     sfSprite_setTextureRect(health, rect);
     for (; i - axo->maxHealth < axo->shields; i++)
         draw_health_relay(i, health);
-}
-
-void update_hud(void)
-{
-    draw_health();
 }

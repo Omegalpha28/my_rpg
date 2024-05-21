@@ -60,9 +60,8 @@ static bool_t draw_weapon_under(actor_t *act)
 ///////////////////////////////////////////////////////////////////////////////
 static void draw_weapon(actor_t *act, weapon_enum_t weapon)
 {
-    v2f_t cr = (act == Player.ref) ?
-        PX_TO_MAP(sfMouse_getPositionRenderWindow(Win.self)) :
-        Player.ref->position;
+    v2f_t cr = !(act == Player.ref) ? Player.ref->position :
+        PX_TO_MAP(sfMouse_getPositionRenderWindow(Win.self));
     sfSprite *wp = sfSprite_create();
     v2f_t pos = add2f(act->position, V2F(0.0f, 8.0f));
     float deltaX = cr.x - act->position.x;

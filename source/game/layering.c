@@ -159,15 +159,22 @@ static void draw_hud(void)
 static void drawing_weapons(uint_t i)
 {
     bool_t under;
+    int weapon;
 
     under = draw_weapon_under(Pool.actors[i]);
     if (Player.ref == Pool.actors[i] && under && !(DANCE || DASH))
         draw_weapon(Player.ref, Player.weapon);
-    if (!(Player.ref == Pool.actors[i]) && under)
-        draw_weapon(Pool.actors[i], search_weapon(Pool.actors[i]));
+    if (!(Player.ref == Pool.actors[i]) && under) {
+        weapon = search_weapon(Pool.actors[i]);
+        if (weapon != -1)
+            draw_weapon(Pool.actors[i], weapon);
+    }
     actor_draw(Pool.actors[i]);
-    if (!(Player.ref == Pool.actors[i]) && !under)
-        draw_weapon(Pool.actors[i], search_weapon(Pool.actors[i]));
+    if (!(Player.ref == Pool.actors[i]) && !under) {
+        weapon = search_weapon(Pool.actors[i]);
+        if (weapon != -1)
+            draw_weapon(Pool.actors[i], weapon);
+    }
     if (Player.ref == Pool.actors[i] && !under && !(DANCE || DASH))
         draw_weapon(Player.ref, Player.weapon);
 }

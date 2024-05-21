@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-static draw_health_relay(uint_t i, sfSprite *health)
+static void draw_health_relay(uint_t i, sfSprite *health)
 {
     float scale_x = Win.width / Win.viewWidth;
 
@@ -24,7 +24,6 @@ void draw_health(void)
     axolotles_t *axo = Assets.axolotl[Player.ref->variantId];
     sfSprite *health = sfSprite_create();
     sfIntRect rect = {40, 0, 20, 19};
-    float scale_x = Win.width / Win.viewWidth;
     uint_t i = 0;
 
     sfSprite_setTexture(health, Assets.ui[UI_HEALTH]->self, false);

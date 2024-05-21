@@ -16,8 +16,11 @@ void parse_mouse_input(sfMouseButtonEvent evt)
     bool_t pressed = (evt.type == sfEvtMouseButtonPressed);
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
 
-    if (evt.button == Setting.shoot && pressed && !DANCE && !DASH)
+    if (check_weapon_ammo(Player.weapon) == 1)
+        return;
+    if (evt.button == Setting.shoot && pressed && !DANCE && !DASH) {
         create_bullet(Player.ref, cr, Player.weapon);
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

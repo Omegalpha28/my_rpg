@@ -14,5 +14,10 @@
 struct engine_s Engine = {
     false,
     SCENE_MAIN_MENU,
-    NULL, 0, 0, 0, NULL, NULL, 0, NULL, 3, 0U, {0U, 0U}, 0LU
+    NULL, 0, 0, 0, NULL, NULL, 0, NULL, 3, 0U, {0U, 0U}, 0LU,
+    {
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0
+    }
 };

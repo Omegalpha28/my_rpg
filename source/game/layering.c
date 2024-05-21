@@ -151,6 +151,7 @@ static void draw_hud(void)
     if (Engine.debugMode && !DASH && !DANCE)
         draw_debug_line(cr);
     print_debug_information();
+    draw_health();
     draw_visor();
     draw_fade();
 }

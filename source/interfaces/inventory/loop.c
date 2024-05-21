@@ -77,10 +77,10 @@ static void draw_discovered(uint_t index, axolotles_t *axo)
 
     sfSprite_setPosition(slot, PX_TO_MAPF(V2F(change * 1.5 + change *
         (index % 9) + change / 2.75f, Win.height / 2 - move * 24 + move *
-        (index - index % 9) + move / 2)));
-    change_sprite(axo, slot);
+        (index - index % 9) + move / 2 + (mouse_in ? -move / 2 : 0))));
     if (mouse_in)
         Setting.hover = true;
+    change_sprite(axo, slot);
     if ((mouse_in && CLICK_REL) || axo->disp)
         display_info(axo, index);
     sfSprite_destroy(slot);
@@ -110,12 +110,13 @@ static void draw_slots(void)
 void draw_squares_relay(void)
 {
     sfRectangleShape *rec = sfRectangleShape_create();
-    float change = 16.0f * Win.width / Win.viewWidth * 1.5f;
-    float move = 16.0f * Win.height / Win.viewHeight / 10 * 1.5f * 1.5f;
+    float change = 24.0f * Win.width / Win.viewWidth;
+    float move = 3.60f * Win.height / Win.viewHeight;
     v2f_t pos = {change * 1.5 - change * 4 / 9, Win.height / 2 - move * 27};
 
     sfRectangleShape_setPosition(rec, PX_TO_MAPF(pos));
-    sfRectangleShape_setSize(rec, V2F(change * 11 / 9, move * 7));
+    sfRectangleShape_setSize(rec, V2F(24.0f * 3840 / Win.viewWidth * 11 / 9,
+        3.60f * 2400 / Win.viewHeight * 7));
     sfRectangleShape_setFillColor(rec, RGB(68, 57, 84));
     sfRenderWindow_drawRectangleShape(Win.self, rec, false);
     sfRectangleShape_destroy(rec);

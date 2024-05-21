@@ -169,7 +169,7 @@ int check_weapon_ammo(weapon_enum_t weapon, sfMouseButtonEvent evt,
     if (!(evt.button == Setting.shoot && pressed))
         return (1);
     Player.num_shoot++;
-    if (Player.num_shoot >= WEAPON_STATS[weapon].ammoPerMag &&
+    if (Player.num_shoot > WEAPON_STATS[weapon].ammoPerMag &&
         WEAPON_STATS[weapon].bulletType != BULLET_MELEE &&
         (seconds - Player.shoot_time != reload_time)) {
         if (seconds - Player.shoot_time > reload_time)

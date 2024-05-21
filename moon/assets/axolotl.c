@@ -10,12 +10,13 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "moon.h"
 
+///////////////////////////////////////////////////////////////////////////////
 static void init_axolotl(uint_t i, axolotles_t *axo)
 {
-    axo->grown = AXO_NO;
-    axo->maxHealth = all_stats[i].maxHealth;
-    axo->shields = all_stats[i].shields;
-    axo->speed = all_stats[i].speed;
+    axo->grown = Engine.axolotls[i];
+    axo->maxHealth = AXOLOTL_STATS[i].maxHealth;
+    axo->shields = AXOLOTL_STATS[i].shields;
+    axo->speed = AXOLOTL_STATS[i].speed;
     axo->disp = false;
 }
 

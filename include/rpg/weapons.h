@@ -164,90 +164,91 @@ typedef struct weapon_s {
     float shakingIntensity;
     float shakingDuration;
     sfx_list_t sound;
+    uint_t reload_time;
 } weapon_t;
 
 ///////////////////////////////////////////////////////////////////////////////
 static const weapon_t WEAPON_STATS[WEAPON_COUNT] = {
     {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_ROCKET, 7.5f,
-        0.15f, SFX_BOMB}, // BUCCANEER
+        0.15f, SFX_BOMB, 3}, // BUCCANEER
     {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_ROCKET, 7.5f,
-        0.15f, SFX_BOMB}, // GRENADE
+        0.15f, SFX_BOMB, 3}, // GRENADE
     {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_ROCKET, 7.5f,
-        0.15f, SFX_BOMB}, // GRENADE LAUNCHER
+        0.15f, SFX_BOMB, 3}, // GRENADE LAUNCHER
     {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_ROCKET, 7.5f,
-        0.15f, SFX_BOMB}, // HAMMER HEAD
+        0.15f, SFX_BOMB, 3}, // HAMMER HEAD
     {WEAPON_TYPE_EXPLOSIVE, FIRE_SINGLE, 1, 10, 20, BULLET_ROCKET, 7.5f,
-        0.15f, SFX_BOMB}, // HYDRA
+        0.15f, SFX_BOMB, 3}, // HYDRA
     {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f,
-        SFX_WP_LASER_BLASTER}, // BLASTER
+        SFX_WP_LASER_BLASTER, 3}, // BLASTER
     {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f,
-        SFX_WP_LASER_REGULATOR}, // REGULATOR
+        SFX_WP_LASER_REGULATOR, 3}, // REGULATOR
     {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f,
-        SFX_WP_LASER_ZAPCANNON}, // PHASER
+        SFX_WP_LASER_ZAPCANNON, 3}, // PHASER
     {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f,
-        SFX_WP_LASER_ZAPCANNON}, // ZAP CANNON
+        SFX_WP_LASER_ZAPCANNON, 3}, // ZAP CANNON
     {WEAPON_TYPE_LASER, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f,
-        SFX_WP_LASER_ZAPCANNON}, // RAYGUN
+        SFX_WP_LASER_ZAPCANNON, 3}, // RAYGUN
     {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 2.5f, 0.15f,
-        SFX_WP_MELEE_AXELOTL}, // AXELOTL
+        SFX_WP_MELEE_AXELOTL, 3}, // AXELOTL
     {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_KATANA, 2.5f, 0.15f,
-        SFX_WP_KATANA}, // KATANA
+        SFX_WP_KATANA, 3}, // KATANA
     {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 2.5f, 0.15f,
-        SFX_WP_MELEE_BEHEADER}, // BEHEADER
+        SFX_WP_MELEE_BEHEADER, 3}, // BEHEADER
     {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MELEE, 2.5f, 0.15f,
-        SFX_WP_KNIFE}, // SCYTHE
+        SFX_WP_KNIFE, 3}, // SCYTHE
     {WEAPON_TYPE_MELEE, FIRE_SINGLE, 0, 10, 20, BULLET_MOTORBLADE, 2.5f,
-        0.15f, SFX_WP_KNIFE}, // MOTOR BLADE
+        0.15f, SFX_WP_KNIFE, 3}, // MOTOR BLADE
     {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f,
-        SFX_WP_BERETTA}, // POND EAGLE
+        SFX_WP_BERETTA, 3}, // POND EAGLE
     {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f,
-        SFX_WP_BERETTA}, // TACTIC GUN
+        SFX_WP_BERETTA, 3}, // TACTIC GUN
     {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f,
-        SFX_WP_TADPOLES}, // TADPOLES
+        SFX_WP_TADPOLES, 3}, // TADPOLES
     {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f,
-        SFX_WP_RATVOLVER}, // RATVOLVER
+        SFX_WP_RATVOLVER, 3}, // RATVOLVER
     {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 20, 10, 20, BULLET_PISTOL, 2.5f, 0.15f,
-        SFX_WP_BERETTA}, // WINGERS
+        SFX_WP_BERETTA, 3}, // WINGERS
     {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 20, 10, 20, BULLET_AK, 2.5f,
-        0.15f, SFX_WP_AK}, // AK
+        0.15f, SFX_WP_AK, 3}, // AK
     {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 20, 10, 20, BULLET_AK, 2.5f,
-        0.15f, SFX_WP_CARBINE}, // KARBINE
+        0.15f, SFX_WP_CARBINE, 3}, // KARBINE
     {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 20, 10, 20, BULLET_AK, 2.5f,
-        0.15f, SFX_WP_AK}, // COWPUP
+        0.15f, SFX_WP_AK, 3}, // COWPUP
     {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 20, 10, 20, BULLET_AK, 2.5f,
-        0.15f, SFX_WP_RIFLE_SUPER}, // SUPER SHOOTER
+        0.15f, SFX_WP_RIFLE_SUPER, 3}, // SUPER SHOOTER
     {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 20, 10, 20, BULLET_AK, 2.5f,
-        0.15f, SFX_WP_AK}, // BIG AK
+        0.15f, SFX_WP_AK, 3}, // BIG AK
     {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f,
-        0.15f, SFX_WP_SHOTGUN}, // SAWED OFF
+        0.15f, SFX_WP_SHOTGUN, 3}, // SAWED OFF
     {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f,
-        0.15f, SFX_WP_SHOTGUN}, // SCATTERER
+        0.15f, SFX_WP_SHOTGUN, 3}, // SCATTERER
     {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f,
-        0.15f, SFX_WP_SHOTGUN}, // MOSSTOAD
+        0.15f, SFX_WP_SHOTGUN, 3}, // MOSSTOAD
     {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f,
-        0.15f, SFX_WP_SPAS}, // TURBO SHOTGUN
+        0.15f, SFX_WP_SPAS, 3}, // TURBO SHOTGUN
     {WEAPON_TYPE_SHOTGUN, FIRE_SINGLE, 20, 10, 20, BULLET_SHOTGUN, 2.5f,
-        0.15f, SFX_WP_DOOM}, // DOOMGUN
+        0.15f, SFX_WP_DOOM, 3}, // DOOMGUN
     {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f, 0.15f,
-        SFX_WP_UZI}, // UZI
+        SFX_WP_UZI, 3}, // UZI
     {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f, 0.15f,
-        SFX_WP_UZI}, // PEW PEWER
+        SFX_WP_UZI, 3}, // PEW PEWER
     {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f, 0.15f,
-        SFX_WP_MP5}, // VERMINATOR
+        SFX_WP_MP5, 3}, // VERMINATOR
     {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f, 0.15f,
-        SFX_WP_P90}, // B BANGER
+        SFX_WP_P90, 3}, // B BANGER
     {WEAPON_TYPE_SMG, FIRE_SINGLE, 20, 10, 20, BULLET_SMG, 2.5f, 0.15f,
-        SFX_WP_GATLING}, // GOTORINGA
+        SFX_WP_GATLING, 3}, // GOTORINGA
     {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f, 0.15f,
-        SFX_WP_RIFLE}, // HOGGEN
+        SFX_WP_RIFLE, 3}, // HOGGEN
     {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f, 0.15f,
-        SFX_WP_KALAS}, // KALAS
+        SFX_WP_KALAS, 3}, // KALAS
     {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f, 0.15f,
-        SFX_WP_RIFLE}, // CRABBER
+        SFX_WP_RIFLE, 3}, // CRABBER
     {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f, 0.15f,
-        SFX_WP_RIFLE}, // SUC 2
+        SFX_WP_RIFLE, 3}, // SUC 2
     {WEAPON_TYPE_SNIPER, FIRE_SINGLE, 20, 10, 20, BULLET_SNIPER, 2.5f, 0.15f,
-        SFX_WP_RIFLE}, // BAS
+        SFX_WP_RIFLE, 3}, // BAS
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -288,5 +289,11 @@ void update_all_bullets(void);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 weapon_enum_t search_weapon(actor_t *act);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Update the state and position of every bullet in the Pool.
+///
+///////////////////////////////////////////////////////////////////////////////
+int check_weapon_ammo(weapon_enum_t weapon);
 
 #endif /* !WEAPONS_H_ */

@@ -59,7 +59,7 @@ weapon_enum_t search_weapon(actor_t *act)
         if (act == Entities.array[i]->actor && act != Player.ref)
             return (Entities.array[i]->weapon);
     }
-    return (0);
+    return (-1);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

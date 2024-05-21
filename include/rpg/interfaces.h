@@ -148,4 +148,7 @@ void draw_levitating_logo(void);
 ///////////////////////////////////////////////////////////////////////////////
 void print_debug_information(void);
 
+void change_player(cstring_t axo_name, uint_t id);
+void update_hud(void);
+
 #endif /* !INTERFACES_H_ */

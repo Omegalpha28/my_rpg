@@ -44,8 +44,24 @@ typedef enum attack_types_e {
     Jumper,
     Bomber,
     sniper,
+    Boss,
     ATTACK_COUNT,
 }attack_types_t;
+
+typedef enum boss_index_e {
+    BOSS_Crabington,
+    BOSS_Cthulu,
+    BOSS_COUNT,
+} boss_index_t;
+
+typedef enum Boss_attack_types_e {
+    DASH_ATTACK,
+    MOUTH_BLASTER,
+    BUBBLE_DOME,
+    BULLET_HELL,
+    SPIKE_TRAP,
+    BOSS_ATTACK_COUNT,
+} Boss_attack_types_t;
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -70,51 +86,21 @@ typedef struct entity_s {
     bool_t attack_started;
     weapon_enum_t weapon;
     uint_t movement;
+    int attack_amount;
+    Boss_attack_types_t attack_list[MAX_ATTACK];
+    int bstat_pos;
+    int curr_phase;
 } entity_t;
 
 
-typedef enum boss_index_e {
-    BOSS_Crabington,
-    BOSS_Cthulu,
-    BOSS_COUNT,
-} boss_index_t;
-
-typedef enum Boss_attack_types_e {
-    DASH_ATTACK,
-    MOUTH_BLASTER,
-    BUBBLE_DOME,
-    BULLET_HELL,
-    SPIKE_TRAP,
-    BOSS_ATTACK_COUNT,
-} Boss_attack_types_t;
-
-typedef struct Boss_list_s {
-    actor_t *actor;
-    ulong_t last_action;
-    float speed;
-    bool_t is_attack;
-    bool_t can_attack;
-    uint_t cooldown;
-    uint_t movement;
-    int attack_amount;
-    uint_t dizzy;
-    int bstat_position;
-    Boss_attack_types_t attack_list[MAX_ATTACK];
-    int curr_phase;
-} boss_t;
-
 typedef struct Boss_stat_s {
     int attack_amount;
-    float speed;
-    int health;
-    int creature_id;
-    uint_t dizzy;
     Boss_attack_types_t attack_list[MAX_ATTACK];
 } Boss_stats_t;
 
 static const Boss_stats_t B_Stats[BOSS_COUNT] = {
-    {3, 5, 100, 2, 3000, {0, 1, 2}},    //Crabington
-    {5, 0, 100, 0, 0, {0, 1, 2, 3, 4}}, //Cthulu
+    {3, {DASH_ATTACK, MOUTH_BLASTER, BUBBLE_DOME}},
+    {5, {DASH_ATTACK, MOUTH_BLASTER, BUBBLE_DOME, BULLET_HELL, SPIKE_TRAP}},
 };
 
 
@@ -124,9 +110,7 @@ static const Boss_stats_t B_Stats[BOSS_COUNT] = {
 ///////////////////////////////////////////////////////////////////////////////
 extern struct entity_list_s {
     entity_t **array;
-    boss_t **boss_array;
     int count;
-    int bcount;
     entity_t *toRemove[ENTITY_REMOVE];
 } Entities;
 
@@ -153,7 +137,7 @@ typedef struct creature_stats_s {
 static const creature_stats_t Stats[CREATURE_COUNT] = {
     {100, 0, 0, 0, 0, 0, 0},                        //player
     {100, 0.7, 0, 0, Bomber, 1000, 1},              //duck
-    {100, 0.5, 0, 100, Dash, 3000, 11},             //crab boss
+    {100, 0.5, 0, 100, Boss, 3000, 11},             //crab boss
     {100, 0.4f, 65.0f, 100.0f, sniper, 0, 35},      //bald rat
     {100, 0, 0, 0, 0, 0, 0},                        //dummy
     {100, 0, 0, 0, Dash, 3000, 36},                 //baby crab (elite)
@@ -265,37 +249,16 @@ void update_collisions(void);
 
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief Create a new boss based on a creature and a position
-///
-/// \param creature     The reference creature for the actor
-/// \param position     The default position of the actor
-///
-/// \return The newly created boss.
-///
-///////////////////////////////////////////////////////////////////////////////
-boss_t *boss_create(creature_t *creature, v2f_t position);
-
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Remove a boss from the list
-///
-/// \param ent          The entity to remove
-///
-///////////////////////////////////////////////////////////////////////////////
-void remove_boss(boss_t *ent);
-
-
-///////////////////////////////////////////////////////////////////////////////
 /// \brief Does all movement checks for the bosses.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void boss_movement(boss_t *boss);
+void boss_movement(entity_t *boss);
 
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Does all action checks for the bosses.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void boss_action(boss_t *boss);
+void boss_action(entity_t *boss);
 
 #endif /* !ENTITY_H_ */

@@ -10,22 +10,19 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-///////////////////////////////////////////////////////////////////////////////
-static void mob_update(entity_t *evil)
-{
-    if (evil->actor->damaged)
-        return;
-    enemy_movement(evil);
-    enemy_action(evil);
-}
 
 ///////////////////////////////////////////////////////////////////////////////
-static void boss_update(boss_t *evil)
+static void entity_update(entity_t *evil)
 {
     if (evil->actor->damaged)
         return;
-    boss_movement(evil);
-    boss_action(evil);
+    if (evil->attack_types == Boss){
+        boss_movement(evil);
+        boss_action(evil);
+    } else {
+        enemy_movement(evil);
+        enemy_action(evil);
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -35,11 +32,6 @@ void update_entity(void)
         health_examination(Entities.array[i]);
         if (Entities.array[i]->actor->dead)
             continue;
-        mob_update(Entities.array[i]);
-    }
-    for (int i = 0; i < Entities.bcount; i++){
-        if (Entities.boss_array[i]->actor->dead)
-            continue;
-        boss_update(Entities.boss_array[i]);
+        entity_update(Entities.array[i]);
     }
 }

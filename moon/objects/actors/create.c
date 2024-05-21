@@ -32,6 +32,7 @@ static void actor_init(actor_t *act, creature_t *creature, v2f_t position)
     act->invincible = false;
     act->damaged = false;
     act->dead = false;
+    act->shield = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

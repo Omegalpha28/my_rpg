@@ -16,9 +16,9 @@
     #include "moon/macros.h"
     #include "moon/maths.h"
     #include "moon/window.h"
+    #include "moon/assets.h"
     #include "moon/engine.h"
     #include "moon/error.h"
-    #include "moon/assets.h"
     #include "moon/objects.h"
     #include "my.h"
 

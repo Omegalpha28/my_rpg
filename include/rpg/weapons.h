@@ -294,6 +294,7 @@ weapon_enum_t search_weapon(actor_t *act);
 /// \brief Update the state and position of every bullet in the Pool.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-int check_weapon_ammo(weapon_enum_t weapon);
+int check_weapon_ammo(weapon_enum_t weapon, sfMouseButtonEvent evt,
+    bool_t pressed);
 
 #endif /* !WEAPONS_H_ */

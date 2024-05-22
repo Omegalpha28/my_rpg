@@ -153,6 +153,7 @@ static void draw_hud(void)
     print_debug_information();
     draw_health();
     draw_comp();
+    draw_weapon_only();
     draw_visor();
     draw_fade();
 }

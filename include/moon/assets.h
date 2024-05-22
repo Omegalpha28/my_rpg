@@ -527,7 +527,7 @@ static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
     DIR_UI"/common/bases/metal/box02.png",
     DIR_UI"/common/bases/paper/base_idle.png",
     DIR_UI"/HUD/health.png",
-    DIR_UI"/HUD/abilities.png"
+    DIR_UI"/HUD/abilities.png",
 };
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -30,6 +30,17 @@ void level_tutorial_actors(uint_t level)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void prepare_tutorial_level(sfMusic *music)
+{
+    end_music();
+    sfMusic_setVolume(music, clampf(Setting.master *
+        (Setting.music / 100.0f) * 0.1f, 0.0f, 100.0f));
+    sfMusic_play(music);
+    Player.ref->health -= 1;
+    Player.ref->charges = 4;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 bool_t level_tutorial(void)
 {
     uint_t level = Engine.level;
@@ -41,12 +52,8 @@ bool_t level_tutorial(void)
     }
     if (level < 1 || level > 7 || !level_load(LEVELS[level - 1]))
         return (false);
-    if (level == 1) {
-        end_music();
-        sfMusic_setVolume(music, clampf(Setting.master *
-            (Setting.music / 100.0f) * 0.1f, 0.0f, 100.0f));
-        sfMusic_play(music);
-    }
+    if (level == 1)
+        prepare_tutorial_level(music);
     if (level != 1)
         level_tutorial_actors(level);
     return (true);

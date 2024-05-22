@@ -476,6 +476,7 @@ typedef enum ui_element_e {
     UI_BASE_NAME,
     UI_HEALTH,
     UI_ABILITIES,
+    UI_WEAPON,
     UI_ELEMENT_COUNT
 } ui_element_t;
 
@@ -527,7 +528,8 @@ static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
     DIR_UI"/common/bases/metal/box02.png",
     DIR_UI"/common/bases/paper/base_idle.png",
     DIR_UI"/HUD/health.png",
-    DIR_UI"/HUD/abilities.png"
+    DIR_UI"/HUD/abilities.png",
+    DIR_UI"/HUD/weapons_box.png"
 };
 
 ///////////////////////////////////////////////////////////////////////////////

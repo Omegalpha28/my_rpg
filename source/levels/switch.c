@@ -37,6 +37,15 @@ static void reset_player_behavior(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void reset_vfx_pool(void)
+{
+    for (uint_t i = 0; i < Pool.effectCount; i++) {
+        effect_destroy(Pool.effects[i]);
+        i--;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void end_music(void)
 {
     for (uint_t i = 0; i < Assets.musicCount; i++)
@@ -48,6 +57,7 @@ void switch_level(void)
 {
     Engine.fadeStart = Time.currentTime;
     reset_player_behavior();
+    reset_vfx_pool();
     clear_entities();
     level_tutorial();
     level_hub();

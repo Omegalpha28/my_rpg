@@ -27,6 +27,9 @@ void level_tutorial_actors(uint_t level)
     if (level == 2)
         entity_create(Assets.creatures[CREATURE_CINNAMON_RAT],
             V2F(0.0f, -225.0f));
+    if (level == 4)
+        entity_create(Assets.creatures[CREATURE_DUCK],
+            V2F(0.0f, -225.0f));
 }
 
 ///////////////////////////////////////////////////////////////////////////////

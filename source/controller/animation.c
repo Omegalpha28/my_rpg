@@ -11,12 +11,36 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+static effect_t *search_effect(cstring_t name)
+{
+    for (uint_t i = 0; i < Pool.effectCount; i++) {
+        if (CMP(Pool.effects[i]->self->name, name))
+            return (Pool.effects[i]);
+    }
+    return (NULL);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void use_competence(void)
 {
-    if (Player.ref->charges == 5 && Player.ref->health <
+    v2f_t vec = Player.velocity;
+
+    if (!HEAL || vec.x != 0.0f || vec.y != 0.0f || DANCE || DASH ||
+        Player.ref->charges != 5 || Player.ref->health ==
         (int)Assets.axolotl[Player.ref->variantId]->maxHealth) {
+        HEAL = false;
+        effect_destroy(search_effect("snack"));
+        return;
+    }
+    if (search_effect("snack") == NULL)
+        sfSprite_setScale(effect("snack", Player.ref->position, false)->sprite,
+            V2F1(0.5f));
+    actor_set_anim(Player.ref, "eat");
+    if (Player.ref->done) {
         Player.ref->health++;
         Player.ref->charges = 0;
+        HEAL = false;
+        actor_set_anim(Player.ref, "idle");
     }
 }
 
@@ -35,12 +59,13 @@ void player_movement(void)
     get_last_input();
     Player.velocity = multiply2f(normalize2f(Player.velocity),
         V2F1(Time.deltaTime / 15));
-    if (!DASH && !DANCE)
+    if (!DASH && !DANCE && !HEAL)
         actor_set_anim(Player.ref, (Player.velocity.x != 0.0f ||
             Player.velocity.y != 0.0f) ? "walk" : "idle");
     if (DANCE)
         actor_set_anim(Player.ref, "dance");
     dash_movement();
+    use_competence();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -87,9 +87,9 @@ void check_level_end(void)
     prop_t **doors = NULL;
     uint_t n = 0;
 
-    check_opening_animation();
-    if (Entities.count != -1)
+    if (Entities.count > 0 || (Engine.level == 3 && Player.ref->charges > 4))
         return;
+    check_opening_animation();
     doors = get_doors_prop(&(n));
     for (uint_t i = 0; i < n && Entities.count == -1; i++)
         check_door_collision(doors[i]);

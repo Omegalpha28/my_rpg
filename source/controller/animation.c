@@ -29,14 +29,15 @@ void use_competence(void)
         Player.ref->charges != 5 || Player.ref->health ==
         (int)Assets.axolotl[Player.ref->variantId]->maxHealth) {
         HEAL = false;
-        effect_destroy(search_effect("snack"));
+        if (!(search_effect("snack") != NULL && Player.ref->charges == 0))
+            effect_destroy(search_effect("snack"));
         return;
     }
     if (search_effect("snack") == NULL)
         sfSprite_setScale(effect("snack", Player.ref->position, false)->sprite,
             V2F1(0.5f));
     actor_set_anim(Player.ref, "eat");
-    if (Player.ref->done) {
+    if ((Time.currentTime - Player.ref->time) > (DEFAULT_CREATURE_FR * 12)) {
         Player.ref->health++;
         Player.ref->charges = 0;
         HEAL = false;

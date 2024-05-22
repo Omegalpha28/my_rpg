@@ -25,4 +25,5 @@ void parse_events(sfEvent evt)
         Player.num_shoot = 0;
         Player.weapon++;
     }
+    Player.inventor[1] = Player.weapon;
 }

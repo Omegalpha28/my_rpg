@@ -76,6 +76,7 @@
     #define LEFT Setting.left.pressed
     #define DASH Setting.dash.pressed
     #define DANCE Setting.dance.pressed
+    #define HEAL Setting.heal.pressed
     #define MOVE (UP || DOWN || RIGHT || LEFT)
     #define SPEED 16.5f
     #define HOVER Setting.hover

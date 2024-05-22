@@ -160,17 +160,16 @@ typedef struct creature_stats_s {
 static const creature_stats_t Stats[CREATURE_COUNT] = {
     {100, 0, 0, 0, 0, 0, 0, 0, 1},                        //player
     {100, 0.7, 0, 0, Bomber, 1000, 1, 3000, 1},              //duck
-    {100, 0.5, 0, 100, Boss, 3000, -1, 1000, 1},             //crab boss
-    {100, 0.4f, 65.0f, 100.0f, Sniper, 0, 35, 4000, 1},      //bald rat
+    {600, 0.5, 0, 100, Boss, 3000, -1, 1000, 1},             //crab boss
+    {40, 0.4f, 300.0f, 400.0f, Sniper, 0, 35, 4000, 1},      //bald rat
     {100, 0, 0, 0, 0, 0, 0, 0, 1},                        //dummy
     {100, 0, 0, 0, Dash, 3000, 36, 2000, 1},              //baby crab (elite)
     {30, 0.5f, 0.0f, 100.0f, Dash, 0, 12, 0, 0},          //caterkillah
-    {100, 0.4f, 50.0f, 100.0f, Shooter, 0, WEAPON_PISTOL_REVOLVER,
-        3000, 1},     //cinnamon rat
-    {100, 0.5f, 50.0f, 100.0f, Jumper, 0, 14, 2000, 1},      //baby caiman
-    {100, 0.4f, 125.0f, 175.0f, Shooter, 0, 29, 3000, 5},    //elite racoon
-    {100, 0.4f, 100.0f, 150.0f, Shooter, 0, 31, 2000, 1},    //elite fox
-    {100, 0.4f, 60.0f, 100.0f, Shooter, 0, 5, 2000, 1},      //Brat
+    {50, 0.4f, 100.0f, 120.0f, Shooter, 0, 45, 3000, 1},     //cinnamon rat
+    {30, 0.5f, 100.0f, 120.0f, Jumper, 0, 14, 2000, 1},      //baby caiman
+    {100, 0.4f, 225.0f, 250.0f, Shooter, 0, 29, 3000, 5},    //elite racoon
+    {100, 0.4f, 125.0f, 150.0f, Shooter, 0, 31, 2000, 1},    //elite fox
+    {40, 0.4f, 100.0f, 120.0f, Shooter, 0, 5, 2000, 1},      //Brat
 };
 
 
@@ -255,6 +254,7 @@ v2f_t flee_rand_pos(v2f_t origin, int min_range, int max_range);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void health_examination(entity_t *evil);
+
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Calls upon all possible acion branch.

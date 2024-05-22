@@ -11,6 +11,19 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+static void spawn_flare(bullet_t *new)
+{
+    bullet_list_t blt = WEAPON_STATS[new->weapon].bulletType;
+    effect_t *eff = NULL;
+
+    if (blt == BULLET_MELEE || blt == BULLET_KATANA || blt == BULLET_ARROW)
+        return;
+    eff = effect("ak_fire", endpoint2f(new->origin,
+        new->destination, 10.0f), false);
+    sfSprite_setRotation(eff->sprite, new->rotation);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void init_new_bullet(bullet_t *new, actor_t *sender, v2f_t direction,
     weapon_t wp)
 {
@@ -31,6 +44,7 @@ static void init_new_bullet(bullet_t *new, actor_t *sender, v2f_t direction,
     new->rotation = atan2(new->destination.y - new->origin.y,
         new->destination.x - new->origin.x) * (180.0f / M_PI);
     sfSprite_setRotation(new->sprite, new->rotation);
+    spawn_flare(new);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

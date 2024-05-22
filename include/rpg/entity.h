@@ -164,7 +164,8 @@ static const creature_stats_t Stats[CREATURE_COUNT] = {
     {100, 0, 0, 0, 0, 0, 0, 0},                        //dummy
     {100, 0, 0, 0, Dash, 3000, 36, 2000},                 //baby crab (elite)
     {30, 0.5f, 0.0f, 100.0f, Dash, 0, 12, 0},          //caterkillah
-    {100, 0.4f, 50.0f, 100.0f, Shooter, 0, 26, 1000},     //cinnamon rat
+    {100, 0.4f, 50.0f, 100.0f, Shooter, 0, WEAPON_PISTOL_REVOLVER,
+        1000}, //cinnamon rat
     {100, 0.5f, 50.0f, 100.0f, Jumper, 0, 14, 2000},      //baby caiman
     {100, 0.4f, 125.0f, 175.0f, Shooter, 0, 29, 1000},    //elite racoon
     {100, 0.4f, 100.0f, 150.0f, Shooter, 0, 31, 1500},    //elite fox

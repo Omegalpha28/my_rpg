@@ -72,6 +72,18 @@ static void check_min_flag(int argc, warray_t argv, uint_t *i)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void check_program_map(int argc, warray_t argv)
+{
+    if (Engine.scene != SCENE_LEVEL_EDITOR)
+        return;
+    for (uint_t i = 1; i < (uint_t)argc; i++) {
+        if (argv[i][0] == '-')
+            continue;
+        level_load(argv[i]);
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void check_program_flags(int argc, warray_t argv)
 {
     if (argc == 1)
@@ -82,4 +94,5 @@ void check_program_flags(int argc, warray_t argv)
         if (argv[i][0] == '-' && argv[i][1] != '-')
             check_min_flag(argc, argv, &(i));
     }
+    check_program_map(argc, argv);
 }

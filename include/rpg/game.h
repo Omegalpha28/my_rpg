@@ -32,6 +32,9 @@ extern struct player_s {
     float speed;
     uint_t num_shoot;
     uint_t shoot_time;
+    uint_t diamondCount;
+    uint_t cookieCount;
+    uint_t happinessCount;
 } Player;
 
 ///////////////////////////////////////////////////////////////////////////////

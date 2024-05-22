@@ -18,8 +18,6 @@
     #define CTHULU_TODO 3
 
 
-
-
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief All possible status' for entities
 ///
@@ -41,19 +39,32 @@ typedef enum status_e {
 typedef enum attack_types_e {
     Dash,
     Shooter,
+    Shotgunner,
     Jumper,
     Bomber,
-    sniper,
+    Sniper,
     Boss,
     ATTACK_COUNT,
 }attack_types_t;
 
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief enumeration of all bosses.
+///
+///////////////////////////////////////////////////////////////////////////////
 typedef enum boss_index_e {
     BOSS_Crabington,
     BOSS_Cthulu,
     BOSS_COUNT,
 } boss_index_t;
 
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief enumeration of all possible attack types for bosses.
+///
+///////////////////////////////////////////////////////////////////////////////
 typedef enum Boss_attack_types_e {
     DASH_ATTACK,
     MOUTH_BLASTER,
@@ -90,14 +101,24 @@ typedef struct entity_s {
     Boss_attack_types_t attack_list[MAX_ATTACK];
     int bstat_pos;
     int curr_phase;
+    uint_t firerate;
 } entity_t;
 
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Structure stat for boss' attack type.
+///
+///////////////////////////////////////////////////////////////////////////////
 typedef struct Boss_stat_s {
     int attack_amount;
     Boss_attack_types_t attack_list[MAX_ATTACK];
 } Boss_stats_t;
 
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Structure stat for of each -*
+///
+///////////////////////////////////////////////////////////////////////////////
 static const Boss_stats_t B_Stats[BOSS_COUNT] = {
     {3, {DASH_ATTACK, MOUTH_BLASTER, BUBBLE_DOME}},
     {5, {DASH_ATTACK, MOUTH_BLASTER, BUBBLE_DOME, BULLET_HELL, SPIKE_TRAP}},
@@ -127,6 +148,7 @@ typedef struct creature_stats_s {
     attack_types_t attack_types;
     uint_t dizzy;
     enum weapons_enum_e weapon;
+    uint_t firerate;
 } creature_stats_t;
 
 
@@ -135,18 +157,18 @@ typedef struct creature_stats_s {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 static const creature_stats_t Stats[CREATURE_COUNT] = {
-    {100, 0, 0, 0, 0, 0, 0},                        //player
-    {100, 0.7, 0, 0, Bomber, 1000, 1},              //duck
-    {100, 0.5, 0, 100, Boss, 3000, 11},             //crab boss
-    {100, 0.4f, 65.0f, 100.0f, sniper, 0, 35},      //bald rat
-    {100, 0, 0, 0, 0, 0, 0},                        //dummy
-    {100, 0, 0, 0, Dash, 3000, 36},                 //baby crab (elite)
-    {30, 0.5f, 0.0f, 100.0f, Dash, 0, 12},          //caterkillah
-    {100, 0.4f, 50.0f, 100.0f, Shooter, 0, 26},     //cinnamon rat
-    {100, 0.5f, 50.0f, 100.0f, Jumper, 0, 14},      //baby caiman
-    {100, 0.4f, 125.0f, 175.0f, Shooter, 0, 29},    //elite racoon
-    {100, 0.4f, 100.0f, 150.0f, Shooter, 0, 31},    //elite fox
-    {100, 0.4f, 60.0f, 100.0f, Shooter, 0, 5},      //Brat
+    {100, 0, 0, 0, 0, 0, 0, 0},                        //player
+    {100, 0.7, 0, 0, Bomber, 1000, 1, 3000},              //duck
+    {100, 0.5, 0, 100, Boss, 3000, -1, 1000},             //crab boss
+    {100, 0.4f, 65.0f, 100.0f, Sniper, 0, 35, 2000},      //bald rat
+    {100, 0, 0, 0, 0, 0, 0, 0},                        //dummy
+    {100, 0, 0, 0, Dash, 3000, 36, 2000},                 //baby crab (elite)
+    {30, 0.5f, 0.0f, 100.0f, Dash, 0, 12, 0},          //caterkillah
+    {100, 0.4f, 50.0f, 100.0f, Shooter, 0, 26, 1000},     //cinnamon rat
+    {100, 0.5f, 50.0f, 100.0f, Jumper, 0, 14, 2000},      //baby caiman
+    {100, 0.4f, 125.0f, 175.0f, Shooter, 0, 29, 1000},    //elite racoon
+    {100, 0.4f, 100.0f, 150.0f, Shooter, 0, 31, 1500},    //elite fox
+    {100, 0.4f, 60.0f, 100.0f, Shooter, 0, 5, 1000},      //Brat
 };
 
 

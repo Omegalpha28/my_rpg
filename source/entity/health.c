@@ -39,8 +39,10 @@ void health_examination(entity_t *evil)
 {
     actor_t *act = evil->actor;
 
-    if (act->damaged)
-        actor_set_anim(act, "damage");
+    if (act->damaged){
+        if (!actor_set_anim(act, "damage") && !actor_set_sheet(act, "damage"))
+            evil->actor->done = true;
+    }
     if (act->health <= 0 && !act->dead && !act->damaged) {
         sfx(SFX_ENEMY_DEATH);
         act->dead = true;

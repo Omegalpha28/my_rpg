@@ -41,7 +41,7 @@ typedef struct actor_s {
     ulong_t time;
     bool_t done;
     v2f_t old_pos;
-    uint_t health;
+    int health;
     bool_t invincible;
     bool_t damaged;
     bool_t dead;

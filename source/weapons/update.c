@@ -105,6 +105,7 @@ static void check_bullet_collision_actor(bullet_t *bullet, actor_t *actor)
     bullet->state = BULLET_STATE_IMPACT;
     if (actor->dead)
         return;
+    actor->invincible = !actor->invincible;
     actor->health -= (Player.ref == actor) ? 1 :
         WEAPON_STATS[bullet->weapon].damage;
     actor->damaged = true;

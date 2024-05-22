@@ -17,7 +17,7 @@ idle            0       5       DEFAULT     TRUE
 8           2           11          original            assets/creatures/boss-crab/normal/walk.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-idle            0       10      DEFAULT     TRUE
+walk            0       10      DEFAULT     TRUE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 4           3           11          rage                assets/creatures/boss-crab/rage/walk.png
@@ -29,7 +29,7 @@ idle            0       10      DEFAULT     TRUE
 8           9           72          original            assets/creatures/boss-crab/normal/intro.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-idle            0       71      DEFAULT     TRUE
+intro            0       71      DEFAULT     TRUE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 8           9           72          debug               assets/creatures/boss-crab/normal/intro-debug.png
@@ -40,8 +40,19 @@ idle            0       71      DEFAULT     TRUE
 7           7           46          original            assets/creatures/boss-crab/normal/enrage.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-idle            0       45      DEFAULT     TRUE
+enrage            0       45      DEFAULT     TRUE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 7           7           46          debug               assets/creatures/boss-crab/normal/enrage-debug.png
+[END]
+
+[START-death]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           5           20          original            assets/creatures/boss-crab/rage/death.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+death            0       19      DEFAULT     FALSE
+
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           5           20          original            assets/creatures/boss-crab/rage/death-debug.png
 [END]

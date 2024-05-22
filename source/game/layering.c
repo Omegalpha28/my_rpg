@@ -177,7 +177,8 @@ static void drawing_weapons(uint_t i)
         if (weapon != -1)
             draw_weapon(Pool.actors[i], weapon);
     }
-    if (Player.ref == Pool.actors[i] && !under && !(DANCE || DASH))
+    if (Player.ref == Pool.actors[i] && !under && !(DANCE || DASH) &&
+        !Player.ref->dead)
         draw_weapon(Player.ref, Player.weapon);
 }
 

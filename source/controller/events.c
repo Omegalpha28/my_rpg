@@ -17,9 +17,6 @@ void parse_events(sfEvent evt)
         sfRenderWindow_close(Win.self);
     if (evt.type == sfEvtKeyPressed || evt.type == sfEvtKeyReleased)
         parse_key_input(evt.key);
-    if (evt.type == sfEvtMouseButtonPressed ||
-        evt.type == sfEvtMouseButtonReleased)
-        parse_mouse_input(evt.mouseButton);
     if (evt.type == sfEvtKeyPressed && evt.key.code == sfKeyNumpad1) {
         Player.num_shoot = 0;
         Player.weapon--;

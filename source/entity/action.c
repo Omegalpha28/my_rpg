@@ -88,6 +88,9 @@ void enemy_action(entity_t *evil)
         return;
     if (evil->attack_types == Dash)
         dashing(evil);
+    if (distance2f(evil->actor->position, Player.ref->position) >
+        evil->attack_radius)
+        return;
     if (evil->attack_types == Shooter || evil->attack_types == Sniper)
         shooting(evil);
     return;

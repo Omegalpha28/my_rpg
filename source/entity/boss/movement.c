@@ -25,7 +25,7 @@ static recti_t get_actor_box(entity_t *evil)
         sheets[evil->actor->sheetId]->image->mask);
 
     actor.left = evil->actor->position.x;
-    actor.top  = evil->actor->position.y;
+    actor.top = evil->actor->position.y;
     actor.top -= (actor.height / 2.0f);
     actor.left -= (actor.width / 2.0f);
     return (actor);
@@ -48,28 +48,28 @@ static float get_collision_angle(recti_t pr, entity_t *evil)
     }
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////
 static void wall_collision(entity_t *evil, prop_t *prop, v2f_t velocity)
 {
     recti_t pmask = prop->self->image->mask;
-    recti_t prect = {prop->position.x - pmask.width / 2.0f, prop->position.y - pmask.height / 2.0f, pmask.width, pmask.height};
+    recti_t prect = {prop->position.x - pmask.width / 2.0f, prop->position.y -
+        pmask.height / 2.0f, pmask.width, pmask.height};
     recti_t arect = get_actor_box(evil);
     float angle = get_collision_angle(prect, evil);
     v2f_t prop_velocity = subtract2f(evil->actor->position, prop->position);
 
-
     if (!sfIntRect_intersects(&arect, &prect, NULL))
         return;
-    if (angle == 180.0f){
-        if ((velocity.x > 0 && prop_velocity.x > 0) || (velocity.x < 0 && prop_velocity.x < 0))
+    if (angle == 180.0f)
+        if ((velocity.x > 0 && prop_velocity.x > 0) || (velocity.x < 0 &&
+            prop_velocity.x < 0))
             evil->wanted_position.x = -evil->wanted_position.x;
-    } else if (fabs(angle) == 90.0f){
-        if ((velocity.y > 0 && prop_velocity.y > 0) || (velocity.y < 0 && prop_velocity.y < 0))
-            evil->wanted_position.y = -evil->wanted_position.y;
+    if (fabs(angle) == 90.0f){
+        if ((velocity.y > 0 && prop_velocity.y > 0) || (velocity.y < 0 &&
+            prop_velocity.y < 0))
+                evil->wanted_position.y = -evil->wanted_position.y;
     }
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////
 static void bounce_check(entity_t *evil, v2f_t velocity)
@@ -90,9 +90,9 @@ static void idle(entity_t *boss)
     move = movetowards2f(boss->actor->position, boss->wanted_position,
         (boss->speed * Time.deltaTime) / 25);
     velocity = subtract2f(move, boss->actor->position);
-    boss->wanted_position = (v2f_t){boss->actor->position.x + 200.0f, boss->actor->position.y};
+    boss->wanted_position = (v2f_t){boss->actor->position.x + 200.0f,
+        boss->actor->position.y};
     bounce_check(boss, velocity);
-
     boss->actor->position = move;
     actor_set_sheet(boss->actor, velocity.x != 0.0f || velocity.y != 0.0f ?
         "walk" : "idle");

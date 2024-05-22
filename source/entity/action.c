@@ -43,10 +43,19 @@ static void dashing(entity_t *evil)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void shooting(entity_t *evil)
+{
+    if ((Time.currentTime - evil->last_action) < evil->firerate)
+        return;
+    create_bullet(evil->actor, Player.ref->position, evil->weapon);
+    evil->last_action = Time.currentTime;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void enemy_action(entity_t *evil)
 {
-    if (!evil->can_attack &&
-        (Time.currentTime - evil->last_action) >= evil->cooldown){
+    if (!evil->can_attack && (Time.currentTime - evil->last_action) >=
+        evil->cooldown){
         evil->can_attack = !evil->can_attack;
         evil->wanted_position = evil->actor->position;
         evil->attack_started = false;
@@ -55,5 +64,7 @@ void enemy_action(entity_t *evil)
         return;
     if (evil->attack_types == Dash)
         dashing(evil);
+    if (evil->attack_types == Shooter || evil->attack_types == Sniper)
+        shooting(evil);
     return;
 }

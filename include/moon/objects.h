@@ -46,6 +46,7 @@ typedef struct actor_s {
     bool_t damaged;
     bool_t dead;
     uint_t shield;
+    uint_t charges;
 } actor_t;
 
 ///////////////////////////////////////////////////////////////////////////////

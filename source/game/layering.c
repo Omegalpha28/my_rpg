@@ -152,6 +152,7 @@ static void draw_hud(void)
         draw_debug_line(cr);
     print_debug_information();
     draw_health();
+    draw_comp();
     draw_visor();
     draw_fade();
 }

@@ -11,6 +11,13 @@
 #include "moon.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+static void actor_relay(actor_t *act)
+{
+    act->shield = 0;
+    act->charges = 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void actor_init(actor_t *act, creature_t *creature, v2f_t position)
 {
     act->animId = 0;
@@ -32,7 +39,7 @@ static void actor_init(actor_t *act, creature_t *creature, v2f_t position)
     act->invincible = false;
     act->damaged = false;
     act->dead = false;
-    act->shield = 0;
+    actor_relay(act);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

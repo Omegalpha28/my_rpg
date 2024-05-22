@@ -35,7 +35,7 @@ bool_t level_tutorial(void)
     uint_t level = Engine.level;
     sfMusic *music = find_music("i-m-hungry");
 
-    if (level == 8 || level)
+    if (level == 8)
         Engine.level = 0;
     if (level < 1 || level > 7 || !level_load(LEVELS[level - 1]))
         return (false);

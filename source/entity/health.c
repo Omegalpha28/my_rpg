@@ -26,6 +26,7 @@ static void termination(entity_t *evil)
         return;
     }
     evil->actor->draw = !evil->actor->draw;
+    Player.ref->charges += Player.ref->charges < 5 ? 1 : 0;
     for (uint_t i = 0; i < ENTITY_REMOVE; i++) {
         if (Entities.toRemove[i] != NULL)
             continue;

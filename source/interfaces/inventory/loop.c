@@ -40,7 +40,7 @@ static void display_info(axolotles_t *disp, uint_t id)
     snprintf(buff, 11, "Shields %d", disp->shields);
     draw_text_center(buff, V2F(Win.width / 4 * 3,
         Win.height / 2 - move * 8), 0.35f, sfWhite);
-    if (Engine.level == 1 && disp->grown == AXO_ADULT)
+    if (Engine.level == 0 && disp->grown == AXO_ADULT)
         change_player(disp->name, id);
 }
 

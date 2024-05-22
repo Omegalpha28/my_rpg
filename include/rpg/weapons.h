@@ -34,6 +34,7 @@ typedef enum weapon_type_e {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef enum weapons_enum_e {
+    WEAPON_NO = -1,
     WEAPON_EXPLOSIVE_BUCCANEER,
     WEAPON_EXPLOSIVE_GRENADE,
     WEAPON_EXPLOSIVE_G_LAUNCHER,

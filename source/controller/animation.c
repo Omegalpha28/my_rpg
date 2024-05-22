@@ -13,8 +13,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 void use_competence(void)
 {
-    if (Player.ref->health < Assets.axolotl[Player.ref->variantId]->maxHealth
-        && Player.ref->charges == 5) {
+    if (Player.ref->charges == 5 && Player.ref->health <
+        (int)Assets.axolotl[Player.ref->variantId]->maxHealth) {
         Player.ref->health++;
         Player.ref->charges = 0;
     }

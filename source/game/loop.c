@@ -13,7 +13,9 @@
 ///////////////////////////////////////////////////////////////////////////////
 static void update(void)
 {
-    player_movement();
+    if (!Player.ref->damaged && !Player.ref->dead)
+        player_movement();
+    check_player_health();
     update_entity();
     update_collisions();
     update_shaking();

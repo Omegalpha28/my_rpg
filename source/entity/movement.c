@@ -44,7 +44,7 @@ static void patrolling(entity_t *evil)
 
     if (dist2f(evil->actor->position, Player.ref->position) <= evil->insight
         && evil->attack_types != Bomber) {
-        evil->status = evil->attack_types == sniper ? ranger : Agressive;
+        evil->status = evil->attack_types == Sniper ? ranger : Agressive;
         return;
     }
     patrol_position_calc(evil);

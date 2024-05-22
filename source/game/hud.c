@@ -30,7 +30,7 @@ void draw_health(void)
 
     sfSprite_setTexture(health, Assets.ui[UI_HEALTH]->self, false);
     sfSprite_setTextureRect(health, rect);
-    for (; i < Player.ref->health; i++)
+    for (; (int)i < Player.ref->health; i++)
         draw_health_relay(i, health);
     rect.left = 100;
     sfSprite_setTextureRect(health, rect);

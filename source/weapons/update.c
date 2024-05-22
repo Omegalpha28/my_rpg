@@ -103,11 +103,11 @@ static void check_bullet_collision_actor(bullet_t *bullet, actor_t *actor)
         return;
     bullet->img = Assets.bullets[stat.impactEnemy];
     bullet->state = BULLET_STATE_IMPACT;
-    if (actor->invincible)
+    if (actor->dead)
         return;
-    actor->health -= WEAPON_STATS[bullet->weapon].damage;
+    actor->health -= (Player.ref == actor) ? 1 :
+        WEAPON_STATS[bullet->weapon].damage;
     actor->damaged = true;
-    actor->invincible = true;
     if (rand() % 3 == 0)
         sfx(SFX_ENEMY_HURT);
 }

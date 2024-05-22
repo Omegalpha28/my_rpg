@@ -14,17 +14,18 @@
 static void draw_magazine(weapon_enum_t weap, v2f_t pos, float scale_y,
     bool_t prim)
 {
-    char nb[3];
-    char max[4];
+    char nb[4];
+    char max[5];
 
-    snprintf(nb, 3, "%u", WEAPON_STATS[weap].ammoPerMag - Player.num_shoot);
-    if (Player.max_bullet < WEAPON_STATS[weap].ammoPerMag && !prim)
-        snprintf(nb, 3, "%u", Player.max_bullet - Player.num_shoot);
+    if (weap == Player.inventor[0])
+        snprintf(nb, 4, "%u", Player.mag[0]);
+    else
+        snprintf(nb, 4, "%u", Player.mag[1]);
     draw_text_center(nb, pos, 0.30f, sfWhite);
-    snprintf(max, 4, "%u", Player.max_bullet);
     if (prim)
         return (draw_text_center("inf", V2F(pos.x, pos.y + 24.0f * scale_y),
             0.30f, sfWhite));
+    snprintf(max, 5, "%u", Player.max_bullet);
     draw_text_center(max, V2F(pos.x, pos.y + 24.0f * scale_y), 0.30f, sfWhite);
 }
 

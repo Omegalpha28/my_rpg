@@ -30,6 +30,7 @@ extern struct player_s {
     v2f_t viewCenter;
     weapon_enum_t weapon;
     weapon_enum_t inventor[2];
+    uint_t mag[2];
     uint_t max_bullet;
     float speed;
     uint_t num_shoot;

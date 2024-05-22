@@ -29,8 +29,8 @@ void load_save(uint_t id)
 {
     FILE *fd = NULL;
     char filename[32];
-    check_save_folder();
 
+    check_save_folder();
     if (!exist_save(id))
         return;
     snprintf(filename, 32, "playerData/save%u.bin", id);

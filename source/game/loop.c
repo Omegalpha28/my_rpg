@@ -14,22 +14,22 @@
 static void check_shoot(void)
 {
     v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
-    bool_t pressed = MPRESSED(Setting.shoot);
     uint_t reload_time = WEAPON_STATS[Player.weapon].reload_time * 1000;
     uint_t firerate = WEAPON_STATS[Player.weapon].firerate * 1000;
+    uint_t mag = Player.weapon == Player.inventor[0] ? 0 : 1;
+    uint_t maxmag = WEAPON_STATS[Player.weapon].ammoPerMag;
 
-    if (!pressed || DANCE || DASH ||
-        (Time.currentTime - Player.shoot_time) < firerate ||
+    if ((Time.currentTime - Player.shoot_time) < firerate ||
         ((Time.currentTime - Player.shoot_time) < reload_time &&
-        Player.num_shoot > WEAPON_STATS[Player.weapon].ammoPerMag))
+        Player.mag[mag] == 0) || !MPRESSED(Setting.shoot) || DANCE || DASH ||
+        (Player.weapon == Player.inventor[1] && Player.max_bullet == 0))
         return;
-    Player.num_shoot++;
     if (!((Time.currentTime - Player.shoot_time) < reload_time) &&
-        Player.num_shoot > WEAPON_STATS[Player.weapon].ammoPerMag)
-        Player.num_shoot = 0;
-    if (Player.num_shoot == WEAPON_STATS[Player.weapon].ammoPerMag &&
-        WEAPON_STATS[Player.weapon].bulletType != BULLET_MELEE)
-        return;
+        Player.mag[mag] == 0)
+        Player.mag[mag] = mag == 1 && Player.max_bullet < maxmag ?
+            Player.max_bullet : maxmag;
+    Player.mag[mag]--;
+    Player.max_bullet -= Player.weapon == Player.inventor[1] ? 1 : 0;
     Player.shoot_time = Time.currentTime;
     create_bullet(Player.ref, cr, Player.weapon);
 }

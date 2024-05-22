@@ -179,7 +179,6 @@ void inventory_loop(void)
             Engine.scene = SCENE_GAME;
     }
     Setting.hover = false;
-    draw();
     draw_bacs();
     draw_slots();
     draw_cursor();

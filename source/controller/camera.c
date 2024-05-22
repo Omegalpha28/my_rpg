@@ -40,45 +40,14 @@ void camera_move(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-float ease_in_out_circle(float t)
-{
-    if (t < 0.5f)
-        return (1 - sqrt(1 - 2 * t)) * 0.5f;
-    else
-        return (1 + sqrt(2 * t - 1)) * 0.5f;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-v2f_t cursor_cap(void)
-{
-    v2f_t max_cam = {0.0f, 0.0f};
-    v2f_t mouse = Player.ref->position;
-    v2f_t pos = Player.ref->position;
-    v2f_t dist = {mouse.x - pos.x, mouse.y - pos.y};
-
-    max_cam.x = ease_in_out_circle(dist.x);
-    max_cam.y = ease_in_out_circle(dist.y);
-    return (max_cam);
-}
-
-///////////////////////////////////////////////////////////////////////////////
 void cursor_focus(void)
 {
-    v2f_t cap = cursor_cap();
-    v2f_t pos = Player.ref->position;
-    v2f_t mouse = Player.ref->position;
     v2f_t offset = {0.0f, 0.0f};
-    v2f_t dist = {mouse.x - pos.x, mouse.y - pos.y};
 
-    if (dist.x > cap.x * 20 && dist.x < cap.x * 30)
-        offset.x = cap.x;
-    if (dist.y > cap.y * 20 && dist.y < cap.y * 30)
-        offset.y = cap.y;
-    if (dist.x < cap.x * 20 && dist.x > cap.x * 30)
-        offset.x = cap.x;
-    if (dist.y < cap.y * 20 && dist.y > cap.y * 30)
-        offset.y = cap.y;
     if (Editor.camera[0] + Editor.camera[1] < DEFAULT_VIEW_WIDTH)
         offset.x = 0.0f;
+    if (Editor.camera[2] + Editor.camera[3] < DEFAULT_VIEW_HEIGHT)
+        offset.y = 0.0f;
+    camera_move();
     view_move(offset);
 }

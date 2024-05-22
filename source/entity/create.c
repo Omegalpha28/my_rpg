@@ -28,6 +28,8 @@ static void init_entity_stat_block(entity_t *new, creature_t *creature)
         Stats[creature->id].dizzy;
     new->firerate = CREATURE_COUNT < creature->id ? 1000 :
         Stats[creature->id].firerate;
+    new->ball_count = CREATURE_COUNT < creature->id ? 1 :
+        Stats[creature->id].ball_count;
     new->collision = (float)(creature->sheets[new->actor->sheetId]->
         image->mask.height) / 2;
 }

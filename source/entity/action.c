@@ -43,11 +43,35 @@ static void dashing(entity_t *evil)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void multishot(entity_t *evil, int angle)
+{
+    v2f_t bullet_position;
+    float distance = 100.0;
+    float dx = Player.ref->position.x - evil->actor->position.x;
+    float dy = Player.ref->position.y - evil->actor->position.y;
+    float base_angle = atan2(dy, dx);
+
+    bullet_position.x = evil->actor->position.x + cos(base_angle +
+        DEG2RAD(angle)) * distance;
+    bullet_position.y = evil->actor->position.y + sin(base_angle +
+        DEG2RAD(angle)) * distance;
+    create_bullet(evil->actor, bullet_position, evil->weapon);
+    bullet_position.x = evil->actor->position.x + cos(base_angle -
+        DEG2RAD(angle)) * distance;
+    bullet_position.y = evil->actor->position.y + sin(base_angle -
+        DEG2RAD(angle)) * distance;
+    create_bullet(evil->actor, bullet_position, evil->weapon);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void shooting(entity_t *evil)
 {
     if ((Time.currentTime - evil->last_action) < evil->firerate)
         return;
-    create_bullet(evil->actor, Player.ref->position, evil->weapon);
+    if ((evil->ball_count % 2))
+        create_bullet(evil->actor, Player.ref->position, evil->weapon);
+    for (uint_t i = 1; i < ((evil->ball_count / 2) + 1); i++)
+        multishot(evil, i * 10);
     evil->last_action = Time.currentTime;
 }
 

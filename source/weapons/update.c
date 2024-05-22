@@ -13,25 +13,11 @@
 ///////////////////////////////////////////////////////////////////////////////
 static recti_t get_bullet_box(bullet_t *bullet)
 {
-    float rad = bullet->rotation * (M_PI / 180.0f);
-    float hw = bullet->img->mask.width / 2.0f;
-    float hh = bullet->img->mask.height / 2.0f;
-    float ca = cosf(rad);
-    float sa = sinf(rad);
-    v2f_t pos = bullet->position;
-    v2f_t vt[4] = {
-        {pos.x + hw * ca - hh * sa, pos.y + hw * sa + hh * ca},
-        {pos.x - hw * ca - hh * sa, pos.y - hw * sa + hh * sa},
-        {pos.x - hw * ca + hh * sa, pos.y - hw * sa -hh * ca},
-        {pos.x + hw * ca + hh * sa, pos.y + hw * sa - hh * ca}
-    };
-    float minY = minf(4, vt[0].y, vt[1].y, vt[2].y, vt[3].y);
-    float minX = minf(4, vt[0].x, vt[1].x, vt[2].x, vt[3].x);
-    float maxY = maxf(4, vt[0].y, vt[1].y, vt[2].y, vt[3].y);
-    float maxX = maxf(4, vt[0].x, vt[1].x, vt[2].x, vt[3].x);
-
-    return ((recti_t){(int)minX, (int)minY, (int)(maxX - minX),
-        (int)(maxY - minY)});
+    return ((recti_t){
+        (int)bullet->position.x - 1,
+        (int)bullet->position.y - 1,
+        (int)2, (int)2
+    });
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -144,7 +130,9 @@ static void update_bullet(bullet_t *bullet)
 {
     bullet_stat_t stat = BULLET_STATS[WEAPON_STATS[bullet->weapon].bulletType];
     float elapsedTime = (Time.currentTime - bullet->startAt) / 15.0f;
-    float distance = clampf(stat.speed * elapsedTime, 0.0f, stat.range);
+    float speed = ((bullet->sender == Player.ref) ? stat.speed :
+        stat.speed / 5.0f);
+    float distance = clampf(speed * elapsedTime, 0.0f, stat.range);
 
     check_bullet_collision(bullet);
     if (bullet->state != BULLET_STATE_FLYING)

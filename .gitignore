@@ -39,3 +39,6 @@
 
 # Ignore valgrind reports
 vgcore.*
+
+# Game data
+playerData

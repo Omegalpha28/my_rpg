@@ -66,7 +66,7 @@ extern struct engine_s {
     uint_t level;
     engine_debug_t debug;
     ulong_t fadeStart;
-    growth_t axolotls[AXO_COUNT];
+    uint_t saveId;
 } Engine;
 
 #endif /* !ENGINE_H_ */

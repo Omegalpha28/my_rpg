@@ -33,7 +33,7 @@ static void draw_profile_background(v2f_t position, ui_element_t item)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_profile_delete(v2f_t position, v2f_t ratio)
+static void draw_profile_delete(v2f_t position, v2f_t ratio, uint_t id)
 {
     sfSprite *del = sfSprite_create();
     recti_t mask = Assets.ui[UI_BUTTON_BIN_IDLE]->mask;
@@ -48,6 +48,8 @@ static void draw_profile_delete(v2f_t position, v2f_t ratio)
     sfSprite_setOrigin(del, V2F(mask.width / 2.0f, mask.height / 2.0f));
     sfSprite_setScale(del, V2F1(0.6f));
     sfSprite_setPosition(del, position);
+    if (hover && MPRESSED(Setting.shoot))
+        delete_save(id);
     sfRenderWindow_drawSprite(Win.self, del, NULL);
     sfSprite_destroy(del);
 }
@@ -55,9 +57,16 @@ static void draw_profile_delete(v2f_t position, v2f_t ratio)
 ///////////////////////////////////////////////////////////////////////////////
 static void handle_profile_click(uint_t id)
 {
-    id = id;
-    load_video(DIR_INTRO, "intro");
-    Engine.level = 1;
+    Engine.saveId = id;
+    if (!exist_save(id)) {
+        load_video(DIR_INTRO, "intro");
+        Engine.level = 1;
+    } else {
+        Engine.scene = SCENE_GAME;
+        load_save(id);
+        Engine.level = 0;
+        switch_level();
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -67,15 +76,17 @@ static void draw_save_profile(uint_t id)
     v2f_t ratio = {Win.width / Win.viewWidth, Win.height / Win.viewHeight};
     bool_t hover = cursor_inbound(MAP_TO_PXF(position), V2F(140.0f * ratio.x,
         36.4f * ratio.y));
+    bool_t exists = exist_save(id);
 
     Setting.hover = hover ? true : Setting.hover;
     draw_profile_background(!hover ? position : add2f(position,
         V2F(10.0f, 0.0f)), hover ? UI_PAPER_ITEM01 : UI_PAPER_ITEM02);
-    draw_profile_delete(add2f(position, V2F(180.0f, 36.4f / 2.0f)),
-        ratio);
+    if (exists)
+        draw_profile_delete(add2f(position, V2F(180.0f, 36.4f / 2.0f)),
+            ratio, id);
     position.x += hover ? 10.0f : 0.0f;
-    draw_text_center("New Save", MAP_TO_PXF(add2f(position, V2F(72.0f,
-        13.0f))), 0.5f, RGB(235, 235, 235));
+    draw_text_center(!exists ? "New Save" : "Continue", MAP_TO_PXF(add2f(
+        position, V2F(72.0f, 13.0f))), 0.5f, RGB(235, 235, 235));
     if (hover && MPRESSED(Setting.shoot))
         handle_profile_click(id);
 }

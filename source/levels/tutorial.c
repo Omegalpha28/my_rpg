@@ -35,11 +35,12 @@ bool_t level_tutorial(void)
     uint_t level = Engine.level;
     sfMusic *music = find_music("i-m-hungry");
 
-    if (level == 8)
+    if (level == 8 || level)
         Engine.level = 0;
     if (level < 1 || level > 7 || !level_load(LEVELS[level - 1]))
         return (false);
     if (level == 1) {
+        end_music();
         sfMusic_setVolume(music, clampf(Setting.master *
             (Setting.music / 100.0f) * 0.1f, 0.0f, 100.0f));
         sfMusic_play(music);

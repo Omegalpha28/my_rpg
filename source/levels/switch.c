@@ -37,6 +37,13 @@ static void reset_player_behavior(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+void end_music(void)
+{
+    for (uint_t i = 0; i < Assets.musicCount; i++)
+        sfMusic_stop(Assets.musics[i]->self);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void switch_level(void)
 {
     Engine.fadeStart = Time.currentTime;

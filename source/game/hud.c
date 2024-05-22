@@ -11,6 +11,65 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+static void draw_magazine(weapon_enum_t weap, v2f_t pos, float scale_y,
+    bool_t prim)
+{
+    char nb[3];
+    char max[4];
+
+    snprintf(nb, 3, "%u", WEAPON_STATS[weap].ammoPerMag - Player.num_shoot);
+    if (Player.max_bullet < WEAPON_STATS[weap].ammoPerMag && !prim)
+        snprintf(nb, 3, "%u", Player.max_bullet - Player.num_shoot);
+    draw_text_center(nb, pos, 0.30f, sfWhite);
+    snprintf(max, 4, "%u", Player.max_bullet);
+    if (prim)
+        return (draw_text_center("inf", V2F(pos.x, pos.y + 24.0f * scale_y),
+            0.30f, sfWhite));
+    draw_text_center(max, V2F(pos.x, pos.y + 24.0f * scale_y), 0.30f, sfWhite);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void draw_weapons(sfSprite *weap, sfIntRect rect, v2f_t scale)
+{
+    sfSprite_setColor(weap, RGBA(255, 255, 255, (Player.inventor[0] !=
+        Player.weapon ? 55 : 255)));
+    sfSprite_setPosition(weap, PX_TO_MAPF(V2F(Win.width - 84 * scale.x,
+        Win.height - 30 * scale.y)));
+    sfRenderWindow_drawSprite(Win.self, weap, false);
+    draw_magazine(Player.inventor[0], V2F(Win.width - 60 * scale.x,
+        Win.height - 34 * scale.y), scale.y, true);
+    rect.left = Player.inventor[1] * 42;
+    sfSprite_setTextureRect(weap, rect);
+    sfSprite_setColor(weap, RGBA(255, 255, 255, (Player.inventor[1] !=
+        Player.weapon ? 55 : 255)));
+    sfSprite_setPosition(weap, PX_TO_MAPF(V2F(Win.width - 42 * scale.x,
+        Win.height - 30 * scale.y)));
+    sfRenderWindow_drawSprite(Win.self, weap, false);
+    draw_magazine(Player.inventor[1], V2F(Win.width - 24 * scale.x,
+        Win.height - 34 * scale.y), scale.y, false);
+    sfSprite_destroy(weap);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void draw_weapon_only(void)
+{
+    sfSprite *weap = sfSprite_create();
+    sfIntRect rect = {Player.inventor[0] * 42, 48, 42, 24};
+    v2f_t scale = {Win.width / Win.viewWidth, Win.height / Win.viewHeight};
+
+    sfSprite_setTexture(weap, Assets.weapons->self, false);
+    sfSprite_setTextureRect(weap, rect);
+    if (Player.inventor[1] != WEAPON_COUNT)
+        return (draw_weapons(weap, rect, scale));
+    sfSprite_setPosition(weap, PX_TO_MAPF(V2F(Win.width - 42 * scale.x,
+        Win.height - 30 * scale.y)));
+    sfRenderWindow_drawSprite(Win.self, weap, false);
+    draw_magazine(Player.inventor[0], V2F(Win.width - 24 * scale.x,
+        Win.height - 34 * scale.y), scale.y, true);
+    sfSprite_destroy(weap);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void draw_charge(sfSprite *comp, sfIntRect rect)
 {
     float charge = (float)Player.ref->charges;

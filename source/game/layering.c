@@ -191,6 +191,8 @@ void draw(void)
         if (Pool.effects[i]->self->background)
             effect_draw(Pool.effects[i]);
     sort_actors_pool();
+    for (uint_t i = 0; i < Pool.interCount; i++)
+        draw_interactable(Pool.inters[i]);
     for (uint_t i = 0; i < Pool.actorCount; i++)
         drawing_weapons(i);
     draw_all_bullets();

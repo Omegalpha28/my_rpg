@@ -154,6 +154,8 @@ static void draw_hud(void)
     draw_health();
     draw_comp();
     draw_weapon_only();
+    if (Player.canInteract)
+        draw_interact();
     draw_visor();
     draw_fade();
 }

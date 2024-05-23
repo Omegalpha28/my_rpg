@@ -683,6 +683,19 @@ typedef enum sfx_list_e {
     SFX_WP_SPAS,
     SFX_WP_TADPOLES,
     SFX_WP_UZI,
+    SFX_BULLET_HIT_BOOMERANG,
+    SFX_BULLET_HIT_CROSSBOW,
+    SFX_BULLET_HIT_DAMAGEABLE,
+    SFX_BULLET_HIT_NON_DAMAGEABLE,
+    SFX_BULLET_HIT_RPG,
+    SFX_BLOOD,
+    SFX_CHEST_FALL,
+    SFX_CHEST_OPEN,
+    SFX_HEALTH,
+    SFX_PICK_WEAPON,
+    SFX_RELOAD,
+    SFX_WEAPON_SWAP_HANDLING,
+    SFX_WEAPON_SWAP_WHOOSH,
     SFX_COUNT
 } sfx_list_t;
 
@@ -846,6 +859,60 @@ static const cstring_t SFX_ASSETS[SFX_COUNT][MAX_SFX_VARIANTS] = {
         "weapons/uzi1.ogg", "weapons/uzi2.ogg",
         "weapons/uzi3.ogg", "weapons/uzi4.ogg", NULL
     },
+    {
+        "bullets/hit_boomerang_01.ogg", "bullets/hit_boomerang_02.ogg",
+        "bullets/hit_boomerang_03.ogg", "bullets/hit_boomerang_04.ogg",
+        "bullets/hit_boomerang_05.ogg", NULL
+    },
+    {
+        "bullets/hit_crossbow_01.ogg", "bullets/hit_crossbow_02.ogg",
+        "bullets/hit_crossbow_03.ogg", "bullets/hit_crossbow_04.ogg", NULL
+    },
+    {
+        "bullets/hit_damageable_01.ogg", "bullets/hit_damageable_02.ogg",
+        "bullets/hit_damageable_03.ogg", "bullets/hit_damageable_04.ogg",
+        "bullets/hit_damageable_05.ogg", NULL
+    },
+    {
+        "bullets/hit_non_damageable_01.ogg",
+        "bullets/hit_non_damageable_02.ogg",
+        "bullets/hit_non_damageable_03.ogg",
+        "bullets/hit_non_damageable_04.ogg",
+        "bullets/hit_non_damageable_05.ogg",
+        "bullets/hit_non_damageable_06.ogg",
+        "bullets/hit_non_damageable_07.ogg",
+        "bullets/hit_non_damageable_08.ogg", NULL
+    },
+    {
+        "bullets/hit_rpg_01.ogg", "bullets/hit_rpg_02.ogg",
+        "bullets/hit_rpg_03.ogg", "bullets/hit_rpg_04.ogg", NULL
+    },
+    {
+        "game/blood_01.ogg", "game/blood_02.ogg", "game/blood_03.ogg",
+        "game/blood_04.ogg", "game/blood_05.ogg", "game/blood_06.ogg", NULL
+    },
+    {"game/chest_fall.ogg", NULL},
+    {"game/chest_open.ogg", NULL},
+    {"game/health.ogg", NULL},
+    {
+        "game/pick_weapon_01.ogg", "game/pick_weapon_02.ogg",
+        "game/pick_weapon_03.ogg", NULL
+    },
+    {
+        "game/reload_01.ogg", "game/reload_02.ogg",
+        "game/reload_03.ogg", "game/reload_04.ogg", NULL
+    },
+    {
+        "game/weapon_swap_handling_01.ogg", "game/weapon_swap_handling_02.ogg",
+        "game/weapon_swap_handling_03.ogg", "game/weapon_swap_handling_04.ogg",
+        "game/weapon_swap_handling_05.ogg", "game/weapon_swap_handling_06.ogg",
+        NULL
+    },
+    {
+        "game/weapon_swap_whoosh_02.ogg", "game/weapon_swap_whoosh_03.ogg",
+        "game/weapon_swap_whoosh_04.ogg", "game/weapon_swap_whoosh_05.ogg",
+        "game/weapon_swap_whoosh_06.ogg", NULL
+    }
 };
 
 ///////////////////////////////////////////////////////////////////////////////

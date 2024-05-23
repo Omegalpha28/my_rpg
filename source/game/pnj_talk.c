@@ -102,7 +102,7 @@ static void draw_journal(void)
         Win.height)));
     sfRenderWindow_drawSprite(Win.self, sign, false);
     sfSprite_destroy(sign);
-    draw_text("Panther", PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 16,
+    draw_text("Baboon", PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 16,
         Win.height / 5 * 3.5f)), 0.45f, sfWhite);
     draw_text(JOURN_LINE1, PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 8,
         Win.height / 5 * 3.5f + 16.0f * scale.y)), 0.35f, sfWhite);

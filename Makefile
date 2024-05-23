@@ -207,7 +207,9 @@ P_C_ROOT	=	$(P_D_ROOT)main.c											\
 P_C_CTRL	=	$(P_D_CTRL)animation.c										\
 				$(P_D_CTRL)camera.c											\
 				$(P_D_CTRL)shake.c											\
+				$(P_D_CTRL)interacts.c										\
 				$(P_D_CTRL)events.c											\
+				$(P_D_CTRL)shoot.c											\
 				$(P_D_CTRL)input.c
 P_C_GAME	=	$(P_D_GAME)loop.c											\
 				$(P_D_GAME)layering.c										\

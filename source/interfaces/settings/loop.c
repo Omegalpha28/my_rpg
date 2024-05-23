@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-static char *conv(char key)
+char *conv(char key)
 {
     char *str = malloc(2);
 

@@ -204,4 +204,7 @@ bool_t exist_save(uint_t id);
 ///////////////////////////////////////////////////////////////////////////////
 void save_save(uint_t id);
 
+void draw_interact(void);
+char *conv(char key);
+
 #endif /* !INTERFACES_H_ */

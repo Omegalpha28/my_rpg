@@ -5,7 +5,6 @@
 ** action
 */
 
-
 ///////////////////////////////////////////////////////////////////////////////
 // Headers
 ///////////////////////////////////////////////////////////////////////////////
@@ -13,8 +12,52 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-void boss_action(entity_t *boss)
+static void mouth_blast(entity_t *boss)
 {
     boss = boss;
+    return;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void spin_dash(entity_t *crab)
+{
+    crab = crab;
+    return;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void bubble_defense(entity_t *crab)
+{
+    crab = crab;
+    return;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void crab_attack(entity_t *crab)
+{
+    if (crab->status == Patrol)
+        mouth_blast(crab);
+    if (crab->status == Dazed)
+        return;
+    if (crab->status == Agressive)
+        spin_dash(crab);
+    if (crab->status == Fear)
+        bubble_defense(crab);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void cthulu_action(entity_t * cthulu)
+{
+    cthulu = cthulu;
+    return;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void boss_action(entity_t *boss)
+{
+    if (boss->actor->self->id == CREATURE_CRAB_BOSS)
+        crab_attack(boss);
+    if (boss->actor->self->id == CTHULU_TODO)
+        cthulu_action(boss);
     return;
 }

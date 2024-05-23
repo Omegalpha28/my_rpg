@@ -5,17 +5,11 @@
 ** action
 */
 
-
 ///////////////////////////////////////////////////////////////////////////////
 // Headers
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-///////////////////////////////////////////////////////////////////////////////
-bool_t v2f_empty(v2f_t vector)
-{
-    return (vector.x != 0.0f || vector.y != 0.0f);
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 static void dashing(entity_t *evil)
@@ -66,12 +60,20 @@ static void multishot(entity_t *evil, int angle)
 ///////////////////////////////////////////////////////////////////////////////
 static void shooting(entity_t *evil)
 {
+    uint_t pair_tax = 5;
+
     if ((Time.currentTime - evil->last_action) < evil->firerate)
         return;
-    if ((evil->ball_count % 2))
+    if ((evil->ball_count % 2)) {
         create_bullet(evil->actor, Player.ref->position, evil->weapon);
-    for (uint_t i = 1; i < ((evil->ball_count / 2) + 1); i++)
-        multishot(evil, i * 10);
+        pair_tax = 0;
+    }
+    for (uint_t i = 1; i < ((evil->ball_count / 2) + 1); i++){
+        if (i == 1 && pair_tax)
+            multishot(evil, i * (10 - pair_tax));
+        else
+            multishot(evil, (i * (10 - pair_tax)) + pair_tax);
+    }
     evil->last_action = Time.currentTime;
 }
 

@@ -55,4 +55,7 @@ void health_examination(entity_t *evil)
     }
     if (act->dead || act->damaged)
         termination(evil);
+    if (evil->attack_types == Boss && !evil->curr_phase &&
+        evil->actor->health <= (int)Stats[evil->actor->self->id].health)
+        evil->curr_phase = 1;
 }

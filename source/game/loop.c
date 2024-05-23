@@ -21,6 +21,7 @@ static void update_interaction(void)
     ulong_t elasped = (Time.currentTime - Player.lastAction);
 
     for (uint_t i = 0; i < Pool.interCount && elasped > 1e3; i++) {
+        elasped = (Time.currentTime - Player.lastAction);
         hover = false;
         ir = Pool.inters[i]->img->mask;
         ir.left = Pool.inters[i]->position.x - ir.width / 2.0f;

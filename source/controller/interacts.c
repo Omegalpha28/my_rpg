@@ -19,7 +19,7 @@ static void release_old_weapon(interactable_t *obj)
     if (same) {
         obj->data[1] = Player.mag[1];
         obj->data[2] = clamp(Player.max_bullet + WEAPON_STATS[obj->data[0]].
-            ammoPerMag * 5, 0, WEAPON_STATS[obj->data[0]].ammoPerMag * 8);
+            ammoPerMag, 0, WEAPON_STATS[obj->data[0]].ammoPerMag * 3);
     }
     if (Player.inventor[1] != WEAPON_NO && !same) {
         sfx(SFX_WEAPON_SWAP_WHOOSH);
@@ -38,7 +38,7 @@ void pickup(interactable_t *obj)
     Player.weapon = Player.inventor[1];
     if (obj->data[1] == -1) {
         Player.mag[1] = WEAPON_STATS[Player.weapon].ammoPerMag;
-        Player.max_bullet = WEAPON_STATS[Player.weapon].ammoPerMag * 5;
+        Player.max_bullet = WEAPON_STATS[Player.weapon].ammoPerMag;
     } else {
         Player.mag[1] = obj->data[1];
         Player.max_bullet = obj->data[2];

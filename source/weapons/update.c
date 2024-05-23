@@ -60,6 +60,7 @@ static void check_bullet_collision_prop(bullet_t *bullet, prop_t *prop)
         bullet, bullet->img->mask) - (stat.invert ? 180.0f : 0.0f));
     bullet->img = Assets.bullets[stat.impactWall];
     bullet->state = BULLET_STATE_IMPACT;
+    sfx(SFX_BULLET_HIT_NON_DAMAGEABLE);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -95,8 +96,7 @@ static void check_bullet_collision_actor(bullet_t *bullet, actor_t *actor)
     actor->health -= (Player.ref == actor) ? 1 :
         WEAPON_STATS[bullet->weapon].damage;
     actor->damaged = true;
-    if (rand() % 3 == 0)
-        sfx(SFX_ENEMY_HURT);
+    sfx(SFX_BULLET_HIT_DAMAGEABLE);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

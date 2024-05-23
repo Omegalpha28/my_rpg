@@ -27,13 +27,19 @@ static void clear_entities(void)
 ///////////////////////////////////////////////////////////////////////////////
 static void reset_player_behavior(void)
 {
+    Player.ref->old_pos = V2F1(0.0f);
     Player.ref->position = V2F1(0.0f);
     Player.velocity = V2F1(0.0f);
     sfMusic_stop(find_music("blingblangblang"));
     DANCE = false;
     DASH = false;
+    HEAL = false;
     sfView_setCenter(Win.view, V2F1(0.0f));
     sfRenderWindow_setView(Win.self, Win.view);
+    Player.ref->damaged = false;
+    Player.ref->dead = false;
+    Player.ref->invincible = false;
+    Player.ref->done = false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

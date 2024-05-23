@@ -77,6 +77,9 @@ typedef enum creature_index_e {
     CREATURE_ELITE_RACOON,
     CREATURE_ELITE_FOX,
     CREATURE_BRAT,
+    CREATURE_SIGN_BOSS,
+    CREATURE_PNJ,
+    CREATURE_CHEST,
     CREATURE_COUNT
 } creature_index_t;
 

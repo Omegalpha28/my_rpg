@@ -1,0 +1,55 @@
+14
+
+[START-boss]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+13          1           13          original            assets/creatures/chests/boss.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+open            0       5       DEFAULT     FALSE
+idle            6       12      DEFAULT     FALSE
+[END]
+
+[START-challenge]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+13          1           12          original            assets/creatures/chests/challenge.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+open            0       5       DEFAULT     FALSE
+idle            6       11      DEFAULT     FALSE
+[END]
+
+[START-cookie]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+13          1           12          original            assets/creatures/chests/cookie.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+open            0       5       DEFAULT     FALSE
+idle            6       11      DEFAULT     FALSE
+[END]
+
+[START-ingredients]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+13          1           12          original            assets/creatures/chests/ingredients.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+open            0       5       DEFAULT     FALSE
+idle            6       11      DEFAULT     FALSE
+[END]
+
+[START-parsley]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+13          1           12          original            assets/creatures/chests/parsley.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+open            0       5       DEFAULT     FALSE
+idle            6       11      DEFAULT     FALSE
+[END]
+
+[START-salt]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+13          1           12          original            assets/creatures/chests/salt.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+open            0       5       DEFAULT     FALSE
+idle            6       11      DEFAULT     FALSE
+[END]

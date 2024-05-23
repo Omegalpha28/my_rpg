@@ -1,0 +1,86 @@
+13
+
+[START-baboon]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           2           8           original            assets/creatures/pnjs/baboon.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       3       DEFAULT     FALSE
+hover           4       7       DEFAULT     FALSE
+[END]
+
+[START-blisstaker]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           2           8           original            assets/creatures/pnjs/blisstaker.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       3       DEFAULT     FALSE
+hover           4       7       DEFAULT     FALSE
+[END]
+
+[START-cat]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+10          2           20          original            assets/creatures/pnjs/cat.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+standing        0       3       DEFAULT     FALSE
+seating         4       7       DEFAULT     FALSE
+injured         8       11      DEFAULT     FALSE
+hover           12      15      DEFAULT     FALSE
+idle            16      19      DEFAULT     FALSE
+[END]
+
+[START-chicken]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           2           8           original            assets/creatures/pnjs/chicken.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       3       DEFAULT     FALSE
+hover           4       7       DEFAULT     FALSE
+[END]
+
+[START-dog]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           2           8           original            assets/creatures/pnjs/dog.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       3       DEFAULT     FALSE
+hover           4       7       DEFAULT     FALSE
+[END]
+
+[START-koala]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+8           2           16           original            assets/creatures/pnjs/koala.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       3       DEFAULT     FALSE
+hover           4       7       DEFAULT     FALSE
+idle2           8       11      DEFAULT     FALSE
+hover2          12      15      DEFAULT     FALSE
+[END]
+
+[START-mandrill]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+5           2           10          original            assets/creatures/pnjs/mandrill.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       4       DEFAULT     FALSE
+hover           5       9       DEFAULT     FALSE
+[END]
+
+[START-panther]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+5           2           10          original            assets/creatures/pnjs/panther.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       4       DEFAULT     FALSE
+hover           5       9       DEFAULT     FALSE
+[END]
+
+[START-sign]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           1           8           original            assets/creatures/pnjs/sign.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       3       DEFAULT     FALSE
+[END]

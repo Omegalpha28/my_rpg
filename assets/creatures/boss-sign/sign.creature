@@ -1,0 +1,25 @@
+12
+
+[START-idle]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           1           4           original            assets/creatures/boss-sign/idle.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+idle            0       3       DEFAULT     TRUE
+[END]
+
+[START-death]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+3           7           21          original            assets/creatures/boss-sign/death.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+death           0       20      DEFAULT     TRUE
+[END]
+
+[START-walk]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           2           8           original            assets/creatures/boss-sign/walk.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+walk            0       6       DEFAULT     TRUE
+[END]

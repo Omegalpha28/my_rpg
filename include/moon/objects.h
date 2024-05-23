@@ -24,6 +24,16 @@
 /// \param position     The position of the actor
 /// \param size         The size of the actor
 /// \param rotation     The rotation of the actor
+/// \param draw         Boolean, the actor is needed to be drawn
+/// \param time         The starting time of the animation
+/// \param done         Is the animation completed
+/// \param old_pos      The old position of the actor before he moved
+/// \param health       The health of the actor
+/// \param invicinble   Is the actor invincible
+/// \param damaged      Is the actor damaged
+/// \param dead         Is the actor dead
+/// \param shield       Number of shield of the actor
+/// \param charges      Number of charges of the actor capacity
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct actor_s {
@@ -50,6 +60,9 @@ typedef struct actor_s {
 } actor_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief State of the weapon bullets
+///
+///////////////////////////////////////////////////////////////////////////////
 typedef enum bullet_state_e {
     BULLET_STATE_FLYING,
     BULLET_STATE_IMPACT,
@@ -58,11 +71,18 @@ typedef enum bullet_state_e {
 } bullet_state_t;
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief TODO:
+/// \brief Structure to hold a bullet
 ///
-/// \param sender       TODO:
-/// \param origin       TODO:
-/// \param destination  TODO:
+/// \param weapon       The weapon used to shoot the bullet
+/// \param img          The current img of the bullet
+/// \param startAt      The currentTime when shooting the bullet
+/// \param sender       The sender actor
+/// \param origin       The origin of the bullet
+/// \param position     The current position of the bullet
+/// \param destination  The destination of the bullet
+/// \param sprite       The sprite of the bullets
+/// \param state        The state of the bullet
+/// \param rotation     The rotation applied based on position/destination
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct bullet_s {
@@ -90,6 +110,10 @@ typedef struct bullet_s {
 /// \param rotation     The rotation of the prop
 /// \param draw         True if the prop should be drawn, false otherwise
 /// \param time         Starting time of the animation
+/// \param once         Is the animation a one shot animation
+/// \param done         Is the animation completed
+/// \param collision    Is the prop has collision
+/// \param data         Custom data saved in the prop to have various info
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct prop_s {
@@ -129,6 +153,40 @@ typedef struct effect_s {
 } effect_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Type of interactable
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef enum interactable_type_e {
+    INTERACTABLE_WEAPON,
+    INTERACTABLE_CURRENCY,
+    INTERACTABLE_PNJ,
+    INTERACTABLE_CHEST,
+    INTERACTABLE_COUNT
+} interactable_type_t;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Structure to hold every interactables of the level
+///
+/// \param type         The type of interactable
+/// \param data         The data of the interactable
+/// \param time         The time of appearance of the interactable
+/// \param position     The position of the interactable
+/// \param interact     The function used on interaction with this object
+/// \param sprite       The sprite of the object
+/// \param img          The image of the object
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct interactable_s {
+    interactable_type_t type;
+    int data[4];
+    ulong_t time;
+    v2f_t position;
+    void (*interact)(struct interactable_s *obj);
+    sfSprite *sprite;
+    image_t *img;
+} interactable_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Object pool to keep track of loaded and drawed assets
 ///
 /// \param actors       The list of actors
@@ -141,6 +199,8 @@ typedef struct effect_s {
 /// \param bulletCount  The number of bullet
 /// \param sounds       The list of sounds
 /// \param soundCount   The number of sound
+/// \param inters       The list of interactables objects
+/// \param interCount   The number of interactable object
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct pool_s {
@@ -154,6 +214,8 @@ extern struct pool_s {
     uint_t bulletCount;
     sfSound **sounds;
     uint_t soundCount;
+    interactable_t **inters;
+    uint_t interCount;
 } Pool;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -473,12 +535,32 @@ void remove_completed_sound(void);
 ///////////////////////////////////////////////////////////////////////////////
 void remove_sfx(sfSound *sd);
 
-
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Check player health.
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void check_player_health(void);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Create a new interactable object and place it on the map
+///
+/// \param type         The type of interaction
+/// \param position     The position of the object
+/// \param firstData    The first data entry of the object
+/// \param interact     The function to execute on interaction
+///
+/// \return The newly created interactable
+///
+///////////////////////////////////////////////////////////////////////////////
+interactable_t *spawn_interactable(interactable_type_t type, v2f_t position,
+    int firstData, void (*interact)(interactable_t *obj));
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Remove and destroy an interactable from the pool
+///
+/// \param obj          The interactable object to destroy
+///
+///////////////////////////////////////////////////////////////////////////////
+void destroy_interactable(interactable_t *obj);
 
 #endif /* !OBJECTS_H_ */

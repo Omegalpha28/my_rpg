@@ -29,6 +29,8 @@ interactable_t *spawn_interactable(interactable_type_t type, v2f_t position,
     obj->sprite = sfSprite_create();
     obj->data[0] = firstData;
     obj->interact = interact;
+    for (uint_t i = 1; i < 4; i++)
+        obj->data[i] = -1;
     set_interactable_texture(obj);
     Pool.interCount++;
     Pool.inters = REALLOC(Pool.inters, sizeof(interactable_t *),

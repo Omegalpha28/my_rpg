@@ -123,7 +123,6 @@ static void check_bullet_collision_bullet(bullet_t *bullet, bullet_t *other)
         || (bullet->state != BULLET_STATE_FLYING ||
         other->state != BULLET_STATE_FLYING))
         return;
-
     bullet->img = Assets.bullets[stat_bullet.impactEnemy];
     bullet->state = BULLET_STATE_IMPACT;
     other->img = Assets.bullets[stat_other.impactEnemy];

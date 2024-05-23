@@ -10,92 +10,72 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
-/*
-top stat:
-
-y: 145 or 160:
-
-x :
-*/
 
 ///////////////////////////////////////////////////////////////////////////////
-static recti_t get_actor_box(entity_t *evil)
+static bool_t intersect_with_prop(v2f_t simpos, entity_t *crab, prop_t **prop)
 {
-    recti_t actor = (evil->actor->self->
-        sheets[evil->actor->sheetId]->image->mask);
+    recti_t pmask;
+    recti_t prect;
+    recti_t arect = (crab->actor->self->
+        sheets[crab->actor->sheetId]->image->mask);
 
-    actor.left = evil->actor->position.x;
-    actor.top = evil->actor->position.y;
-    actor.top -= (actor.height / 2.0f);
-    actor.left -= (actor.width / 2.0f);
-    return (actor);
-}
-
-///////////////////////////////////////////////////////////////////////////////
-static float get_collision_angle(recti_t pr, entity_t *evil)
-{
-    float dx = evil->actor->position.x - (pr.left + pr.width / 2.0f);
-    float dy = evil->actor->position.y - (pr.top + pr.height / 2.0f);
-
-    if (fabs(dx) > fabs(dy)) {
-        if (dx > 0)
-            return (180.0f);
-        return (0.0f);
-    } else {
-        if (dy > 0)
-            return (-90.0f);
-        return (90.0f);
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////
-static void wall_collision(entity_t *evil, prop_t *prop, v2f_t velocity)
-{
-    recti_t pmask = prop->self->image->mask;
-    recti_t prect = {prop->position.x - pmask.width / 2.0f, prop->position.y -
-        pmask.height / 2.0f, pmask.width, pmask.height};
-    recti_t arect = get_actor_box(evil);
-    float angle = get_collision_angle(prect, evil);
-    v2f_t prop_velocity = subtract2f(evil->actor->position, prop->position);
-
-    if (!sfIntRect_intersects(&arect, &prect, NULL))
-        return;
-    if (angle == 180.0f)
-        if ((velocity.x > 0 && prop_velocity.x > 0) || (velocity.x < 0 &&
-            prop_velocity.x < 0))
-            evil->wanted_position.x = -evil->wanted_position.x;
-    if (fabs(angle) == 90.0f){
-        if ((velocity.y > 0 && prop_velocity.y > 0) || (velocity.y < 0 &&
-            prop_velocity.y < 0))
-                evil->wanted_position.y = -evil->wanted_position.y;
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////
-static void bounce_check(entity_t *evil, v2f_t velocity)
-{
+    arect.left = simpos.x - (arect.width / 2.0f);
+    arect.top = simpos.y - (arect.height / 2.0f);
     for (uint_t i = 0; i < Pool.propCount; i++) {
         if (!Pool.props[i]->collision)
             continue;
-        wall_collision(evil, Pool.props[i], velocity);
+        pmask = Pool.props[i]->self->image->mask;
+        prect = (recti_t){Pool.props[i]->position.x - pmask.width / 2.0f,
+            Pool.props[i]->position.y - pmask.height / 2.0f, pmask.width,
+            pmask.height};
+        if (sfIntRect_intersects(&arect, &prect, NULL)) {
+            *prop = Pool.props[i];
+            return (true);
+        }
     }
+    return (false);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+/// \return 0 horizontal 1 vertical.
+///////////////////////////////////////////////////////////////////////////////
+static bool_t get_prop_direction(prop_t *prop, v2f_t sim_pos)
+{
+    recti_t pmask = prop->self->image->mask;
+    recti_t pr = {prop->position.x - pmask.width / 2.0f, prop->position.y -
+        pmask.height / 2.0f, pmask.width, pmask.height};
+    float dx = sim_pos.x - (pr.left + pr.width / 2.0f);
+    float dy = sim_pos.y - (pr.top + pr.height / 2.0f);
+
+    return (fabs(dx) > fabs(dy) ? false : true);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void get_wanted_position(entity_t *crab)
+{
+    v2f_t sim_position = crab->actor->position;
+    prop_t *prop = NULL;
+
+    while (!intersect_with_prop(sim_position, crab, &prop))
+        sim_position = add2f(sim_position, crab->vector);
+    crab->wanted_position = subtract2f(sim_position, crab->vector);
+    if (get_prop_direction(prop, sim_position))
+        crab->vector.y *= -1;
+    else
+        crab->vector.x *= -1;
+    crab->bounce++;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 static void idle(entity_t *boss)
 {
-    v2f_t move;
-    v2f_t velocity;
-
-    move = movetowards2f(boss->actor->position, boss->wanted_position,
-        (boss->speed * Time.deltaTime) / 25);
-    velocity = subtract2f(move, boss->actor->position);
-    boss->wanted_position = (v2f_t){boss->actor->position.x + 200.0f,
-        boss->actor->position.y};
-    bounce_check(boss, velocity);
-    boss->actor->position = move;
-    actor_set_sheet(boss->actor, velocity.x != 0.0f || velocity.y != 0.0f ?
-        "walk" : "idle");
+    if (equal2f(V2F(floorf(boss->wanted_position.x),
+        floorf(boss->wanted_position.y)), V2F(floorf(boss->actor->position.x),
+        floorf(boss->actor->position.y))))
+        get_wanted_position(boss);
+    boss->actor->position = movetowards2f(boss->actor->position,
+        boss->wanted_position, (boss->speed * Time.deltaTime) / 15);
+    actor_set_sheet(boss->actor, "walk");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -104,18 +84,6 @@ void crab_movement(entity_t *boss)
     idle(boss);
     return;
 }
-
-/*
-
-at the top check.
-
-redirection to top right. after spin dash.
-
-move left and right
-
-same y axis going to
-
-*/
 
 ///////////////////////////////////////////////////////////////////////////////
 void cthulu_movement(entity_t *boss)

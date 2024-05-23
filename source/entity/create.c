@@ -14,6 +14,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 static void init_entity_stat_block(entity_t *new, creature_t *creature)
 {
+    new->weapon = Stats[creature->id].weapon;
     new->actor->health = CREATURE_COUNT < creature->id ? 100 :
         Stats[creature->id].health;
     new->speed = CREATURE_COUNT < creature->id ? 0.6 :
@@ -63,9 +64,10 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->cooldown = 5000;
     new->attack_started = false;
     new->movement = 0;
-    new->weapon = Stats[creature->id].weapon;
     new->wanted_position = position;
     new->curr_phase = 0;
+    new->bounce = false;
+    new->vector = V2F1(5.0f);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -102,6 +102,8 @@ typedef struct entity_s {
     int curr_phase;
     uint_t firerate;
     uint_t ball_count;
+    bool_t bounce;
+    v2f_t vector;
 } entity_t;
 
 
@@ -167,7 +169,7 @@ static const creature_stats_t Stats[CREATURE_COUNT] = {
     {30, 0.5f, 0.0f, 100.0f, Dash, 0, 12, 0, 0},          //caterkillah
     {50, 0.4f, 100.0f, 120.0f, Shooter, 0, 45, 3000, 1},     //cinnamon rat
     {30, 0.5f, 100.0f, 120.0f, Jumper, 0, 14, 2000, 1},      //baby caiman
-    {100, 0.4f, 225.0f, 250.0f, Shooter, 0, 29, 3000, 5},    //elite racoon
+    {100, 0.4f, 200.0f, 225.0f, Shooter, 0, 29, 3000, 5},    //elite racoon
     {100, 0.4f, 125.0f, 150.0f, Shooter, 0, 31, 2000, 1},    //elite fox
     {40, 0.4f, 100.0f, 120.0f, Shooter, 0, 5, 2000, 1},      //Brat
 };

@@ -14,9 +14,9 @@
 static recti_t get_bullet_box(bullet_t *bullet)
 {
     return ((recti_t){
-        (int)bullet->position.x - 1,
-        (int)bullet->position.y - 1,
-        (int)2, (int)2
+        (int)bullet->position.x - 2,
+        (int)bullet->position.y - 2,
+        (int)4, (int)4
     });
 }
 
@@ -102,8 +102,22 @@ static void check_bullet_collision_actor(bullet_t *bullet, actor_t *actor)
 ///////////////////////////////////////////////////////////////////////////////
 static void check_bullet_collision_bullet(bullet_t *bullet, bullet_t *other)
 {
-    bullet = bullet;
-    other = other;
+    recti_t bullet_box = get_bullet_box(bullet);
+    bullet_stat_t stat_bullet =
+        BULLET_STATS[WEAPON_STATS[bullet->weapon].bulletType];
+    recti_t other_box = get_bullet_box(other);
+    bullet_stat_t stat_other =
+        BULLET_STATS[WEAPON_STATS[bullet->weapon].bulletType];
+
+    if (!sfIntRect_intersects(&bullet_box, &other_box, NULL)
+        || (bullet->state != BULLET_STATE_FLYING ||
+        other->state != BULLET_STATE_FLYING))
+        return;
+    bullet->img = Assets.bullets[stat_bullet.impactEnemy];
+    bullet->state = BULLET_STATE_IMPACT;
+    other->img = Assets.bullets[stat_other.impactEnemy];
+    other->state = BULLET_STATE_IMPACT;
+    sfx(SFX_BULLET_HIT_DAMAGEABLE);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

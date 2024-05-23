@@ -60,7 +60,7 @@ static void check_bullet_collision_prop(bullet_t *bullet, prop_t *prop)
         bullet, bullet->img->mask) - (stat.invert ? 180.0f : 0.0f));
     bullet->img = Assets.bullets[stat.impactWall];
     bullet->state = BULLET_STATE_IMPACT;
-    bullet->weapon == WEAPON_MELEE_BOOMERANG ? SFX_BULLET_HIT_BOOMERANG :
+    bullet->weapon == WEAPON_MELEE_BOOMERANG ? sfx(SFX_BULLET_HIT_BOOMERANG) :
         sfx(SFX_BULLET_HIT_DAMAGEABLE);
 }
 

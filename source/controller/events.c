@@ -17,13 +17,17 @@ void parse_events(sfEvent evt)
         sfRenderWindow_close(Win.self);
     if (evt.type == sfEvtKeyPressed || evt.type == sfEvtKeyReleased)
         parse_key_input(evt.key);
-    if (evt.type == sfEvtKeyPressed && evt.key.code == sfKeyNumpad1) {
-        Player.num_shoot = 0;
-        Player.weapon--;
+    if ((evt.type == sfEvtMouseWheelScrolled && evt.mouseWheelScroll.delta < 0
+        ) || (evt.type == sfEvtKeyPressed && evt.key.code == sfKeyNum1)) {
+        if (Player.weapon != Player.inventor[0])
+            sfx(SFX_WEAPON_SWAP_HANDLING);
+        Player.weapon = Player.inventor[0];
     }
-    if (evt.type == sfEvtKeyPressed && evt.key.code == sfKeyNumpad2) {
-        Player.num_shoot = 0;
-        Player.weapon++;
+    if (((evt.type == sfEvtMouseWheelScrolled && evt.mouseWheelScroll.delta >
+        0) || (evt.type == sfEvtKeyPressed && evt.key.code == sfKeyNum2))
+        && Player.inventor[1] != WEAPON_NO) {
+        if (Player.weapon != Player.inventor[1])
+            sfx(SFX_WEAPON_SWAP_HANDLING);
+        Player.weapon = Player.inventor[1];
     }
-    Player.inventor[1] = Player.weapon;
 }

@@ -17,6 +17,7 @@ static string_t DOORS[] = {
     "exit_door_2",
     "exit_door_bottom",
     "transition_door_bottom",
+    "door",
     NULL
 };
 
@@ -59,8 +60,10 @@ static prop_t **get_doors_prop(uint_t *n)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void go_through_door(void)
+static void go_through_door(prop_t *prop)
 {
+    if (CMP(prop->self->name, "door"))
+        Engine.level = 9;
     Engine.level++;
     switch_level();
 }
@@ -78,7 +81,7 @@ static void check_door_collision(prop_t *prop)
         dmask.width / 2.0f, dmask.height / 1.5f};
 
     if (sfFloatRect_intersects(&player, &door, NULL))
-        go_through_door();
+        go_through_door(prop);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

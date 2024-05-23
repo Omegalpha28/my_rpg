@@ -41,6 +41,7 @@ extern struct player_s {
     bool_t canInteract;
     ulong_t lastAction;
     bool_t reloading;
+    bool_t blocked;
 } Player;
 
 ///////////////////////////////////////////////////////////////////////////////

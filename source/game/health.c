@@ -43,6 +43,7 @@ static void termination(void)
     Player.ref->draw = !Player.ref->draw;
 }
 
+///////////////////////////////////////////////////////////////////////////////
 static void death_change(void)
 {
     Engine.level = Engine.level < 10 ? 1 : 0;
@@ -52,6 +53,8 @@ static void death_change(void)
     switch_level();
     Player.ref->dead = false;
     Player.ref->draw = true;
+    actor_set_anim(Player.ref, "regenerate");
+    Player.blocked = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

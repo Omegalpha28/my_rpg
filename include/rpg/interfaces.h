@@ -205,6 +205,16 @@ bool_t exist_save(uint_t id);
 void save_save(uint_t id);
 
 void draw_interact(void);
+void pnj_talk(talk_t number_talk);
 char *conv(char key);
+
+    #define HEAL_LINE1 "Hey you. It seems like you are hurt. You can"
+    #define HEAL_LINE2 "try to use the ability that you have ?"
+    #define DASH_LINE1 "Oh a river.. you can just jump over it. You are"
+    #define DASH_LINE2 "an axolotle no need to be afraid of water."
+    #define INV_LINE1 "If you click you can see all the axolotles that you"
+    #define INV_LINE2 "saved from the begining of your adventure."
+    #define JOURN_LINE1 "This area is still under construction."
+    #define JOURN_LINE2 "Trust me it will take no time to open."
 
 #endif /* !INTERFACES_H_ */

@@ -143,6 +143,16 @@ typedef struct key_track_s {
     bool_t pressed;
 } key_track_t;
 
+typedef enum talk_s {
+    NO_TALK,
+    TUTO_1,
+    TUTO_2,
+    MARKET_WEAPON,
+    MARKET_ITEM,
+    INVENTORY,
+    JOURNAL
+} talk_t;
+
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief setting structure to keep settings
 ///
@@ -188,6 +198,7 @@ extern struct keybind_s {
     int wasHover;
     key_track_t inventory;
     bool_t keylease;
+    talk_t talk;
 } Setting;
 
 ///////////////////////////////////////////////////////////////////////////////

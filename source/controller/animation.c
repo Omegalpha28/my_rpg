@@ -45,6 +45,14 @@ void use_competence(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void check_player_regenerate(void)
+{
+    if (!Player.blocked || !Player.ref->done)
+        return;
+    Player.blocked = false;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void player_movement(void)
 {
     Player.velocity = (v2f_t){0.0f, 0.0f};
@@ -59,9 +67,10 @@ void player_movement(void)
     get_last_input();
     Player.velocity = multiply2f(normalize2f(Player.velocity),
         V2F1(Time.deltaTime / 15));
-    if (!DASH && !DANCE && !HEAL)
+    if (!DASH && !DANCE && !HEAL && !Player.blocked)
         actor_set_anim(Player.ref, (Player.velocity.x != 0.0f ||
             Player.velocity.y != 0.0f) ? "walk" : "idle");
+    check_player_regenerate();
     if (DANCE)
         actor_set_anim(Player.ref, "dance");
     dash_movement();

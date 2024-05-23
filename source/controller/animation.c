@@ -23,10 +23,8 @@ static effect_t *search_effect(cstring_t name)
 ///////////////////////////////////////////////////////////////////////////////
 void use_competence(void)
 {
-    v2f_t vec = Player.velocity;
-
-    if (!HEAL || vec.x != 0.0f || vec.y != 0.0f || DANCE || DASH ||
-        Player.ref->charges != 5 || Player.ref->health ==
+    if (!HEAL || Player.velocity.x != 0.0f || Player.velocity.y != 0.0f ||
+        DANCE || DASH || Player.ref->charges != 5 || Player.ref->health ==
         (int)Assets.axolotl[Player.ref->variantId]->maxHealth) {
         HEAL = false;
         if (!(search_effect("snack") != NULL && Player.ref->charges == 0))
@@ -41,6 +39,7 @@ void use_competence(void)
         Player.ref->health++;
         Player.ref->charges = 0;
         HEAL = false;
+        sfx(SFX_HEALTH);
         actor_set_anim(Player.ref, "idle");
     }
 }

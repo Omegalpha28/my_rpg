@@ -146,30 +146,6 @@ static void update_bullet(bullet_t *bullet)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-int check_weapon_ammo(weapon_enum_t weapon, sfMouseButtonEvent evt,
-    bool_t pressed)
-{
-    uint_t reload_time = WEAPON_STATS[weapon].reload_time * 1000;
-    uint_t firerate = WEAPON_STATS[weapon].firerate * 1000;
-
-    if ((Time.currentTime - Player.shoot_time) < firerate ||
-        !(evt.button == Setting.shoot && pressed))
-        return (1);
-    if ((Time.currentTime - Player.shoot_time) < reload_time &&
-        Player.num_shoot > WEAPON_STATS[weapon].ammoPerMag)
-        return (1);
-    Player.num_shoot++;
-    if (!((Time.currentTime - Player.shoot_time) < reload_time) &&
-        Player.num_shoot > WEAPON_STATS[weapon].ammoPerMag)
-        Player.num_shoot = 0;
-    if (Player.num_shoot == WEAPON_STATS[weapon].ammoPerMag &&
-        WEAPON_STATS[weapon].bulletType != BULLET_MELEE)
-        return (1);
-    Player.shoot_time = Time.currentTime;
-    return (0);
-}
-
-///////////////////////////////////////////////////////////////////////////////
 void update_all_bullets(void)
 {
     for (uint_t i = 0; i < Pool.bulletCount; i++) {

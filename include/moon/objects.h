@@ -153,6 +153,40 @@ typedef struct effect_s {
 } effect_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Type of interactable
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef enum interactable_type_e {
+    INTERACTABLE_WEAPON,
+    INTERACTABLE_CURRENCY,
+    INTERACTABLE_PNJ,
+    INTERACTABLE_CHEST,
+    INTERACTABLE_COUNT
+} interactable_type_t;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Structure to hold every interactables of the level
+///
+/// \param type         The type of interactable
+/// \param data         The data of the interactable
+/// \param time         The time of appearance of the interactable
+/// \param position     The position of the interactable
+/// \param interact     The function used on interaction with this object
+/// \param sprite       The sprite of the object
+/// \param img          The image of the object
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct interactable_s {
+    interactable_type_t type;
+    int data[4];
+    ulong_t time;
+    v2f_t position;
+    void (*interact)(struct interactable_s *obj);
+    sfSprite *sprite;
+    image_t *img;
+} interactable_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Object pool to keep track of loaded and drawed assets
 ///
 /// \param actors       The list of actors
@@ -165,6 +199,8 @@ typedef struct effect_s {
 /// \param bulletCount  The number of bullet
 /// \param sounds       The list of sounds
 /// \param soundCount   The number of sound
+/// \param inters       The list of interactables objects
+/// \param interCount   The number of interactable object
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct pool_s {
@@ -178,6 +214,8 @@ extern struct pool_s {
     uint_t bulletCount;
     sfSound **sounds;
     uint_t soundCount;
+    interactable_t **inters;
+    uint_t interCount;
 } Pool;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -502,5 +540,27 @@ void remove_sfx(sfSound *sd);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void check_player_health(void);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Create a new interactable object and place it on the map
+///
+/// \param type         The type of interaction
+/// \param position     The position of the object
+/// \param firstData    The first data entry of the object
+/// \param interact     The function to execute on interaction
+///
+/// \return The newly created interactable
+///
+///////////////////////////////////////////////////////////////////////////////
+interactable_t *spawn_interactable(interactable_type_t type, v2f_t position,
+    int firstData, void (*interact)(interactable_t *obj));
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Remove and destroy an interactable from the pool
+///
+/// \param obj          The interactable object to destroy
+///
+///////////////////////////////////////////////////////////////////////////////
+void destroy_interactable(interactable_t *obj);
 
 #endif /* !OBJECTS_H_ */

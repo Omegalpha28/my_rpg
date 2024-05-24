@@ -11,6 +11,17 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+void openchest(interactable_t *obj)
+{
+    actor_set_anim(obj->actor, "open");
+    sfx(SFX_CHEST_OPEN);
+    if (obj->data[0] == 0)
+        spawn_interactable(INTERACTABLE_WEAPON, add2f(obj->position, V2F(
+            rand() % 50, rand() % 50)), rand() % WEAPON_COUNT, &pickup);
+    Player.lastAction = Time.currentTime;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 bool_t level_hub(void)
 {
     sfMusic *music = find_music("by-the-campfire");
@@ -25,7 +36,7 @@ bool_t level_hub(void)
     sfMusic_setVolume(music, clampf(Setting.master *
         (Setting.music / 100.0f) * 0.75f, 0.0f, 100.0f));
     sfMusic_play(music);
-    spawn_interactable(INTERACTABLE_WEAPON, V2F1(0.0f),
-        WEAPON_MELEE_LIGHTSABER, &pickup);
+    spawn_interactable(INTERACTABLE_PNJ, V2F(155.0f, -160.0f), 4, NULL);
+    spawn_interactable(INTERACTABLE_PNJ, V2F(475.0f, -15.0f), 3, NULL);
     return (true);
 }

@@ -155,7 +155,7 @@ static void draw_hud(void)
     draw_comp();
     draw_weapon_only();
     pnj_talk(Setting.talk);
-    if (Player.canInteract)
+    if (Player.canInteract && Setting.talk == NO_TALK)
         draw_interact();
     draw_visor();
     draw_fade();

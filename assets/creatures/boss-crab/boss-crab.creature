@@ -56,3 +56,32 @@ death            0       19      DEFAULT     FALSE
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 4           5           20          original            assets/creatures/boss-crab/rage/death-debug.png
 [END]
+
+[START-spin]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+5           3           14         original             assets/creatures/boss-crab/normal/spin_transition_tired.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+spin             0       2      DEFAULT     TRUE
+spin_transition  3       5      DEFAULT     FALSE
+fizzy            6       13     DEFAULT     FALSE
+[END]
+
+[START-unspin]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+5           2           9          original             assets/creatures/boss-crab/normal/tired_standup.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+unspin           0       8      DEFAULT     FALSE
+[END]
+
+
+[START-shieldattack]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+6           5           30         original             assets/creatures/boss-crab/normal/shield_attack.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+into_bubble      0       7      DEFAULT     FALSE
+in_shield        8       23     DEFAULT     TRUE
+outa_shield      24      28     DEFAULT     FALSE
+[END]

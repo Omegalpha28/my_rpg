@@ -18,17 +18,16 @@ static void update_interaction(void)
         Player.ref->position.y - pm.height / 2.0f, pm.width, pm.height};
     recti_t ir = {0, 0, 0, 0};
     bool_t hover = false;
-    ulong_t elasped = (Time.currentTime - Player.lastAction);
 
-    for (uint_t i = 0; i < Pool.interCount && elasped > 1e3; i++) {
-        elasped = (Time.currentTime - Player.lastAction);
+    for (uint_t i = 0; i < Pool.interCount && (Time.currentTime -
+        Player.lastAction) > 1e3; i++) {
         hover = false;
         ir = Pool.inters[i]->img->mask;
         ir.left = Pool.inters[i]->position.x - ir.width / 2.0f;
         ir.top = Pool.inters[i]->position.y - ir.height / 2.0f;
         hover = sfIntRect_intersects(&ir, &pr, NULL);
-        if (hover)
-            Player.canInteract = true;
+        Player.canInteract = hover ? true : Player.canInteract;
+        actor_set_anim(Pool.inters[i]->actor, hover ? "hover" : "idle");
         if (PRESSED(Setting.interact.code) && hover &&
             Pool.inters[i]->interact != NULL)
             Pool.inters[i]->interact(Pool.inters[i]);

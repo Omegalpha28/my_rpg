@@ -79,7 +79,24 @@ static void draw_tuto2(void)
 ///////////////////////////////////////////////////////////////////////////////
 static void draw_market_weap(void)
 {
-    sfSprite *mark = sfSprite_create();
+    sfSprite *sign = sfSprite_create();
+    v2f_t scale = {Win.width / Win.viewWidth, Win.height / Win.viewHeight};
+
+    draw_shadow();
+    sfSprite_setTexture(sign, Assets.ui[UI_PNJ_MARK_WEAP]->self, false);
+    sfSprite_setScale(sign, V2F1(0.75f));
+    sfSprite_setOrigin(sign, V2F(49.5f, 102.0f));
+    sfSprite_setPosition(sign, PX_TO_MAPF(V2F(Win.width / 4 - scale.x * 16.0f,
+        Win.height)));
+    sfRenderWindow_drawSprite(Win.self, sign, false);
+    sfSprite_destroy(sign);
+    draw_text("Junkcat", PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 16,
+        Win.height / 5 * 3.5f)), 0.45f, sfWhite);
+    draw_text(MARK_IT_LINE1, PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 8,
+        Win.height / 5 * 3.5f + 16.0f * scale.y)), 0.35f, sfWhite);
+    draw_text(MARK_IT_LINE2, PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 8,
+        Win.height / 5 * 3.5f + 24.0f * scale.y)), 0.35f, sfWhite);
+    Player.blocked = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

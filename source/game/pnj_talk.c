@@ -31,6 +31,10 @@ void draw_next_button(void)
 ///////////////////////////////////////////////////////////////////////////////
 void switalk(interactable_t *obj)
 {
+    if (obj->data[0] == 8 && Engine.level == 3)
+        Setting.talk = TUTO_1;
+    if (obj->data[0] == 8 && Engine.level == 4)
+        Setting.talk = TUTO_2;
     if (obj->data[0] == 4)
         Setting.talk = MARKET_ITEM;
     if (obj->data[0] == 3)
@@ -195,8 +199,6 @@ void draw_inv(v2f_t scale)
         Win.height / 5 * 3.5f + 16.0f * scale.y)), 0.35f, sfWhite);
     draw_text(INV_LINE2, PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 8,
         Win.height / 5 * 3.5f + 24.0f * scale.y)), 0.35f, sfWhite);
-    if (CLICK_REL)
-        Engine.scene = SCENE_INVENTORY;
     Player.blocked = true;
     draw_next_button();
 }

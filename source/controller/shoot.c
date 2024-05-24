@@ -15,7 +15,7 @@ static bool_t can_shoot(void)
     int ammo = Player.mag[(Player.inventor[1] == Player.weapon)];
     ulong_t elsp = (Time.currentTime - Player.shoot_time);
 
-    if (!MPRESSED(Setting.shoot) || DANCE || DASH)
+    if (!MPRESSED(Setting.shoot) || DANCE || DASH || Setting.talk != NO_TALK)
         return (false);
     if (ammo == 0 || (elsp < wp.firerate * 1e3))
         return (false);

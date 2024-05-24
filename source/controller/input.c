@@ -59,6 +59,8 @@ void parse_key_input(sfKeyEvent evt)
     if (Setting.talk != NO_TALK && released && evt.code ==
         Setting.dash.code)
         Setting.talk = NO_TALK;
+    if (Setting.talk == INVENTORY && released && evt.code == Setting.heal.code)
+        Engine.scene = SCENE_INVENTORY;
     if (Player.blocked)
         return;
     parse_movement_key_input(evt, pressed, released);

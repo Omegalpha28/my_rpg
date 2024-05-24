@@ -18,6 +18,7 @@ static string_t DOORS[] = {
     "exit_door_bottom",
     "transition_door_bottom",
     "door",
+    "entrance_door",
     NULL
 };
 
@@ -39,7 +40,8 @@ static void check_opening_animation(void)
     if (Entities.count != 0)
         return;
     for (uint_t i = 0; i < Pool.propCount; i++) {
-        if (!CMP(Pool.props[i]->self->name, "plank_door"))
+        if (!CMP(Pool.props[i]->self->name, "plank_door") && !CMP(
+            Pool.props[i]->self->name, "entrance_door"))
             continue;
         if (Pool.props[i]->position.y < maxY)
             maxY = Pool.props[i]->position.y;

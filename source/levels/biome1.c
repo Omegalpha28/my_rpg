@@ -46,7 +46,12 @@ bool_t level_biome1(void)
 {
     if (Engine.level < 10 || Engine.level > 19)
         return (false);
-    level_load(LEVELS[rand() % LEVEL_COUNT]);
-    use_spawner();
+    level_load(Engine.level != 19 ? LEVELS[rand() % LEVEL_COUNT] :
+        "boss/crab");
+    if (Engine.level != 19)
+        use_spawner();
+    else
+        entity_create(Assets.creatures[CREATURE_CRAB_BOSS],
+            V2F(0.0f, -200.0f));
     return (true);
 }

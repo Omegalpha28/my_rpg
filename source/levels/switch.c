@@ -66,7 +66,6 @@ void end_music(void)
 void switch_level(void)
 {
     Engine.fadeStart = Time.currentTime;
-    Engine.level = 19;
     reset_player_behavior();
     reset_pools();
     clear_entities();

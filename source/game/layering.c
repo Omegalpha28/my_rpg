@@ -154,18 +154,23 @@ static void draw_hud(void)
     draw_health();
     draw_comp();
     draw_weapon_only();
+    pnj_talk(Setting.talk);
+    if (Player.canInteract && Setting.talk == NO_TALK)
+        draw_interact();
     draw_visor();
     draw_fade();
+    if (Player.ref->dead && !Player.ref->done)
+        draw_oupsi();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 static void drawing_weapons(uint_t i)
 {
-    bool_t under;
+    bool_t under = draw_weapon_under(Pool.actors[i]);
     int weapon;
 
-    under = draw_weapon_under(Pool.actors[i]);
-    if (Player.ref == Pool.actors[i] && under && !(DANCE || DASH || HEAL))
+    if (Player.ref == Pool.actors[i] && under && !(DANCE || DASH || HEAL ||
+        Player.blocked))
         draw_weapon(Player.ref, Player.weapon);
     if (!(Player.ref == Pool.actors[i]) && under) {
         weapon = search_weapon(Pool.actors[i]);
@@ -178,8 +183,8 @@ static void drawing_weapons(uint_t i)
         if (weapon != -1)
             draw_weapon(Pool.actors[i], weapon);
     }
-    if (Player.ref == Pool.actors[i] && !under && !(DANCE || DASH || HEAL) &&
-        !Player.ref->dead)
+    if (Player.ref == Pool.actors[i] && !under && !(DANCE || DASH || HEAL ||
+        Player.blocked) && !Player.ref->dead)
         draw_weapon(Player.ref, Player.weapon);
 }
 
@@ -191,6 +196,8 @@ void draw(void)
         if (Pool.effects[i]->self->background)
             effect_draw(Pool.effects[i]);
     sort_actors_pool();
+    for (uint_t i = 0; i < Pool.interCount; i++)
+        draw_interactable(Pool.inters[i]);
     for (uint_t i = 0; i < Pool.actorCount; i++)
         drawing_weapons(i);
     draw_all_bullets();

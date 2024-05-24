@@ -14,9 +14,9 @@
 static recti_t get_bullet_box(bullet_t *bullet)
 {
     return ((recti_t){
-        (int)bullet->position.x - 1,
-        (int)bullet->position.y - 1,
-        (int)2, (int)2
+        (int)bullet->position.x - 2,
+        (int)bullet->position.y - 2,
+        (int)4, (int)4
     });
 }
 
@@ -60,7 +60,8 @@ static void check_bullet_collision_prop(bullet_t *bullet, prop_t *prop)
         bullet, bullet->img->mask) - (stat.invert ? 180.0f : 0.0f));
     bullet->img = Assets.bullets[stat.impactWall];
     bullet->state = BULLET_STATE_IMPACT;
-    sfx(SFX_BULLET_HIT_NON_DAMAGEABLE);
+    bullet->weapon == WEAPON_MELEE_BOOMERANG ? sfx(SFX_BULLET_HIT_BOOMERANG) :
+        sfx(SFX_BULLET_HIT_DAMAGEABLE);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -76,34 +77,59 @@ static recti_t reduce_actor_collision_box(recti_t arect)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void set_damage_actor(bullet_t *bullet, actor_t *actor)
+{
+    actor->invincible = !actor->invincible;
+    actor->health -= (Player.ref == actor) ? 1 :
+        WEAPON_STATS[bullet->weapon].damage;
+    actor->damaged = true;
+    bullet->weapon == WEAPON_MELEE_BOOMERANG ? sfx(SFX_BULLET_HIT_BOOMERANG) :
+        sfx(SFX_BULLET_HIT_DAMAGEABLE);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void check_bullet_collision_actor(bullet_t *bullet, actor_t *actor)
 {
-    bullet_stat_t stat = BULLET_STATS[WEAPON_STATS[bullet->weapon].bulletType];
+    bullet_list_t b_type = WEAPON_STATS[bullet->weapon].bulletType;
+    bullet_stat_t stat = BULLET_STATS[b_type];
     recti_t amask = actor->self->sheets[actor->sheetId]->image->mask;
     recti_t arect = {actor->position.x - amask.width / 2.0f, actor->position.y
         - amask.height / 2.0f, amask.width, amask.height};
     recti_t brect = get_bullet_box(bullet);
 
     arect = reduce_actor_collision_box(arect);
-    if (!sfIntRect_intersects(&brect, &arect, NULL) || bullet->state !=
-        BULLET_STATE_FLYING || (DASH && Player.ref == actor))
+    if (!sfIntRect_intersects(&brect, &arect, NULL) || (b_type != BULLET_MELEE
+        && (bullet->state != BULLET_STATE_FLYING))  || actor->dead ||
+        (DASH && Player.ref == actor))
         return;
-    bullet->img = Assets.bullets[stat.impactEnemy];
-    bullet->state = BULLET_STATE_IMPACT;
-    if (actor->dead)
-        return;
-    actor->invincible = !actor->invincible;
-    actor->health -= (Player.ref == actor) ? 1 :
-        WEAPON_STATS[bullet->weapon].damage;
-    actor->damaged = true;
-    sfx(SFX_BULLET_HIT_DAMAGEABLE);
+    if (b_type != BULLET_MELEE) {
+        bullet->img = Assets.bullets[stat.impactEnemy];
+        bullet->state = BULLET_STATE_IMPACT;
+    }
+    set_damage_actor(bullet, actor);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 static void check_bullet_collision_bullet(bullet_t *bullet, bullet_t *other)
 {
-    bullet = bullet;
-    other = other;
+    recti_t bullet_box = get_bullet_box(bullet);
+    bullet_stat_t stat_bullet =
+        BULLET_STATS[WEAPON_STATS[bullet->weapon].bulletType];
+    recti_t other_box = get_bullet_box(other);
+    bullet_stat_t stat_other =
+        BULLET_STATS[WEAPON_STATS[bullet->weapon].bulletType];
+
+    if (!sfIntRect_intersects(&bullet_box, &other_box, NULL)
+        || (bullet->state != BULLET_STATE_FLYING ||
+        other->state != BULLET_STATE_FLYING))
+        return;
+
+    bullet->img = Assets.bullets[stat_bullet.impactEnemy];
+    bullet->state = BULLET_STATE_IMPACT;
+    other->img = Assets.bullets[stat_other.impactEnemy];
+    other->state = BULLET_STATE_IMPACT;
+    bullet->weapon == WEAPON_MELEE_BOOMERANG ? sfx(SFX_BULLET_HIT_BOOMERANG) :
+        sfx(SFX_BULLET_HIT_DAMAGEABLE);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -143,30 +169,6 @@ static void update_bullet(bullet_t *bullet)
         bullet->img = Assets.bullets[stat.disappear];
         bullet->state = BULLET_STATE_IMPACT;
     }
-}
-
-///////////////////////////////////////////////////////////////////////////////
-int check_weapon_ammo(weapon_enum_t weapon, sfMouseButtonEvent evt,
-    bool_t pressed)
-{
-    uint_t reload_time = WEAPON_STATS[weapon].reload_time * 1000;
-    uint_t firerate = WEAPON_STATS[weapon].firerate * 1000;
-
-    if ((Time.currentTime - Player.shoot_time) < firerate ||
-        !(evt.button == Setting.shoot && pressed))
-        return (1);
-    if ((Time.currentTime - Player.shoot_time) < reload_time &&
-        Player.num_shoot > WEAPON_STATS[weapon].ammoPerMag)
-        return (1);
-    Player.num_shoot++;
-    if (!((Time.currentTime - Player.shoot_time) < reload_time) &&
-        Player.num_shoot > WEAPON_STATS[weapon].ammoPerMag)
-        Player.num_shoot = 0;
-    if (Player.num_shoot == WEAPON_STATS[weapon].ammoPerMag &&
-        WEAPON_STATS[weapon].bulletType != BULLET_MELEE)
-        return (1);
-    Player.shoot_time = Time.currentTime;
-    return (0);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

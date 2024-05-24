@@ -25,5 +25,9 @@ bool_t level_hub(void)
     sfMusic_setVolume(music, clampf(Setting.master *
         (Setting.music / 100.0f) * 0.75f, 0.0f, 100.0f));
     sfMusic_play(music);
+    spawn_interactable(INTERACTABLE_PNJ, V2F(155.0f, -160.0f), 4, &switalk);
+    spawn_interactable(INTERACTABLE_PNJ, V2F(475.0f, -15.0f), 3, &switalk);
+    spawn_interactable(INTERACTABLE_PNJ, V2F(-210.0f, -150.0f), 2, &switalk);
+    spawn_interactable(INTERACTABLE_PNJ, V2F(-215.0f, 100.0f), 1, &switalk);
     return (true);
 }

@@ -480,6 +480,12 @@ typedef enum ui_element_e {
     UI_HEALTH,
     UI_ABILITIES,
     UI_WEAPON,
+    UI_PNJ_SIGN,
+    UI_PNJ_INV,
+    UI_PNJ_MARK_WEAP,
+    UI_PNJ_MARK_ITEM,
+    UI_PNJ_JOURN,
+    UI_REPORT,
     UI_ELEMENT_COUNT
 } ui_element_t;
 
@@ -532,7 +538,13 @@ static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
     DIR_UI"/common/bases/paper/base_idle.png",
     DIR_UI"/HUD/health.png",
     DIR_UI"/HUD/abilities.png",
-    DIR_UI"/HUD/weapons_box.png"
+    DIR_UI"/HUD/weapons_box.png",
+    DIR_UI"/portraits/sus_sign.png",
+    DIR_UI"/portraits/nugget.png",
+    DIR_UI"/portraits/junkcat.png",
+    DIR_UI"/portraits/dough.png",
+    DIR_UI"/portraits/blisstaker.png",
+    DIR_UI"/reports/report.png"
 };
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -709,6 +721,33 @@ typedef enum sfx_list_e {
     SFX_RELOAD,
     SFX_WEAPON_SWAP_HANDLING,
     SFX_WEAPON_SWAP_WHOOSH,
+    SFX_WP_NAILGUN,
+    SFX_WP_RPK410,
+    SFX_WP_TENTACLE,
+    SFX_WP_XBOW,
+    SFX_WP_TOYRIFLE,
+    SFX_WP_SWHOOSER,
+    SFX_WP_SNAKEEYES,
+    SFX_WP_SLUGSHOTGUN,
+    SFX_WP_TWINKLESTAR,
+    SFX_WP_RETROVOLVER,
+    SFX_WP_RAPTOR,
+    SFX_WP_PEACEKEEPER,
+    SFX_WP_MECHAPAW,
+    SFX_WP_MAGNEGUN,
+    SFX_WP_LUTE,
+    SFX_WP_KNUCKLES,
+    SFX_WP_HELLQUEEN,
+    SFX_WP_FLAMINGBALLS,
+    SFX_WP_FISHINGROD,
+    SFX_WP_FINGERPISTOL,
+    SFX_WP_EQUALIZER,
+    SFX_WP_ELEPHANTGUN,
+    SFX_WP_CROSSBOW_2,
+    SFX_WP_CLEVEAGE,
+    SFX_WP_CARNAGEGEAR,
+    SFX_WP_BOLTER,
+    SFX_WP_AVELYN,
     SFX_COUNT
 } sfx_list_t;
 
@@ -925,6 +964,93 @@ static const cstring_t SFX_ASSETS[SFX_COUNT][MAX_SFX_VARIANTS] = {
         "game/weapon_swap_whoosh_02.ogg", "game/weapon_swap_whoosh_03.ogg",
         "game/weapon_swap_whoosh_04.ogg", "game/weapon_swap_whoosh_05.ogg",
         "game/weapon_swap_whoosh_06.ogg", NULL
+    },
+    {
+        "weapons/nailgun_01.ogg", "weapons/nailgun_02.ogg",
+        "weapons/nailgun_03.ogg", "weapons/nailgun_04.ogg", NULL
+    },
+    {
+        "weapons/rpk410_00.ogg", "weapons/rpk410_01.ogg",
+        "weapons/rpk410_02.ogg", "weapons/rpk410_03.ogg", NULL
+    },
+    {
+        "weapons/tentacle_01.ogg", "weapons/tentacle_02.ogg",
+        "weapons/tentacle_03.ogg", "weapons/tentacle_04.ogg", NULL
+    },
+    {"weapons/xbow_01.ogg", "weapons/xbow_02.ogg", NULL},
+    {
+        "weapons/toyrifle_01.ogg", "weapons/toyrifle_02.ogg",
+        "weapons/toyrifle_03.ogg", "weapons/toyrifle_04.ogg", NULL
+    },
+    {
+        "weapons/swhooser_01.ogg", "weapons/swhooser_02.ogg",
+        "weapons/swhooser_03.ogg", NULL
+    },
+    {
+        "weapons/snakeeyes_01.ogg", "weapons/snakeeyes_02.ogg",
+        "weapons/snakeeyes_03.ogg", "weapons/snakeeyes_04.ogg", NULL
+    },
+    {
+        "weapons/slugshotgun_0.ogg", "weapons/slugshotgun_1.ogg",
+        "weapons/slugshotgun_2.ogg", "weapons/slugshotgun_3.ogg", NULL
+    },
+    {
+        "weapons/twinklestar_v2_01.ogg", "weapons/twinklestar_v2_02.ogg",
+        "weapons/twinklestar_v2_03.ogg", "weapons/twinklestar_v2_04.ogg", NULL
+    },
+    {
+        "weapons/retrovolver_v2_01.ogg", "weapons/retrovolver_v2_02.ogg",
+        "weapons/retrovolver_v2_03.ogg", "weapons/retrovolver_v2_04.ogg", NULL
+    },
+    {
+        "weapons/raptor_01.ogg", "weapons/raptor_02.ogg",
+        "weapons/raptor_03.ogg", "weapons/raptor_04.ogg", NULL
+    },
+    {
+        "weapons/peacekeeper_01.ogg", "weapons/peacekeeper_02.ogg",
+        "weapons/peacekeeper_03.ogg", "weapons/peacekeeper_04.ogg", NULL
+    },
+    {
+        "weapons/mechapaw_01.ogg", "weapons/mechapaw_02.ogg",
+        "weapons/mechapaw_03.ogg", "weapons/mechapaw_04.ogg", NULL
+    },
+    {
+        "weapons/magnegun_01.ogg", "weapons/magnegun_02.ogg",
+        "weapons/magnegun_03.ogg", "weapons/magnegun_04.ogg", NULL
+    },
+    {
+        "weapons/lute_01.ogg", "weapons/lute_02.ogg",
+        "weapons/lute_03.ogg", "weapons/lute_04.ogg", NULL
+    },
+    {"weapons/knuckles_01.ogg", "weapons/knuckles_02.ogg", NULL},
+    {
+        "weapons/hellqueen_01.ogg", "weapons/hellqueen_02.ogg",
+        "weapons/hellqueen_03.ogg", "weapons/hellqueen_04.ogg", NULL
+    },
+    {
+        "weapons/flamingballs_01.ogg", "weapons/flamingballs_02.ogg",
+        "weapons/flamingballs_03.ogg", NULL
+    },
+    {"weapons/fishingrod_01.ogg", "weapons/fishingrod_02.ogg", NULL},
+    {
+        "weapons/fingerpistol_01.ogg", "weapons/fingerpistol_02.ogg",
+        "weapons/fingerpistol_03.ogg", "weapons/fingerpistol_04.ogg", NULL
+    },
+    {
+        "weapons/equalizer_01.ogg", "weapons/equalizer_02.ogg",
+        "weapons/equalizer_03.ogg", NULL
+    },
+    {"weapons/elephantgun_01.ogg", NULL},
+    {
+        "weapons/crossbow_01.ogg", "weapons/crossbow_02.ogg",
+        "weapons/crossbow_03.ogg", "weapons/crossbow_04.ogg", NULL
+    },
+    {"weapons/cleveage_01.ogg", "weapons/cleveage_02.ogg", NULL},
+    {"weapons/carnagegear_01.ogg", "weapons/carnagegear_02.ogg", NULL},
+    {"weapons/bolter_01.ogg", "weapons/bolter_02.ogg", NULL},
+    {
+        "weapons/avelyn_01.ogg", "weapons/avelyn_02.ogg",
+        "weapons/avelyn_03.ogg", "weapons/avelyn_04.ogg", NULL
     }
 };
 

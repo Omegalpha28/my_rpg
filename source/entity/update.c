@@ -23,7 +23,6 @@ static void entity_update(entity_t *evil)
             evil->movement = Time.currentTime;
             evil->has_spawn = !evil->has_spawn;
         }
-        // printf("%d\n", evil->movement);
     } else {
         enemy_movement(evil);
         enemy_action(evil);

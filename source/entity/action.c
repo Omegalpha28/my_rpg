@@ -37,7 +37,7 @@ static void dashing(entity_t *evil)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void multishot(entity_t *evil, int angle)
+void multishot_calc(entity_t *evil, int angle)
 {
     v2f_t bullet_position;
     float distance = 100.0;
@@ -58,22 +58,25 @@ static void multishot(entity_t *evil, int angle)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void shooting(entity_t *evil)
+void firing(entity_t *evil, uint_t ball_amount, int offset)
 {
-    uint_t pair_tax = 5;
+    uint_t pair_tax = offset / 2;
 
-    if ((Time.currentTime - evil->last_action) < evil->firerate)
-        return;
-    if ((evil->ball_count % 2)) {
+    if ((ball_amount % 2)) {
         create_bullet(evil->actor, Player.ref->position, evil->weapon);
         pair_tax = 0;
     }
-    for (uint_t i = 1; i < ((evil->ball_count / 2) + 1); i++){
-        if (i == 1 && pair_tax)
-            multishot(evil, i * (10 - pair_tax));
-        else
-            multishot(evil, (i * (10 - pair_tax)) + pair_tax);
-    }
+    for (uint_t i = 1; i < ((ball_amount / 2) + 1); i++)
+        multishot_calc(evil, (i == 1 && pair_tax) ? i * pair_tax :
+            (i * offset) - pair_tax);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void shooting(entity_t *evil)
+{
+    if ((Time.currentTime - evil->last_action) < evil->firerate)
+        return;
+    firing(evil, evil->ball_count, 10);
     evil->last_action = Time.currentTime;
 }
 

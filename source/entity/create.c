@@ -66,8 +66,8 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->movement = 0;
     new->wanted_position = position;
     new->curr_phase = 0;
-    new->bounce = false;
-    new->vector = V2F1(5.0f);
+    new->bounce = 0;
+    new->vector = V2F(5.0f, 0.0f);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

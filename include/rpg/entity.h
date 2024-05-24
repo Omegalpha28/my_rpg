@@ -102,7 +102,7 @@ typedef struct entity_s {
     int curr_phase;
     uint_t firerate;
     uint_t ball_count;
-    bool_t bounce;
+    uint_t bounce;
     v2f_t vector;
 } entity_t;
 
@@ -162,7 +162,7 @@ typedef struct creature_stats_s {
 static const creature_stats_t Stats[CREATURE_COUNT] = {
     {100, 0, 0, 0, 0, 0, 0, 0, 1},                        //player
     {100, 0.7, 0, 0, Bomber, 1000, 1, 3000, 1},              //duck
-    {600, 0.5, 0, 100, Boss, 3000, -1, 1000, 1},             //crab boss
+    {600, 0.5, 0, 100, Boss, 3000, WEAPON_SHOTGUN_SKULL, 1000, 12}, //crab boss
     {40, 0.4f, 300.0f, 400.0f, Sniper, 0, 35, 4000, 1},      //bald rat
     {100, 0, 0, 0, 0, 0, 0, 0, 1},                        //dummy
     {100, 0, 0, 0, Dash, 3000, 36, 2000, 1},              //baby crab (elite)
@@ -283,11 +283,32 @@ void update_collisions(void);
 ///////////////////////////////////////////////////////////////////////////////
 void boss_movement(entity_t *boss);
 
-
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief Does all action checks for the bosses.
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void boss_action(entity_t *boss);
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief fires off the neccessary amount of bullets.
+///
+/// \param evil         Pointer to the enemy shooting.
+/// \param ball_amount  Amount of balls needed to be shot.
+/// \param offset       distance between each ball if multishot is
+///                     accounted for.
+///
+///////////////////////////////////////////////////////////////////////////////
+void firing(entity_t *evil, uint_t ball_amount, int offset);
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Simulates the movement and finds the position right before the wall
+/// and "bounces off" the wall.
+///
+/// \param crab         Pointer to the crab getting simulated.
+///
+///////////////////////////////////////////////////////////////////////////////
+void get_wanted_position(entity_t *crab);
 
 #endif /* !ENTITY_H_ */

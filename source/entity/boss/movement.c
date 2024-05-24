@@ -51,7 +51,7 @@ static bool_t get_prop_direction(prop_t *prop, v2f_t sim_pos)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void get_wanted_position(entity_t *crab)
+void get_wanted_position(entity_t *crab)
 {
     v2f_t sim_position = crab->actor->position;
     prop_t *prop = NULL;
@@ -69,19 +69,48 @@ static void get_wanted_position(entity_t *crab)
 ///////////////////////////////////////////////////////////////////////////////
 static void idle(entity_t *boss)
 {
+    if (boss->is_attack)
+        return;
+
+    if ((Time.currentTime - boss->movement) >= 7000)
+        boss->status = Fear;
     if (equal2f(V2F(floorf(boss->wanted_position.x),
         floorf(boss->wanted_position.y)), V2F(floorf(boss->actor->position.x),
         floorf(boss->actor->position.y))))
         get_wanted_position(boss);
     boss->actor->position = movetowards2f(boss->actor->position,
         boss->wanted_position, (boss->speed * Time.deltaTime) / 15);
+    if (floorf(boss->actor->position.x) == 0.0f && !boss->attack_started){
+        boss->attack_started = true;
+        boss->status = Agressive;
+    }
     actor_set_sheet(boss->actor, "walk");
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void reset_pos(entity_t *crab)
+{
+    crab->wanted_position = V2F(75.0f, -100.0f);
+    if (equal2f(V2F(floorf(crab->wanted_position.x),
+        floorf(crab->wanted_position.y)), V2F(floorf(crab->actor->position.x),
+        floorf(crab->actor->position.y)))){
+        crab->status = Patrol;
+        crab->last_action = Time.currentTime;
+        crab->movement = Time.currentTime;
+    }
+    crab->actor->position = movetowards2f(crab->actor->position,
+        crab->wanted_position, (crab->speed * Time.deltaTime) / 15);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void crab_movement(entity_t *boss)
 {
-    idle(boss);
+    if (boss->status != Patrol && boss->status != ranger)
+        return;
+    if (boss->status == ranger)
+        reset_pos(boss);
+    if (boss->status == Patrol)
+        idle(boss);
     return;
 }
 

@@ -67,13 +67,36 @@ void get_wanted_position(entity_t *crab)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void next_attack(entity_t *boss)
+{
+    int random = rand() % 7;
+
+    if (boss->curr_phase == 0)
+        boss->status = (random < 4) ? Patrol : Agressive;
+    if (boss->curr_phase){
+        if (random < 3)
+            boss->status = Patrol;
+        if (random < 6)
+            boss->status = Agressive;
+        if (random == 6)
+            boss->status = Fear;
+    }
+    if (boss->status == Fear){
+        actor_set_sheet(boss->actor, "shield_attack");
+        actor_set_anim(boss->actor, "into_bubble");
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void idle(entity_t *boss)
 {
     if (boss->is_attack)
         return;
-
-    if ((Time.currentTime - boss->movement) >= 7000)
-        boss->status = Fear;
+    if ((Time.currentTime - boss->movement) >= 7000){
+        next_attack(boss);
+        if (boss->status == Fear)
+            return;
+    }
     if (equal2f(V2F(floorf(boss->wanted_position.x),
         floorf(boss->wanted_position.y)), V2F(floorf(boss->actor->position.x),
         floorf(boss->actor->position.y))))

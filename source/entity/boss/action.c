@@ -70,6 +70,8 @@ static void bubble_defense(entity_t *crab)
     create_bullet(crab->actor, target_pos, crab->weapon);
     crab->actor->position = save;
     crab->last_action = Time.currentTime;
+    if (crab->actor->done)
+        actor_set_anim(crab->actor, "in_shield");
     return;
 }
 

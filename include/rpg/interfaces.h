@@ -216,5 +216,7 @@ char *conv(char key);
     #define INV_LINE2 "saved from the begining of your adventure."
     #define JOURN_LINE1 "This area is still under construction."
     #define JOURN_LINE2 "Trust me it will take no time to open."
+    #define MARK_IT_LINE1 "Hello there. Oh you have no money. Please"
+    #define MARK_IT_LINE2 "come back when you have more.."
 
 #endif /* !INTERFACES_H_ */

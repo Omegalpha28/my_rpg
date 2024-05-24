@@ -30,4 +30,5 @@ void parse_events(sfEvent evt)
             sfx(SFX_WEAPON_SWAP_HANDLING);
         Player.weapon = Player.inventor[1];
     }
+    CLICK_REL = click_rel(evt);
 }

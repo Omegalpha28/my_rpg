@@ -540,8 +540,8 @@ static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
     DIR_UI"/HUD/weapons_box.png",
     DIR_UI"/portraits/sus_sign.png",
     DIR_UI"/portraits/nugget.png",
-    DIR_UI"/portraits/dough.png",
     DIR_UI"/portraits/junkcat.png",
+    DIR_UI"/portraits/dough.png",
     DIR_UI"/portraits/baboon.png",
 };
 

@@ -25,7 +25,5 @@ bool_t level_hub(void)
     sfMusic_setVolume(music, clampf(Setting.master *
         (Setting.music / 100.0f) * 0.75f, 0.0f, 100.0f));
     sfMusic_play(music);
-    spawn_interactable(INTERACTABLE_WEAPON, V2F1(0.0f),
-        WEAPON_MELEE_LIGHTSABER, &pickup);
     return (true);
 }

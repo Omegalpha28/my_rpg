@@ -56,7 +56,8 @@ void parse_key_input(sfKeyEvent evt)
     bool_t pressed = (evt.type == sfEvtKeyPressed);
     bool_t released = (evt.type == sfEvtKeyReleased);
 
-    if (Setting.talk != NO_TALK && pressed && evt.code == Setting.pause.code)
+    if (Setting.talk != NO_TALK && released && evt.code ==
+        Setting.interact.code)
         Setting.talk = NO_TALK;
     if (Player.blocked)
         return;

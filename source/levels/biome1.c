@@ -36,10 +36,9 @@ static int get_creature(void)
 ///////////////////////////////////////////////////////////////////////////////
 static void use_spawner(void)
 {
-    entity_create(Assets.creatures[get_creature()],
-        V2F(0.0f, -225.0f));
-    entity_create(Assets.creatures[get_creature()],
-        V2F(0.0f, -225.0f));
+    for (uint_t i = 0; i < (uint_t)(clamp(Engine.level - 9, 1, 5)); i++)
+        entity_create(Assets.creatures[get_creature()],
+            V2F(0.0f, -225.0f));
 }
 
 ///////////////////////////////////////////////////////////////////////////////

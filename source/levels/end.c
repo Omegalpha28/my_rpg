@@ -17,6 +17,7 @@ static string_t DOORS[] = {
     "exit_door_2",
     "exit_door_bottom",
     "transition_door_bottom",
+    "door",
     NULL
 };
 
@@ -33,13 +34,20 @@ void clear_entity_remove_queue(void)
 ///////////////////////////////////////////////////////////////////////////////
 static void check_opening_animation(void)
 {
+    float maxY = 0.0f;
+
     if (Entities.count != 0)
         return;
     for (uint_t i = 0; i < Pool.propCount; i++) {
         if (!CMP(Pool.props[i]->self->name, "plank_door"))
             continue;
+        if (Pool.props[i]->position.y < maxY)
+            maxY = Pool.props[i]->position.y;
         prop_animate(Pool.props[i]);
     }
+    if (Engine.level > 1 && Engine.level != 3)
+        spawn_interactable(INTERACTABLE_CHEST, V2F(0.0f, maxY + 50.0f),
+            0, &openchest);
     Entities.count = -1;
 }
 
@@ -59,8 +67,10 @@ static prop_t **get_doors_prop(uint_t *n)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void go_through_door(void)
+static void go_through_door(prop_t *prop)
 {
+    if (CMP(prop->self->name, "door"))
+        Engine.level = 9;
     Engine.level++;
     switch_level();
 }
@@ -78,7 +88,7 @@ static void check_door_collision(prop_t *prop)
         dmask.width / 2.0f, dmask.height / 1.5f};
 
     if (sfFloatRect_intersects(&player, &door, NULL))
-        go_through_door();
+        go_through_door(prop);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

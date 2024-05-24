@@ -207,14 +207,17 @@ P_C_ROOT	=	$(P_D_ROOT)main.c											\
 P_C_CTRL	=	$(P_D_CTRL)animation.c										\
 				$(P_D_CTRL)camera.c											\
 				$(P_D_CTRL)shake.c											\
+				$(P_D_CTRL)interacts.c										\
 				$(P_D_CTRL)events.c											\
+				$(P_D_CTRL)shoot.c											\
 				$(P_D_CTRL)input.c
 P_C_GAME	=	$(P_D_GAME)loop.c											\
 				$(P_D_GAME)layering.c										\
 				$(P_D_GAME)debug.c											\
 				$(P_D_GAME)player.c											\
 				$(P_D_GAME)health.c											\
-				$(P_D_GAME)hud.c
+				$(P_D_GAME)hud.c											\
+				$(P_D_GAME)pnj_talk.c
 P_C_EDITOR	=	$(P_D_EDITOR)editor.c										\
 				$(P_D_EDITOR)events.c										\
 				$(P_D_EDITOR)loop.c											\
@@ -274,6 +277,7 @@ P_C_UI		=	$(P_D_UI)video/load.c										\
 P_C_LVL		=	$(P_D_LVL)switch.c											\
 				$(P_D_LVL)end.c												\
 				$(P_D_LVL)tutorial.c										\
+				$(P_D_LVL)biome1.c											\
 				$(P_D_LVL)hub.c
 
 P_SOURCES	=	$(P_C_ROOT)													\

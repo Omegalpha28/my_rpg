@@ -11,32 +11,33 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-static void check_shoot(void)
+static void update_interaction(void)
 {
-    v2f_t cr = PX_TO_MAPF(sfMouse_getPositionRenderWindow(Win.self));
-    uint_t reload_time = WEAPON_STATS[Player.weapon].reload_time * 1000;
-    uint_t firerate = WEAPON_STATS[Player.weapon].firerate * 1000;
-    uint_t mag = Player.weapon == Player.inventor[0] ? 0 : 1;
-    uint_t maxmag = WEAPON_STATS[Player.weapon].ammoPerMag;
+    recti_t pm = Player.ref->self->sheets[Player.ref->sheetId]->image->mask;
+    recti_t pr = {Player.ref->position.x - pm.width / 2.0f,
+        Player.ref->position.y - pm.height / 2.0f, pm.width, pm.height};
+    recti_t ir = {0, 0, 0, 0};
+    bool_t hover = false;
 
-    if ((Time.currentTime - Player.shoot_time) < firerate ||
-        ((Time.currentTime - Player.shoot_time) < reload_time &&
-        Player.mag[mag] == 0) || !MPRESSED(Setting.shoot) || DANCE || DASH ||
-        (Player.weapon == Player.inventor[1] && Player.max_bullet == 0))
-        return;
-    if (!((Time.currentTime - Player.shoot_time) < reload_time) &&
-        Player.mag[mag] == 0)
-        Player.mag[mag] = mag == 1 && Player.max_bullet < maxmag ?
-            Player.max_bullet : maxmag;
-    Player.mag[mag]--;
-    Player.max_bullet -= Player.weapon == Player.inventor[1] ? 1 : 0;
-    Player.shoot_time = Time.currentTime;
-    create_bullet(Player.ref, cr, Player.weapon);
+    for (uint_t i = 0; i < Pool.interCount && (Time.currentTime -
+        Player.lastAction) > 1e3; i++) {
+        hover = false;
+        ir = Pool.inters[i]->img->mask;
+        ir.left = Pool.inters[i]->position.x - ir.width / 2.0f;
+        ir.top = Pool.inters[i]->position.y - ir.height / 2.0f;
+        hover = sfIntRect_intersects(&ir, &pr, NULL);
+        Player.canInteract = hover ? true : Player.canInteract;
+        actor_set_anim(Pool.inters[i]->actor, hover ? "hover" : "idle");
+        if (PRESSED(Setting.interact.code) && hover &&
+            Pool.inters[i]->interact != NULL)
+            Pool.inters[i]->interact(Pool.inters[i]);
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 static void update(void)
 {
+    Player.canInteract = false;
     if (!Player.ref->damaged && !Player.ref->dead)
         player_movement();
     check_player_health();
@@ -45,6 +46,7 @@ static void update(void)
     update_shaking();
     check_shoot();
     cursor_focus();
+    update_interaction();
     check_level_end();
 }
 

@@ -43,10 +43,14 @@ static void reset_player_behavior(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void reset_vfx_pool(void)
+static void reset_pools(void)
 {
     for (uint_t i = 0; i < Pool.effectCount; i++) {
         effect_destroy(Pool.effects[i]);
+        i--;
+    }
+    for (uint_t i = 0; i < Pool.interCount; i++) {
+        destroy_interactable(Pool.inters[i]);
         i--;
     }
 }
@@ -63,8 +67,9 @@ void switch_level(void)
 {
     Engine.fadeStart = Time.currentTime;
     reset_player_behavior();
-    reset_vfx_pool();
+    reset_pools();
     clear_entities();
     level_tutorial();
     level_hub();
+    level_biome1();
 }

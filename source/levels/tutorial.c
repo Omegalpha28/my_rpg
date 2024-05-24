@@ -27,9 +27,14 @@ void level_tutorial_actors(uint_t level)
     if (level == 2)
         entity_create(Assets.creatures[CREATURE_CINNAMON_RAT],
             V2F(0.0f, -225.0f));
+    if (level == 3)
+        spawn_interactable(INTERACTABLE_PNJ, V2F(50.0f, -150.0f), 8, &switalk);
     if (level == 4)
         entity_create(Assets.creatures[CREATURE_DUCK],
             V2F(0.0f, -225.0f));
+    if (level == 4)
+        spawn_interactable(INTERACTABLE_PNJ, V2F(-50.0f, -100.0f), 8,
+            &switalk);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

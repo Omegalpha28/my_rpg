@@ -174,6 +174,7 @@ typedef enum interactable_type_e {
 /// \param interact     The function used on interaction with this object
 /// \param sprite       The sprite of the object
 /// \param img          The image of the object
+/// \param actor        The actor of the object (chest/pnjs)
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct interactable_s {
@@ -184,6 +185,7 @@ typedef struct interactable_s {
     void (*interact)(struct interactable_s *obj);
     sfSprite *sprite;
     image_t *img;
+    actor_t *actor;
 } interactable_t;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -562,5 +564,13 @@ interactable_t *spawn_interactable(interactable_type_t type, v2f_t position,
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void destroy_interactable(interactable_t *obj);
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Draw an interactable from the pool
+///
+/// \param obj          The interactable object to draw
+///
+///////////////////////////////////////////////////////////////////////////////
+void draw_interactable(interactable_t *obj);
 
 #endif /* !OBJECTS_H_ */

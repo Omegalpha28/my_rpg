@@ -5,51 +5,51 @@
 13          1           13          original            assets/creatures/chests/boss.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-open            0       5       DEFAULT     FALSE
-idle            6       12      DEFAULT     FALSE
+open            0       5       6           FALSE
+idle            6       12      6           FALSE
 [END]
 
 [START-challenge]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-13          1           12          original            assets/creatures/chests/challenge.png
+12          1           12          original            assets/creatures/chests/challenge.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-open            0       5       DEFAULT     FALSE
-idle            6       11      DEFAULT     FALSE
+open            0       5       6           FALSE
+idle            6       11      6           FALSE
 [END]
 
 [START-cookie]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-13          1           12          original            assets/creatures/chests/cookie.png
+12          1           12          original            assets/creatures/chests/cookie.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-open            0       5       DEFAULT     FALSE
-idle            6       11      DEFAULT     FALSE
+open            0       5       6           FALSE
+idle            6       11      6           FALSE
 [END]
 
 [START-ingredients]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-13          1           12          original            assets/creatures/chests/ingredients.png
+12          1           12          original            assets/creatures/chests/ingredients.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-open            0       5       DEFAULT     FALSE
-idle            6       11      DEFAULT     FALSE
+open            0       5       6           FALSE
+idle            6       11      6           FALSE
 [END]
 
 [START-parsley]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-13          1           12          original            assets/creatures/chests/parsley.png
+12          1           12          original            assets/creatures/chests/parsley.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-open            0       5       DEFAULT     FALSE
-idle            6       11      DEFAULT     FALSE
+open            0       5       6           FALSE
+idle            6       11      6           FALSE
 [END]
 
 [START-salt]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-13          1           12          original            assets/creatures/chests/salt.png
+12          1           12          original            assets/creatures/chests/salt.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-open            0       5       DEFAULT     FALSE
-idle            6       11      DEFAULT     FALSE
+open            0       5       6           FALSE
+idle            6       11      6           FALSE
 [END]

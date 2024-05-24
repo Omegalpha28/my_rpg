@@ -583,6 +583,11 @@ typedef enum text_bullet_e {
     T_SWORD,
     T_BOOMERANG_MOVE,
     T_ROCKET,
+    T_CRAB_KNIFE_APPEAR,
+    T_CRAB_KNIFE_BASE,
+    T_CRAB_KNIFE_DISAPPEAR,
+    T_CRAB_BULLET_HELL,
+    T_CRAB_BULLET_HELL_VAR,
     T_BULLET_COUNT
 } text_bullet_t;
 
@@ -633,7 +638,12 @@ static const cstring_t TEXT_BULLETS[T_BULLET_COUNT] = {
     DIR_BULLET"/motorblade_paricle-5x1.png",
     DIR_BULLET"/sword-5x1.png",
     DIR_BULLET"/boomerang_move-9x1.png",
-    DIR_BULLET"/rocket-2x1.png"
+    DIR_BULLET"/rocket-2x1.png",
+    DIR_BULLET"/crab_knife_appear-6x1.png",
+    DIR_BULLET"/crab_knife_base-8x1.png",
+    DIR_BULLET"/crab_knife_disapear-9x1.png",
+    DIR_BULLET"/crab_bullet_hell-5x1.png",
+    DIR_BULLET"/crab_bullet_hell_var-5x1.png"
 };
 
     #define MAX_SFX_VARIANTS 12

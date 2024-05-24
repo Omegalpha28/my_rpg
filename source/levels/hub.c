@@ -29,5 +29,7 @@ bool_t level_hub(void)
     spawn_interactable(INTERACTABLE_PNJ, V2F(475.0f, -15.0f), 3, &switalk);
     spawn_interactable(INTERACTABLE_PNJ, V2F(-210.0f, -150.0f), 2, &switalk);
     spawn_interactable(INTERACTABLE_PNJ, V2F(-215.0f, 100.0f), 1, &switalk);
+    Player.ref->health = Assets.axolotl[Player.ref->variantId]->maxHealth;
+    Player.ref->shield = Assets.axolotl[Player.ref->variantId]->shields;
     return (true);
 }

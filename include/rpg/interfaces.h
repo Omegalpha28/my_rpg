@@ -207,6 +207,7 @@ void save_save(uint_t id);
 void draw_interact(void);
 void pnj_talk(talk_t number_talk);
 char *conv(char key);
+void draw_oupsi(void);
 
     #define HEAL_LINE1 "Hey you. It seems like you are hurt. You can"
     #define HEAL_LINE2 "try to use the ability that you have ?"

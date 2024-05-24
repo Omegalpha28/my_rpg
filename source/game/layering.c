@@ -159,6 +159,8 @@ static void draw_hud(void)
         draw_interact();
     draw_visor();
     draw_fade();
+    if (Player.ref->dead && !Player.ref->done)
+        draw_oupsi();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

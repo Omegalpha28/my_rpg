@@ -19,6 +19,11 @@ static void entity_update(entity_t *evil)
     if (evil->attack_types == Boss){
         boss_movement(evil);
         boss_action(evil);
+        if (!evil->has_spawn && evil->actor->done){
+            evil->movement = Time.currentTime;
+            evil->has_spawn = !evil->has_spawn;
+        }
+        // printf("%d\n", evil->movement);
     } else {
         enemy_movement(evil);
         enemy_action(evil);

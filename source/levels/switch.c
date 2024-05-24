@@ -72,6 +72,8 @@ void switch_level(void)
     level_tutorial();
     level_hub();
     level_biome1();
-    if (Engine.level == 20)
+    if (Engine.level == 20) {
+        Engine.level = 0;
         load_video(DIR_OUTRO, "outro");
+    }
 }

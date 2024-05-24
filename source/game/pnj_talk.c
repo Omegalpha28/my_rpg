@@ -11,6 +11,37 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+void draw_next_button(void)
+{
+    sfSprite *btn = sfSprite_create();
+    v2f_t scale = {Win.width / Win.viewWidth, Win.height / Win.viewHeight};
+
+    sfSprite_setTexture(btn, Assets.ui[UI_BUTTONS]->self, false);
+    sfSprite_setTextureRect(btn, (recti_t){22, 16, 18, 12});
+    draw_text("Pass", PX_TO_MAPF(V2F(Win.width / 2 + scale.x * 120,
+        Win.height / 5 * 3.5f + 38.0f * scale.y)),
+        FACTORS(V2F1(20.0f)).x * 2.0f, WHITE);
+    sfSprite_setScale(btn, V2F1(0.8f));
+    sfSprite_setPosition(btn, PX_TO_MAPF(V2F(Win.width / 2 + scale.x * 104,
+        Win.height / 5 * 3.5f + 38.0f * scale.y)));
+    sfRenderWindow_drawSprite(Win.self, btn, NULL);
+    sfSprite_destroy(btn);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void switalk(interactable_t *obj)
+{
+    if (obj->data[0] == 4)
+        Setting.talk = MARKET_ITEM;
+    if (obj->data[0] == 3)
+        Setting.talk = INVENTORY;
+    if (obj->data[0] == 2)
+        Setting.talk = MARKET_WEAPON;
+    if (obj->data[0] == 1)
+        Setting.talk = JOURNAL;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void draw_interact(void)
 {
     v2f_t scale = {Win.width / Win.viewWidth, Win.height / Win.viewHeight};
@@ -31,10 +62,9 @@ void draw_interact(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_tuto1(void)
+static void draw_tuto1(v2f_t scale)
 {
     sfSprite *sign = sfSprite_create();
-    v2f_t scale = {Win.width / Win.viewWidth, Win.height / Win.viewHeight};
 
     draw_shadow();
     sfSprite_setTexture(sign, Assets.ui[UI_PNJ_SIGN]->self, false);
@@ -51,13 +81,13 @@ static void draw_tuto1(void)
     draw_text(HEAL_LINE2, PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 8,
         Win.height / 5 * 3.5f + 24.0f * scale.y)), 0.35f, sfWhite);
     Player.blocked = true;
+    draw_next_button();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_tuto2(void)
+static void draw_tuto2(v2f_t scale)
 {
     sfSprite *sign = sfSprite_create();
-    v2f_t scale = {Win.width / Win.viewWidth, Win.height / Win.viewHeight};
 
     draw_shadow();
     sfSprite_setTexture(sign, Assets.ui[UI_PNJ_SIGN]->self, false);
@@ -74,13 +104,13 @@ static void draw_tuto2(void)
     draw_text(DASH_LINE2, PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 8,
         Win.height / 5 * 3.5f + 24.0f * scale.y)), 0.35f, sfWhite);
     Player.blocked = true;
+    draw_next_button();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_market_weap(void)
+static void draw_market_weap(v2f_t scale)
 {
     sfSprite *sign = sfSprite_create();
-    v2f_t scale = {Win.width / Win.viewWidth, Win.height / Win.viewHeight};
 
     draw_shadow();
     sfSprite_setTexture(sign, Assets.ui[UI_PNJ_MARK_WEAP]->self, false);
@@ -97,13 +127,13 @@ static void draw_market_weap(void)
     draw_text(MARK_IT_LINE2, PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 8,
         Win.height / 5 * 3.5f + 24.0f * scale.y)), 0.35f, sfWhite);
     Player.blocked = true;
+    draw_next_button();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_market_item(void)
+static void draw_market_item(v2f_t scale)
 {
     sfSprite *sign = sfSprite_create();
-    v2f_t scale = {Win.width / Win.viewWidth, Win.height / Win.viewHeight};
 
     draw_shadow();
     sfSprite_setTexture(sign, Assets.ui[UI_PNJ_MARK_ITEM]->self, false);
@@ -120,36 +150,36 @@ static void draw_market_item(void)
     draw_text(MARK_IT_LINE2, PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 8,
         Win.height / 5 * 3.5f + 24.0f * scale.y)), 0.35f, sfWhite);
     Player.blocked = true;
+    draw_next_button();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_journal(void)
+static void draw_journal(v2f_t scale)
 {
     sfSprite *sign = sfSprite_create();
-    v2f_t scale = {Win.width / Win.viewWidth, Win.height / Win.viewHeight};
 
     draw_shadow();
     sfSprite_setTexture(sign, Assets.ui[UI_PNJ_JOURN]->self, false);
     sfSprite_setScale(sign, V2F1(0.75f));
-    sfSprite_setOrigin(sign, V2F(72.0f, 114.0f));
+    sfSprite_setOrigin(sign, V2F(81.5f, 134.0f));
     sfSprite_setPosition(sign, PX_TO_MAPF(V2F(Win.width / 4 - scale.x * 16.0f,
         Win.height)));
     sfRenderWindow_drawSprite(Win.self, sign, false);
     sfSprite_destroy(sign);
-    draw_text("Baboon", PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 16,
+    draw_text("Blisstaker", PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 16,
         Win.height / 5 * 3.5f)), 0.45f, sfWhite);
     draw_text(JOURN_LINE1, PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 8,
         Win.height / 5 * 3.5f + 16.0f * scale.y)), 0.35f, sfWhite);
     draw_text(JOURN_LINE2, PX_TO_MAPF(V2F(Win.width / 3 + scale.x * 8,
         Win.height / 5 * 3.5f + 24.0f * scale.y)), 0.35f, sfWhite);
     Player.blocked = true;
+    draw_next_button();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void draw_inv(void)
+void draw_inv(v2f_t scale)
 {
     sfSprite *sign = sfSprite_create();
-    v2f_t scale = {Win.width / Win.viewWidth, Win.height / Win.viewHeight};
 
     draw_shadow();
     sfSprite_setTexture(sign, Assets.ui[UI_PNJ_INV]->self, false);
@@ -168,21 +198,24 @@ void draw_inv(void)
     if (CLICK_REL)
         Engine.scene = SCENE_INVENTORY;
     Player.blocked = true;
+    draw_next_button();
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 void pnj_talk(talk_t number_talk)
 {
+    v2f_t scale = {Win.width / Win.viewWidth, Win.height / Win.viewHeight};
+
     if (number_talk == TUTO_1)
-        draw_tuto1();
+        draw_tuto1(scale);
     if (number_talk == TUTO_2)
-        draw_tuto2();
+        draw_tuto2(scale);
     if (number_talk == MARKET_WEAPON)
-        draw_market_weap();
+        draw_market_weap(scale);
     if (number_talk == MARKET_ITEM)
-        draw_market_item();
+        draw_market_item(scale);
     if (number_talk == INVENTORY)
-        draw_inv();
+        draw_inv(scale);
     if (number_talk == JOURNAL)
-        draw_journal();
+        draw_journal(scale);
 }

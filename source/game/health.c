@@ -11,26 +11,6 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-static void draw_fade(void)
-{
-    sfRectangleShape *fade = NULL;
-    float elapsed = (Time.currentTime - Engine.fadeStart) / 1e3f;
-    float alpha = 0.0f;
-    float duration = 0.75f;
-
-    if (elapsed > duration)
-        return;
-    alpha = 1.0f - ((elapsed - (duration / 2.0f)) / (duration / 2.0f));
-    alpha = clampf(alpha, 0.0f, 1.0f);
-    fade = sfRectangleShape_create();
-    sfRectangleShape_setSize(fade, V2F(Win.viewWidth, Win.viewHeight));
-    sfRectangleShape_setPosition(fade, PX_TO_MAPF(V2F1(0.0f)));
-    sfRectangleShape_setFillColor(fade, RGBA(0, 0, 0, (255 * alpha)));
-    sfRenderWindow_drawRectangleShape(Win.self, fade, NULL);
-    sfRectangleShape_destroy(fade);
-}
-
-///////////////////////////////////////////////////////////////////////////////
 static void termination(void)
 {
     if (!Player.ref->done || !Player.ref->draw)
@@ -44,12 +24,27 @@ static void termination(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+void draw_oupsi(void)
+{
+    sfSprite *oupsi = sfSprite_create();
+    sfIntRect rect = {322, 0, 150, 43};
+
+    sfSprite_setTexture(oupsi, Assets.ui[UI_REPORT]->self, false);
+    sfSprite_setTextureRect(oupsi, rect);
+    sfSprite_setPosition(oupsi, PX_TO_MAPF(V2F(Win.width / 2,
+        Win.height / 2)));
+    sfSprite_setOrigin(oupsi, V2F(64.5f, 22.5f));
+    sfSprite_setScale(oupsi, V2F1(0.75f));
+    sfRenderWindow_drawSprite(Win.self, oupsi, false);
+    sfSprite_destroy(oupsi);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void death_change(void)
 {
     Engine.level = Engine.level < 10 ? 1 : 0;
     Player.ref->health = Assets.axolotl[Player.ref->variantId]->maxHealth;
     Player.ref->shield = Assets.axolotl[Player.ref->variantId]->shields;
-    draw_fade();
     switch_level();
     Player.ref->dead = false;
     Player.ref->draw = true;

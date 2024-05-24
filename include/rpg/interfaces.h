@@ -207,6 +207,7 @@ void save_save(uint_t id);
 void draw_interact(void);
 void pnj_talk(talk_t number_talk);
 char *conv(char key);
+void draw_oupsi(void);
 
     #define HEAL_LINE1 "Hey you. It seems like you are hurt. You can"
     #define HEAL_LINE2 "try to use the ability that you have ?"
@@ -216,5 +217,7 @@ char *conv(char key);
     #define INV_LINE2 "saved from the begining of your adventure."
     #define JOURN_LINE1 "This area is still under construction."
     #define JOURN_LINE2 "Trust me it will take no time to open."
+    #define MARK_IT_LINE1 "Hello there. Oh you have no money. Please"
+    #define MARK_IT_LINE2 "come back when you have more.."
 
 #endif /* !INTERFACES_H_ */

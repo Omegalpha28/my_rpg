@@ -50,6 +50,15 @@ static void update(void)
     check_level_end();
 }
 
+static void reset_mov(mov)
+{
+    Setting.left.pressed = false;
+    Setting.right.pressed = false;
+    Setting.up.pressed = false;
+    Setting.down.pressed = false;
+    Setting.dash.pressed = false;
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 void game_loop(void)
 {
@@ -66,6 +75,8 @@ void game_loop(void)
             Engine.scene = SCENE_PAUSE;
         CLICK_REL = click_rel(evt);
     }
+    if (Player.blocked)
+        reset_mov();
     update();
     draw();
     update_all_bullets();

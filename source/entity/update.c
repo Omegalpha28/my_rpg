@@ -12,17 +12,29 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
+static void intro(entity_t *boss)
+{
+    if (boss->has_spawn)
+        return;
+    actor_set_sheet(boss->actor, "intro");
+    actor_set_anim(boss->actor, "intro");
+    if (boss->actor->done){
+        boss->movement = Time.currentTime;
+        boss->has_spawn = !boss->has_spawn;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void entity_update(entity_t *evil)
 {
     if (evil->actor->damaged)
         return;
     if (evil->attack_types == Boss){
+        intro(evil);
+        if (!evil->has_spawn)
+            return;
         boss_movement(evil);
         boss_action(evil);
-        if (!evil->has_spawn && evil->actor->done){
-            evil->movement = Time.currentTime;
-            evil->has_spawn = !evil->has_spawn;
-        }
     } else {
         enemy_movement(evil);
         enemy_action(evil);

@@ -29,7 +29,7 @@ walk            0       10      DEFAULT     TRUE
 8           9           72          original            assets/creatures/boss-crab/normal/intro.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-intro            0       71      DEFAULT     TRUE
+intro            0      71      DEFAULT     FALSE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 8           9           72          debug               assets/creatures/boss-crab/normal/intro-debug.png

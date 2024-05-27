@@ -42,6 +42,7 @@ bool_t level_hub(void)
     Player.max_bullet = 0;
     Player.mag[1] = 0;
     Player.shaking = false;
+    Player.ref->charges = 0;
     Player.blocked = false;
     return (true);
 }

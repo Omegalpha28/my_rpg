@@ -172,13 +172,13 @@ static void drawing_weapons(uint_t i)
     if (Player.ref == Pool.actors[i] && under && !(DANCE || DASH || HEAL ||
         Player.blocked))
         draw_weapon(Player.ref, Player.weapon);
-    if (!(Player.ref == Pool.actors[i]) && under) {
+    if (!(Player.ref == Pool.actors[i]) && under && !Pool.actors[i]->dead) {
         weapon = search_weapon(Pool.actors[i]);
         if (weapon != -1)
             draw_weapon(Pool.actors[i], weapon);
     }
     actor_draw(Pool.actors[i]);
-    if (!(Player.ref == Pool.actors[i]) && !under) {
+    if (!(Player.ref == Pool.actors[i]) && !under && !Pool.actors[i]->dead) {
         weapon = search_weapon(Pool.actors[i]);
         if (weapon != -1)
             draw_weapon(Pool.actors[i], weapon);

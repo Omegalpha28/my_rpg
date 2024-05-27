@@ -50,13 +50,15 @@ static void update(void)
     check_level_end();
 }
 
-static void reset_mov(mov)
+///////////////////////////////////////////////////////////////////////////////
+static void reset_mov(void)
 {
     Setting.left.pressed = false;
     Setting.right.pressed = false;
     Setting.up.pressed = false;
     Setting.down.pressed = false;
     Setting.dash.pressed = false;
+    Player.velocity = V2F1(0.0f);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -241,7 +241,7 @@ static const weapon_t WEAPON_STATS[WEAPON_COUNT] = {
         SFX_WP_RATVOLVER, 2}, // RATVOLVER
     {WEAPON_TYPE_PISTOL, FIRE_SINGLE, 444, 4, 0.15, BULLET_PISTOL, 2.5f, 0.15f,
         SFX_WP_BERETTA, 2}, // WINGERS
-    {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 35, 24, 0.8, BULLET_AK, 2.5f,
+    {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 35e5, 24, 0.8, BULLET_AK, 2.5f,
         0.15f, SFX_WP_AK, 2}, // AK
     {WEAPON_TYPE_RIFLE, FIRE_SINGLE, 180, 7, 0.25, BULLET_AK, 2.5f,
         0.15f, SFX_WP_CARBINE, 2}, // KARBINE
@@ -353,8 +353,11 @@ static const weapon_t WEAPON_STATS[WEAPON_COUNT] = {
 /// \param direction    The vector to design the target.
 /// \param weapon       The weapon used by the shooter.
 ///
+/// \return The newly created bullet
+///
 ///////////////////////////////////////////////////////////////////////////////
-void create_bullet(actor_t *sender, v2f_t direction, weapon_enum_t weapon);
+bullet_t *create_bullet(actor_t *sender, v2f_t direction,
+    weapon_enum_t weapon);
 
 ///////////////////////////////////////////////////////////////////////////////
 /// \brief destroy bullets when they hit their targets or get out of the

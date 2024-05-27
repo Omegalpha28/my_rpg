@@ -19,6 +19,7 @@ static string_t DOORS[] = {
     "transition_door_bottom",
     "door",
     "entrance_door",
+    "entrance",
     NULL
 };
 

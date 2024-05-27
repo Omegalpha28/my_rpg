@@ -79,8 +79,9 @@ static recti_t reduce_actor_collision_box(recti_t arect)
 ///////////////////////////////////////////////////////////////////////////////
 static void set_damage_actor(bullet_t *bullet, actor_t *actor)
 {
-    if (actor->invincible)
+    if (actor->invincible && bullet->hasCollided == false)
         return;
+    bullet->hasCollided = true;
     actor->health -= (Player.ref == actor) ? 1 :
         WEAPON_STATS[bullet->weapon].damage;
     actor->damaged = true;
@@ -158,14 +159,17 @@ static void update_bullet(bullet_t *bullet)
     float elapsedTime = (Time.currentTime - bullet->startAt) / 15.0f;
     float speed = ((bullet->sender == Player.ref) ? stat.speed :
         stat.speed / 5.0f);
-    float distance = clampf(speed * elapsedTime, 0.0f, stat.range);
+    float distance = clampf(speed * elapsedTime, 0.0f, bullet->sender ==
+        Player.ref ? stat.range : 99999.0f);
 
+    if (distance < 0.0f)
+        return;
     check_bullet_collision(bullet);
     if (bullet->state != BULLET_STATE_FLYING)
         return;
     bullet->position = endpoint2f(bullet->origin, bullet->destination,
         distance);
-    if (distance == stat.range) {
+    if (distance == stat.range && bullet->sender == Player.ref) {
         bullet->img = Assets.bullets[stat.disappear];
         bullet->state = BULLET_STATE_IMPACT;
     }

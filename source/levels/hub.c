@@ -11,12 +11,10 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-bool_t level_hub(void)
+static void spawn_map_actors(void)
 {
     sfMusic *music = find_music("by-the-campfire");
 
-    if (Engine.level != 0 || !level_load("shared/hub"))
-        return (false);
     end_music();
     for (uint_t i = 0; i < Pool.propCount; i++)
         if (CMP(Pool.props[i]->self->name, "torch"))
@@ -31,5 +29,19 @@ bool_t level_hub(void)
     spawn_interactable(INTERACTABLE_PNJ, V2F(-215.0f, 100.0f), 1, &switalk);
     Player.ref->health = Assets.axolotl[Player.ref->variantId]->maxHealth;
     Player.ref->shield = Assets.axolotl[Player.ref->variantId]->shields;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+bool_t level_hub(void)
+{
+    if (Engine.level != 0 || !level_load("shared/hub"))
+        return (false);
+    spawn_map_actors();
+    Player.weapon = Player.inventor[0];
+    Player.inventor[1] = WEAPON_NO;
+    Player.max_bullet = 0;
+    Player.mag[1] = 0;
+    Player.shaking = false;
+    Player.blocked = false;
     return (true);
 }

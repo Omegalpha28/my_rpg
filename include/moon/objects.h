@@ -83,6 +83,7 @@ typedef enum bullet_state_e {
 /// \param sprite       The sprite of the bullets
 /// \param state        The state of the bullet
 /// \param rotation     The rotation applied based on position/destination
+/// \param hasCollided  If the bullet has collided or not
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct bullet_s {
@@ -96,6 +97,7 @@ typedef struct bullet_s {
     sfSprite *sprite;
     bullet_state_t state;
     float rotation;
+    bool_t hasCollided;
 } bullet_t;
 
 ///////////////////////////////////////////////////////////////////////////////

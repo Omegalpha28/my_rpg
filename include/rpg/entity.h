@@ -155,6 +155,7 @@ typedef struct creature_stats_s {
     uint_t firerate;
     uint_t ball_count;
     int shield_health;
+    bool_t hideWeapon;
 } creature_stats_t;
 
 
@@ -163,21 +164,22 @@ typedef struct creature_stats_s {
 ///
 ///////////////////////////////////////////////////////////////////////////////
 static const creature_stats_t Stats[CREATURE_COUNT] = {
-    {120, 0, 0, 0, 0, 0, 0, 0, 1, 0},                        //player
-    {120, 0.8, 0, 0, Bomber, 1000, 1, 3000, 1, 0},              //duck
-    {850, 0.5, 0, 100, Boss, 3000, WEAPON_SHOTGUN_SKULL, 1000, 12, 90}, //Cboss
-    {85, 0.5f, 300.0f, 400.0f, Sniper, 0, 35, 4000, 1, 0},      //bald rat
-    {120, 0.4f, 0.0f, 100.0f, Spinjutsu, 3000, -1, 2000, 0, 0}, //baby crab
-    {120, 0, 0, 0, 0, 0, 0, 0, 1, 0},                        //dummy
-    {72, 0.6f, 0.0f, 100.0f, Dash, 0, 12, 0, 0, 0},          //caterkillah
-    {90, 0.5f, 100.0f, 120.0f, Shooter, 0, 45, 3000, 1, 0},     //cinnamon rat
-    {60, 0.6f, 100.0f, 120.0f, Jumper, 0, 14, 2000, 1, 0},      //baby caiman
-    {150, 0.5f, 200.0f, 225.0f, Shooter, 0, 29, 3000, 7, 0},    //elite racoon
-    {150, 0.5f, 125.0f, 150.0f, Shooter, 0, 31, 2000, 1, 0},    //elite fox
-    {85, 0.5f, 100.0f, 120.0f, Shooter, 0, 5, 2000, 5, 0},      //Brat
-    {120, 0, 0, 0, 0, 0, 0, 0, 9, 0},                        // sign boss
-    {INT_MAX, 0, 0, 0, 0, 0, 0, 0, 1, 0},                        // pnjs
-    {INT_MAX, 0, 0, 0, 0, 0, 0, 0, 1, 0},                        // chests
+    {120, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0},                        //player
+    {120, 0.8, 0, 0, Bomber, 1000, 1, 3000, 1, 0, 1},              //duck
+    {850, 0.5, 0, 100, Boss, 3000, WEAPON_SHOTGUN_SKULL, 1000, 12, 90,
+        1}, //Cboss
+    {85, 0.5f, 300.0f, 400.0f, Sniper, 0, 35, 4000, 1, 0, 0},      //bald rat
+    {120, 0.4f, 0.0f, 100.0f, Spinjutsu, 3000, -1, 2000, 0, 0, 0}, //baby crab
+    {120, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1},                        //dummy
+    {72, 0.6f, 0.0f, 100.0f, Dash, 0, 12, 0, 0, 0, 1},          //caterkillah
+    {90, 0.5f, 100.0f, 120.0f, Shooter, 0, 45, 3000, 1, 0, 0}, //cinnamon rat
+    {60, 0.6f, 100.0f, 120.0f, Jumper, 0, 14, 2000, 1, 0, 1}, //baby caiman
+    {150, 0.5f, 200.0f, 225.0f, Shooter, 0, 29, 3000, 7, 0, 0}, //elite racoon
+    {150, 0.5f, 125.0f, 150.0f, Shooter, 0, 31, 2000, 1, 0, 0}, //elite fox
+    {85, 0.5f, 100.0f, 120.0f, Shooter, 0, 5, 2000, 5, 0, 0}, //Brat
+    {120, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0}, // sign boss
+    {INT_MAX, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1}, // pnjs
+    {INT_MAX, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1}, // chests
 };
 
 

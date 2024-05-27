@@ -83,7 +83,6 @@ static void approaching(entity_t *evil)
         ? -1.0f : 1.0f;
     if ((int)curr_rad >= (int)evil->attack_radius || evil->status == ranger)
         evil->actor->position = move;
-    printf("approaching\n");
     actor_set_anim(evil->actor, !equal2f(evil->actor->position,
         evil->wanted_position) ? "walk" : "idle");
     evil->wanted_position = evil->actor->position;

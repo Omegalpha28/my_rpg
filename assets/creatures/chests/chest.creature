@@ -1,5 +1,14 @@
 14
 
+[START-chest]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+11          1           11          original            assets/creatures/chests/chest.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+open            0       5       6           FALSE
+idle            6       10      6           FALSE
+[END]
+
 [START-boss]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 13          1           13          original            assets/creatures/chests/boss.png
@@ -52,4 +61,31 @@ idle            6       11      6           FALSE
 # WHAT          START   END     FRAMERATE   LOOPED
 open            0       5       6           FALSE
 idle            6       11      6           FALSE
+[END]
+
+[START-medic]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+11          1           11          original            assets/creatures/chests/medic.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+open            0       5       6           FALSE
+idle            6       10      6           FALSE
+[END]
+
+[START-regular]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+11          1           11          original            assets/creatures/chests/regular.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+open            0       5       6           FALSE
+idle            6       10      6           FALSE
+[END]
+
+[START-elite]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+11          1           11          original            assets/creatures/chests/elite.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+open            0       5       6           FALSE
+idle            6       10      6           FALSE
 [END]

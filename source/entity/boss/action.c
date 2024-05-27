@@ -52,16 +52,15 @@ static void spin_dash(entity_t *crab)
 
 static void bubble_expansion(entity_t *crab)
 {
-    if (crab->shield_health <= 0) {
-        return;
-    }
-    if (crab->shield_health <= 40) {
-        return;
-    }
-    if (crab->shield_health <= 70) {
-        return;
-    }
-    if (crab->shield_health == 100) {
+    if (crab->actor->shield_health == 120) {
+        if (!crab->is_attack && !is_effect("crab_middle_bubble")){
+            effect("crab_small_bubble_creation", crab->actor->position, 0);
+            crab->is_attack = true;
+        }
+        if (crab->is_attack && !is_effect("crab_small_bubble_creation") &&
+            !is_effect("crab_middle_bubble")){
+            effect("crab_middle_bubble", crab->actor->position, 0);
+        }
         return;
     }
 }
@@ -74,6 +73,7 @@ static void bubble_defense(entity_t *crab)
     int random_x = rand() % 150;
     int random_y = ((rand() % 200) * -1) - 50;
 
+    bubble_expansion(crab);
     if ((Time.currentTime - crab->last_action < (crab->firerate / 4)))
         return;
     random_x = rand() % 2 ? random_x : random_x * -1;
@@ -83,8 +83,8 @@ static void bubble_defense(entity_t *crab)
     crab->actor->position = save;
     crab->last_action = Time.currentTime;
     if (crab->actor->done)
-        actor_set_anim(crab->actor, crab->shield_health <= 0 ? "outa_shield"
-            : "in_shield");
+        actor_set_anim(crab->actor, crab->actor->shield_health <= 0 ?
+        "outa_shield" : "in_shield");
     return;
 }
 

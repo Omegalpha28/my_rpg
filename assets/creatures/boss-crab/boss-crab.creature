@@ -76,7 +76,7 @@ unspin           0       8      DEFAULT     FALSE
 [END]
 
 
-[START-shieldattack]
+[START-shield_attack]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 6           5           30         original             assets/creatures/boss-crab/normal/shield_attack.png
 

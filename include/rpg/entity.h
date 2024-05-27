@@ -105,7 +105,6 @@ typedef struct entity_s {
     uint_t ball_count;
     uint_t bounce;
     v2f_t vector;
-    int shield_health;
 } entity_t;
 
 
@@ -165,7 +164,7 @@ typedef struct creature_stats_s {
 static const creature_stats_t Stats[CREATURE_COUNT] = {
     {120, 0, 0, 0, 0, 0, 0, 0, 1, 0},                        //player
     {120, 0.8, 0, 0, Bomber, 1000, 1, 3000, 1, 0},              //duck
-    {850, 0.5, 0, 100, Boss, 3000, WEAPON_SHOTGUN_SKULL, 1000, 12, 90}, //Cboss
+    {850, 0.5, 0, 100, Boss, 3000, WEAPON_SHOTGUN_SKULL, 1000, 12, 120}, //Cboss
     {85, 0.5f, 300.0f, 400.0f, Sniper, 0, 35, 4000, 1, 0},      //bald rat
     {120, 0.4f, 0.0f, 100.0f, Spinjutsu, 3000, -1, 2000, 0, 0}, //baby crab
     {120, 0, 0, 0, 0, 0, 0, 0, 1, 0},                        //dummy

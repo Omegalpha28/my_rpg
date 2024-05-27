@@ -79,7 +79,8 @@ static recti_t reduce_actor_collision_box(recti_t arect)
 ///////////////////////////////////////////////////////////////////////////////
 static void set_damage_actor(bullet_t *bullet, actor_t *actor)
 {
-    actor->invincible = !actor->invincible;
+    if (actor->invincible)
+        return;
     actor->health -= (Player.ref == actor) ? 1 :
         WEAPON_STATS[bullet->weapon].damage;
     actor->damaged = true;

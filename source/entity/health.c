@@ -36,6 +36,18 @@ static void termination(entity_t *evil)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void boss_exclusive(entity_t *boss)
+{
+    if (!boss->curr_phase && boss->actor->health <=
+        (int)Stats[boss->actor->self->id].health / 2)
+        boss->curr_phase = 1;
+    if (boss->actor->damaged){
+        effect("crab_blood", boss->actor->position, 0);
+            boss->actor->done = true;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void health_examination(entity_t *evil)
 {
     actor_t *act = evil->actor;
@@ -55,7 +67,6 @@ void health_examination(entity_t *evil)
     }
     if (act->dead || act->damaged)
         termination(evil);
-    if (evil->attack_types == Boss && !evil->curr_phase &&
-        evil->actor->health <= (int)Stats[evil->actor->self->id].health)
-        evil->curr_phase = 1;
+    if (evil->attack_types == Boss)
+        boss_exclusive(evil);
 }

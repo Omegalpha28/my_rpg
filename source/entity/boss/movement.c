@@ -84,6 +84,7 @@ static void next_attack(entity_t *boss)
     if (boss->status == Fear){
         actor_set_sheet(boss->actor, "shield_attack");
         actor_set_anim(boss->actor, "into_bubble");
+        boss->shield_health = Stats[boss->actor->self->id].shield_health;
     }
 }
 
@@ -93,8 +94,7 @@ static void idle(entity_t *boss)
     if (boss->is_attack)
         return;
     if ((Time.currentTime - boss->movement) >= 7000){
-        next_attack(boss);
-        if (boss->status == Fear)
+        boss->status = Fear;
             return;
     }
     if (equal2f(V2F(floorf(boss->wanted_position.x),
@@ -138,18 +138,9 @@ void crab_movement(entity_t *boss)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void cthulu_movement(entity_t *boss)
-{
-    boss = boss;
-    return;
-}
-
-///////////////////////////////////////////////////////////////////////////////
 void boss_movement(entity_t *boss)
 {
     if (boss->actor->self->id == CREATURE_CRAB_BOSS)
         crab_movement(boss);
-    if (boss->actor->self->id == CTHULU_TODO)
-        cthulu_movement(boss);
     return;
 }

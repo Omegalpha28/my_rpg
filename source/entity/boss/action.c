@@ -54,6 +54,22 @@ static void spin_dash(entity_t *crab)
     actor_set_anim(crab->actor, "spin");
 }
 
+static void bubble_expansion(entity_t *crab)
+{
+    if (crab->shield_health <= 0){
+        return;
+    }
+    if (crab->shield_health <= 40){
+        return;
+    }
+    if (crab->shield_health <= 70){
+        return;
+    }
+    if (crab->shield_health == 100){
+        return;
+    }
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 static void bubble_defense(entity_t *crab)
 {
@@ -71,7 +87,8 @@ static void bubble_defense(entity_t *crab)
     crab->actor->position = save;
     crab->last_action = Time.currentTime;
     if (crab->actor->done)
-        actor_set_anim(crab->actor, "in_shield");
+        actor_set_anim(crab->actor, crab->shield_health <= 0 ? "outa_shield"
+            : "in_shield");
     return;
 }
 
@@ -110,20 +127,11 @@ static void crab_attack(entity_t *crab)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void cthulu_action(entity_t *cthulu)
-{
-    cthulu = cthulu;
-    return;
-}
-
-///////////////////////////////////////////////////////////////////////////////
 void boss_action(entity_t *boss)
 {
     if (!boss->can_attack || !boss->attack_started)
         return;
     if (boss->actor->self->id == CREATURE_CRAB_BOSS)
         crab_attack(boss);
-    if (boss->actor->self->id == CTHULU_TODO)
-        cthulu_action(boss);
     return;
 }

@@ -37,12 +37,8 @@ static void spin_dash(entity_t *crab)
         crab->vector = (v2f_t){rand() % 2 ? -5.0f : 5.0f, 5.0f};
         crab->wanted_position = crab->actor->position;
     }
-    if (equal2f(V2F(floorf(crab->wanted_position.x),
-        floorf(crab->wanted_position.y)), V2F(floorf(crab->actor->position.x),
-        floorf(crab->actor->position.y))))
-        get_wanted_position(crab);
-    crab->actor->position = movetowards2f(crab->actor->position,
-        crab->wanted_position, (crab->speed * Time.deltaTime) / 2);
+    spinning_movement(crab);
+    collision_hit(crab);
     if ((int)crab->bounce >= 9){
         crab->bounce = 0;
         crab->status = Dazed;
@@ -56,16 +52,15 @@ static void spin_dash(entity_t *crab)
 
 static void bubble_expansion(entity_t *crab)
 {
-    if (crab->shield_health <= 0){
-        return;
-    }
-    if (crab->shield_health <= 40){
-        return;
-    }
-    if (crab->shield_health <= 70){
-        return;
-    }
-    if (crab->shield_health == 100){
+    if (crab->actor->shield_health == 120) {
+        if (!crab->is_attack && !is_effect("crab_middle_bubble")){
+            effect("crab_small_bubble_creation", crab->actor->position, 0);
+            crab->is_attack = true;
+        }
+        if (crab->is_attack && !is_effect("crab_small_bubble_creation") &&
+            !is_effect("crab_middle_bubble")){
+            effect("crab_middle_bubble", crab->actor->position, 0);
+        }
         return;
     }
 }
@@ -78,6 +73,7 @@ static void bubble_defense(entity_t *crab)
     int random_x = rand() % 150;
     int random_y = ((rand() % 200) * -1) - 50;
 
+    bubble_expansion(crab);
     if ((Time.currentTime - crab->last_action < (crab->firerate / 4)))
         return;
     random_x = rand() % 2 ? random_x : random_x * -1;
@@ -87,8 +83,8 @@ static void bubble_defense(entity_t *crab)
     crab->actor->position = save;
     crab->last_action = Time.currentTime;
     if (crab->actor->done)
-        actor_set_anim(crab->actor, crab->shield_health <= 0 ? "outa_shield"
-            : "in_shield");
+        actor_set_anim(crab->actor, crab->actor->shield_health <= 0 ?
+        "outa_shield" : "in_shield");
     return;
 }
 

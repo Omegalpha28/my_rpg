@@ -29,7 +29,7 @@ static void next_attack(entity_t *boss)
     if (boss->status == Fear){
         actor_set_sheet(boss->actor, "shield_attack");
         actor_set_anim(boss->actor, "into_bubble");
-        boss->shield_health = Stats[boss->actor->self->id].shield_health;
+        boss->actor->shield_health = Stats[boss->actor->self->id].shield_health;
     }
 }
 
@@ -40,7 +40,10 @@ static void idle(entity_t *boss)
         return;
     if ((Time.currentTime - boss->movement) >= 7000){
         boss->status = Fear;
-            return;
+        actor_set_sheet(boss->actor, "shield_attack");
+        actor_set_anim(boss->actor, "into_bubble");
+        boss->actor->shield_health = Stats[boss->actor->self->id].shield_health;
+        return;
     }
     if (equal2f(V2F(floorf(boss->wanted_position.x),
         floorf(boss->wanted_position.y)), V2F(floorf(boss->actor->position.x),

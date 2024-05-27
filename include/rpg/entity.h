@@ -105,7 +105,6 @@ typedef struct entity_s {
     uint_t ball_count;
     uint_t bounce;
     v2f_t vector;
-    int shield_health;
 } entity_t;
 
 

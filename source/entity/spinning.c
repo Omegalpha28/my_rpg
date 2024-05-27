@@ -32,10 +32,10 @@ void collision_hit(entity_t *evil)
     prect.left = Player.ref->position.x - (prect.width / 2.0f);
     prect.top = Player.ref->position.y - (prect.height / 2.0f);
     if (!sfIntRect_intersects(&arect, &prect, NULL))
-        evil->attack_started = false;
-    if (sfIntRect_intersects(&arect, &prect, NULL) && !evil->attack_started){
+        evil->is_attack = false;
+    if (sfIntRect_intersects(&arect, &prect, NULL) && !evil->is_attack){
         collision_damage(Player.ref);
-        evil->attack_started = true;
+        evil->is_attack = true;
     }
 }
 

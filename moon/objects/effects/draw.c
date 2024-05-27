@@ -45,3 +45,13 @@ void effect_draw(effect_t *eff)
     if (destroy)
         effect_destroy(eff);
 }
+
+///////////////////////////////////////////////////////////////////////////////
+bool_t is_effect(char *potential)
+{
+    for (uint_t i = 0; i < Pool.effectCount; i++){
+        if (CMP(potential, Pool.effects[i]->self->name))
+            return true;
+    }
+    return false;
+}

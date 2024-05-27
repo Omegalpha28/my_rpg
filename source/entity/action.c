@@ -99,8 +99,17 @@ void firing(entity_t *evil, uint_t ball_amount, int offset)
 ///////////////////////////////////////////////////////////////////////////////
 static void shooting(entity_t *evil)
 {
-    if ((Time.currentTime - evil->last_action) < evil->firerate)
+    ulong_t elsp = (Time.currentTime - evil->last_action);
+
+    if (elsp < evil->firerate && !(evil->actor->self ==
+        Assets.creatures[CREATURE_ELITE_FOX] && evil->attack_amount < 5 &&
+        elsp > 125))
         return;
+    if (evil->actor->self == Assets.creatures[CREATURE_ELITE_FOX]) {
+        evil->attack_amount++;
+        if (evil->attack_amount == 6)
+            evil->attack_amount = 1;
+    }
     firing(evil, evil->ball_count, 10);
     evil->last_action = Time.currentTime;
 }

@@ -22,7 +22,7 @@ static void termination(entity_t *evil)
         return;
     if (evil->actor->damaged){
         evil->actor->damaged = !evil->actor->damaged;
-        evil->actor->invincible = !evil->actor->invincible;
+        evil->actor->invincible = false;
         return;
     }
     evil->actor->draw = !evil->actor->draw;

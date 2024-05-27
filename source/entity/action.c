@@ -12,45 +12,6 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-static void collision_damage(actor_t *actor)
-{
-    if (actor->invincible)
-        return;
-    actor->health -= (Player.ref == actor) ? 1 : 15;
-}
-
-///////////////////////////////////////////////////////////////////////////////
-void collision_hit(entity_t *evil)
-{
-    recti_t arect = evil->actor->self->
-        sheets[evil->actor->sheetId]->image->mask;
-    recti_t prect = Player.ref->self->sheets[Player.ref->sheetId]->image->mask;
-
-    arect.left = evil->actor->position.x - (arect.width / 2.0f);
-    arect.top = evil->actor->position.y - (arect.height / 2.0f);
-    prect.left = Player.ref->position.x - (prect.width / 2.0f);
-    prect.top = Player.ref->position.y - (prect.height / 2.0f);
-    if (!sfIntRect_intersects(&arect, &prect, NULL))
-        evil->attack_started = false;
-    if (sfIntRect_intersects(&arect, &prect, NULL) && !evil->attack_started){
-        collision_damage(Player.ref);
-        evil->attack_started = true;
-    }
-}
-
-///////////////////////////////////////////////////////////////////////////////
-void spinning_movement(entity_t *evil)
-{
-    if (equal2f(V2F(floorf(evil->wanted_position.x),
-        floorf(evil->wanted_position.y)), V2F(floorf(evil->actor->position.x),
-        floorf(evil->actor->position.y))))
-        get_wanted_position(evil);
-    evil->actor->position = movetowards2f(evil->actor->position,
-        evil->wanted_position, (evil->speed * Time.deltaTime) / 2);
-    collision_hit(evil);
-}
-
-///////////////////////////////////////////////////////////////////////////////
 static void spinner(entity_t *evil)
 {
     v2f_t direction;
@@ -63,6 +24,7 @@ static void spinner(entity_t *evil)
         evil->wanted_position = evil->actor->position;
     }
     spinning_movement(evil);
+    collision_hit(evil);
     if (evil->bounce >= 7){
         evil->bounce = 0;
         evil->status = Dazed;

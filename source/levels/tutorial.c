@@ -65,7 +65,7 @@ bool_t level_tutorial(void)
         return (false);
     if (level == 1)
         prepare_tutorial_level(music);
-    // if (level != 1)
+    if (level != 1)
         level_tutorial_actors(level);
     return (true);
 }

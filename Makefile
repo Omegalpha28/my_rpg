@@ -252,6 +252,7 @@ P_C_ENTITY =	$(P_D_ENTITY)entity.c										\
 				$(P_D_ENTITY)random_pos.c									\
 				$(P_D_ENTITY)health.c										\
 				$(P_D_ENTITY)action.c										\
+				$(P_D_ENTITY)spinning.c										\
 				$(P_D_ENTITY)boss/action.c									\
 				$(P_D_ENTITY)boss/movement.c
 P_C_WEAPONS =	$(P_D_WEAPONS)create.c										\

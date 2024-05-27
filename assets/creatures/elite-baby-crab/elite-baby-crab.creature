@@ -8,7 +8,7 @@
 idle            0       6       DEFAULT     TRUE
 damage          7       8       DEFAULT     FALSE
 spin            9       11      DEFAULT     TRUE
-tired           12      19      DEFAULT     FALSE
+tired           12      19      DEFAULT     TRUE
 death           20      29      DEFAULT     FALSE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH

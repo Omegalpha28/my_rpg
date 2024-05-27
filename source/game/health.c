@@ -17,7 +17,7 @@ static void termination(void)
         return;
     if (Player.ref->damaged){
         Player.ref->damaged = !Player.ref->damaged;
-        Player.ref->invincible = !Player.ref->invincible;
+        Player.ref->invincible = false;
         return;
     }
     Player.ref->draw = !Player.ref->draw;

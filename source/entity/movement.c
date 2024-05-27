@@ -83,6 +83,7 @@ static void approaching(entity_t *evil)
         ? -1.0f : 1.0f;
     if ((int)curr_rad >= (int)evil->attack_radius || evil->status == ranger)
         evil->actor->position = move;
+    printf("approaching\n");
     actor_set_anim(evil->actor, !equal2f(evil->actor->position,
         evil->wanted_position) ? "walk" : "idle");
     evil->wanted_position = evil->actor->position;
@@ -99,12 +100,21 @@ static void approaching(entity_t *evil)
 ///////////////////////////////////////////////////////////////////////////////
 static void stunned(entity_t *evil)
 {
-    if (evil->last_action - Time.currentTime >= evil->dizzy){
-        evil->status = Patrol;
-        evil->last_action = 0;
-        return;
-    }
     actor_set_anim(evil->actor, "tired");
+    if (Time.currentTime - evil->last_action < evil->dizzy)
+        return;
+    evil->status = Patrol;
+    evil->last_action = Time.currentTime;
+    evil->movement = Time.currentTime;
+    return;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void no_movement(entity_t *evil)
+{
+    if (Time.currentTime - evil->last_action >= evil->dizzy * 2)
+        evil->can_attack = true;
+    actor_set_anim(evil->actor, "idle");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -120,7 +130,7 @@ static void fleeing(entity_t *evil)
 {
     v2f_t move;
 
-    if (evil->last_action - Time.currentTime >= evil->dizzy){
+    if (Time.currentTime - evil->last_action >= evil->dizzy){
         evil->status = Patrol;
         evil->last_action = 0;
         return;
@@ -138,11 +148,14 @@ static void fleeing(entity_t *evil)
 ///////////////////////////////////////////////////////////////////////////////
 void enemy_movement(entity_t *evil)
 {
-    if (evil->attack_types == Dash && evil->can_attack)
+    if ((evil->attack_types == Dash || evil->attack_types == Spinjutsu)
+        && evil->can_attack)
         return;
     if (evil->actor->invincible)
         evil->actor->invincible = false;
-    if (evil->status == Patrol)
+    if (evil->attack_types == Spinjutsu && evil->status == Patrol)
+        no_movement(evil);
+    if (evil->status == Patrol && evil->attack_types != Spinjutsu)
         patrolling(evil);
     if (evil->status == Agressive || evil->status == ranger)
         approaching(evil);

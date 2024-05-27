@@ -24,6 +24,9 @@ static const cstring_t LEVELS[7] = {
 ///////////////////////////////////////////////////////////////////////////////
 void level_tutorial_actors(uint_t level)
 {
+    if (level == 1)
+        entity_create(Assets.creatures[CREATURE_ELITE_BABY_CRAB],
+            V2F(75.0f, -100.0f));
     if (level == 2)
         entity_create(Assets.creatures[CREATURE_CINNAMON_RAT],
             V2F(0.0f, -225.0f));
@@ -62,7 +65,7 @@ bool_t level_tutorial(void)
         return (false);
     if (level == 1)
         prepare_tutorial_level(music);
-    if (level != 1)
+    // if (level != 1)
         level_tutorial_actors(level);
     return (true);
 }

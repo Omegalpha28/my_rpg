@@ -136,14 +136,20 @@ static void check_bullet_collision_bullet(bullet_t *bullet, bullet_t *other)
 ///////////////////////////////////////////////////////////////////////////////
 static void check_bullet_collision(bullet_t *bullet)
 {
+    actor_t *pr = Player.ref;
+
     for (uint_t i = 0; i < Pool.bulletCount; i++) {
-        if (Pool.bullets[i]->sender == bullet->sender)
+        if (Pool.bullets[i]->sender == bullet->sender ||
+            (Pool.bullets[i]->sender != pr && bullet->sender != pr))
             continue;
         check_bullet_collision_bullet(bullet, Pool.bullets[i]);
     }
-    for (uint_t i = 0; i < Pool.actorCount; i++)
-        if (!Pool.actors[i]->dead && Pool.actors[i] != bullet->sender)
-            check_bullet_collision_actor(bullet, Pool.actors[i]);
+    for (uint_t i = 0; i < Pool.actorCount; i++) {
+        if (Pool.actors[i]->dead || Pool.actors[i] == bullet->sender ||
+            (Pool.actors[i] != pr && bullet->sender != pr))
+            continue;
+        check_bullet_collision_actor(bullet, Pool.actors[i]);
+    }
     for (uint_t i = 0; i < Pool.propCount; i++) {
         if (!Pool.props[i]->collision || CMP(Pool.props[i]->self->name,
             "water"))

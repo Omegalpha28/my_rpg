@@ -30,6 +30,9 @@ static void reset_player_behavior(void)
     Player.ref->old_pos = V2F1(0.0f);
     Player.ref->position = V2F1(0.0f);
     Player.velocity = V2F1(0.0f);
+    Player.shaking = false;
+    Player.lastAction = Time.currentTime;
+    Player.shoot_time = Time.currentTime;
     sfMusic_stop(find_music("blingblangblang"));
     DANCE = false;
     DASH = false;
@@ -51,6 +54,10 @@ static void reset_pools(void)
     }
     for (uint_t i = 0; i < Pool.interCount; i++) {
         destroy_interactable(Pool.inters[i]);
+        i--;
+    }
+    for (uint_t i = 0; i < Pool.bulletCount; i++) {
+        destroy_bullet(Pool.bullets[i]);
         i--;
     }
 }

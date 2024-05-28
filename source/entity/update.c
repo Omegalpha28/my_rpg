@@ -21,11 +21,9 @@ static void intro(entity_t *boss)
     if (boss->actor->done){
         boss->movement = Time.currentTime;
         boss->has_spawn = !boss->has_spawn;
-
         boss->actor->castShadow = true;
     }
 }
-
 
 ///////////////////////////////////////////////////////////////////////////////
 static void entity_update(entity_t *evil)

@@ -70,6 +70,20 @@ static void handle_profile_click(uint_t id)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void draw_profile_text(uint_t id, bool_t exists, v2f_t position)
+{
+    char text[32];
+
+    if (exists)
+        return (draw_text_center("New Save", MAP_TO_PXF(add2f(position,
+            V2F(72.0f, 13.0f))), 0.5f, RGB(235, 235, 235)));
+    load_save(id - 1);
+    snprintf(text, 32, "%luhrs %lumin", Engine.spent / 60, Engine.spent % 60);
+    draw_text_center(text, MAP_TO_PXF(add2f(position, V2F(72.0f, 13.0f))),
+        0.5f, RGB(235, 235, 235));
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void draw_save_profile(uint_t id)
 {
     v2f_t position = {-200.0f, id * 41.4f - 20.0f};
@@ -85,8 +99,7 @@ static void draw_save_profile(uint_t id)
         draw_profile_delete(add2f(position, V2F(180.0f, 36.4f / 2.0f)),
             ratio, id);
     position.x += hover ? 10.0f : 0.0f;
-    draw_text_center(!exists ? "New Save" : "Continue", MAP_TO_PXF(add2f(
-        position, V2F(72.0f, 13.0f))), 0.5f, RGB(235, 235, 235));
+    draw_profile_text(exists, id, position);
     if (hover && MPRESSED(Setting.shoot))
         handle_profile_click(id);
 }

@@ -24,6 +24,7 @@ void save_save_data(FILE *fd)
         Player.purse.honeyCombs, Player.purse.lettuces,
         Player.purse.mushrooms, Player.purse.salts,
         Player.purse.gems);
+    fprintf(fd, "%lu\n", Engine.spent);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

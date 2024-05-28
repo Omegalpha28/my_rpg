@@ -58,3 +58,10 @@ void openchest(interactable_t *obj)
             rand() % 50, rand() % 50)), rand() % WEAPON_COUNT, &pickup);
     Player.lastAction = Time.currentTime;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+void pickupitem(interactable_t *obj)
+{
+    sfx(SFX_PICKUP_ITEM);
+    destroy_interactable(obj);
+}

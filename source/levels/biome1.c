@@ -44,7 +44,7 @@ static void use_spawner(void)
 ///////////////////////////////////////////////////////////////////////////////
 static void init_crab_boss(void)
 {
-    entity_create(Assets.creatures[CREATURE_CRAB_BOSS], V2F(50.0f, -150.0f));
+    entity_create(Assets.creatures[CREATURE_CRAB_BOSS], V2F(-75.0f, -160.0f));
     sfView_move(Win.view, V2F(0.0f, -125.0f));
     sfRenderWindow_setView(Win.self, Win.view);
 }

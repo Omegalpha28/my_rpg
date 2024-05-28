@@ -40,6 +40,12 @@ bool_t update_time(void)
     crt = sfClock_getElapsedTime(Time.clock);
     Time.deltaTime = sfTime_asMilliseconds(crt) - Time.currentTime;
     Time.currentTime = sfTime_asMilliseconds(crt);
+    if (Engine.scene == SCENE_GAME)
+        Engine.delta += Time.deltaTime;
+    if (Engine.delta >= 60e3) {
+        Engine.delta = 0;
+        Engine.spent++;
+    }
     return (true);
 }
 

@@ -42,6 +42,7 @@ bool_t level_hub(void)
     Player.inventor[1] = WEAPON_NO;
     Player.max_bullet = 0;
     Player.mag[1] = 0;
+    Player.mag[0] = WEAPON_STATS[Player.weapon].ammoPerMag;
     Player.shaking = false;
     Player.ref->charges = 0;
     Player.blocked = false;

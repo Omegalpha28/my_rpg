@@ -10,6 +10,30 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+void draw_hp_bar(entity_t *evil)
+{
+    sfRectangleShape *hp = sfRectangleShape_create();
+    sfRectangleShape *square = sfRectangleShape_create();
+    v2f_t pos = {Win.width / 2, Win.height / 18};
+
+    draw_text_center("Dartacrab", V2F(pos.x, 10.0f), 0.45f, sfWhite);
+    sfRectangleShape_setPosition(square, PX_TO_MAPF(pos));
+    sfRectangleShape_setPosition(hp, PX_TO_MAPF(pos));
+    sfRectangleShape_setOrigin(square, V2F(90.0f, 5.0f));
+    sfRectangleShape_setOrigin(hp, V2F(90.0f, 5.0f));
+    sfRectangleShape_setSize(square, V2F(180.0f, 10.0f));
+    sfRectangleShape_setSize(hp, V2F((float)(evil->actor->health) /
+        (float)(Stats[evil->actor->self->id].health) * 180.0f, 10.0f));
+    sfRectangleShape_setOutlineColor(square, sfWhite);
+    sfRectangleShape_setFillColor(square, RGBA(255, 255, 255, 100));
+    sfRectangleShape_setFillColor(hp, sfRed);
+    sfRectangleShape_setOutlineThickness(square, 0.5f);
+    sfRenderWindow_drawRectangleShape(Win.self, square, false);
+    sfRenderWindow_drawRectangleShape(Win.self, hp, false);
+    sfRectangleShape_destroy(square);
+    sfRectangleShape_destroy(hp);
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 static void termination(void)
 {

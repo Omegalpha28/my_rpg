@@ -11,6 +11,10 @@
   [38;5;125mMode:[0m
     [38;5;105m--editor[0m, [38;5;105m-e[0m            Launch the RPG in Editor mode
     [38;5;105m--debug[0m, [38;5;105m-d[0m             Launch the RPG in Debug mode
+    [38;5;105m--mute[0m                  Launch the RPG in muted mode
+
+  [38;5;125mEditor:[0m
+    [38;5;105m[map name][0m              Open the map in the editor (if the editor flag is present)
 
   [38;5;125mVideo mode:[0m
     [38;5;105m--borderless[0m, [38;5;105m-b[0m        Open the window in borderless mode
@@ -25,7 +29,7 @@
     [38;5;105mKey Space[0m               Dodge
     [38;5;105mKey C[0m                   Dance
     [38;5;105mKey F[0m                   Pickup item / Use
-    [38;5;105mKey Q[0m                   Use ability
+    [38;5;105mKey A[0m                   Use ability
     [38;5;105mKey Escape[0m              Pause the game
     [38;5;105mLeft mouse[0m              Shoot
 
@@ -45,6 +49,8 @@
     [38;5;105mArrowDown[0m               Move down the current prop vertically by one
     [38;5;105mArrowLeft[0m               Move left the current prop horizontally by one
     [38;5;105mArrowRight[0m              Move right the current prop horizontally by one
+    [38;5;105mKey F[0m                   Switch layers to foreground
+    [38;5;105mKey B[0m                   Switch layers to background
     [38;5;105mA[0m+[38;5;105mArrowUp[0m               Move up all props vertically by one
     [38;5;105mA[0m+[38;5;105mArrowDown[0m             Move down all props vertically by one
     [38;5;105mA[0m+[38;5;105mArrowLeft[0m             Move left all props horizontally by one
@@ -59,10 +65,6 @@
     [38;5;105mSHIFT[0m+[38;5;105mNumpad5[0m           Add or remove one from the bottom camera boundary (+CTRL = Invert)
     [38;5;105mSHIFT[0m+[38;5;105mNumpad7[0m           Add or remove one from the left camera boundary (+CTRL = Invert)
     [38;5;105mSHIFT[0m+[38;5;105mNumpad9[0m           Add or remove one from the right camera boundary (+CTRL = Invert)
-    [38;5;105mSHIFT[0m+[38;5;105mNumpad1[0m           Add or remove one from the x of the door trigger boundary (+CTRL = Invert)
-    [38;5;105mSHIFT[0m+[38;5;105mNumpad3[0m           Add or remove one from the y of the door trigger boundary (+CTRL = Invert)
-    [38;5;105mSHIFT[0m+[38;5;105mNumpad4[0m           Add or remove one from the width of the door trigger boundary (+CTRL = Invert)
-    [38;5;105mSHIFT[0m+[38;5;105mNumpad6[0m           Add or remove one from the height of the door trigger boundary (+CTRL = Invert)
 
     ╭────────────────────────────────────╮
     │                                    │

@@ -15,7 +15,59 @@
     #include "weapons.h"
 
 ///////////////////////////////////////////////////////////////////////////////
-/// \brief
+/// \brief TODO:
+///
+/// \param gems         TODO:
+/// \param cookies      TODO:
+/// \param doraditosBlue TODO:
+/// \param doraditos    TODO:
+/// \param eldritchMeats TODO:
+/// \param fishs        TODO:
+/// \param honeyCombs   TODO:
+/// \param lettuces     TODO:
+/// \param mushrooms    TODO:
+/// \param salts        TODO:
+/// \param happiness    TODO:
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef struct purse_s {
+    uint_t gems;
+    uint_t cookies;
+    uint_t doraditosBlue;
+    uint_t doraditos;
+    uint_t eldritchMeats;
+    uint_t fishs;
+    uint_t honeyCombs;
+    uint_t lettuces;
+    uint_t mushrooms;
+    uint_t salts;
+    uint_t happiness;
+} purse_t;
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief TODO:
+///
+/// \param ref          TODO:
+/// \param velocity     TODO:
+/// \param last_velocity TODO:
+/// \param shakeOffset  TODO:
+/// \param shakeStartng TODO:
+/// \param shakeIntensity TODO:
+/// \param shakeDuration TODO:
+/// \param shaking      TODO:
+/// \param viewCenter   TODO:
+/// \param weapon       TODO:
+/// \param inventor     TODO:
+/// \param mag          TODO:
+/// \param max_bullet   TODO:
+/// \param speed        TODO:
+/// \param num_shoot    TODO:
+/// \param shoot_time   TODO:
+/// \param canInteract  TODO:
+/// \param lastAction   TODO:
+/// \param reloading    TODO:
+/// \param blocked      TODO:
+/// \param purse        TODO:
 ///
 ///////////////////////////////////////////////////////////////////////////////
 extern struct player_s {
@@ -35,13 +87,11 @@ extern struct player_s {
     float speed;
     uint_t num_shoot;
     uint_t shoot_time;
-    uint_t diamondCount;
-    uint_t cookieCount;
-    uint_t happinessCount;
     bool_t canInteract;
     ulong_t lastAction;
     bool_t reloading;
     bool_t blocked;
+    purse_t purse;
 } Player;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -72,7 +122,5 @@ void game_loop(void);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 void pickup(interactable_t *obj);
-
-    #define DEAD false
 
 #endif /* !GAME_H_ */

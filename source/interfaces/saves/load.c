@@ -20,8 +20,14 @@ static void load_save_data(FILE *fd)
         Assets.axolotl[i]->grown = tmp;
     }
     fscanf(fd, "\n");
-    fscanf(fd, "%u %u %u\n", &(Player.diamondCount), &(Player.cookieCount),
-        &(Player.happinessCount));
+    fscanf(fd, "%u %u %u %u %u %u %u %u %u %u %u\n",
+        &(Player.purse.cookies), &(Player.purse.doraditos),
+        &(Player.purse.doraditosBlue), &(Player.purse.eldritchMeats),
+        &(Player.purse.fishs), &(Player.purse.happiness),
+        &(Player.purse.honeyCombs), &(Player.purse.lettuces),
+        &(Player.purse.mushrooms), &(Player.purse.salts),
+        &(Player.purse.gems));
+    fscanf(fd, "%lu\n", &(Engine.spent));
 }
 
 ///////////////////////////////////////////////////////////////////////////////

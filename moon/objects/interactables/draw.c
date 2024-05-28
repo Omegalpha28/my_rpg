@@ -55,6 +55,8 @@ void draw_interactable(interactable_t *obj)
 
     if (obj->actor)
         obj->actor->position = position;
+    if (obj->eff)
+        sfSprite_setPosition(obj->eff->sprite, position);
     if (obj->sprite != NULL) {
         sfSprite_setTexture(obj->sprite, obj->img->self, true);
         sfSprite_setTextureRect(obj->sprite, mask);

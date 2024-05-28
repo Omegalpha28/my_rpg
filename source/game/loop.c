@@ -28,8 +28,9 @@ static void update_interaction(void)
         hover = sfIntRect_intersects(&ir, &pr, NULL);
         Player.canInteract = hover ? true : Player.canInteract;
         actor_set_anim(Pool.inters[i]->actor, hover ? "hover" : "idle");
-        if (PRESSED(Setting.interact.code) && hover &&
-            Pool.inters[i]->interact != NULL)
+        if ((PRESSED(Setting.interact.code) || Pool.inters[i]->type
+            == INTERACTABLE_CURRENCY) && Pool.inters[i]->interact != NULL &&
+            hover)
             Pool.inters[i]->interact(Pool.inters[i]);
     }
 }

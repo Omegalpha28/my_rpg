@@ -22,7 +22,7 @@ void draw_cursor(void)
         rect.left += 20;
     if (pressed)
         rect.top = 20;
-    if (DEAD)
+    if (Player.ref->dead)
         rect.left += 40;
     sfSprite_setPosition(cursor, mouse);
     sfSprite_setOrigin(cursor, V2F(7.0f, 7.0f));

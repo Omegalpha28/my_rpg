@@ -36,12 +36,14 @@ bool_t level_hub(void)
 {
     if (Engine.level != 0 || !level_load("shared/hub"))
         return (false);
+    save_save(Engine.saveId);
     spawn_map_actors();
     Player.weapon = Player.inventor[0];
     Player.inventor[1] = WEAPON_NO;
     Player.max_bullet = 0;
     Player.mag[1] = 0;
     Player.shaking = false;
+    Player.ref->charges = 0;
     Player.blocked = false;
     return (true);
 }

@@ -16,13 +16,16 @@ static void intro(entity_t *boss)
 {
     if (boss->has_spawn)
         return;
+    boss->actor->castShadow = false;
     actor_set_sheet(boss->actor, "intro");
-    actor_set_anim(boss->actor, "intro");
     if (boss->actor->done){
         boss->movement = Time.currentTime;
         boss->has_spawn = !boss->has_spawn;
+
+        boss->actor->castShadow = true;
     }
 }
+
 
 ///////////////////////////////////////////////////////////////////////////////
 static void entity_update(entity_t *evil)

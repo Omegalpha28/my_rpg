@@ -486,6 +486,7 @@ typedef enum ui_element_e {
     UI_PNJ_MARK_ITEM,
     UI_PNJ_JOURN,
     UI_REPORT,
+    UI_SHADOW_BOSS,
     UI_ELEMENT_COUNT
 } ui_element_t;
 
@@ -544,7 +545,8 @@ static const cstring_t UI_ELEMENTS_PATHS[UI_ELEMENT_COUNT] = {
     DIR_UI"/portraits/junkcat.png",
     DIR_UI"/portraits/dough.png",
     DIR_UI"/portraits/blisstaker.png",
-    DIR_UI"/reports/report.png"
+    DIR_UI"/reports/report.png",
+    DIR_UI"/game/boss_shadow.png"
 };
 
 ///////////////////////////////////////////////////////////////////////////////

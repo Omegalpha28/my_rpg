@@ -42,6 +42,21 @@ static recti_t actor_generate_mask(actor_t *act)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void boss_draw_shadow(actor_t *act)
+{
+    sfSprite *shadow = sfSprite_create();
+
+    sfSprite_setTexture(shadow, Assets.ui[UI_SHADOW_BOSS]->self, false);
+    sfSprite_setOrigin(shadow, V2F(48.5f, 19.0f));
+    sfSprite_setPosition(shadow, add2f(act->position, V2F(act->scale.x < 0.0f ?
+        1.0f : 0.0f, act->self->sheets[act->sheetId]->image->mask.height /
+        2.0f)));
+    sfSprite_setColor(shadow, RGBA(255, 255, 255, 150));
+    sfRenderWindow_drawSprite(Win.self, shadow, NULL);
+    sfSprite_destroy(shadow);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void actor_draw_shadow(actor_t *act)
 {
     recti_t mask = {32, 4, 20, 5};
@@ -62,6 +77,17 @@ static void actor_draw_shadow(actor_t *act)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void cast_shadow(actor_t *act)
+{
+    if (act->castShadow == false)
+        return;
+    if (act->self->id == CREATURE_CRAB_BOSS)
+        boss_draw_shadow(act);
+    else
+        actor_draw_shadow(act);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void actor_draw(actor_t *act)
 {
     sheet_t *sh = NULL;
@@ -78,6 +104,6 @@ void actor_draw(actor_t *act)
     sfSprite_setTexture(act->sprite, act->isVariant ?
         sh->variants[act->variantId]->self : sh->image->self, false);
     sfSprite_setTextureRect(act->sprite, actor_generate_mask(act));
-    actor_draw_shadow(act);
+    cast_shadow(act);
     sfRenderWindow_drawSprite(Win.self, act->sprite, NULL);
 }

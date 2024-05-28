@@ -15,6 +15,7 @@ static void actor_relay(actor_t *act)
 {
     act->shield = 0;
     act->charges = 0;
+    act->castShadow = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

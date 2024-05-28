@@ -82,9 +82,14 @@ static void set_damage_actor(bullet_t *bullet, actor_t *actor)
     if (actor->invincible && bullet->hasCollided == false)
         return;
     bullet->hasCollided = true;
+    actor->damaged = true;
+    if (actor->shield != -1 && actor->shield < 12 && actor->self->id ==
+        CREATURE_CRAB_BOSS){
+        actor->shield++;
+        return;
+    }
     actor->health -= (Player.ref == actor) ? 1 :
         WEAPON_STATS[bullet->weapon].damage;
-    actor->damaged = true;
     sfx(bullet->weapon == WEAPON_MELEE_BOOMERANG ? SFX_BULLET_HIT_BOOMERANG :
         SFX_BULLET_HIT_DAMAGEABLE);
 }

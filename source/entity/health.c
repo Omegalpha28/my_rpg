@@ -38,11 +38,12 @@ static void termination(entity_t *evil)
 ///////////////////////////////////////////////////////////////////////////////
 static void boss_exclusive(entity_t *boss)
 {
-    if (!boss->curr_phase && boss->actor->health <=
+    if (boss->curr_phase == 0 && boss->actor->health <=
         (int)Stats[boss->actor->self->id].health / 2)
         boss->curr_phase = 1;
     if (boss->actor->damaged){
-        effect("crab_blood", boss->actor->position, 0);
+        effect("crab_blood", add2f(boss->actor->position,
+            (v2f_t){0.0f, 10.0f}), 0);
             boss->actor->done = true;
     }
 }
@@ -52,10 +53,9 @@ void health_examination(entity_t *evil)
 {
     actor_t *act = evil->actor;
 
-    if (act->damaged){
+    if (act->damaged)
         if (!actor_set_anim(act, "damage") && !actor_set_sheet(act, "damage"))
             evil->actor->done = true;
-    }
     if (act->health <= 0 && !act->dead && !act->damaged) {
         sfx(SFX_ENEMY_DEATH);
         act->dead = true;
@@ -65,8 +65,8 @@ void health_examination(entity_t *evil)
             ((act->scale.x) < 0 ? 1 : -1);
         actor_set_anim(act, "death");
     }
-    if (act->dead || act->damaged)
-        termination(evil);
     if (evil->attack_types == Boss)
         boss_exclusive(evil);
+    if (act->dead || act->damaged)
+        termination(evil);
 }

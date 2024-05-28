@@ -67,6 +67,8 @@ extern struct engine_s {
     engine_debug_t debug;
     ulong_t fadeStart;
     uint_t saveId;
+    ulong_t delta;
+    ulong_t spent;
 } Engine;
 
 #endif /* !ENGINE_H_ */

@@ -16,6 +16,7 @@ void load_video(cstring_t path, cstring_t soundName)
     warray_t ctn = my_dircontent(path);
     ulong_t len = my_walen(ctn);
 
+    end_music();
     Engine.frames = (sfTexture **)malloc(sizeof(sfTexture *) * len);
     for (ulong_t i = 0; i < len; i++)
         Engine.frames[i] = i < 12 ? sfTexture_createFromFile(ctn[i], NULL)

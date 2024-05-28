@@ -17,8 +17,14 @@ void save_save_data(FILE *fd)
     for (uint_t i = 0; i < AXO_COUNT; i++)
         fprintf(fd, "%d ", Assets.axolotl[i]->grown);
     fprintf(fd, "\n");
-    fprintf(fd, "%u %u %u\n", Player.diamondCount, Player.cookieCount,
-        Player.happinessCount);
+    fprintf(fd, "%u %u %u %u %u %u %u %u %u %u %u\n",
+        Player.purse.cookies, Player.purse.doraditos,
+        Player.purse.doraditosBlue, Player.purse.eldritchMeats,
+        Player.purse.fishs, Player.purse.happiness,
+        Player.purse.honeyCombs, Player.purse.lettuces,
+        Player.purse.mushrooms, Player.purse.salts,
+        Player.purse.gems);
+    fprintf(fd, "%lu\n", Engine.spent);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

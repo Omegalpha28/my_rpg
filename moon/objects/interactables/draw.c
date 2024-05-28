@@ -21,11 +21,11 @@ static v2f_t get_interactable_position(interactable_t *obj)
     if (obj->type == INTERACTABLE_CHEST && elsp < 7e2)
         return (subtract2f(obj->position, V2F(0.0f, (7e2 - elsp) * 0.45f)));
     if (obj->type == INTERACTABLE_CHEST && obj->data[3] == -1) {
-        if (obj->data[0] == 0)
-            effect("boss_chest", obj->position, false);
         if (obj->data[0] == 1)
+            effect("boss_chest", obj->position, false);
+        if (obj->data[0] == 2)
             effect("challenge_chest", obj->position, false);
-        if (obj->data[0] > 1)
+        if (obj->data[0] == 0 || obj->data[0] > 2)
             effect("chest", obj->position, false);
         obj->data[3] = 0;
     }
@@ -55,6 +55,8 @@ void draw_interactable(interactable_t *obj)
 
     if (obj->actor)
         obj->actor->position = position;
+    if (obj->eff)
+        sfSprite_setPosition(obj->eff->sprite, position);
     if (obj->sprite != NULL) {
         sfSprite_setTexture(obj->sprite, obj->img->self, true);
         sfSprite_setTextureRect(obj->sprite, mask);

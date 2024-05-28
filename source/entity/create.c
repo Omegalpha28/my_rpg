@@ -56,7 +56,7 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     init_entity_stat_block(new, creature);
     init_boss_stat_block(new, creature);
     new->weapon = Stats[creature->id].weapon;
-    new->last_action = 0;
+    new->last_action = Time.currentTime;
     new->has_spawn = 0;
     new->is_attack = 0;
     new->status = Patrol;

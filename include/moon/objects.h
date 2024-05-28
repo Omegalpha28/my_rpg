@@ -168,6 +168,24 @@ typedef enum interactable_type_e {
 } interactable_type_t;
 
 ///////////////////////////////////////////////////////////////////////////////
+/// \brief Type of currency
+///
+///////////////////////////////////////////////////////////////////////////////
+typedef enum currency_e {
+    CURRENCY_GEM,
+    CURRENCY_COOKIE,
+    CURRENCY_DORADITOS_BLUE,
+    CURRENCY_DORADITOS,
+    INGREDIENT_ELDRITCH_MEAT,
+    INGREDIENT_FISH,
+    INGREDIENT_HONEYCOMB,
+    INGREDIENT_LETTUCE,
+    IGREDIENT_MUSHROOM,
+    INGREDIENT_SALT,
+    CURRENCY_COUNT
+} currency_t;
+
+///////////////////////////////////////////////////////////////////////////////
 /// \brief Structure to hold every interactables of the level
 ///
 /// \param type         The type of interactable
@@ -178,6 +196,7 @@ typedef enum interactable_type_e {
 /// \param sprite       The sprite of the object
 /// \param img          The image of the object
 /// \param actor        The actor of the object (chest/pnjs)
+/// \param eff          The vfx of the object (currency)
 ///
 ///////////////////////////////////////////////////////////////////////////////
 typedef struct interactable_s {
@@ -189,6 +208,7 @@ typedef struct interactable_s {
     sfSprite *sprite;
     image_t *img;
     actor_t *actor;
+    effect_t *eff;
 } interactable_t;
 
 ///////////////////////////////////////////////////////////////////////////////

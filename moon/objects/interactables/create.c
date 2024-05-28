@@ -11,10 +11,34 @@
 #include "moon.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+static cstring_t CURRENCIES[CURRENCY_COUNT] = {
+    "gems",
+    "cookies",
+    "doraditos_blue",
+    "doraditos",
+    "eldritch_meat",
+    "fish",
+    "honeycomb",
+    "lettuce",
+    "mushroom",
+    "salt"
+};
+
+///////////////////////////////////////////////////////////////////////////////
+static void set_interactable_texture_currency(interactable_t *obj)
+{
+    obj->data[0] = clamp(obj->data[0], 0, (CURRENCY_COUNT - 1));
+    obj->eff = effect(CURRENCIES[obj->data[0]], obj->position, false);
+    obj->img = obj->eff->self->self;
+    sfSprite_setScale(obj->eff->sprite, V2F1(.8f));
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void set_interactable_texture(interactable_t *obj)
 {
     obj->img = NULL;
     obj->actor = NULL;
+    obj->eff = NULL;
     if (obj->type == INTERACTABLE_WEAPON)
         obj->img = Assets.weapons;
     if (obj->type == INTERACTABLE_PNJ)
@@ -30,6 +54,8 @@ static void set_interactable_texture(interactable_t *obj)
         actor_set_anim(obj->actor, "idle");
         obj->img = obj->actor->self->sheets[obj->actor->sheetId]->image;
     }
+    if (obj->type == INTERACTABLE_CURRENCY)
+        set_interactable_texture_currency(obj);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -44,7 +70,7 @@ interactable_t *spawn_interactable(interactable_type_t type, v2f_t position,
     obj->data[0] = firstData;
     obj->interact = interact;
     obj->sprite = NULL;
-    if (type != INTERACTABLE_CHEST && type != INTERACTABLE_PNJ)
+    if (type == INTERACTABLE_WEAPON)
         obj->sprite = sfSprite_create();
     for (uint_t i = 1; i < 4; i++)
         obj->data[i] = -1;
@@ -77,5 +103,6 @@ void destroy_interactable(interactable_t *obj)
     if (obj->sprite != NULL)
         sfSprite_destroy(obj->sprite);
     actor_destroy(obj->actor);
+    effect_destroy(obj->eff);
     FREE(obj);
 }

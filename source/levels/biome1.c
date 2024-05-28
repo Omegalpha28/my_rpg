@@ -59,6 +59,9 @@ bool_t level_biome1(void)
     if (Engine.level != 19)
         use_spawner();
     else
-        init_crab_boss();
+        entity_create(Assets.creatures[CREATURE_CRAB_BOSS],
+            V2F(50.0f, -150.0f));
+    sfView_move(Win.view, V2F(0.0f, -125.0f));
+    sfRenderWindow_setView(Win.self, Win.view);
     return (true);
 }

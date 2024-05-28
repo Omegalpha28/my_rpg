@@ -157,6 +157,9 @@ static void draw_hud(void)
     pnj_talk(Setting.talk);
     if (Player.canInteract && Setting.talk == NO_TALK)
         draw_interact();
+    for (int i = 0; i < Entities.count; i++)
+        if (Entities.array[i]->actor->self->id == CREATURE_CRAB_BOSS)
+            draw_hp_bar(Entities.array[i]);
     draw_visor();
     draw_fade();
     if (Player.ref->dead && !Player.ref->done)

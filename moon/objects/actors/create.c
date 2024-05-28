@@ -37,7 +37,6 @@ static void actor_init(actor_t *act, creature_t *creature, v2f_t position)
     act->done = false;
     act->old_pos = position;
     act->health = 100;
-    act->shield_health = 0;
     act->invincible = false;
     act->damaged = false;
     act->dead = false;

@@ -55,3 +55,14 @@ bool_t is_effect(char *potential)
     }
     return false;
 }
+
+///////////////////////////////////////////////////////////////////////////////
+void search_and_destroy(char *target)
+{
+    for (uint_t i = 0; i < Pool.effectCount; i++){
+        if (CMP(Pool.effects[i]->self->name, target)){
+            effect_destroy(Pool.effects[i]);
+            return;
+        }
+    }
+}

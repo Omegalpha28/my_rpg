@@ -27,6 +27,7 @@ static void load_save_data(FILE *fd)
         &(Player.purse.honeyCombs), &(Player.purse.lettuces),
         &(Player.purse.mushrooms), &(Player.purse.salts),
         &(Player.purse.gems));
+    fscanf(fd, "%lu\n", &(Engine.spent));
 }
 
 ///////////////////////////////////////////////////////////////////////////////

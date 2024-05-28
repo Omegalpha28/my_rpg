@@ -22,6 +22,7 @@ static void actor_set_default(actor_t *act)
     act->dead = false;
     act->draw = true;
     act->done = false;
+    act->castShadow = true;
     act->animId = 0;
     act->variantId = 0;
     act->sheetId = 0;

@@ -42,12 +42,11 @@ static void spin_dash(entity_t *crab)
     if ((int)crab->bounce >= 9){
         crab->bounce = 0;
         crab->status = Dazed;
+        actor_set_sheet(crab->actor, "fizzy");
         actor_set_anim(crab->actor, "spin_transition");
         crab->last_action = Time.currentTime;
         return;
     }
-    actor_set_sheet(crab->actor, "spin");
-    actor_set_anim(crab->actor, "spin");
 }
 
 static void bubble_expansion(entity_t *crab)
@@ -91,19 +90,15 @@ static void bubble_defense(entity_t *crab)
 ///////////////////////////////////////////////////////////////////////////////
 static void daze_check(entity_t *crab)
 {
-    if (CMP(crab->actor->self->sheets[crab->actor->sheetId]->name, "spin") &&
-        crab->actor->done){
+    if (CMP(crab->actor->self->sheets[crab->actor->sheetId]->name, "fizzy") &&
+        crab->actor->done)
         actor_set_anim(crab->actor, "fizzy");
-    }
     if (Time.currentTime - crab->last_action < crab->dizzy)
         return;
-    if (!CMP(crab->actor->self->sheets[crab->actor->sheetId]->name, "walk")) {
+    if (!CMP(crab->actor->self->sheets[crab->actor->sheetId]->name, "walk"))
         actor_set_sheet(crab->actor, "unspin");
-        actor_set_anim(crab->actor, "unspin");
-    }
     if (crab->actor->done){
         actor_set_sheet(crab->actor, "walk");
-        actor_set_anim(crab->actor, "walk");
         crab->status = ranger;
         crab->vector = (v2f_t){5.0f, 0.0f};
     }

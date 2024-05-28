@@ -61,7 +61,7 @@ static void idle(entity_t *boss)
 ///////////////////////////////////////////////////////////////////////////////
 static void reset_pos(entity_t *crab)
 {
-    crab->wanted_position = V2F(75.0f, -100.0f);
+    crab->wanted_position = V2F(75.0f, -120.0f);
     if (equal2f(V2F(floorf(crab->wanted_position.x),
         floorf(crab->wanted_position.y)), V2F(floorf(crab->actor->position.x),
         floorf(crab->actor->position.y)))){

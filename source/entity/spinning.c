@@ -97,6 +97,8 @@ void get_wanted_position(entity_t *crab)
 ///////////////////////////////////////////////////////////////////////////////
 void spinning_movement(entity_t *evil)
 {
+    actor_set_sheet(evil->actor, "spin");
+    actor_set_anim(evil->actor, "spin");
     if (equal2f(V2F(floorf(evil->wanted_position.x),
         floorf(evil->wanted_position.y)), V2F(floorf(evil->actor->position.x),
         floorf(evil->actor->position.y))))

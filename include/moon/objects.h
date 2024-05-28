@@ -58,6 +58,7 @@ typedef struct actor_s {
     bool_t dead;
     uint_t shield;
     uint_t charges;
+    bool_t castShadow;
 } actor_t;
 
 ///////////////////////////////////////////////////////////////////////////////

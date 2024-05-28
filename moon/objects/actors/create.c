@@ -16,7 +16,6 @@ static void actor_set_default(actor_t *act)
     act->shield = 0;
     act->charges = 0;
     act->health = 100;
-    act->shield_health = 0;
     act->invincible = false;
     act->damaged = false;
     act->dead = false;

@@ -52,11 +52,10 @@ typedef struct actor_s {
     bool_t done;
     v2f_t old_pos;
     int health;
-    int shield_health;
     bool_t invincible;
     bool_t damaged;
     bool_t dead;
-    uint_t shield;
+    int shield;
     uint_t charges;
     bool_t castShadow;
 } actor_t;
@@ -604,5 +603,14 @@ void draw_interactable(interactable_t *obj);
 ///
 ///////////////////////////////////////////////////////////////////////////////
 bool_t is_effect(char *potential);
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Searches for effect and removes them.
+///
+/// \param target       Name of effect sought out to be destroyed.
+///
+///////////////////////////////////////////////////////////////////////////////
+void search_and_destroy(char *target);
 
 #endif /* !OBJECTS_H_ */

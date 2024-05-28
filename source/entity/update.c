@@ -12,16 +12,39 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
+static void update_vfx(entity_t *boss)
+{
+    for (uint_t i = 0; i < Pool.effectCount; i++){
+        if (CMP(Pool.effects[i]->self->name, "crab_blood")){
+            sfSprite_setPosition(Pool.effects[i]->sprite,
+                add2f(boss->actor->position, (v2f_t){0.0f, 10.0f}));
+            return;
+        }
+    }
+}
+
+/*
+fear testing:
+        actor_set_sheet(boss->actor, "shield_attack");
+        actor_set_anim(boss->actor, "into_bubble");
+        boss->status = Fear;
+        boss->can_attack = true;
+        boss->attack_started = true;
+*/
+///////////////////////////////////////////////////////////////////////////////
 static void intro(entity_t *boss)
 {
     if (boss->has_spawn)
         return;
     boss->actor->castShadow = false;
+    boss->actor->invincible = true;
     actor_set_sheet(boss->actor, "intro");
     if (boss->actor->done){
         boss->movement = Time.currentTime;
         boss->has_spawn = !boss->has_spawn;
+        boss->actor->invincible = false;
         boss->actor->castShadow = true;
+        boss->actor->shield = 0;
     }
 }
 
@@ -36,6 +59,7 @@ static void entity_update(entity_t *evil)
             return;
         boss_movement(evil);
         boss_action(evil);
+        update_vfx(evil);
     } else {
         enemy_movement(evil);
         enemy_action(evil);

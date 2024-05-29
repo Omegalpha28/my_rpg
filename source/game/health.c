@@ -25,9 +25,9 @@ void draw_hp_bar(entity_t *evil)
     sfRectangleShape_setSize(hp, V2F((float)(evil->actor->health) /
         (float)(Stats[evil->actor->self->id].health) * 180.0f, 10.0f));
     sfRectangleShape_setOutlineColor(square, sfWhite);
-    sfRectangleShape_setFillColor(square, RGBA(255, 255, 255, 100));
-    sfRectangleShape_setFillColor(hp, sfRed);
-    sfRectangleShape_setOutlineThickness(square, 0.5f);
+    sfRectangleShape_setFillColor(square, RGB(87, 39, 36));
+    sfRectangleShape_setFillColor(hp, RGB(248, 80, 84));
+    sfRectangleShape_setOutlineThickness(square, 1.0f);
     sfRenderWindow_drawRectangleShape(Win.self, square, false);
     sfRenderWindow_drawRectangleShape(Win.self, hp, false);
     sfRectangleShape_destroy(square);

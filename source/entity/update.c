@@ -23,14 +23,6 @@ static void update_vfx(entity_t *boss)
     }
 }
 
-/*
-fear testing:
-        actor_set_sheet(boss->actor, "shield_attack");
-        actor_set_anim(boss->actor, "into_bubble");
-        boss->status = Fear;
-        boss->can_attack = true;
-        boss->attack_started = true;
-*/
 ///////////////////////////////////////////////////////////////////////////////
 static void intro(entity_t *boss)
 {
@@ -44,7 +36,7 @@ static void intro(entity_t *boss)
         boss->has_spawn = !boss->has_spawn;
         boss->actor->invincible = false;
         boss->actor->castShadow = true;
-        boss->actor->shield = 0;
+        boss->actor->shield = -1;
     }
 }
 

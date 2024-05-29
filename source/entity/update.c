@@ -45,7 +45,6 @@ static void intro(entity_t *boss)
         boss->actor->invincible = false;
         boss->actor->castShadow = true;
         boss->actor->shield = -1;
-        boss->curr_phase = 1;
     }
 }
 

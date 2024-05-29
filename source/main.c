@@ -30,6 +30,8 @@ static void switch_scene_loop(void)
         inventory_loop();
     if (Engine.scene == SCENE_PAUSE)
         pause_loop();
+    if (Engine.scene == SCENE_MINIGAME)
+        minigame_loop();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

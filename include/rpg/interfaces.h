@@ -302,5 +302,6 @@ void draw_hp_bar(entity_t *evil);
     #define JOURN_LINE2 "Trust me it will take no time to open."
     #define MARK_IT_LINE1 "Hello there. Oh you have no money. Please"
     #define MARK_IT_LINE2 "come back when you have more.."
+    #define ROT "Baby want to burp help him."
 
 #endif /* !INTERFACES_H_ */

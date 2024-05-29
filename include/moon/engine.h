@@ -33,6 +33,7 @@ typedef enum scene_e {
     SCENE_SAVES,
     SCENE_PAUSE,
     SCENE_INVENTORY,
+    SCENE_MINIGAME,
     SCENE_COUNT
 } scene_t;
 
@@ -69,6 +70,9 @@ extern struct engine_s {
     uint_t saveId;
     ulong_t delta;
     ulong_t spent;
+    uint_t axo_minigame;
+    uint_t roll;
+    int click;
 } Engine;
 
 #endif /* !ENGINE_H_ */

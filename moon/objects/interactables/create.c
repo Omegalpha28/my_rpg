@@ -34,13 +34,8 @@ static void set_interactable_texture_currency(interactable_t *obj)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void set_interactable_texture(interactable_t *obj)
+static void set_interactable_actor(interactable_t *obj)
 {
-    obj->img = NULL;
-    obj->actor = NULL;
-    obj->eff = NULL;
-    if (obj->type == INTERACTABLE_WEAPON)
-        obj->img = Assets.weapons;
     if (obj->type == INTERACTABLE_PNJ)
         obj->actor = actor_create(Assets.creatures[CREATURE_PNJ],
             obj->position);
@@ -49,6 +44,24 @@ static void set_interactable_texture(interactable_t *obj)
             obj->position);
         sfx(SFX_CHEST_FALL);
     }
+    if (obj->type == INTERACTABLE_EGG) {
+        obj->actor = actor_create(Assets.creatures[CREATURE_PLAYER],
+            obj->position);
+        actor_set_sheet(obj->actor, "eggs");
+        actor_set_variant(obj->actor, NULL, obj->data[0]);
+        obj->img = obj->actor->self->sheets[obj->actor->sheetId]->image;
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void set_interactable_texture(interactable_t *obj)
+{
+    obj->img = NULL;
+    obj->actor = NULL;
+    obj->eff = NULL;
+    if (obj->type == INTERACTABLE_WEAPON)
+        obj->img = Assets.weapons;
+    set_interactable_actor(obj);
     if (obj->type == INTERACTABLE_CHEST || obj->type == INTERACTABLE_PNJ) {
         actor_set_sheet_id(obj->actor, obj->data[0]);
         actor_set_anim(obj->actor, "idle");

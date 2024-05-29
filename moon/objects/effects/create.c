@@ -14,6 +14,7 @@
 static void add_default_effect(effect_t *eff)
 {
     eff->frame = 0;
+    eff->framerate = DEFAULT_VFX_FR;
     eff->fixFrame = false;
     Pool.effectCount++;
     Pool.effects = REALLOC(Pool.effects, sizeof(effect_t *), Pool.effectCount);

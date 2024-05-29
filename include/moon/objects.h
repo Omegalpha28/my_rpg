@@ -153,6 +153,7 @@ typedef struct effect_s {
     ulong_t time;
     bool_t isDecal;
     bool_t fixFrame;
+    ulong_t framerate;
 } effect_t;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -164,6 +165,7 @@ typedef enum interactable_type_e {
     INTERACTABLE_CURRENCY,
     INTERACTABLE_PNJ,
     INTERACTABLE_CHEST,
+    INTERACTABLE_EGG,
     INTERACTABLE_COUNT
 } interactable_type_t;
 

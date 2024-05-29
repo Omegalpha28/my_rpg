@@ -36,16 +36,18 @@ static void spin_dash(entity_t *crab)
     if (equal2f((v2f_t){fabs(crab->vector.x), fabs(crab->vector.y)},
         V2F(5.0f, 0.0f))){
         crab->vector = (v2f_t){rand() % 2 ? -5.0f : 5.0f, 5.0f};
+        crab->actor->position.x -= crab->vector.x;
         crab->wanted_position = crab->actor->position;
         crab->bounce = 0;
     }
     crab->actor->invincible = true;
     spinning_movement(crab);
     collision_hit(crab);
-    if ((int)crab->bounce >= 9){
+    if (crab->bounce >= 9){
         crab->bounce = 0;
         crab->status = Dazed;
-        actor_set_sheet(crab->actor, "fizzy");
+        actor_set_sheet(crab->actor, crab->curr_phase == 0 ? "fizzy" :
+            "rage_fizzy");
         actor_set_anim(crab->actor, "spin_transition");
         crab->last_action = Time.currentTime;
         crab->actor->invincible = false;
@@ -81,7 +83,9 @@ static void bubble_defense(entity_t *crab)
 ///////////////////////////////////////////////////////////////////////////////
 static void daze_check(entity_t *crab)
 {
-    if (CMP(crab->actor->self->sheets[crab->actor->sheetId]->name, "fizzy") &&
+    if ((CMP(crab->actor->self->sheets[crab->actor->sheetId]->name, "fizzy") ||
+         CMP(crab->actor->self->sheets[crab->actor->sheetId]->name,
+        "rage_fizzy")) &&
         crab->actor->done)
         actor_set_anim(crab->actor, "fizzy");
     if (Time.currentTime - crab->last_action < crab->dizzy)
@@ -89,7 +93,8 @@ static void daze_check(entity_t *crab)
     if (!CMP(crab->actor->self->sheets[crab->actor->sheetId]->name, "walk") ||
         !CMP(crab->actor->self->sheets[crab->actor->sheetId]->name,
             "rage_walk"))
-        actor_set_sheet(crab->actor, "unspin");
+        actor_set_sheet(crab->actor, crab->curr_phase == 0 ?
+            "unspin" : "rage_unspin");
     if (crab->actor->done){
         actor_set_sheet(crab->actor, crab->curr_phase == 0 ? "walk" :
             "rage_walk");

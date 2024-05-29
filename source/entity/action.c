@@ -12,7 +12,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-static void spinner(entity_t *evil)
+static void direction_calc(entity_t *evil)
 {
     v2f_t direction;
 
@@ -23,6 +23,12 @@ static void spinner(entity_t *evil)
         evil->vector = direction;
         evil->wanted_position = evil->actor->position;
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void spinner(entity_t *evil)
+{
+    direction_calc(evil);
     spinning_movement(evil);
     collision_hit(evil);
     if (evil->bounce >= 7){
@@ -35,6 +41,17 @@ static void spinner(entity_t *evil)
     }
     evil->actor->invincible = true;
     actor_set_anim(evil->actor, "spin");
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void dash_mov(entity_t *evil, v2f_t move)
+{
+    collision_hit(evil);
+    move = movetowards2f(evil->actor->position, evil->wanted_position,
+        (evil->speed * 5 * Time.deltaTime) / 25);
+    evil->actor->scale.x = move.x - evil->actor->position.x > 0 ? 1.0f : -1.0f;
+    evil->actor->position = move;
+    evil->actor->invincible = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -54,11 +71,7 @@ static void dashing(entity_t *evil)
             evil->last_action = Time.currentTime;
         }
     }
-    move = movetowards2f(evil->actor->position, evil->wanted_position,
-        (evil->speed * 5 * Time.deltaTime) / 25);
-    evil->actor->scale.x = move.x - evil->actor->position.x > 0 ? 1.0f : -1.0f;
-    evil->actor->position = move;
-    evil->actor->invincible = true;
+    dash_mov(evil, move);
     actor_set_anim(evil->actor, "angrywalk");
 }
 

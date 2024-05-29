@@ -84,7 +84,7 @@ static void bubble_defense(entity_t *crab)
 static void daze_check(entity_t *crab)
 {
     if ((CMP(crab->actor->self->sheets[crab->actor->sheetId]->name, "fizzy") ||
-         CMP(crab->actor->self->sheets[crab->actor->sheetId]->name,
+        CMP(crab->actor->self->sheets[crab->actor->sheetId]->name,
         "rage_fizzy")) &&
         crab->actor->done)
         actor_set_anim(crab->actor, "fizzy");

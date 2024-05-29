@@ -13,7 +13,7 @@ idle            0       3       DEFAULT     TRUE
 3           7           21          original            assets/creatures/boss-sign/death.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-death           0       20      DEFAULT     TRUE
+death           0       20      DEFAULT     FALSE
 [END]
 
 [START-walk]

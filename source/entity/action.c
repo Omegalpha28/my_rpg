@@ -144,7 +144,7 @@ void enemy_action(entity_t *evil)
     if (evil->attack_types == Spinjutsu)
         spinner(evil);
     if (distance2f(evil->actor->position, Player.ref->position) >
-        evil->attack_radius)
+        evil->insight)
         return;
     if (evil->attack_types == Shooter || evil->attack_types == Sniper)
         shooting(evil);

@@ -42,8 +42,7 @@ static void domain_implosion(entity_t *crab)
     search_and_destroy("crab_big_bubble");
     effect("crab_bubble_death", (v2f_t){crab->actor->position.x - 4,
         crab->actor->position.y + 7}, 0);
-    crab->actor->shield++;
-    crab->status = Patrol;
+    crab->actor->shield = 13;
     crab->movement = Time.currentTime;
     crab->last_action = Time.currentTime;
 }

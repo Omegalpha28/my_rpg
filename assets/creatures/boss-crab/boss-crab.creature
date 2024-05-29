@@ -40,13 +40,13 @@ intro            0      71      DEFAULT     FALSE
 
 [START-enrage]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-7           7           46          original            assets/creatures/boss-crab/normal/enrage.png
+7           7           49          original            assets/creatures/boss-crab/normal/enrage.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
-enrage            0       45      DEFAULT     TRUE
+enrage           0      45      DEFAULT     FALSE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-7           7           46          debug               assets/creatures/boss-crab/normal/enrage-debug.png
+7           7           49          debug               assets/creatures/boss-crab/normal/enrage-debug.png
 [END]
 
 
@@ -146,4 +146,22 @@ fizzy            3       10     DEFAULT     TRUE
 
 # WHAT          START   END     FRAMERATE   LOOPED
 unspin           0       11      DEFAULT     FALSE
+[END]
+
+[START-knife_attack]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           3           11         original             assets/creatures/boss-crab/rage/knife_attack.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+bubble_attack    0       10     DEFAULT     FALSE
+[END]
+
+
+[START-rage_walk]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+8           2           11          original            assets/creatures/boss-crab/rage/walk.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+walk            0       10      DEFAULT     TRUE
+
 [END]

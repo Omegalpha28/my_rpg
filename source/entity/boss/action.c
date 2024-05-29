@@ -17,7 +17,8 @@ static void mouth_blast(entity_t *boss)
     if ((Time.currentTime - boss->last_action) < boss->firerate)
         return;
     boss->is_attack = true;
-    actor_set_sheet(boss->actor, "bubble_attack");
+    actor_set_sheet(boss->actor, boss->curr_phase == 0 ? "bubble_attack" :
+        "knife_attack");
     if (boss->firerate == Stats[boss->actor->self->id].firerate){
         firing(boss, boss->ball_count, 15);
         boss->firerate /= 4;
@@ -36,6 +37,7 @@ static void spin_dash(entity_t *crab)
         V2F(5.0f, 0.0f))){
         crab->vector = (v2f_t){rand() % 2 ? -5.0f : 5.0f, 5.0f};
         crab->wanted_position = crab->actor->position;
+        crab->bounce = 0;
     }
     crab->actor->invincible = true;
     spinning_movement(crab);
@@ -56,13 +58,16 @@ static void bubble_defense(entity_t *crab)
 {
     v2f_t save = crab->actor->position;
     v2f_t target_pos;
-    int random_x = rand() % 150;
+    int random_x = rand() % 150 * (rand() % 2 ? 1 : -1);
     int random_y = ((rand() % 200) * -1) - 50;
 
     domain_expansion(crab);
+    if (crab->actor->shield == 13 && crab->curr_phase == 0){
+        enrage(crab);
+        return;
+    }
     if ((Time.currentTime - crab->last_action < (crab->firerate / 4)))
         return;
-    random_x = rand() % 2 ? random_x : random_x * -1;
     crab->actor->position = (v2f_t){random_x, random_y};
     target_pos = add2f(crab->actor->position, V2F(0.0f, 50.0f));
     create_bullet(crab->actor, target_pos, crab->weapon);
@@ -71,7 +76,6 @@ static void bubble_defense(entity_t *crab)
     if (crab->actor->done)
         actor_set_anim(crab->actor, crab->actor->shield == 13 ?
         "outa_shield" : "in_shield");
-    return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -82,10 +86,13 @@ static void daze_check(entity_t *crab)
         actor_set_anim(crab->actor, "fizzy");
     if (Time.currentTime - crab->last_action < crab->dizzy)
         return;
-    if (!CMP(crab->actor->self->sheets[crab->actor->sheetId]->name, "walk"))
+    if (!CMP(crab->actor->self->sheets[crab->actor->sheetId]->name, "walk") ||
+        !CMP(crab->actor->self->sheets[crab->actor->sheetId]->name,
+            "rage_walk"))
         actor_set_sheet(crab->actor, "unspin");
     if (crab->actor->done){
-        actor_set_sheet(crab->actor, "walk");
+        actor_set_sheet(crab->actor, crab->curr_phase == 0 ? "walk" :
+            "rage_walk");
         crab->status = ranger;
         crab->vector = (v2f_t){5.0f, 0.0f};
     }

@@ -19,7 +19,7 @@ static recti_t effect_generate_mask(effect_t *eff, bool_t *destroy)
     uint_t frameCount = eff->self->endingFrame - eff->self->startingFrame + 1;
 
     eff->frame = eff->fixFrame ? eff->self->endingFrame : (uint_t)(((ems /
-        DEFAULT_VFX_FR) % frameCount) + eff->self->startingFrame);
+        eff->framerate) % frameCount) + eff->self->startingFrame);
     mask.left = (eff->frame % img->grid.x) * mask.width;
     mask.top = (eff->frame / img->grid.x) * mask.height;
     if (!eff->self->looped && eff->frame == eff->self->endingFrame &&

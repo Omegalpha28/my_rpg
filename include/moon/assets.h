@@ -376,6 +376,60 @@ static const cstring_t AXOLOPEDIA_BABIES[AXO_COUNT] = {
     DIR_AXOLTL"/babies/zombie.png",
 };
 
+static const cstring_t AXOLOPEDIA_BABIES_MINI[AXO_COUNT] = {
+    DIR_UI"/minigames/babies/gigalotl.png",
+    DIR_UI"/minigames/babies/albino.png",
+    DIR_UI"/minigames/babies/algae.png",
+    DIR_UI"/minigames/babies/alien.png",
+    DIR_UI"/minigames/babies/anime.png",
+    DIR_UI"/minigames/babies/anomaly.png",
+    DIR_UI"/minigames/babies/astronaut.png",
+    DIR_UI"/minigames/babies/bananalotl.png",
+    DIR_UI"/minigames/babies/beelotl.png",
+    DIR_UI"/minigames/babies/cartoon.png",
+    DIR_UI"/minigames/babies/catterkillah.png",
+    DIR_UI"/minigames/babies/chadgeept.png",
+    DIR_UI"/minigames/babies/corgi.png",
+    DIR_UI"/minigames/babies/cowrolina.png",
+    DIR_UI"/minigames/babies/cthulotl.png",
+    DIR_UI"/minigames/babies/monster.png",
+    DIR_UI"/minigames/babies/dalmatian.png",
+    DIR_UI"/minigames/babies/dough.png",
+    DIR_UI"/minigames/babies/draco.png",
+    DIR_UI"/minigames/babies/druid.png",
+    DIR_UI"/minigames/babies/ember.png",
+    DIR_UI"/minigames/babies/enigma.png",
+    DIR_UI"/minigames/babies/firefly.png",
+    DIR_UI"/minigames/babies/froggo.png",
+    DIR_UI"/minigames/babies/goldy.png",
+    DIR_UI"/minigames/babies/imp.png",
+    DIR_UI"/minigames/babies/imsomnia.png",
+    DIR_UI"/minigames/babies/junkcat.png",
+    DIR_UI"/minigames/babies/knight.png",
+    DIR_UI"/minigames/babies/koi.png",
+    DIR_UI"/minigames/babies/lavender.png",
+    DIR_UI"/minigames/babies/melanoid.png",
+    DIR_UI"/minigames/babies/metal.png",
+    DIR_UI"/minigames/babies/midas.png",
+    DIR_UI"/minigames/babies/moonlighter.png",
+    DIR_UI"/minigames/babies/neon.png",
+    DIR_UI"/minigames/babies/pastel.png",
+    DIR_UI"/minigames/babies/pengu.png",
+    DIR_UI"/minigames/babies/piggy.png",
+    DIR_UI"/minigames/babies/poison.png",
+    DIR_UI"/minigames/babies/salamander.png",
+    DIR_UI"/minigames/babies/skull.png",
+    DIR_UI"/minigames/babies/slime.png",
+    DIR_UI"/minigames/babies/spirit.png",
+    DIR_UI"/minigames/babies/teddy_bear.png",
+    DIR_UI"/minigames/babies/tiger.png",
+    DIR_UI"/minigames/babies/trans.png",
+    DIR_UI"/minigames/babies/wild.png",
+    DIR_UI"/minigames/babies/wooper.png",
+    DIR_UI"/minigames/babies/x.png",
+    DIR_UI"/minigames/babies/zombie.png",
+};
+
 static const cstring_t AXOLOPEDIA_TEENS[AXO_COUNT] = {
     DIR_AXOLTL"/teenagers/original.png",
     DIR_AXOLTL"/teenagers/albino.png",
@@ -1353,6 +1407,7 @@ extern struct assets_s {
     uint_t sfxCount;
     axolotles_t **axolotl;
     uint_t axolotlCount;
+    image_t **babies;
 } Assets;
 
 ///////////////////////////////////////////////////////////////////////////////

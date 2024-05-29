@@ -50,3 +50,21 @@ void destroy_all_axolotl(void)
 {
     FREE(Assets.axolotl);
 }
+
+///////////////////////////////////////////////////////////////////////////////
+bool_t init_assets_babies(void)
+{
+    Assets.babies = (image_t **)malloc(sizeof(image_t *) * AXO_COUNT);
+    if (Assets.babies == NULL)
+        return (false);
+    for (uint_t i = 0; i < AXO_COUNT; i++)
+        Assets.babies[i] = add_image(AXOLOPEDIA_BABIES_MINI[i], true, V2U1(1U),
+            AXOLOPEDIA_NAMES[i]);
+    return (true);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void destroy_all_babies(void)
+{
+    FREE(Assets.babies);
+}

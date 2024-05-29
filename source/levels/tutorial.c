@@ -38,6 +38,8 @@ void level_tutorial_actors(uint_t level)
     if (level == 4)
         spawn_interactable(INTERACTABLE_PNJ, V2F(-50.0f, -100.0f), 8,
             &switalk);
+    if (level == 5 || level == 6)
+        use_spawner(3U);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

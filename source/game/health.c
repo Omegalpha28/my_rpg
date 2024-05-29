@@ -69,6 +69,13 @@ static void death_change(void)
     Engine.level = Engine.level < 10 ? 1 : 0;
     Player.ref->health = Assets.axolotl[Player.ref->variantId]->maxHealth;
     Player.ref->shield = Assets.axolotl[Player.ref->variantId]->shields;
+    Player.weapon = Player.inventor[0];
+    Player.inventor[1] = WEAPON_NO;
+    Player.max_bullet = 0;
+    Player.mag[1] = 0;
+    Player.mag[0] = WEAPON_STATS[Player.weapon].ammoPerMag;
+    Player.shaking = false;
+    Player.ref->charges = 0;
     switch_level();
     Player.ref->dead = false;
     Player.ref->draw = true;

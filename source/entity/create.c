@@ -60,14 +60,16 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->has_spawn = 0;
     new->is_attack = 0;
     new->status = Patrol;
-    new->can_attack = true;
-    new->cooldown = 5000;
+    new->can_attack = false;
     new->attack_started = false;
+    new->cooldown = Time.currentTime;
     new->movement = Time.currentTime;
+    new->timebomb = Time.currentTime;
     new->wanted_position = position;
     new->curr_phase = 0;
     new->bounce = 0;
     new->vector = V2F(5.0f, 0.0f);
+    new->c4_pos = V2F1(0.0f);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

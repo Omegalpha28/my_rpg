@@ -92,7 +92,6 @@ typedef struct entity_s {
     uint_t dizzy;
     float collision;
     bool_t can_attack;
-    uint_t cooldown;
     bool_t attack_started;
     weapon_enum_t weapon;
     uint_t movement;
@@ -104,6 +103,9 @@ typedef struct entity_s {
     uint_t ball_count;
     uint_t bounce;
     v2f_t vector;
+    v2f_t c4_pos;
+    uint_t cooldown;
+    uint_t timebomb;
 } entity_t;
 
 

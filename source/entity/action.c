@@ -129,10 +129,33 @@ static void shooting(entity_t *evil)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void terrorist(entity_t *evil)
+{
+    v2f_t save = evil->actor->position;
+
+    if (evil->is_attack == 0){
+        evil->c4_pos = evil->actor->position;
+        evil->is_attack = 1;
+        evil->cooldown = Time.currentTime;
+        evil->last_action = Time.currentTime;
+        evil->timebomb = Time.currentTime;
+    }
+    evil->status = Fear;
+    if (Time.currentTime - evil->timebomb < 2000)
+        return;
+    evil->actor->position = evil->c4_pos;
+    create_bullet(evil->actor, evil->actor->position, 5);
+    evil->actor->position = save;
+    evil->is_attack = 0;
+    evil->can_attack = false;
+    evil->last_action = Time.currentTime;
+    evil->cooldown = Time.currentTime;
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void enemy_action(entity_t *evil)
 {
-    if (!evil->can_attack && (Time.currentTime - evil->last_action) >=
-        evil->cooldown){
+    if (!evil->can_attack && (Time.currentTime - evil->last_action) >= 5000){
         evil->can_attack = !evil->can_attack;
         evil->wanted_position = evil->actor->position;
         evil->attack_started = false;
@@ -141,6 +164,8 @@ void enemy_action(entity_t *evil)
         return;
     if (evil->attack_types == Dash)
         dashing(evil);
+    if (evil->attack_types == Bomber)
+        terrorist(evil);
     if (evil->attack_types == Spinjutsu)
         spinner(evil);
     if (distance2f(evil->actor->position, Player.ref->position) >

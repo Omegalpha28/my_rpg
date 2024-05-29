@@ -15,7 +15,7 @@
 static void patrol_position_calc(entity_t *evil)
 {
     if (equal2f(evil->wanted_position, evil->actor->position) ||
-        Time.currentTime - evil->movement >= 4000){
+        Time.currentTime - evil->movement >= 3000){
         if (!evil->attack_started){
             evil->attack_started = !evil->attack_started;
             evil->last_action = Time.currentTime;
@@ -47,6 +47,9 @@ static void patrolling(entity_t *evil)
         evil->status = evil->attack_types == Sniper ? ranger : Agressive;
         return;
     }
+    if (evil->attack_types == Bomber && (Time.currentTime - evil->cooldown) >=
+        5000)
+        evil->can_attack = true;
     patrol_position_calc(evil);
     move = movetowards2f(evil->actor->position, evil->wanted_position,
         (evil->speed * Time.deltaTime) / 25);
@@ -131,7 +134,9 @@ static void fleeing(entity_t *evil)
 
     if (Time.currentTime - evil->last_action >= evil->dizzy){
         evil->status = Patrol;
-        evil->last_action = 0;
+        evil->last_action = Time.currentTime;
+        evil->movement = Time.currentTime;
+        evil->cooldown = Time.currentTime;
         return;
     }
     if (equal2f(evil->wanted_position, evil->actor->position))
@@ -150,8 +155,7 @@ void enemy_movement(entity_t *evil)
     if ((evil->attack_types == Dash || evil->attack_types == Spinjutsu)
         && evil->can_attack)
         return;
-    if (evil->actor->invincible)
-        evil->actor->invincible = false;
+    evil->actor->invincible = false;
     if (evil->attack_types == Spinjutsu && evil->status == Patrol)
         no_movement(evil);
     if (evil->status == Patrol && evil->attack_types != Spinjutsu)

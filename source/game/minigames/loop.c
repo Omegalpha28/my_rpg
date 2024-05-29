@@ -81,7 +81,6 @@ static void draw_bacs(void)
 void minigame_loop(void)
 {
     sfEvent evt;
-    char txt[50];
 
     CLICK_REL = false;
     while (sfRenderWindow_pollEvent(Win.self, &evt)) {

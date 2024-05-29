@@ -7,10 +7,19 @@
 # WHAT          START   END     FRAMERATE   LOOPED
 idle            0       6       DEFAULT     TRUE
 damage          7       8       DEFAULT     FALSE
-spin            9       11      DEFAULT     TRUE
 tired           12      19      DEFAULT     TRUE
 death           20      29      DEFAULT     FALSE
 
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 4           8           30          debug               assets/creatures/elite-baby-crab/debug.png
+[END]
+
+
+[START-spin]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+3           1           3          original            assets/creatures/elite-baby-crab/spin.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+spin            0       2       DEFAULT     TRUE
+
 [END]

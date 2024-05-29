@@ -30,6 +30,7 @@ static void spinner(entity_t *evil)
         evil->status = Dazed;
         evil->last_action = Time.currentTime;
         evil->can_attack = !evil->can_attack;
+        actor_set_sheet(evil->actor, "default");
         return;
     }
     evil->actor->invincible = true;

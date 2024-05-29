@@ -63,7 +63,7 @@ static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
     new->can_attack = true;
     new->cooldown = 5000;
     new->attack_started = false;
-    new->movement = 0;
+    new->movement = Time.currentTime;
     new->wanted_position = position;
     new->curr_phase = 0;
     new->bounce = 0;

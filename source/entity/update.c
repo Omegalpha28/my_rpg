@@ -37,8 +37,16 @@ static void intro(entity_t *boss)
         boss->actor->invincible = false;
         boss->actor->castShadow = true;
         boss->actor->shield = -1;
-        // boss->curr_phase = 1;
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void wait_time(entity_t *evil)
+{
+    if (evil->has_spawn || Time.currentTime - evil->last_action < 1250)
+        return;
+    evil->has_spawn = true;
+    evil->last_action = Time.currentTime;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -54,6 +62,9 @@ static void entity_update(entity_t *evil)
         boss_action(evil);
         update_vfx(evil);
     } else {
+        wait_time(evil);
+        if (!evil->has_spawn)
+            return;
         enemy_movement(evil);
         enemy_action(evil);
     }

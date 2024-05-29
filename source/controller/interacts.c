@@ -65,3 +65,14 @@ void pickupitem(interactable_t *obj)
     sfx(SFX_PICKUP_ITEM);
     destroy_interactable(obj);
 }
+
+///////////////////////////////////////////////////////////////////////////////
+void pickupchild(interactable_t *obj)
+{
+    effect_t *eff = effect("egg_to_baby", obj->position, false);
+
+    sfx(SFX_EVOLVE);
+    eff->framerate = FRAME_PER_MS(32);
+    Assets.axolotl[obj->data[0]]->grown = AXO_BABY;
+    destroy_interactable(obj);
+}

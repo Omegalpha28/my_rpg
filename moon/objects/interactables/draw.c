@@ -16,7 +16,8 @@ static v2f_t get_interactable_position(interactable_t *obj)
     ulong_t elsp = (Time.currentTime - obj->time);
     float offsetY = sin((float)(Time.currentTime) / 350.0f);
 
-    if (obj->type == INTERACTABLE_CURRENCY || obj->type == INTERACTABLE_WEAPON)
+    if (obj->type == INTERACTABLE_CURRENCY || obj->type == INTERACTABLE_WEAPON
+        || obj->type == INTERACTABLE_EGG)
         return (add2f(obj->position, V2F(0.0f, offsetY)));
     if (obj->type == INTERACTABLE_CHEST && elsp < 7e2)
         return (subtract2f(obj->position, V2F(0.0f, (7e2 - elsp) * 0.45f)));

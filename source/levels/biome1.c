@@ -42,11 +42,15 @@ static void use_spawner(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void init_crab_boss(void)
+static void init_crab_boss_room(void)
 {
-    entity_create(Assets.creatures[CREATURE_CRAB_BOSS], V2F(-75.0f, -160.0f));
-    sfView_move(Win.view, V2F(0.0f, -125.0f));
-    sfRenderWindow_setView(Win.self, Win.view);
+    sfMusic *song = find_music("crab-boss");
+
+    entity_create(Assets.creatures[CREATURE_CRAB_BOSS], V2F(50.0f, -150.0f));
+    end_music();
+    sfMusic_setVolume(song, clampf(Setting.master * (Setting.music / 100.0f) *
+        0.1f, 0.0f, 100.0f));
+    sfMusic_play(song);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -59,8 +63,7 @@ bool_t level_biome1(void)
     if (Engine.level != 19)
         use_spawner();
     else
-        entity_create(Assets.creatures[CREATURE_CRAB_BOSS],
-            V2F(50.0f, -150.0f));
+        init_crab_boss_room();
     sfView_move(Win.view, V2F(0.0f, -125.0f));
     sfRenderWindow_setView(Win.self, Win.view);
     return (true);

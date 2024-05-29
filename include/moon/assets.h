@@ -751,6 +751,7 @@ typedef enum sfx_list_e {
     SFX_WP_BOLTER,
     SFX_WP_AVELYN,
     SFX_PICKUP_ITEM,
+    SFX_EVOLVE,
     SFX_COUNT
 } sfx_list_t;
 
@@ -1059,7 +1060,8 @@ static const cstring_t SFX_ASSETS[SFX_COUNT][MAX_SFX_VARIANTS] = {
         "game/pickup_item1.ogg", "game/pickup_item2.ogg",
         "game/pickup_item3.ogg", "game/pickup_item4.ogg",
         "game/pickup_item5.ogg", "game/pickup_item6.ogg", NULL
-    }
+    },
+    {"game/evolve.ogg", NULL}
 };
 
 ///////////////////////////////////////////////////////////////////////////////

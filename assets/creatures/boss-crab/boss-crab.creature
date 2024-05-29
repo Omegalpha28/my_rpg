@@ -12,6 +12,7 @@ idle            0       5       DEFAULT     TRUE
 6           1           6           debug               assets/creatures/boss-crab/normal/idle-debug.png
 [END]
 
+
 [START-walk]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 8           2           11          original            assets/creatures/boss-crab/normal/walk.png
@@ -24,6 +25,7 @@ walk            0       10      DEFAULT     TRUE
 8           2           11          debug               assets/creatures/boss-crab/normal/walk-debug.png
 [END]
 
+
 [START-intro]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 8           9           72          original            assets/creatures/boss-crab/normal/intro.png
@@ -34,6 +36,7 @@ intro            0      71      DEFAULT     FALSE
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 8           9           72          debug               assets/creatures/boss-crab/normal/intro-debug.png
 [END]
+
 
 [START-enrage]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
@@ -46,6 +49,7 @@ enrage            0       45      DEFAULT     TRUE
 7           7           46          debug               assets/creatures/boss-crab/normal/enrage-debug.png
 [END]
 
+
 [START-death]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 4           5           20          original            assets/creatures/boss-crab/rage/death.png
@@ -57,14 +61,15 @@ death            0       19      DEFAULT     FALSE
 4           5           20          original            assets/creatures/boss-crab/rage/death-debug.png
 [END]
 
+
 [START-spin]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 3           1           3         original             assets/creatures/boss-crab/normal/spin.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
 spin             0       2      DEFAULT     TRUE
-
 [END]
+
 
 [START-fizzy]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
@@ -74,6 +79,7 @@ spin             0       2      DEFAULT     TRUE
 spin_transition  0       2      DEFAULT     FALSE
 fizzy            3       10     DEFAULT     TRUE
 [END]
+
 
 [START-unspin]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
@@ -94,10 +100,50 @@ in_shield        8       23     DEFAULT     TRUE
 outa_shield      24      28     DEFAULT     FALSE
 [END]
 
+
 [START-bubble_attack]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
 4           3           11         original             assets/creatures/boss-crab/normal/bubble_attack.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
 bubble_attack    0       10     DEFAULT     FALSE
+[END]
+
+
+[START-rage_spin]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           3           11         original             assets/creatures/boss-crab/rage/rage_spin.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+spin             0       10      DEFAULT     TRUE
+[END]
+
+
+[START-rage_shield_attack]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+6           6           34         original             assets/creatures/boss-crab/rage/shield_attack.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+into_bubble      0       8      DEFAULT     FALSE
+in_shield        8       23     DEFAULT     TRUE
+outa_shield      24      33     DEFAULT     FALSE
+[END]
+
+
+[START-rage_fizzy]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+6           2           11         original             assets/creatures/boss-crab/rage/transition_tired.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+spin_transition  0       2      DEFAULT     FALSE
+fizzy            3       10     DEFAULT     TRUE
+[END]
+
+
+[START-rage_unspin]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           3           12          original             assets/creatures/boss-crab/rage/tired_standup.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+unspin           0       11      DEFAULT     FALSE
 [END]

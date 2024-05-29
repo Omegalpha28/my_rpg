@@ -279,6 +279,7 @@ P_C_UI		=	$(P_D_UI)video/load.c										\
 P_C_LVL		=	$(P_D_LVL)switch.c											\
 				$(P_D_LVL)end.c												\
 				$(P_D_LVL)tutorial.c										\
+				$(P_D_LVL)spawner.c											\
 				$(P_D_LVL)biome1.c											\
 				$(P_D_LVL)hub.c
 

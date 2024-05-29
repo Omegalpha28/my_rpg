@@ -65,7 +65,7 @@ void health_examination(entity_t *evil)
     if (act->health <= 0 && !act->dead && !act->damaged) {
         sfx(SFX_ENEMY_DEATH);
         act->dead = true;
-        if (actor_set_sheet(act, "death"))
+        if (actor_set_sheet(act, "death") && evil->attack_types != Boss)
             act->position.x +=
             (act->self->sheets[act->sheetId]->image->mask.width / 4) *
             ((act->scale.x) < 0 ? 1 : -1);

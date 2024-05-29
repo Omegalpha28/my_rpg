@@ -132,7 +132,7 @@ outa_shield      24      33     DEFAULT     FALSE
 
 [START-rage_fizzy]
 # WIDTH     HEIGHT      FRAMES      NAME                PATH
-6           2           11         original             assets/creatures/boss-crab/rage/transition_tired.png
+4           3           11         original             assets/creatures/boss-crab/rage/fizzy.png
 
 # WHAT          START   END     FRAMERATE   LOOPED
 spin_transition  0       2      DEFAULT     FALSE
@@ -163,5 +163,4 @@ bubble_attack    0       10     DEFAULT     FALSE
 
 # WHAT          START   END     FRAMERATE   LOOPED
 walk            0       10      DEFAULT     TRUE
-
 [END]

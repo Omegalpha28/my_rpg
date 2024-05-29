@@ -14,7 +14,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 static void collision_damage(actor_t *actor)
 {
-    if (actor->invincible)
+    if (DASH && Player.ref == actor)
         return;
     actor->health -= (Player.ref == actor) ? 1 : 15;
     actor->damaged = true;

@@ -17,7 +17,7 @@ static void mouth_blast(entity_t *boss)
     if ((Time.currentTime - boss->last_action) < boss->firerate)
         return;
     boss->is_attack = true;
-    actor_set_sheet(boss->actor, "idle");
+    actor_set_sheet(boss->actor, "bubble_attack");
     if (boss->firerate == Stats[boss->actor->self->id].firerate){
         firing(boss, boss->ball_count, 15);
         boss->firerate /= 4;

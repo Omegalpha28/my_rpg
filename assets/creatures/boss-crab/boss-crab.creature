@@ -93,3 +93,11 @@ into_bubble      0       7      DEFAULT     FALSE
 in_shield        8       23     DEFAULT     TRUE
 outa_shield      24      28     DEFAULT     FALSE
 [END]
+
+[START-bubble_attack]
+# WIDTH     HEIGHT      FRAMES      NAME                PATH
+4           3           11         original             assets/creatures/boss-crab/normal/bubble_attack.png
+
+# WHAT          START   END     FRAMERATE   LOOPED
+bubble_attack    0       10     DEFAULT     FALSE
+[END]

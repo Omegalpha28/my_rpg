@@ -62,6 +62,7 @@ bool_t actor_set_sheet(actor_t *act, cstring_t name)
             continue;
         if (act->sheetId == i)
             return (true);
+        act->done = false;
         act->sheetId = i;
         act->time = Time.currentTime;
         if (Engine.debugMode == true)

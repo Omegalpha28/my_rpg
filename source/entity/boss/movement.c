@@ -29,14 +29,7 @@ static int next_attack(entity_t *boss)
 {
     int random = rand() % 7;
 
-    boss->movement = Time.currentTime;
-    boss->status = Fear;
-    if (boss->status == Fear){
-        actor_set_sheet(boss->actor, "shield_attack");
-        actor_set_anim(boss->actor, "into_bubble");
-        boss->actor->shield = 0;
-        return 1;
-    }
+    boss->status = (random < 4) ? Patrol : Agressive;
     return 0;
 }
 
@@ -45,7 +38,7 @@ static void idle(entity_t *boss)
 {
     if (boss->is_attack)
         return;
-    if ((Time.currentTime - boss->movement) >= 7000)
+    if ((Time.currentTime - boss->movement) >= 6000)
         if (next_attack(boss))
             return;
     if (equal2f(V2F(floorf(boss->wanted_position.x),
@@ -54,13 +47,13 @@ static void idle(entity_t *boss)
         get_wanted_position(boss);
     boss->actor->position = movetowards2f(boss->actor->position,
         boss->wanted_position, (boss->speed * Time.deltaTime) / 15);
-    if (floorf(boss->actor->position.x) == 0.0f && !boss->attack_started ||
-        boss->status == Agressive){
+    if (floorf(boss->actor->position.x) == 0.0f && (!boss->attack_started ||
+        boss->status == Agressive)){
         boss->attack_started = true;
         boss->status = Agressive;
         boss->bounce = 0;
     }
-    actor_set_sheet(boss->actor, "walk");
+    actor_set_sheet(boss->actor, boss->curr_phase == 0 ? "walk" : "rage_walk");
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -79,6 +72,25 @@ static void reset_pos(entity_t *crab)
     }
     crab->actor->position = movetowards2f(crab->actor->position,
         crab->wanted_position, (crab->speed * Time.deltaTime) / 15);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void enrage(entity_t *crab)
+{
+    if (crab->actor->done && CMP(crab->actor->self->
+        sheets[crab->actor->sheetId]->name, "shield_attack")){
+        actor_set_sheet(crab->actor, "enrage");
+        actor_set_anim(crab->actor, "enrage");
+        crab->actor->invincible = true;
+    }
+    if (!crab->actor->done || !CMP(crab->actor->self->
+        sheets[crab->actor->sheetId]->name, "enrage"))
+        return;
+    crab->curr_phase = 1;
+    crab->movement = Time.currentTime;
+    crab->last_action = Time.currentTime;
+    crab->status = Patrol;
+    crab->actor->invincible = false;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

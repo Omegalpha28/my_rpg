@@ -111,7 +111,7 @@ static void stunned(entity_t *evil)
 ///////////////////////////////////////////////////////////////////////////////
 static void no_movement(entity_t *evil)
 {
-    if (Time.currentTime - evil->last_action >= evil->dizzy * 2)
+    if (Time.currentTime - evil->last_action >= evil->dizzy * 1.3)
         evil->can_attack = true;
     actor_set_anim(evil->actor, "idle");
 }

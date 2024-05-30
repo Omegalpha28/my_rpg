@@ -49,13 +49,35 @@ void pickup(interactable_t *obj)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static int get_random_baby(void)
+{
+    int rdx = rand() % AXO_COUNT;
+
+    while (Assets.axolotl[rdx]->grown != AXO_NO)
+        rdx = rand() % AXO_COUNT;
+    return (rdx);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void openchest(interactable_t *obj)
 {
+    v2f_t pos = add2f(obj->position, V2F(rand() % 50, rand() % 50));
+
     actor_set_anim(obj->actor, "open");
     sfx(SFX_CHEST_OPEN);
     if (obj->data[0] == 0)
-        spawn_interactable(INTERACTABLE_WEAPON, add2f(obj->position, V2F(
-            rand() % 50, rand() % 50)), rand() % WEAPON_COUNT, &pickup);
+        spawn_interactable(INTERACTABLE_WEAPON, pos, rand() %
+            WEAPON_MELEE_FISHING_ROD, &pickup);
+    if (obj->data[0] == 1)
+        return;
+    if (obj->data[0] == 2)
+        spawn_interactable(INTERACTABLE_EGG, pos, get_random_baby(),
+            &pickupchild);
+    if (obj->data[0] == 3) {
+        for (uint_t i = 0; i < 5; i++)
+            spawn_interactable(INTERACTABLE_CURRENCY, add2f(obj->position,
+                V2F(rand() % 50, rand() % 50)), CURRENCY_COOKIE, &pickupitem);
+    }
     Player.lastAction = Time.currentTime;
 }
 
@@ -63,6 +85,14 @@ void openchest(interactable_t *obj)
 void pickupitem(interactable_t *obj)
 {
     sfx(SFX_PICKUP_ITEM);
+    if (obj->data[0] == CURRENCY_COOKIE)
+        Player.purse.cookies++;
+    if (obj->data[0] == CURRENCY_GEM)
+        Player.purse.gems++;
+    if (obj->data[0] == CURRENCY_DORADITOS)
+        Player.purse.doraditos++;
+    if (obj->data[0] == CURRENCY_DORADITOS_BLUE)
+        Player.purse.doraditosBlue++;
     destroy_interactable(obj);
 }
 

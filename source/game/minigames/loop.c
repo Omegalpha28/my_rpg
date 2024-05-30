@@ -14,6 +14,8 @@
 static void grow_interactable(void)
 {
     Assets.axolotl[Engine.axo_minigame]->grown++;
+    if (Assets.axolotl[Engine.axo_minigame]->grown > AXO_ADULT)
+        Assets.axolotl[Engine.axo_minigame]->grown = AXO_ADULT;
     for (uint_t i = 0; i < Pool.interCount; i++) {
         if (Pool.inters[i]->type != INTERACTABLE_EGG || Pool.inters[i]->data[0]
             != (int)(Engine.axo_minigame - 1))

@@ -76,6 +76,7 @@ static void death_change(void)
     Player.mag[0] = WEAPON_STATS[Player.weapon].ammoPerMag;
     Player.shaking = false;
     Player.ref->charges = 0;
+    load_save(Engine.saveId);
     switch_level();
     Player.ref->dead = false;
     Player.ref->draw = true;

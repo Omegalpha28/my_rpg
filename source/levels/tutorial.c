@@ -40,6 +40,9 @@ void level_tutorial_actors(uint_t level)
             &switalk);
     if (level == 5 || level == 6)
         use_spawner(3U);
+    if (level == 7)
+        entity_create(Assets.creatures[CREATURE_SIGN_BOSS],
+            V2F(0.0f, -200.0f));
 }
 
 ///////////////////////////////////////////////////////////////////////////////

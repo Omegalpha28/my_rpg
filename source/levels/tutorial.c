@@ -24,11 +24,8 @@ static const cstring_t LEVELS[7] = {
 ///////////////////////////////////////////////////////////////////////////////
 void level_tutorial_actors(uint_t level)
 {
-    if (level == 1)
-        entity_create(Assets.creatures[CREATURE_ELITE_BABY_CRAB],
-            V2F(75.0f, -100.0f));
     if (level == 2)
-        entity_create(Assets.creatures[CREATURE_CINNAMON_RAT],
+        entity_create(Assets.creatures[CREATURE_ELITE_FOX],
             V2F(0.0f, -225.0f));
     if (level == 3)
         spawn_interactable(INTERACTABLE_PNJ, V2F(50.0f, -150.0f), 8, &switalk);

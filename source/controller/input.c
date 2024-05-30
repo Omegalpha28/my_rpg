@@ -57,8 +57,10 @@ void parse_key_input(sfKeyEvent evt)
     bool_t released = (evt.type == sfEvtKeyReleased);
 
     if (Setting.talk != NO_TALK && released && evt.code ==
-        Setting.dash.code)
+        Setting.dash.code) {
         Setting.talk = NO_TALK;
+        Player.blocked = false;
+    }
     if (Setting.talk == INVENTORY && released && evt.code == Setting.heal.code)
         Engine.scene = SCENE_INVENTORY;
     if (Player.blocked)

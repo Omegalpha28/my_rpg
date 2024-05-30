@@ -22,10 +22,28 @@ static int get_creature(void)
     return (rdx);
 }
 
+float randomf(int min, int max)
+{
+    int tmp = min;
+
+    if (min > max) {
+        min = max;
+        max = tmp;
+    }
+    return ((float)(rand() % (max - min - 1) + min));
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static v2f_t get_spawn_location(void)
+{
+    return (V2F(randomf(-125, 125), randomf(-230, -200)));
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 void use_spawner(uint_t n)
 {
-    for (uint_t i = 0; i < n; i++)
+    for (uint_t i = 0; i < n; i++) {
         entity_create(Assets.creatures[get_creature()],
-            V2F(0.0f, -225.0f));
+            get_spawn_location());
+    }
 }

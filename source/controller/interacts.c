@@ -62,6 +62,7 @@ static int get_random_baby(void)
 void openchest(interactable_t *obj)
 {
     v2f_t pos = add2f(obj->position, V2F(rand() % 50, rand() % 50));
+
     actor_set_anim(obj->actor, "open");
     sfx(SFX_CHEST_OPEN);
     if (obj->data[0] == 0)
@@ -84,6 +85,14 @@ void openchest(interactable_t *obj)
 void pickupitem(interactable_t *obj)
 {
     sfx(SFX_PICKUP_ITEM);
+    if (obj->data[0] == CURRENCY_COOKIE)
+        Player.purse.cookies++;
+    if (obj->data[0] == CURRENCY_GEM)
+        Player.purse.gems++;
+    if (obj->data[0] == CURRENCY_DORADITOS)
+        Player.purse.doraditos++;
+    if (obj->data[0] == CURRENCY_DORADITOS_BLUE)
+        Player.purse.doraditosBlue++;
     destroy_interactable(obj);
 }
 

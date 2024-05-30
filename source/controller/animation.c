@@ -65,8 +65,8 @@ void player_movement(void)
     if (RIGHT && !DANCE && !DASH)
         Player.velocity.x += SPEED;
     get_last_input();
-    Player.velocity = multiply2f(normalize2f(Player.velocity),
-        V2F1(Time.deltaTime / 15));
+    Player.velocity = multiply2f(multiply2f(normalize2f(Player.velocity),
+        V2F1(Time.deltaTime / 15)), V2F1(SPEEDF));
     if (!DASH && !DANCE && !HEAL && !Player.blocked)
         actor_set_anim(Player.ref, (Player.velocity.x != 0.0f ||
             Player.velocity.y != 0.0f) ? "walk" : "idle");
@@ -92,9 +92,9 @@ static void dash_animation(void)
             Player.velocity.x += -SPEED;
         if ((RIGHT && velocity.x > 0.0f) || velocity.x > 0.0f)
             Player.velocity.x += SPEED;
-        Player.velocity = multiply2f(normalize2f(Player.velocity),
+        Player.velocity = multiply2f(multiply2f(normalize2f(Player.velocity),
             V2F1(Time.deltaTime / (10 + (8 * (clamp(Player.ref->frame - 26, 0,
-                99))))));
+                99)))))), V2F1(SPEEDF));
         actor_move(Player.ref, Player.velocity);
         Player.ref->scale.x = Player.velocity.x < 0.0f ? -1.0f : 1.0f;
         camera_move();

@@ -34,6 +34,19 @@ void clear_entity_remove_queue(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static int get_chest_type(void)
+{
+    if (Engine.level == 19)
+        return (1);
+    if (rand() % 2) {
+        if ((rand() % 4) == 0)
+            return (2);
+        return (3);
+    }
+    return (0);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void check_opening_animation(void)
 {
     float maxY = 0.0f;
@@ -50,7 +63,7 @@ static void check_opening_animation(void)
     }
     if (Engine.level > 1 && Engine.level != 3)
         spawn_interactable(INTERACTABLE_CHEST, V2F(0.0f, maxY + 50.0f),
-            0, &openchest);
+            get_chest_type(), &openchest);
     Entities.count = -1;
 }
 

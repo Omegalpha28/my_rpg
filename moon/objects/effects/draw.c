@@ -66,3 +66,13 @@ void search_and_destroy(char *target)
         }
     }
 }
+
+///////////////////////////////////////////////////////////////////////////////
+effect_t *find_effect(char *target)
+{
+    for (uint_t i = 0; i < Pool.effectCount; i++){
+        if (CMP(Pool.effects[i]->self->name, target))
+            return (Pool.effects[i]);
+    }
+    return NULL;
+}

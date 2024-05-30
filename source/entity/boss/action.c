@@ -42,7 +42,7 @@ static void spin_dash(entity_t *crab)
     }
     crab->actor->invincible = true;
     spinning_movement(crab);
-    collision_hit(crab);
+    dash_collision_hit(crab);
     if (crab->bounce >= 9){
         crab->bounce = 0;
         crab->status = Dazed;

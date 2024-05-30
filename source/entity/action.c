@@ -30,7 +30,7 @@ static void spinner(entity_t *evil)
 {
     direction_calc(evil);
     spinning_movement(evil);
-    collision_hit(evil);
+    dash_collision_hit(evil);
     if (evil->bounce >= 7){
         evil->bounce = 0;
         evil->status = Dazed;
@@ -46,7 +46,7 @@ static void spinner(entity_t *evil)
 ///////////////////////////////////////////////////////////////////////////////
 static void dash_mov(entity_t *evil, v2f_t move)
 {
-    collision_hit(evil);
+    dash_collision_hit(evil);
     move = movetowards2f(evil->actor->position, evil->wanted_position,
         (evil->speed * 5 * Time.deltaTime) / 25);
     evil->actor->scale.x = move.x - evil->actor->position.x > 0 ? 1.0f : -1.0f;
@@ -131,21 +131,20 @@ static void shooting(entity_t *evil)
 ///////////////////////////////////////////////////////////////////////////////
 static void terrorist(entity_t *evil)
 {
-    v2f_t save = evil->actor->position;
-
     if (evil->is_attack == 0){
         evil->c4_pos = evil->actor->position;
         evil->is_attack = 1;
         evil->cooldown = Time.currentTime;
         evil->last_action = Time.currentTime;
         evil->timebomb = Time.currentTime;
+        effect("bomb", evil->actor->position, 0);
     }
     evil->status = Fear;
     if (Time.currentTime - evil->timebomb < 2000)
         return;
-    evil->actor->position = evil->c4_pos;
-    create_bullet(evil->actor, evil->actor->position, 5);
-    evil->actor->position = save;
+    search_and_destroy("bomb");
+    effect("bomb_explosion", evil->c4_pos, 0);
+    bomb_hit(evil->c4_pos, "bomb_explosion");
     evil->is_attack = 0;
     evil->can_attack = false;
     evil->last_action = Time.currentTime;

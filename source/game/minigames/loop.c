@@ -13,6 +13,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 static void grow_interactable(void)
 {
+    Assets.axolotl[Engine.axo_minigame]->grown++;
+
     for (uint_t i = 0; i < Pool.interCount; i++) {
         if (Pool.inters[i]->type != INTERACTABLE_EGG || Pool.inters[i]->data[0]
             != (int)(Engine.axo_minigame - 1))
@@ -22,6 +24,17 @@ static void grow_interactable(void)
         if (Assets.axolotl[Engine.axo_minigame]->grown == AXO_ADULT)
             actor_set_sheet(Pool.inters[i]->actor, "adults");
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+static void set_music_of_level(void)
+{
+    sfMusic *music = find_music("by-the-campfire");
+
+    end_music();
+    sfMusic_setVolume(music, clampf(Setting.master *
+        (Setting.music / 100.0f) * 0.75f, 0.0f, 100.0f));
+    sfMusic_play(music);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -43,9 +56,9 @@ static void minigame_1(void)
         Engine.scene = SCENE_GAME;
         sfView_setCenter(Win.view, Player.shakeOffset);
         Engine.click = 0;
-        Assets.axolotl[Engine.axo_minigame]->grown++;
         sfRenderWindow_setView(Win.self, Win.view);
         grow_interactable();
+        set_music_of_level();
     }
 }
 
@@ -53,11 +66,16 @@ static void minigame_1(void)
 void get_baby(interactable_t *obj)
 {
     uint_t roll = rand() % 3;
+    sfMusic *music = find_music("baby-xolotl");
 
+    end_music();
     Engine.roll = roll;
     Engine.axo_minigame = obj->data[0] + 1;
     Engine.scene = SCENE_MINIGAME;
     Player.shakeOffset = sfView_getCenter(Win.view);
+    sfMusic_setVolume(music, clampf(Setting.master *
+        (Setting.music / 100.0f) * 0.75f, 0.0f, 100.0f));
+    sfMusic_play(music);
     sfView_setCenter(Win.view, V2F1(0.0f));
     sfRenderWindow_setView(Win.self, Win.view);
 }

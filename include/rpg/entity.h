@@ -96,7 +96,6 @@ typedef struct entity_s {
     weapon_enum_t weapon;
     uint_t movement;
     int attack_amount;
-    Boss_attack_types_t attack_list[MAX_ATTACK];
     int bstat_pos;
     int curr_phase;
     uint_t firerate;
@@ -108,25 +107,6 @@ typedef struct entity_s {
     uint_t timebomb;
 } entity_t;
 
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Structure stat for boss' attack type.
-///
-///////////////////////////////////////////////////////////////////////////////
-typedef struct Boss_stat_s {
-    int attack_amount;
-    Boss_attack_types_t attack_list[MAX_ATTACK];
-} Boss_stats_t;
-
-
-///////////////////////////////////////////////////////////////////////////////
-/// \brief Structure stat for of each -*
-///
-///////////////////////////////////////////////////////////////////////////////
-static const Boss_stats_t B_Stats[BOSS_COUNT] = {
-    {3, {DASH_ATTACK, MOUTH_BLASTER, BUBBLE_DOME}},
-    {5, {DASH_ATTACK, MOUTH_BLASTER, BUBBLE_DOME, BULLET_HELL, SPIKE_TRAP}},
-};
 
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -32,6 +32,26 @@ static void spawn_map_actors(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void spawn_axolotl(void)
+{
+    interactable_t *in;
+
+    for (uint_t i = 0; i < AXO_COUNT; i++) {
+        if (Assets.axolotl[i]->grown == AXO_NO ||
+            Assets.axolotl[i]->grown == AXO_ADULT)
+            continue;
+        in = spawn_interactable(INTERACTABLE_EGG, rand_pos(V2F(460.0f, -190.0f)
+            , 0, 50), i - 1, &get_baby);
+        if (Assets.axolotl[i]->grown == AXO_BABY)
+            actor_set_sheet(in->actor, "babies");
+        if (Assets.axolotl[i]->grown == AXO_TEEN)
+            actor_set_sheet(in->actor, "teenagers");
+        actor_set_variant(in->actor, NULL, i - 1);
+        actor_set_anim(in->actor, "idle");
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 bool_t level_hub(void)
 {
     if (Engine.level != 0 || !level_load("shared/hub"))
@@ -46,5 +66,6 @@ bool_t level_hub(void)
     Player.shaking = false;
     Player.ref->charges = 0;
     Player.blocked = false;
+    spawn_axolotl();
     return (true);
 }

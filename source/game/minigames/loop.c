@@ -11,21 +11,41 @@
 #include "rpg.h"
 
 ///////////////////////////////////////////////////////////////////////////////
+static void grow_interactable(void)
+{
+    for (uint_t i = 0; i < Pool.interCount; i++) {
+        if (Pool.inters[i]->type != INTERACTABLE_EGG || Pool.inters[i]->data[0]
+            != (int)(Engine.axo_minigame - 1))
+            continue;
+        if (Assets.axolotl[Engine.axo_minigame]->grown == AXO_TEEN)
+            actor_set_sheet(Pool.inters[i]->actor, "teenagers");
+        if (Assets.axolotl[Engine.axo_minigame]->grown == AXO_ADULT)
+            actor_set_sheet(Pool.inters[i]->actor, "adults");
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void minigame_1(void)
 {
     draw_text_center(ROT, V2F(Win.width / 2, Win.height / 8), 0.45f, sfWhite);
-    if (CLICK_REL && Engine.click != -1)
+    if (CLICK_REL && Engine.click != -1) {
         Engine.click++;
+        sfx(SFX_PAT);
+    }
     if (Engine.click == 10) {
         search_and_destroy("smile");
         if (!is_effect("blech"))
-            effect("blech", V2F(0.0f, -10.0f), false);
+            effect("blech", V2F(0.0f, 10.0f), false);
+        sfx(SFX_BURP);
         Engine.click = -1;
     }
     if (Engine.click == -1 && !is_effect("blech")) {
         Engine.scene = SCENE_GAME;
+        sfView_setCenter(Win.view, Player.shakeOffset);
         Engine.click = 0;
         Assets.axolotl[Engine.axo_minigame]->grown++;
+        sfRenderWindow_setView(Win.self, Win.view);
+        grow_interactable();
     }
 }
 
@@ -35,8 +55,11 @@ void get_baby(interactable_t *obj)
     uint_t roll = rand() % 3;
 
     Engine.roll = roll;
-    Engine.axo_minigame = obj->data[0];
+    Engine.axo_minigame = obj->data[0] + 1;
     Engine.scene = SCENE_MINIGAME;
+    Player.shakeOffset = sfView_getCenter(Win.view);
+    sfView_setCenter(Win.view, V2F1(0.0f));
+    sfRenderWindow_setView(Win.self, Win.view);
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -52,7 +75,7 @@ static void draw_baby(void)
     sfSprite_setPosition(baby, PX_TO_MAPF(V2F(Win.width / 2, Win.height / 2)));
     sfRenderWindow_drawSprite(Win.self, baby, false);
     if (!is_effect("smile") && Engine.click != -1)
-        effect("smile", V2F(0.0f, -10.0f), false);
+        effect("smile", V2F(0.0f, 10.0f), false);
     sfSprite_destroy(baby);
 }
 
@@ -78,23 +101,35 @@ static void draw_bacs(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void minigame_loop(void)
+static void parse_minigame_events(void)
 {
     sfEvent evt;
 
-    CLICK_REL = false;
     while (sfRenderWindow_pollEvent(Win.self, &evt)) {
         if (evt.type == sfEvtClosed)
             sfRenderWindow_close(Win.self);
         CLICK_REL = click_rel(evt);
         if (evt.type == sfEvtKeyReleased &&
-            evt.key.code == Setting.pause.code)
+            evt.key.code == Setting.pause.code) {
             Engine.scene = SCENE_GAME;
+            sfView_setCenter(Win.view, Player.shakeOffset);
+            sfRenderWindow_setView(Win.self, Win.view);
+            search_and_destroy("smile");
+        }
     }
+}
+
+///////////////////////////////////////////////////////////////////////////////
+void minigame_loop(void)
+{
+    CLICK_REL = false;
+    parse_minigame_events();
     draw_bacs();
     draw_baby();
     minigame_1();
     for (uint_t i = 0; i < Pool.effectCount; i++)
-        effect_draw(Pool.effects[i]);
+        if (CMP(Pool.effects[i]->self->name, "smile") ||
+            CMP(Pool.effects[i]->self->name, "blech"))
+            effect_draw(Pool.effects[i]);
     draw_cursor();
 }

@@ -806,6 +806,9 @@ typedef enum sfx_list_e {
     SFX_WP_AVELYN,
     SFX_PICKUP_ITEM,
     SFX_EVOLVE,
+    SFX_PAT,
+    SFX_BURP,
+    SFX_SUCCESS,
     SFX_COUNT
 } sfx_list_t;
 
@@ -1115,7 +1118,13 @@ static const cstring_t SFX_ASSETS[SFX_COUNT][MAX_SFX_VARIANTS] = {
         "game/pickup_item3.ogg", "game/pickup_item4.ogg",
         "game/pickup_item5.ogg", "game/pickup_item6.ogg", NULL
     },
-    {"game/evolve.ogg", NULL}
+    {"game/evolve.ogg", NULL},
+    {
+        "minigame/pat1.ogg", "minigame/pat2.ogg", "minigame/pat3.ogg",
+        "minigame/pat4.ogg", "minigame/pat5.ogg", "minigame/pat6.ogg", NULL
+    },
+    {"minigame/burp.ogg", NULL},
+    {"minigame/success.ogg", NULL}
 };
 
 ///////////////////////////////////////////////////////////////////////////////

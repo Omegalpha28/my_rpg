@@ -32,7 +32,7 @@ static void init_crab_boss_room(void)
     entity_create(Assets.creatures[CREATURE_CRAB_BOSS], V2F(50.0f, -150.0f));
     end_music();
     sfMusic_setVolume(song, clampf(Setting.master * (Setting.music / 100.0f) *
-        0.1f, 0.0f, 100.0f));
+        0.7f, 0.0f, 100.0f));
     sfMusic_play(song);
 }
 

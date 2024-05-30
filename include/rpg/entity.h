@@ -175,7 +175,7 @@ static const creature_stats_t Stats[CREATURE_COUNT] = {
     {150, 0.5f, 150.0f, 225.0f, Shooter, 0, 29, 3000, 7, 0}, //elite racoon
     {150, 0.5f, 160.0f, 250.0f, Shooter, 0, 31, 2000, 1, 0}, //elite fox
     {85, 0.5f, 75.0f, 110.0f, Shooter, 0, 5, 2000, 5, 0}, //Brat
-    {175, 0.7f, 100.0f, 1000.0f, Sniper, 0, 31, 1750, 11, 1}, // sign boss
+    {175, 0.7f, 100.0f, 1000.0f, Sniper, 0, 31, 1750, 11, 0}, // sign boss
     {INT_MAX, 0, 0, 0, 0, 0, 0, 0, 1, 1}, // pnjs
     {INT_MAX, 0, 0, 0, 0, 0, 0, 0, 1, 1}, // chests
 };

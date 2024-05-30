@@ -101,6 +101,7 @@ void get_wanted_position(entity_t *crab)
     else
         crab->vector.x *= -1;
     crab->bounce++;
+    crab->last_action = Time.currentTime;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -43,7 +43,7 @@ static void spin_dash(entity_t *crab)
     crab->actor->invincible = true;
     spinning_movement(crab);
     dash_collision_hit(crab);
-    if (crab->bounce >= 9){
+    if (crab->bounce >= 9 || Time.currentTime - crab->last_action >= 5000){
         crab->bounce = 0;
         crab->status = Dazed;
         actor_set_sheet(crab->actor, crab->curr_phase == 0 ? "fizzy" :

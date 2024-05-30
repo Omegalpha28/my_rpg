@@ -46,7 +46,8 @@ static void idle(entity_t *boss)
         floorf(boss->actor->position.y))))
         get_wanted_position(boss);
     boss->actor->position = movetowards2f(boss->actor->position,
-        boss->wanted_position, (boss->speed * Time.deltaTime) / 15);
+        boss->wanted_position, (boss->speed * Time.deltaTime) /
+            (boss->curr_phase ? 10 : 15));
     if (floorf(boss->actor->position.x) == 0.0f && (!boss->attack_started ||
         boss->status == Agressive)){
         boss->attack_started = true;

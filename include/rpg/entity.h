@@ -331,7 +331,7 @@ void spinning_movement(entity_t *evil);
 /// \param evil         Pointer to entity doing collision damage attack.
 ///
 ///////////////////////////////////////////////////////////////////////////////
-void collision_hit(entity_t *evil);
+void dash_collision_hit(entity_t *evil);
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -351,5 +351,30 @@ void domain_expansion(entity_t *crab);
 ///////////////////////////////////////////////////////////////////////////////
 void enrage(entity_t *crab);
 
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief Checks if 2 masks are in collision with each other.
+///
+/// \param attack_mask
+/// \param recipient_mask
+/// \param attack_pos
+/// \param recipient_pos
+///
+/// \return 1 if collisions are present, 0 if not.
+///
+///////////////////////////////////////////////////////////////////////////////
+bool_t collision_hit(recti_t attack_mask, recti_t recipient_mask,
+    v2f_t attack_pos, v2f_t recipient_pos);
+
+
+///////////////////////////////////////////////////////////////////////////////
+/// \brief checks if explosion has hit any entities and does damage
+/// accordingly.
+///
+/// \param bomb_pos
+/// \param explosion_name
+///
+///////////////////////////////////////////////////////////////////////////////
+void bomb_hit(v2f_t bomb_pos, char *explosion_name);
 
 #endif /* !ENTITY_H_ */

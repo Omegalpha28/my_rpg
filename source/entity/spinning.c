@@ -21,22 +21,31 @@ static void collision_damage(actor_t *actor)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-void collision_hit(entity_t *evil)
+bool_t collision_hit(recti_t attack_mask, recti_t recipient_mask, v2f_t
+    attack_pos, v2f_t recipient_pos)
 {
-    recti_t arect = evil->actor->self->
-        sheets[evil->actor->sheetId]->image->mask;
-    recti_t prect = Player.ref->self->sheets[Player.ref->sheetId]->image->mask;
+    attack_mask.left = attack_pos.x - (attack_mask.width / 2.0f);
+    attack_mask.top = attack_pos.y - (attack_mask.height / 2.0f);
+    recipient_mask.left = recipient_pos.x - (recipient_mask.width / 2.0f);
+    recipient_mask.top = recipient_pos.y - (recipient_mask.height / 2.0f);
+    if (sfIntRect_intersects(&attack_mask, &recipient_mask, NULL))
+        return true;
+    return false;
+}
 
-    arect.left = evil->actor->position.x - (arect.width / 2.0f);
-    arect.top = evil->actor->position.y - (arect.height / 2.0f);
-    prect.left = Player.ref->position.x - (prect.width / 2.0f);
-    prect.top = Player.ref->position.y - (prect.height / 2.0f);
-    if (!sfIntRect_intersects(&arect, &prect, NULL))
+///////////////////////////////////////////////////////////////////////////////
+void dash_collision_hit(entity_t *evil)
+{
+    if (!collision_hit(
+    evil->actor->self->sheets[evil->actor->sheetId]->image->mask,
+    Player.ref->self->sheets[Player.ref->sheetId]->image->mask,
+    evil->actor->position, Player.ref->position))
         evil->is_attack = false;
-    if (sfIntRect_intersects(&arect, &prect, NULL) && !evil->is_attack){
-        collision_damage(Player.ref);
-        evil->is_attack = true;
-    }
+    else
+        if (!evil->is_attack){
+            collision_damage(Player.ref);
+            evil->is_attack = true;
+        }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

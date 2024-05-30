@@ -31,6 +31,7 @@ void draw_next_button(void)
 ///////////////////////////////////////////////////////////////////////////////
 void switalk(interactable_t *obj)
 {
+    actor_set_anim(Player.ref, "sit");
     if (obj->data[0] == 8 && Engine.level == 3)
         Setting.talk = TUTO_1;
     if (obj->data[0] == 8 && Engine.level == 4)

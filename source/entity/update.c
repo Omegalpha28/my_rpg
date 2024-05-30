@@ -37,6 +37,7 @@ static void intro(entity_t *boss)
         boss->actor->invincible = false;
         boss->actor->castShadow = true;
         boss->actor->shield = -1;
+        boss->can_attack = true;
     }
 }
 

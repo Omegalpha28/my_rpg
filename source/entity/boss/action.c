@@ -36,7 +36,7 @@ static void spin_dash(entity_t *crab)
     if (equal2f((v2f_t){fabs(crab->vector.x), fabs(crab->vector.y)},
         V2F(5.0f, 0.0f))){
         crab->vector = (v2f_t){rand() % 2 ? -5.0f : 5.0f, 5.0f};
-        crab->actor->position.x -= crab->vector.x;
+        crab->actor->position.x += (crab->vector.x * 2);
         crab->wanted_position = crab->actor->position;
         crab->bounce = 0;
     }

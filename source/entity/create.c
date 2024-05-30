@@ -35,26 +35,10 @@ static void init_entity_stat_block(entity_t *new, creature_t *creature)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-static void init_boss_stat_block(entity_t *new, creature_t *creature)
-{
-    if (new->attack_types == Boss)
-        new->attack_amount = CREATURE_COUNT < creature->id ? 3 :
-            B_Stats[new->bstat_pos].attack_amount;
-    else
-        new->attack_amount = 0;
-    for (int i = 0; i < MAX_ATTACK; i++)
-        new->attack_list[i] = 0;
-    for (int i = 0; i < new->attack_amount; i++)
-        new->attack_list[i] = CREATURE_COUNT < creature->id ? 1 :
-            B_Stats[new->bstat_pos].attack_list[i];
-}
-
-///////////////////////////////////////////////////////////////////////////////
 static void init_entity(entity_t *new, creature_t *creature, v2f_t position)
 {
     new->actor = actor_create(creature, position);
     init_entity_stat_block(new, creature);
-    init_boss_stat_block(new, creature);
     new->weapon = Stats[creature->id].weapon;
     new->last_action = Time.currentTime;
     new->has_spawn = 0;

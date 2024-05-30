@@ -10,20 +10,30 @@
 ///////////////////////////////////////////////////////////////////////////////
 #include "rpg.h"
 
+///////////////////////////////////////////////////////////////////////////////
+static void draw_enemy_name(entity_t *evil, v2f_t pos)
+{
+    if (evil->actor->self->id == CREATURE_CRAB_BOSS)
+        draw_text_center("Dartacrab", V2F(pos.x, 10.0f), 0.45f, sfWhite);
+    if (evil->actor->self->id == CREATURE_SIGN_BOSS)
+        draw_text_center("Sus Sign", V2F(pos.x, 10.0f), 0.45f, sfWhite);
+}
+
+///////////////////////////////////////////////////////////////////////////////
 void draw_hp_bar(entity_t *evil)
 {
     sfRectangleShape *hp = sfRectangleShape_create();
     sfRectangleShape *square = sfRectangleShape_create();
     v2f_t pos = {Win.width / 2, Win.height / 18};
 
-    draw_text_center("Dartacrab", V2F(pos.x, 10.0f), 0.45f, sfWhite);
+    draw_enemy_name(evil, pos);
     sfRectangleShape_setPosition(square, PX_TO_MAPF(pos));
     sfRectangleShape_setPosition(hp, PX_TO_MAPF(pos));
     sfRectangleShape_setOrigin(square, V2F(90.0f, 5.0f));
     sfRectangleShape_setOrigin(hp, V2F(90.0f, 5.0f));
     sfRectangleShape_setSize(square, V2F(180.0f, 10.0f));
-    sfRectangleShape_setSize(hp, V2F((float)(evil->actor->health) /
-        (float)(Stats[evil->actor->self->id].health) * 180.0f, 10.0f));
+    sfRectangleShape_setSize(hp, V2F(clampf((float)(evil->actor->health) /
+        (Stats[evil->actor->self->id].health) * 180.0f, 0.0f, 180.0f), 10.0f));
     sfRectangleShape_setOutlineColor(square, sfWhite);
     sfRectangleShape_setFillColor(square, RGB(87, 39, 36));
     sfRectangleShape_setFillColor(hp, RGB(248, 80, 84));

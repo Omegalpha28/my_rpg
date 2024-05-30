@@ -25,6 +25,7 @@ sfColor get_color(v2f_t pos, cstring_t axo_name, uint_t id)
     sfRenderWindow_drawSprite(Win.self, select, NULL);
     sfSprite_destroy(select);
     if (CLICK_REL && mouse_in) {
+        Player.ref->health = Assets.axolotl[id]->maxHealth;
         Player.ref->shield = Assets.axolotl[id]->shields;
         actor_set_variant(Player.ref, axo_name, id);
         Engine.scene = SCENE_GAME;

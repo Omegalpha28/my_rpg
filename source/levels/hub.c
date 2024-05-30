@@ -46,7 +46,7 @@ static void spawn_axolotl(void)
             actor_set_sheet(in->actor, "babies");
         if (Assets.axolotl[i]->grown == AXO_TEEN)
             actor_set_sheet(in->actor, "teenagers");
-        actor_set_variant(in->actor, NULL, i - 1);
+        actor_set_variant(in->actor, NULL, i);
         actor_set_anim(in->actor, "idle");
     }
 }

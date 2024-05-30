@@ -44,10 +44,11 @@ static void intro(entity_t *boss)
 ///////////////////////////////////////////////////////////////////////////////
 static void wait_time(entity_t *evil)
 {
-    if (evil->has_spawn || Time.currentTime - evil->last_action < 1250)
+    if (evil->has_spawn || Time.currentTime - evil->last_action < 2000)
         return;
     evil->has_spawn = true;
     evil->last_action = Time.currentTime;
+    evil->can_attack = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////

@@ -123,4 +123,6 @@ void game_loop(void);
 ///////////////////////////////////////////////////////////////////////////////
 void pickup(interactable_t *obj);
 
+    #define SPEEDF ((float)Assets.axolotl[Player.ref->variantId]->speed / 4.0f)
+
 #endif /* !GAME_H_ */

@@ -25,6 +25,22 @@ void get_last_input(void)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+static void parse_key_dance(sfKeyEvent evt, bool_t pressed, bool_t released)
+{
+    if (evt.code == Setting.dance.code && !pressed && !DASH) {
+        DANCE = released && !DANCE ? true : false;
+        if (DANCE) {
+            set_asset_music_status(sfPlaying);
+            sfMusic_play(find_music("blingblangblang"));
+            sfMusic_setLoop(find_music("blingblangblang"), sfTrue);
+        } else {
+            set_asset_music_status(sfPaused);
+            sfMusic_pause(find_music("blingblangblang"));
+        }
+    }
+}
+
+///////////////////////////////////////////////////////////////////////////////
 static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed,
     bool_t released)
 {
@@ -40,14 +56,7 @@ static void parse_movement_key_input(sfKeyEvent evt, bool_t pressed,
         DASH = pressed;
     if (evt.code == Setting.heal.code && Engine.level > 2)
         HEAL = pressed;
-    if (evt.code == Setting.dance.code && !pressed && !DASH) {
-        DANCE = released && !DANCE ? true : false;
-        if (DANCE) {
-            sfMusic_play(find_music("blingblangblang"));
-            sfMusic_setLoop(find_music("blingblangblang"), sfTrue);
-        } else
-            sfMusic_pause(find_music("blingblangblang"));
-    }
+    parse_key_dance(evt, pressed, released);
 }
 
 ///////////////////////////////////////////////////////////////////////////////

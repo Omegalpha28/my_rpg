@@ -1623,4 +1623,14 @@ bool_t init_assets_babies(void);
 ///////////////////////////////////////////////////////////////////////////////
 void destroy_all_babies(void);
 
+///////////////////////////////////////////////////////////////////////////////
+/// \brief TODO: it takes as a parameter a status, if the status is equal to
+/// "sfPlaying", it will pause all the music of the game, otherwise if the
+/// status is equal to "sfPaused", it will play all the music paused.
+///
+/// \param status the status that needs to be changed.
+///
+///////////////////////////////////////////////////////////////////////////////
+void set_asset_music_status(sfSoundStatus status);
+
 #endif /* !ASSETS_H_ */

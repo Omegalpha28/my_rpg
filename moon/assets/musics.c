@@ -51,6 +51,18 @@ bool_t init_assets_musics(void)
     return (success);
 }
 
+void set_asset_music_status(sfSoundStatus status)
+{
+    for (uint_t i = 0; i < Assets.musicCount; i++) {
+        if (sfMusic_getStatus(Assets.musics[i]->self) == status &&
+            status == sfPaused)
+            sfMusic_play(find_music(Assets.musics[i]->name));
+        if (sfMusic_getStatus(Assets.musics[i]->self) == status &&
+            status == sfPlaying)
+            sfMusic_pause(find_music(Assets.musics[i]->name));
+    }
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 void destroy_assets_musics(void)
 {

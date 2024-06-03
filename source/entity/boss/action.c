@@ -39,8 +39,8 @@ static void spin_dash(entity_t *crab)
         crab->actor->position.x += (crab->vector.x * 2);
         crab->wanted_position = crab->actor->position;
         crab->bounce = 0;
+        crab->movement = Time.currentTime;
     }
-    crab->actor->invincible = true;
     spinning_movement(crab);
     dash_collision_hit(crab);
     if (crab->bounce >= 9 || Time.currentTime - crab->last_action >= 5000){

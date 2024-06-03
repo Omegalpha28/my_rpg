@@ -49,6 +49,7 @@ static void update(void)
     cursor_focus();
     update_interaction();
     check_level_end();
+    set_music_volume();
 }
 
 ///////////////////////////////////////////////////////////////////////////////

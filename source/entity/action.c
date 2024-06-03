@@ -39,7 +39,6 @@ static void spinner(entity_t *evil)
         actor_set_sheet(evil->actor, "default");
         return;
     }
-    evil->actor->invincible = true;
     actor_set_anim(evil->actor, "spin");
 }
 

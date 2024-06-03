@@ -100,6 +100,10 @@ void get_wanted_position(entity_t *crab)
         crab->vector.y *= -1;
     else
         crab->vector.x *= -1;
+    if (Time.currentTime - crab->movement < 200)
+        return;
+    crab->movement = Time.currentTime;
+    crab->last_action = Time.currentTime;
     crab->bounce++;
 }
 
@@ -108,6 +112,7 @@ void spinning_movement(entity_t *evil)
 {
     actor_set_sheet(evil->actor, evil->curr_phase == 0 ? "spin" : "rage_spin");
     actor_set_anim(evil->actor, "spin");
+    evil->actor->invincible = true;
     if (equal2f(V2F(floorf(evil->wanted_position.x),
         floorf(evil->wanted_position.y)), V2F(floorf(evil->actor->position.x),
         floorf(evil->actor->position.y))))

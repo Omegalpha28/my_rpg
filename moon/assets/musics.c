@@ -79,6 +79,24 @@ void destroy_assets_musics(void)
     Assets.musicCount = 0;
 }
 
+void set_music_volume(void)
+{
+    float volume;
+    float new_volume;
+
+    if (Assets.musicCount == 0)
+        return;
+    for (uint_t i = 0; i < Assets.musicCount; i++) {
+        if (!(sfMusic_getStatus(Assets.musics[i]->self) == sfPlaying))
+            continue;
+        volume = sfMusic_getVolume(Assets.musics[i]->self);
+        new_volume = clampf(Setting.master * (Setting.music / 100.0f) * 0.75f,
+            0.0f, 100.0f);
+        if (new_volume != volume)
+            sfMusic_setVolume(Assets.musics[i]->self, new_volume);
+    }
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 sfMusic *find_music(cstring_t name)
 {

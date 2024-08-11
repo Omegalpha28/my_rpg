@@ -1,13 +1,13 @@
 
-![COMMITS](https://img.shields.io/github/commit-activity/t/mallory-scotton/csfml-engine?style=for-the-badge)
-![LAST COMMITS](https://img.shields.io/github/last-commit/mallory-scotton/csfml-engine?style=for-the-badge)
-![LICENSE](https://img.shields.io/github/license/mallory-scotton/csfml-engine?style=for-the-badge)
-![STARS](https://img.shields.io/github/stars/mallory-scotton/csfml-engine?style=for-the-badge)
+![COMMITS](https://img.shields.io/github/commit-activity/t/mallory-scotton/my_rpg?style=for-the-badge)
+![LAST COMMITS](https://img.shields.io/github/last-commit/mallory-scotton/my_rpg?style=for-the-badge)
+![LICENSE](https://img.shields.io/github/license/mallory-scotton/my_rpg?style=for-the-badge)
+![STARS](https://img.shields.io/github/stars/mallory-scotton/my_rpg?style=for-the-badge)
 
 
-![FILE COUNT](https://img.shields.io/github/directory-file-count/mallory-scotton/csfml-engine?style=for-the-badge)
-![CODE SIZE](https://img.shields.io/github/languages/code-size/mallory-scotton/csfml-engine?style=for-the-badge)
-![REPO SIZE](https://img.shields.io/github/repo-size/mallory-scotton/csfml-engine?style=for-the-badge)
+![FILE COUNT](https://img.shields.io/github/directory-file-count/mallory-scotton/my_rpg?style=for-the-badge)
+![CODE SIZE](https://img.shields.io/github/languages/code-size/mallory-scotton/my_rpg?style=for-the-badge)
+![REPO SIZE](https://img.shields.io/github/repo-size/mallory-scotton/my_rpg?style=for-the-badge)
 
 
 # B-MUL-200-myrpg
